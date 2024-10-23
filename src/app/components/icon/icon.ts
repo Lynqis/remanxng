@@ -15,13 +15,20 @@ import { RxTemplate } from '../../api/directives/shared';
 import { TemplateNull } from '../../api/helpers/ts-helper';
 
 @Component({
-  selector: 'r-icon',
+  selector: 'rx-icon',
   template: `
-    <ng-content *ngIf="!iconTemplate" [attr.aria-label]="ariaLabel" [attr.aria-hidden]="ariaHidden" [attr.role]="role">
-      <span [class]="getClassNames()"></span>
-    </ng-content>
-    <ng-container *ngTemplateOutlet="iconTemplate">
+    <ng-container *ngIf="iconTemplate; else notTemplate">
+      <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
     </ng-container>
+    <ng-template #notTemplate>
+      <ng-content
+        [attr.aria-label]="ariaLabel"
+        [attr.aria-hidden]="ariaHidden"
+        [attr.role]="role"
+      >
+        <span [class]="getClassNames()"></span>
+      </ng-content>
+    </ng-template>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -71,21 +78,14 @@ export class Icon implements OnInit {
 
   getClassNames() {
     return `r-icon ${this.styleClass ? this.styleClass + ' ' : ''}${
-      this.spin ? 'r-icon-spin' : ''
+      this.spin ? 'rx-icon-spin' : ''
     }`;
   }
 }
 
-
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    Icon
-  ],
-  declarations: [
-    Icon
-  ]
+  imports: [CommonModule],
+  exports: [Icon],
+  declarations: [Icon],
 })
 export class IconModule {}
