@@ -1,15 +1,18 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { SidebarModule } from '../../../components/sidebar/sidebar';
+import { QLayoutComponent } from '../../../components/layout/layout';
 
 @Component({
   selector: 'app',
   template: `
-    <div class="layout">
+    <q-layout class="layout">
+      <header>Remanx</header>
+      <rx-sidebar [visible]="true"><h4>test</h4></rx-sidebar>
       <router-outlet></router-outlet>
-    </div>
+    </q-layout>
   `,
   standalone: true,
-  imports: [ RouterOutlet ]
+  imports: [RouterOutlet, SidebarModule, QLayoutComponent],
 })
-export class Layout
-{}
+export class Layout {}
