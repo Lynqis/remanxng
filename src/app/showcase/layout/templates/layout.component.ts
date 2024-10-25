@@ -6,11 +6,13 @@ import { QLayoutComponent } from '../../../components/layout/layout';
 @Component({
   selector: 'app',
   template: `
-    <q-layout class="layout">
+    <rx-layout>
       <header>Remanx</header>
       <rx-sidebar [visible]="true"><h4>test</h4></rx-sidebar>
-      <router-outlet></router-outlet>
-    </q-layout>
+      <div class="main-content">
+        <router-outlet></router-outlet>
+      </div>
+    </rx-layout>
   `,
   standalone: true,
   imports: [RouterOutlet, SidebarModule, QLayoutComponent],
