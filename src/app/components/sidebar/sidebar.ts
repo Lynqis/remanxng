@@ -42,7 +42,7 @@ import { RxTemplate } from '../../api/directives/shared';
     </div>
   `,
   selector: 'rx-sidebar',
-  styleUrl: './sidebar.css',
+  styleUrl: './sidebar.scss',
 })
 export class Sidebar {
   @Input() overlay: boolean = false;
