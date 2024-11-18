@@ -22,7 +22,6 @@ import { RxTemplate } from '../../api/directives/shared';
         'rx-sidebar-right': position === 'right',
         'rx-sidebar-overlay': overlay,
       }"
-      style="background-color:red"
     >
       <ng-container *ngIf="headlessTemplate; else notHeadless">
         <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
@@ -42,7 +41,7 @@ import { RxTemplate } from '../../api/directives/shared';
     </div>
   `,
   selector: 'rx-sidebar',
-  styleUrl: './sidebar.scss',
+  styleUrl: './sidebar.css',
 })
 export class Sidebar {
   @Input() overlay: boolean = false;
