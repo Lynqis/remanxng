@@ -1,9 +1,9 @@
 import {
   Component,
   Input,
-  AfterViewInit,
-  Inject,
   PLATFORM_ID,
+  inject,
+  OnInit,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
@@ -23,13 +23,13 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   `,
   standalone: true,
   imports: [CommonModule],
-  styleUrls: ['./layout.scss'],
+  styleUrls: ['./layout.css'],
 })
-export class QLayoutComponent implements AfterViewInit {
-  @Inject(PLATFORM_ID) private platformId: any;
+export class QLayoutComponent implements OnInit {
+  private platformId: any = inject(PLATFORM_ID);
 
   @Input() container: boolean = false;
-  @Input() view: string = 'hhh lpr fff';
+  @Input() view: string = 'hhh scc fff';
 
   layoutConfig: any = {};
 
@@ -39,19 +39,23 @@ export class QLayoutComponent implements AfterViewInit {
   classes: string = '';
   style: any = {};
 
-  ngAfterViewInit() {
+  ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.initializeLayout();
     }
   }
 
   initializeLayout() {
+    this.parseView();
     this.height$.next(window.innerHeight);
     this.width$.next(window.innerWidth);
 
     this.classes = this.container
       ? 'rx-layout rx-layout--containerized'
       : 'rx-layout rx-layout--standard';
+
+    this.classes += ` layout-${this.layoutConfig.header}-${this.layoutConfig.body}-${this.layoutConfig.footer}`;
+
     this.style = this.container
       ? null
       : { minHeight: `${window.innerHeight}px` };
@@ -60,9 +64,9 @@ export class QLayoutComponent implements AfterViewInit {
   parseView() {
     const viewParts = this.view.split(' ');
     this.layoutConfig = {
-      header: viewParts[0] || '', // Ex : 'hhh'
-      body: viewParts[1] || '', // Ex : 'lpr'
-      footer: viewParts[2] || '', // Ex : 'fff'
+      header: viewParts[0] || '',
+      body: viewParts[1] || '',
+      footer: viewParts[2] || '',
     };
   }
 }

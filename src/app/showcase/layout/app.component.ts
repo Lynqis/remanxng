@@ -9,7 +9,7 @@ import { Layout } from './templates/layout.component';
   standalone: true,
   imports: [CommonModule, RouterOutlet, IconModule, Layout],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'remanxng';

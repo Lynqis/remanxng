@@ -1,18 +1,4 @@
-import { Component, Directive, Input, NgModule, TemplateRef, inject } from "@angular/core";
-
-@Component({
-  selector: 'rx-header',
-  standalone: true,
-  template: '<ng-content></ng-content>'
-})
-export class Header {}
-
-@Component({
-  selector: 'rx-footer',
-  standalone: true,
-  template: '<ng-content></ng-content>'
-})
-export class Footer {}
+import { Directive, Input, NgModule, TemplateRef, inject } from "@angular/core";
 
 
 @Directive({
