@@ -165,10 +165,8 @@
     grid-area: sidebar;
   }
   
-  ::ng-deep .main-content {
+  ::ng-deep rx-main {
     grid-area: main;
+    box-sizing: border-box;
   }
-  
-  
-
 }
