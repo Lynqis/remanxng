@@ -1,0 +1,6 @@
+@layer remanx {
+    .rx-header {
+        height: 80px;
+        background-color: blue;
+    }
+}

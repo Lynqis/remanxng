@@ -1,0 +1,6 @@
+@layer remanx {
+    .rx-footer {
+        height: 80px;
+        background-color: yellow;
+    }
+}
