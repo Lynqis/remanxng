@@ -1,3 +1,1 @@
-import { TemplateRef } from "@angular/core";
-
-export declare type TemplateNull<T = void> = TemplateRef<any> | null | T;
+export declare type Nullable<T = void> = T | null | undefined;

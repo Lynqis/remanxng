@@ -6,7 +6,7 @@ import {
   QueryList,
 } from '@angular/core';
 import { RxTemplate } from '../../api/directives/shared';
-import { TemplateNull } from '../../api/helpers/ts-helper';
+import { Nullable } from '../../api/helpers/ts-helper';
 
 @Component({
   template: `
@@ -25,7 +25,7 @@ import { TemplateNull } from '../../api/helpers/ts-helper';
 export class Header {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
-  headerTemplate: TemplateNull<any>;
+  headerTemplate: Nullable<any>;
 }
 
 @NgModule({

@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { ObjectUtils } from '../../api/utils/objectutils';
 import { RxTemplate } from '../../api/directives/shared';
-import { TemplateNull } from '../../api/helpers/ts-helper';
+import { Nullable } from '../../api/helpers/ts-helper';
 
 @Component({
   selector: 'rx-icon',
@@ -41,7 +41,7 @@ export class Icon implements OnInit {
 
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
-  iconTemplate: TemplateNull<any>;
+  iconTemplate: Nullable<any>;
 
   ariaLabel?: string;
   ariaHidden: boolean = true;

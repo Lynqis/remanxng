@@ -1,5 +1,4 @@
-import { Directive, Input, NgModule, TemplateRef, inject } from "@angular/core";
-
+import { Directive, Input, TemplateRef, inject } from "@angular/core";
 
 @Directive({
   selector: '[rxTemplate]',
@@ -15,9 +14,3 @@ export class RxTemplate {
     return this.name!;
   }
 }
-
-@NgModule({
-  imports: [RxTemplate],
-  exports: [RxTemplate]
-})
-export class SharedModule {}
