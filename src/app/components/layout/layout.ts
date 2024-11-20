@@ -25,7 +25,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   imports: [CommonModule],
   styleUrls: ['./layout.css'],
 })
-export class QLayoutComponent implements OnInit {
+export class RxLayout implements OnInit {
   private platformId: any = inject(PLATFORM_ID);
 
   @Input() container: boolean = false;

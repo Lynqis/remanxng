@@ -38,7 +38,7 @@ import { RxTemplate } from '../../api/directives/shared';
   imports: [CommonModule],
   standalone: true
 })
-export class Sidebar implements AfterContentInit {
+export class RxSidebar implements AfterContentInit {
   @Input() overlay: boolean = false;
   @Input() visible: boolean = true;
   @Input() styleClass: string = '';

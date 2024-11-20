@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   ContentChildren,
-  NgModule,
   QueryList,
   TemplateRef,
 } from '@angular/core';
@@ -14,7 +13,7 @@ import { Nullable } from '../../api/helpers/ts-helper';
     <ng-container *ngIf="headlessTemplate; else notTemplate">
       <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
     </ng-container>
-    
+
     <ng-template #notTemplate>
       <footer class="rx-footer">
           <ng-content></ng-content>
@@ -26,7 +25,7 @@ import { Nullable } from '../../api/helpers/ts-helper';
   standalone: true,
   imports: [CommonModule]
 })
-export class Footer {
+export class RxFooter {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
   headlessTemplate: Nullable<TemplateRef<any>>;
