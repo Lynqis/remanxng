@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterContentInit,
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
   Input,
-  NgModule,
   OnInit,
   QueryList,
-  ViewEncapsulation,
+  TemplateRef,
 } from '@angular/core';
 import { ObjectUtils } from '../../api/utils/objectutils';
 import { RxTemplate } from '../../api/directives/shared';
@@ -17,9 +17,10 @@ import { Nullable } from '../../api/helpers/ts-helper';
 @Component({
   selector: 'rx-icon',
   template: `
-    <ng-container *ngIf="iconTemplate; else notTemplate">
-      <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
+    <ng-container *ngIf="headlessTemplate; else notTemplate">
+      <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
     </ng-container>
+
     <ng-template #notTemplate>
       <ng-content
         [attr.aria-label]="ariaLabel"
@@ -31,17 +32,17 @@ import { Nullable } from '../../api/helpers/ts-helper';
     </ng-template>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [CommonModule]
 })
-export class Icon implements OnInit {
+export class Icon implements OnInit, AfterContentInit {
   @Input() label: string = '';
   @Input() styleClass: string = '';
   @Input({ transform: booleanAttribute }) spin: boolean = false;
-  @Input() _templateMap: any;
 
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
-  iconTemplate: Nullable<any>;
+  headlessTemplate: Nullable<TemplateRef<any>>;
 
   ariaLabel?: string;
   ariaHidden: boolean = true;
@@ -52,18 +53,13 @@ export class Icon implements OnInit {
   }
 
   ngAfterContentInit() {
-    if ((this.templates as QueryList<RxTemplate>).length!) {
-      this._templateMap = {};
-    }
-
     (this.templates as QueryList<RxTemplate>).forEach!((item) => {
       switch (item.getType()) {
-        case 'header':
-          this.iconTemplate = item.template;
+        case 'headless':
+          this.headlessTemplate = item.template;
           break;
 
         default:
-          this._templateMap[<any>item.name] = item.template;
           break;
       }
     });
@@ -82,10 +78,3 @@ export class Icon implements OnInit {
     }`;
   }
 }
-
-@NgModule({
-  imports: [CommonModule],
-  exports: [Icon],
-  declarations: [Icon],
-})
-export class IconModule {}
