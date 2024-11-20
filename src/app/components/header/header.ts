@@ -1,18 +1,20 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterContentInit,
   Component,
   ContentChildren,
-  NgModule,
   QueryList,
+  TemplateRef,
 } from '@angular/core';
 import { RxTemplate } from '../../api/directives/shared';
 import { Nullable } from '../../api/helpers/ts-helper';
 
 @Component({
   template: `
-    <ng-container *ngIf="headerTemplate; else notTemplate">
-      <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+    <ng-container *ngIf="headlessTemplate; else notTemplate">
+      <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
     </ng-container>
+
     <ng-template #notTemplate>
       <header class="rx-header">
           <ng-content></ng-content>
@@ -20,17 +22,25 @@ import { Nullable } from '../../api/helpers/ts-helper';
     </ng-template>
   `,
   selector: 'rx-header',
-  styleUrls: ['./header.css']
+  styleUrls: ['./header.css'],
+  standalone: true,
+  imports: [CommonModule]
 })
-export class Header {
+export class Header implements AfterContentInit {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
-  headerTemplate: Nullable<any>;
-}
+  headlessTemplate: Nullable<TemplateRef<any>>;
 
-@NgModule({
-  imports: [CommonModule],
-  exports: [Header],
-  declarations: [Header],
-})
-export class HeaderModule {}
+  ngAfterContentInit(): void {
+    this.templates?.forEach((item) => {
+      switch (item.getType()) {
+        case 'headless':
+            this.headlessTemplate = item.template;
+            break;
+
+        default:
+            break;
+      }
+    });
+  }
+}

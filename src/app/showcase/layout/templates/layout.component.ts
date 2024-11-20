@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { QLayoutComponent } from '../../../components/layout/layout';
-import { HeaderModule } from '../../../components/header/header';
-import { FooterModule } from "../../../components/footer/footer";
+import { Header } from '../../../components/header/header';
+import { Footer } from "../../../components/footer/footer";
 import { MainContent } from "../../../components/main-content/main-content";
 import { RxTemplate } from '../../../api/directives/shared';
 import { Sidebar } from '../../../components/sidebar/sidebar';
@@ -24,6 +24,6 @@ import { Sidebar } from '../../../components/sidebar/sidebar';
     </rx-layout>
   `,
   standalone: true,
-  imports: [RouterOutlet, Sidebar, QLayoutComponent, HeaderModule, FooterModule, MainContent, RxTemplate],
+  imports: [RouterOutlet, Sidebar, QLayoutComponent, Header, Footer, MainContent, RxTemplate],
 })
 export class Layout {}
