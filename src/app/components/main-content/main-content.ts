@@ -4,6 +4,7 @@ import {
   Component,
   ContentChildren,
   QueryList,
+  TemplateRef,
 } from '@angular/core';
 import { RxTemplate } from '../../api/directives/shared';
 import { Nullable } from '../../api/helpers/ts-helper';
@@ -28,7 +29,7 @@ import { Nullable } from '../../api/helpers/ts-helper';
 export class MainContent implements AfterContentInit {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
-  headlessTemplate: Nullable<any>;
+  headlessTemplate: Nullable<TemplateRef<any>>;
 
   ngAfterContentInit(): void {
     this.templates?.forEach((item) => {
