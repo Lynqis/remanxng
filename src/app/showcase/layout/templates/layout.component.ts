@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { QLayoutComponent } from '../../../components/layout/layout';
-import { Header } from '../../../components/header/header';
-import { Footer } from "../../../components/footer/footer";
-import { MainContent } from "../../../components/main-content/main-content";
+import { RxLayout } from '../../../components/layout/layout';
+import { RxHeader } from '../../../components/header/header';
+import { RxFooter } from "../../../components/footer/footer";
+import { RxMainContent } from "../../../components/main-content/main-content";
 import { RxTemplate } from '../../../api/directives/shared';
-import { Sidebar } from '../../../components/sidebar/sidebar';
+import { RxSidebar } from '../../../components/sidebar/sidebar';
 
 @Component({
   selector: 'app',
@@ -24,6 +24,6 @@ import { Sidebar } from '../../../components/sidebar/sidebar';
     </rx-layout>
   `,
   standalone: true,
-  imports: [RouterOutlet, Sidebar, QLayoutComponent, Header, Footer, MainContent, RxTemplate],
+  imports: [RouterOutlet, RxSidebar, RxLayout, RxHeader, RxFooter, RxMainContent, RxTemplate],
 })
 export class Layout {}

@@ -26,7 +26,7 @@ import { Nullable } from '../../api/helpers/ts-helper';
   standalone: true,
   imports: [CommonModule]
 })
-export class MainContent implements AfterContentInit {
+export class RxMainContent implements AfterContentInit {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
   headlessTemplate: Nullable<TemplateRef<any>>;

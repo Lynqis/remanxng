@@ -35,7 +35,7 @@ import { Nullable } from '../../api/helpers/ts-helper';
   standalone: true,
   imports: [CommonModule]
 })
-export class Icon implements OnInit, AfterContentInit {
+export class RxIcon implements OnInit, AfterContentInit {
   @Input() label: string = '';
   @Input() styleClass: string = '';
   @Input({ transform: booleanAttribute }) spin: boolean = false;
