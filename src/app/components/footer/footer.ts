@@ -4,15 +4,17 @@ import {
   ContentChildren,
   NgModule,
   QueryList,
+  TemplateRef,
 } from '@angular/core';
 import { RxTemplate } from '../../api/directives/shared';
 import { Nullable } from '../../api/helpers/ts-helper';
 
 @Component({
   template: `
-    <ng-container *ngIf="footerTemplate; else notTemplate">
-      <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+    <ng-container *ngIf="headlessTemplate; else notTemplate">
+      <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
     </ng-container>
+    
     <ng-template #notTemplate>
       <footer class="rx-footer">
           <ng-content></ng-content>
@@ -20,17 +22,25 @@ import { Nullable } from '../../api/helpers/ts-helper';
     </ng-template>
   `,
   selector: 'rx-footer',
-  styleUrls: ['./footer.css']
+  styleUrls: ['./footer.css'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class Footer {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
-  footerTemplate: Nullable<any>;
-}
+  headlessTemplate: Nullable<TemplateRef<any>>;
 
-@NgModule({
-  imports: [CommonModule],
-  exports: [Footer],
-  declarations: [Footer],
-})
-export class FooterModule {}
+  ngAfterContentInit(): void {
+    this.templates?.forEach((item) => {
+      switch (item.getType()) {
+        case 'headless':
+            this.headlessTemplate = item.template;
+            break;
+
+        default:
+            break;
+      }
+    });
+  }
+}
