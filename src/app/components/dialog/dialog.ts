@@ -52,7 +52,7 @@ const hideAnimation = animation([animate('{{transition}}', style({ transform: '{
     imports: [CommonModule],
     styleUrls: ['./dialog.css'],
     animations: [trigger('animation', [transition('void => visible', [useAnimation(showAnimation)]), transition('visible => void', [useAnimation(hideAnimation)])])],
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RxDialog implements AfterContentInit {
   @Input() get visible(): boolean {
