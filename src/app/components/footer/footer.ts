@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import {
   Component,
   ContentChildren,
@@ -23,7 +23,7 @@ import { Nullable } from '../../api/helpers/ts-helper';
   selector: 'rx-footer',
   styleUrls: ['./footer.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [NgIf]
 })
 export class RxFooter {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;

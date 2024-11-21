@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import {
   AfterContentInit,
   booleanAttribute,
@@ -33,7 +33,7 @@ import { Nullable } from '../../api/helpers/ts-helper';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule]
+  imports: [NgIf]
 })
 export class RxIcon implements OnInit, AfterContentInit {
   @Input() label: string = '';

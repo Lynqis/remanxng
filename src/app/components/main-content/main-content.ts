@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import {
   AfterContentInit,
   Component,
@@ -24,7 +24,7 @@ import { Nullable } from '../../api/helpers/ts-helper';
   selector: 'rx-main',
   styleUrls: ['./main-content.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [NgIf]
 })
 export class RxMainContent implements AfterContentInit {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
