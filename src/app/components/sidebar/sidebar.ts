@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import {
   AfterContentInit,
   Component,
@@ -35,7 +35,7 @@ import { RxTemplate } from '../../api/directives/shared';
   `,
   selector: 'rx-sidebar',
   styleUrl: './sidebar.css',
-  imports: [CommonModule],
+  imports: [NgIf, NgClass],
   standalone: true
 })
 export class RxSidebar implements AfterContentInit {

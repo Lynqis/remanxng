@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'rx-layout',
@@ -22,7 +22,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
     </div>
   `,
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   styleUrls: ['./layout.css'],
 })
 export class RxLayout implements OnInit {
