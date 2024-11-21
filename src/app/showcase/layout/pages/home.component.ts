@@ -5,7 +5,7 @@ import { RxDialog } from "../../../components/dialog/dialog";
   template: `
     <h1>Content</h1>
     <button (click)="showDialog()">Click</button>
-    <rx-dialog [visible]="visible"></rx-dialog>
+    <rx-dialog [(visible)]="visible"></rx-dialog>
   `,
   imports: [RxDialog],
   standalone: true
