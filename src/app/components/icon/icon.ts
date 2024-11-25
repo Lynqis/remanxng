@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { NgIf, NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
   booleanAttribute,
@@ -33,7 +33,7 @@ import { Nullable } from '../../api/helpers/ts-helper';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgIf]
+  imports: [NgIf, NgTemplateOutlet]
 })
 export class RxIcon implements OnInit, AfterContentInit {
   @Input() label: string = '';
@@ -53,14 +53,9 @@ export class RxIcon implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    (this.templates as QueryList<RxTemplate>).forEach!((item) => {
-      switch (item.getType()) {
-        case 'headless':
-          this.headlessTemplate = item.template;
-          break;
-
-        default:
-          break;
+    this.templates?.forEach((item) => {
+      if (item.getType() === 'headless') {
+        this.headlessTemplate = item.template;
       }
     });
   }
