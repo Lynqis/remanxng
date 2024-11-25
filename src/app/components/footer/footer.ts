@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { NgIf, NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   ContentChildren,
@@ -23,7 +23,7 @@ import { Nullable } from '../../api/helpers/ts-helper';
   selector: 'rx-footer',
   styleUrls: ['./footer.css'],
   standalone: true,
-  imports: [NgIf]
+  imports: [NgIf, NgTemplateOutlet]
 })
 export class RxFooter {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
@@ -32,13 +32,8 @@ export class RxFooter {
 
   ngAfterContentInit(): void {
     this.templates?.forEach((item) => {
-      switch (item.getType()) {
-        case 'headless':
-            this.headlessTemplate = item.template;
-            break;
-
-        default:
-            break;
+      if (item.getType() === 'headless') {
+        this.headlessTemplate = item.template;
       }
     });
   }

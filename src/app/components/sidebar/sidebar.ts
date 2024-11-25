@@ -1,4 +1,4 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
   Component,
@@ -35,7 +35,7 @@ import { RxTemplate } from '../../api/directives/shared';
   `,
   selector: 'rx-sidebar',
   styleUrl: './sidebar.css',
-  imports: [NgIf, NgClass],
+  imports: [NgIf, NgClass, NgTemplateOutlet],
   standalone: true
 })
 export class RxSidebar implements AfterContentInit {
@@ -49,13 +49,8 @@ export class RxSidebar implements AfterContentInit {
 
   ngAfterContentInit(): void {
     this.templates?.forEach((item) => {
-      switch (item.getType()) {
-        case 'headless':
-            this.headlessTemplate = item.template;
-            break;
-
-        default:
-            break;
+      if (item.getType() === 'headless') {
+        this.headlessTemplate = item.template;
       }
     });
   }

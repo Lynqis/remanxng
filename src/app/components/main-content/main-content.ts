@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { NgIf, NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
   Component,
@@ -24,7 +24,7 @@ import { Nullable } from '../../api/helpers/ts-helper';
   selector: 'rx-main',
   styleUrls: ['./main-content.css'],
   standalone: true,
-  imports: [NgIf]
+  imports: [NgIf, NgTemplateOutlet]
 })
 export class RxMainContent implements AfterContentInit {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
@@ -33,13 +33,8 @@ export class RxMainContent implements AfterContentInit {
 
   ngAfterContentInit(): void {
     this.templates?.forEach((item) => {
-      switch (item.getType()) {
-        case 'headless':
-            this.headlessTemplate = item.template;
-            break;
-
-        default:
-            break;
+      if (item.getType() === 'headless') {
+        this.headlessTemplate = item.template;
       }
     });
   }

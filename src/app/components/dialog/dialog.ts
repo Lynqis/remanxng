@@ -1,4 +1,4 @@
-import { NgClass, NgIf } from "@angular/common";
+import { NgClass, NgIf, NgTemplateOutlet } from "@angular/common";
 import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, ElementRef, EventEmitter, inject, Input, Output, QueryList, Renderer2, TemplateRef } from "@angular/core";
 import { AnimationEvent, animate, animation, style, transition, trigger, useAnimation } from '@angular/animations';
 import { RxTemplate } from "../../api/directives/shared";
@@ -49,7 +49,7 @@ const hideAnimation = animation([animate('{{transition}}', style({ transform: '{
         </div>
       </div>
     `,
-    imports: [NgIf, NgClass],
+    imports: [NgIf, NgClass, NgTemplateOutlet],
     styleUrls: ['./dialog.css'],
     animations: [trigger('animation', [transition('void => visible', [useAnimation(showAnimation)]), transition('visible => void', [useAnimation(hideAnimation)])])],
     changeDetection: ChangeDetectionStrategy.OnPush
