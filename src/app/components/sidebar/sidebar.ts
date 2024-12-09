@@ -1,6 +1,7 @@
 import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   Component,
   ContentChildren,
   Input,
@@ -36,7 +37,8 @@ import { RxTemplate } from '../../api/directives/shared';
   selector: 'rx-sidebar',
   styleUrl: './sidebar.css',
   imports: [NgIf, NgClass, NgTemplateOutlet],
-  standalone: true
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RxSidebar implements AfterContentInit {
   @Input() overlay: boolean = false;

@@ -1,6 +1,7 @@
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   Component,
   ContentChildren,
   QueryList,
@@ -24,7 +25,8 @@ import { Nullable } from '../../api/helpers/ts-helper';
   selector: 'rx-header',
   styleUrls: ['./header.css'],
   standalone: true,
-  imports: [NgIf, NgTemplateOutlet]
+  imports: [NgIf, NgTemplateOutlet],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RxHeader implements AfterContentInit {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;

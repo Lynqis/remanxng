@@ -4,6 +4,7 @@ import {
   PLATFORM_ID,
   inject,
   OnInit,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
@@ -24,6 +25,7 @@ import { isPlatformBrowser } from '@angular/common';
   standalone: true,
   imports: [],
   styleUrls: ['./layout.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RxLayout implements OnInit {
   private platformId: any = inject(PLATFORM_ID);

@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { MenuItem } from "../../api/interfaces/menuitem";
 import { NgFor, NgIf } from "@angular/common";
 import { ObjectUtils } from "../../api/utils/objectutils";
@@ -8,22 +8,31 @@ import { ObjectUtils } from "../../api/utils/objectutils";
   template: `
     <ul>
       <ng-template ngFor let-processedItem [ngForOf]="items" let-index="index">
-        <li *ngIf="getItemProp(processedItem, 'separator')">Test</li>
+        <li *ngIf="getItemProp(processedItem, 'separator')"></li>
         <li *ngIf="!getItemProp(processedItem, 'separator')">
-          <div>test</div>
+          <div>
+            <a>
+              <span>{{ getItemLabel(processedItem) }}</span>
+            </a>
+          </div>
           <rx-menubar-sub [items]="processedItem.items" />
         </li>
       </ng-template>
     </ul>
   `,
   standalone: true,
-  imports: [NgFor, NgIf]
+  imports: [NgFor, NgIf],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RxMenuBarSub {
   @Input() items: MenuItem[] | undefined;
 
-  getItemProp(processedItem: any, name: string, params: any = null) {
-    return processedItem?.item ? ObjectUtils.getItemValue(processedItem.item[name], params) : undefined;
+  getItemProp(processedItem: any, name: string, params: any = null): any {
+    return processedItem ? ObjectUtils.getItemValue(processedItem[name], params) : undefined;
+  }
+
+  getItemLabel(processedItem: any): string {
+    return this.getItemProp(processedItem, 'label');
   }
 }
 
