@@ -1,5 +1,6 @@
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   ContentChildren,
   QueryList,
@@ -23,7 +24,8 @@ import { Nullable } from '../../api/helpers/ts-helper';
   selector: 'rx-footer',
   styleUrls: ['./footer.css'],
   standalone: true,
-  imports: [NgIf, NgTemplateOutlet]
+  imports: [NgIf, NgTemplateOutlet],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RxFooter {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;

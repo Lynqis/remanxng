@@ -1,5 +1,5 @@
 import { NgClass, NgIf } from "@angular/common";
-import { booleanAttribute, Component, EventEmitter, Input, Output } from "@angular/core";
+import { booleanAttribute, ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { Severity } from "../../api/helpers/ts-helper";
 
 @Component({
@@ -22,7 +22,8 @@ import { Severity } from "../../api/helpers/ts-helper";
     `,
     standalone: true,
     imports: [NgClass, NgIf],
-    styleUrls: ['./button.css']
+    styleUrls: ['./button.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RxButton {
   @Input() autofocus: boolean = false;

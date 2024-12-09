@@ -20,10 +20,10 @@ export class HomeComponent
 
   items: MenuItem[] = [
     {
-      label: "test"
+      label: "Item 1"
     },
     {
-      label: "test"
+      label: "Item 2"
     }
   ];
 
