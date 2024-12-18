@@ -11,7 +11,7 @@ import { RxTemplate } from '../../../api/src/directives/shared';
 import { Nullable } from '../../../api/src/helpers/ts-helper';
 
 @Component({
-  template: `
+    template: `
     <ng-container *ngIf="headlessTemplate; else notTemplate">
       <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
     </ng-container>
@@ -22,11 +22,10 @@ import { Nullable } from '../../../api/src/helpers/ts-helper';
       </div>
     </ng-template>
   `,
-  selector: 'rx-main',
-  styleUrls: ['./main-content.css'],
-  standalone: true,
-  imports: [NgIf, NgTemplateOutlet],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'rx-main',
+    styleUrls: ['./main-content.css'],
+    imports: [NgIf, NgTemplateOutlet],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RxMainContent implements AfterContentInit {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;

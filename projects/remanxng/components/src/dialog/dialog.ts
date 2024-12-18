@@ -9,7 +9,6 @@ const showAnimation = animation([style({ transform: '{{transform}}', opacity: 0 
 const hideAnimation = animation([animate('{{transition}}', style({ transform: '{{transform}}', opacity: 0 }))]);
 
 @Component({
-    standalone: true,
     selector: 'rx-dialog',
     template: `
       <div

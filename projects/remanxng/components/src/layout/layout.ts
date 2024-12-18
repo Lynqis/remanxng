@@ -10,8 +10,8 @@ import { BehaviorSubject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
-  selector: 'rx-layout',
-  template: `
+    selector: 'rx-layout',
+    template: `
     <div class="rx-layout-container overflow-hidden">
       <div class="absolute-full">
         <div class="scroll">
@@ -22,10 +22,9 @@ import { isPlatformBrowser } from '@angular/common';
       </div>
     </div>
   `,
-  standalone: true,
-  imports: [],
-  styleUrls: ['./layout.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    imports: [],
+    styleUrls: ['./layout.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RxLayout implements OnInit {
   private platformId: any = inject(PLATFORM_ID);

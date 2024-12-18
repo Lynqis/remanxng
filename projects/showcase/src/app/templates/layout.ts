@@ -8,8 +8,8 @@ import { RxTemplate } from '../../../api/directives/shared';
 import { RxSidebar } from '../../../components/sidebar/sidebar';
 
 @Component({
-  selector: 'app',
-  template: `
+    selector: 'app',
+    template: `
     <rx-layout>
       <rx-header>Header</rx-header>
       <rx-sidebar [visible]="true">
@@ -23,7 +23,6 @@ import { RxSidebar } from '../../../components/sidebar/sidebar';
       <rx-footer>Footer</rx-footer>
     </rx-layout>
   `,
-  standalone: true,
-  imports: [RouterOutlet, RxSidebar, RxLayout, RxHeader, RxFooter, RxMainContent, RxTemplate],
+    imports: [RouterOutlet, RxSidebar, RxLayout, RxHeader, RxFooter, RxMainContent, RxTemplate]
 })
 export class Layout {}

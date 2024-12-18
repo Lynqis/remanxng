@@ -15,8 +15,8 @@ import { Nullable } from '@remanxng/api/helpers';
 import { ObjectUtils } from '@remanxng/api/utils';
 
 @Component({
-  selector: 'rx-icon',
-  template: `
+    selector: 'rx-icon',
+    template: `
     <ng-container *ngIf="headlessTemplate; else notTemplate">
       <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
     </ng-container>
@@ -31,9 +31,8 @@ import { ObjectUtils } from '@remanxng/api/utils';
       </ng-content>
     </ng-template>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [NgIf, NgTemplateOutlet]
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgIf, NgTemplateOutlet]
 })
 export class RxIcon implements OnInit, AfterContentInit {
   @Input() label: string = '';

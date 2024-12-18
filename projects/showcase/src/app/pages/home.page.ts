@@ -1,14 +1,13 @@
 import { Component } from "@angular/core";
 
 @Component({
-  template: `
+    template: `
     <h1>Content</h1>
     <rx-button (click)="showDialog()" [label]="'click'" [severity]="'primary'" />
     <rx-dialog [(visible)]="visible"></rx-dialog>
     <rx-menubar [model]="items" />
   `,
-  imports: [RxDialog, RxButton, RxMenuBar],
-  standalone: true
+    imports: [RxDialog, RxButton, RxMenuBar]
 })
 export class HomePage
 {
