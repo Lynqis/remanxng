@@ -4,8 +4,8 @@ import { NgFor, NgIf } from "@angular/common";
 import { ObjectUtils } from "../../../api/src/utils/objectutils";
 
 @Component({
-  selector: "rx-menubar-sub",
-  template: `
+    selector: "rx-menubar-sub",
+    template: `
     <ul>
       <ng-template ngFor let-processedItem [ngForOf]="items" let-index="index">
         <li *ngIf="getItemProp(processedItem, 'separator')"></li>
@@ -20,9 +20,8 @@ import { ObjectUtils } from "../../../api/src/utils/objectutils";
       </ng-template>
     </ul>
   `,
-  standalone: true,
-  imports: [NgFor, NgIf],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    imports: [NgFor, NgIf],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RxMenuBarSub {
   @Input() items: MenuItem[] | undefined;
@@ -37,14 +36,13 @@ export class RxMenuBarSub {
 }
 
 @Component({
-  standalone: true,
-  selector: "rx-menubar",
-  template: `
+    selector: "rx-menubar",
+    template: `
     <div>
         <rx-menubar-sub [items]="model"></rx-menubar-sub>
     </div>
   `,
-  imports: [RxMenuBarSub]
+    imports: [RxMenuBarSub]
 })
 export class RxMenuBar {
   // list of element

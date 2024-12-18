@@ -12,7 +12,7 @@ import { Nullable } from '../../../api/src/helpers/ts-helper';
 import { RxTemplate } from '../../../api/src/directives/shared';
 
 @Component({
-  template: `
+    template: `
     <div
       #container
       [class]="styleClass"
@@ -34,11 +34,10 @@ import { RxTemplate } from '../../../api/src/directives/shared';
       </ng-template>
     </div>
   `,
-  selector: 'rx-sidebar',
-  styleUrl: './sidebar.css',
-  imports: [NgIf, NgClass, NgTemplateOutlet],
-  standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'rx-sidebar',
+    styleUrl: './sidebar.css',
+    imports: [NgIf, NgClass, NgTemplateOutlet],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RxSidebar implements AfterContentInit {
   @Input() overlay: boolean = false;

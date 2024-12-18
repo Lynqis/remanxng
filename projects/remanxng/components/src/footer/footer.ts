@@ -10,7 +10,7 @@ import { RxTemplate } from '../../../api/src/directives/shared';
 import { Nullable } from '../../../api/src/helpers/ts-helper';
 
 @Component({
-  template: `
+    template: `
     <ng-container *ngIf="headlessTemplate; else notTemplate">
       <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
     </ng-container>
@@ -21,11 +21,10 @@ import { Nullable } from '../../../api/src/helpers/ts-helper';
       </footer>
     </ng-template>
   `,
-  selector: 'rx-footer',
-  styleUrls: ['./footer.css'],
-  standalone: true,
-  imports: [NgIf, NgTemplateOutlet],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'rx-footer',
+    styleUrls: ['./footer.css'],
+    imports: [NgIf, NgTemplateOutlet],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RxFooter {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;

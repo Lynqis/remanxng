@@ -20,7 +20,6 @@ import { Severity } from "@remanxng/api/helpers";
             <span *ngIf="label" class="rx-button-label">{{ label }}</span>
         </button>
     `,
-    standalone: true,
     imports: [NgClass, NgIf],
     styleUrls: ['./button.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
