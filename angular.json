@@ -4,43 +4,68 @@
   "newProjectRoot": "projects",
   "projects": {
     "remanxng": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "css"
+      "projectType": "library",
+      "root": "projects/remanxng",
+      "sourceRoot": "projects/remanxng/src",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/remanxng/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/remanxng/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/remanxng/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/remanxng/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
         }
-      },
-      "root": "",
-      "sourceRoot": "src",
+      }
+    },
+    "showcase": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/showcase",
+      "sourceRoot": "projects/showcase/src",
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/remanxng",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
+            "outputPath": "dist/showcase",
+            "index": "projects/showcase/src/index.html",
+            "browser": "projects/showcase/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "projects/showcase/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "**/*",
+                "input": "projects/showcase/public"
+              }
             ],
             "styles": [
-              "src/styles.css"
+              "projects/showcase/src/styles.css"
             ],
             "scripts": [],
-            "server": "src/main.server.ts",
+            "server": "projects/showcase/src/main.server.ts",
             "prerender": true,
             "ssr": {
-              "entry": "server.ts"
-            },
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/styles"
-              ]
+              "entry": "projects/showcase/src/server.ts"
             }
           },
           "configurations": {
@@ -48,13 +73,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
                 }
               ],
               "outputHashing": "all"
@@ -68,45 +93,41 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular/build:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "remanxng:build:production"
+              "buildTarget": "showcase:build:production"
             },
             "development": {
-              "buildTarget": "remanxng:build:development"
+              "buildTarget": "showcase:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build:extract-i18n",
-          "options": {
-            "buildTarget": "remanxng:build"
-          }
+          "builder": "@angular-devkit/build-angular:extract-i18n"
         },
         "test": {
-          "builder": "@angular-devkit/build:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "polyfills": [
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "tsconfig.spec.json",
+            "tsConfig": "projects/showcase/tsconfig.spec.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "**/*",
+                "input": "projects/showcase/public"
+              }
             ],
             "styles": [
-              "src/styles.css"
+              "projects/showcase/src/styles.css"
             ],
             "scripts": []
           }
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }
