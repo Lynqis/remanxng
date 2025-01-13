@@ -33,6 +33,36 @@
               "zone.js/testing"
             ]
           }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": "projects/remanx/ui-ng/.storybook",
+            "browserTarget": "@remanx/ui-ng:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/remanx/ui-ng"
+            ],
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": "projects/remanx/ui-ng/.storybook",
+            "browserTarget": "@remanx/ui-ng:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/remanx/ui-ng"
+            ],
+            "outputDir": "storybook-static"
+          }
         }
       }
     }
