@@ -8,8 +8,7 @@ import {
   QueryList,
   TemplateRef,
 } from '@angular/core';
-import { Nullable } from '../../../api/src/helpers/src/ts-helper';
-import { RxTemplate } from '../../../api/src/directives/shared';
+import { Nullable, RxTemplate } from '@remanx/ui-ng/api';
 
 @Component({
     template: `
