@@ -3,22 +3,23 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "remanxng": {
+    "@remanx/ui-ng": {
       "projectType": "library",
-      "root": "projects/remanxng",
-      "sourceRoot": "projects/remanxng/src",
+      "root": "projects/remanx/ui-ng",
+      "sourceRoot": "projects/remanx/ui-ng/src",
+      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/remanxng/ng-package.json"
+            "project": "projects/remanx/ui-ng/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/remanxng/tsconfig.lib.prod.json"
+              "tsConfig": "projects/remanx/ui-ng/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/remanxng/tsconfig.lib.json"
+              "tsConfig": "projects/remanx/ui-ng/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -26,7 +27,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/remanxng/tsconfig.spec.json",
+            "tsConfig": "projects/remanx/ui-ng/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"

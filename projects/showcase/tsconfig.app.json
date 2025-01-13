@@ -4,6 +4,12 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/app",
+    "paths": {
+      "@remanxng/api/*": ["../../dist/remanxng/api/*"],
+      "@remanxng/api": ["../../dist/remanxng/api"],
+      "@remanxng/components/*": ["../../dist/remanxng/components/*"],
+      "@remanxng/components": ["../../dist/remanxng/components"]
+    },
     "types": [
       "node"
     ]

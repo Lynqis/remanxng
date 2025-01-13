@@ -3,6 +3,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": ".",
     "outDir": "./out-tsc",
     "strict": true,
     "noImplicitOverride": true,
@@ -15,18 +16,22 @@
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "paths": {
-      "@remanxng/api/*": ["./projects/remanxng/api/src/*"]
+      "@remanx/ui-ng/*": ["./projects/remanx/ui-ng/*"]
     },
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "traceResolution": true
+    "traceResolution": false,
+    "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "include": [
+    "projects/**/*"
+  ]
 }
 

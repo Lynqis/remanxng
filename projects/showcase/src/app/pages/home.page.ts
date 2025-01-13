@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { MenuItem } from "@remanx/ui-ng/api";
+import { RxButton, RxDialog, RxMenuBar } from "@remanx/ui-ng/components";
 
 @Component({
     template: `

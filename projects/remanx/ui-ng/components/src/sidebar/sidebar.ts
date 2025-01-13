@@ -8,7 +8,7 @@ import {
   QueryList,
   TemplateRef,
 } from '@angular/core';
-import { Nullable } from '../../../api/src/helpers/ts-helper';
+import { Nullable } from '../../../api/src/helpers/src/ts-helper';
 import { RxTemplate } from '../../../api/src/directives/shared';
 
 @Component({

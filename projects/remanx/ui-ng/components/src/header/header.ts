@@ -8,7 +8,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { RxTemplate } from '../../../api/src/directives/shared';
-import { Nullable } from '../../../api/src/helpers/ts-helper';
+import { Nullable } from '../../../api/src/helpers/src/ts-helper';
 
 @Component({
     template: `
@@ -17,17 +17,17 @@ import { Nullable } from '../../../api/src/helpers/ts-helper';
     </ng-container>
 
     <ng-template #notTemplate>
-      <div class="rx-main-content">
+      <header class="rx-header">
           <ng-content></ng-content>
-      </div>
+      </header>
     </ng-template>
   `,
-    selector: 'rx-main',
-    styleUrls: ['./main-content.css'],
+    selector: 'rx-header',
+    styleUrls: ['./header.css'],
     imports: [NgIf, NgTemplateOutlet],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RxMainContent implements AfterContentInit {
+export class RxHeader implements AfterContentInit {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
   headlessTemplate: Nullable<TemplateRef<any>>;

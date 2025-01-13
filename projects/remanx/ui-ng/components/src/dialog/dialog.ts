@@ -2,7 +2,7 @@ import { NgClass, NgIf, NgTemplateOutlet } from "@angular/common";
 import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, ElementRef, EventEmitter, inject, Input, Output, QueryList, Renderer2, TemplateRef } from "@angular/core";
 import { AnimationEvent, animate, animation, style, transition, trigger, useAnimation } from '@angular/animations';
 import { RxTemplate } from "../../../api/src/directives/shared";
-import { Nullable, Position, VoidListener } from "../../../api/src/helpers/ts-helper";
+import { Nullable, Position, VoidListener } from "../../../api/src/helpers/src/ts-helper";
 
 const showAnimation = animation([style({ transform: '{{transform}}', opacity: 0 }), animate('{{transition}}')]);
 
