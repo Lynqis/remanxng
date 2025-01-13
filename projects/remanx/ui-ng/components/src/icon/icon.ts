@@ -10,9 +10,7 @@ import {
   QueryList,
   TemplateRef,
 } from '@angular/core';
-import { RxTemplate } from 'projects/remanxng/api/src/directives';
-import { Nullable } from 'projects/remanxng/api/src/helpers';
-import { ObjectUtils } from 'projects/remanxng/api/src/utils';
+import { Nullable, ObjectUtils, RxTemplate } from '@remanx/ui-ng/api';
 
 @Component({
     selector: 'rx-icon',

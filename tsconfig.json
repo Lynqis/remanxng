@@ -16,7 +16,8 @@
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "paths": {
-      "@remanx/ui-ng/*": ["./projects/remanx/ui-ng/*"]
+      "@remanx/ui-ng/*": ["./projects/remanx/ui-ng/*"],
+      "@remanx/ui-ng": ["./projects/remanx/ui-ng"]
     },
     "importHelpers": true,
     "target": "ES2022",

@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
-import { MenuItem } from "../../../api/src/interfaces/menuitem";
 import { NgFor, NgIf } from "@angular/common";
-import { ObjectUtils } from "../../../api/src/utils/objectutils";
+import { MenuItem, ObjectUtils } from "@remanx/ui-ng/api";
 
 @Component({
     selector: "rx-menubar-sub",
