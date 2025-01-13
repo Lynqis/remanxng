@@ -1,6 +1,5 @@
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -8,7 +7,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { RxTemplate } from '../../../api/src/directives/shared';
-import { Nullable } from '../../../api/src/helpers/ts-helper';
+import { Nullable } from '../../../api/src/helpers/src/ts-helper';
 
 @Component({
     template: `
@@ -17,17 +16,17 @@ import { Nullable } from '../../../api/src/helpers/ts-helper';
     </ng-container>
 
     <ng-template #notTemplate>
-      <header class="rx-header">
+      <footer class="rx-footer">
           <ng-content></ng-content>
-      </header>
+      </footer>
     </ng-template>
   `,
-    selector: 'rx-header',
-    styleUrls: ['./header.css'],
+    selector: 'rx-footer',
+    styleUrls: ['./footer.css'],
     imports: [NgIf, NgTemplateOutlet],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RxHeader implements AfterContentInit {
+export class RxFooter {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
   headlessTemplate: Nullable<TemplateRef<any>>;
