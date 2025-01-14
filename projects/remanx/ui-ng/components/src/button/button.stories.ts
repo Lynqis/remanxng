@@ -1,14 +1,14 @@
-import { Meta, StoryFn, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { RxButton } from './button';
 
 export default {
-  title: 'Components/RxButton',
+  title: 'Buttons/Button/RxButton',
   component: RxButton,
-  tags: ['autodocs'], // Si vous utilisez les addons de documentation automatique
+  tags: ['autodocs'],
   argTypes: {
     severity: {
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'success', 'danger'], // Adaptez en fonction des valeurs possibles
+      options: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'help', 'contrast'],
     },
     disabled: { control: 'boolean' },
     loading: { control: 'boolean' },
@@ -57,6 +57,6 @@ export const ColorShowcase = () => ({
     </div>
   `,
   props: {
-    colors: ['primary', 'secondary', 'success', 'danger', 'warning', 'info'], // Toutes vos couleurs ici
+    colors: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'help', 'contrast'],
   },
 });
