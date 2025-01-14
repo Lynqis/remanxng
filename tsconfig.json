@@ -33,6 +33,6 @@
   },
   "include": [
     "projects/**/*"
-  ]
+, "projects/remanx/ui-ng/components/src/layout/layout.stories.ts"  ]
 }
 
