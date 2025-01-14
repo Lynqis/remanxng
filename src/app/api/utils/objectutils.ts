@@ -14,4 +14,12 @@ export class ObjectUtils {
         Object.keys(value).length === 0)
     );
   }
+
+  public static isFunction(obj: any) {
+    return !!(obj?.constructor && obj?.call && obj?.apply);  
+  }
+
+  public static getItemValue(obj: any, ...params: any) {
+    return this.isFunction(obj) ? obj(...params) : obj;
+  }
 }
