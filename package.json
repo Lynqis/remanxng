@@ -1,5 +1,14 @@
 {
-  "name": "remanxng",
+  "name": "remanx-ui-ng",
+  "version": "0.0.1",
+  "description": "A simple angular UI",
+  "author": {
+    "name": "Fallourd Matthieu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dexarys/remanxng"
+  },
   "packageManager": "yarn@4.5.3",
   "scripts": {
     "ng": "ng",
