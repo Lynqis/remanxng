@@ -3,95 +3,65 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "remanxng": {
-      "projectType": "application",
-      "schematics": {},
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
+    "@remanx/ui-ng": {
+      "projectType": "library",
+      "root": "projects/remanx/ui-ng",
+      "sourceRoot": "projects/remanx/ui-ng/src",
+      "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "outputPath": "dist/remanxng",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "project": "projects/remanx/ui-ng/ng-package.json"
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "outputHashing": "all"
+              "tsConfig": "projects/remanx/ui-ng/tsconfig.lib.prod.json"
             },
             "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
+              "tsConfig": "projects/remanx/ui-ng/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
         },
-        "serve": {
-          "builder": "@angular/build:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "remanxng:build:production"
-            },
-            "development": {
-              "buildTarget": "remanxng:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build:extract-i18n",
-          "options": {
-            "buildTarget": "remanxng:build"
-          }
-        },
         "test": {
-          "builder": "@angular-devkit/build:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "tsConfig": "projects/remanx/ui-ng/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
+            ]
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": "projects/remanx/ui-ng/.storybook",
+            "browserTarget": "@remanx/ui-ng:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/remanx/ui-ng"
             ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": "projects/remanx/ui-ng/.storybook",
+            "browserTarget": "@remanx/ui-ng:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/remanx/ui-ng"
             ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
+            "outputDir": "storybook-static"
           }
         }
       }
