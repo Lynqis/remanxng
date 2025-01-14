@@ -21,7 +21,6 @@
     "storybook": "ng run @remanx/ui-ng:storybook",
     "build-storybook": "ng run @remanx/ui-ng:build-storybook"
   },
-  "private": true,
   "workspaces": [
     "projects/*"
   ],
