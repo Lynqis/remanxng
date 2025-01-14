@@ -7,8 +7,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Dexarys/remanxng"
+    "url": "https://github.com/Dexarys/remanxng.git"
   },
+  "license": "GPL-3.0-only",
   "packageManager": "yarn@4.5.3",
   "scripts": {
     "ng": "ng",
