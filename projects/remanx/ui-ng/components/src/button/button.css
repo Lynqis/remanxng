@@ -49,7 +49,7 @@
         &.rx-button-succes:not(:disabled):focus {
             box-shadow: none;
         }
-        
+
         &.rx-button-success:not(:disabled):active {
             background: #bbf7d0;
             color: #052e16;
@@ -198,5 +198,21 @@
         }
     }
 
-    
+    .rx-button-hide {
+        backface-visibility: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        user-select: none;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        vertical-align: bottom;
+        position: relative;
+        background: none;
+        border: none;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, outline-color 0.2s;
+        outline-color: transparent;
+    }
 }

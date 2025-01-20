@@ -1,6 +1,6 @@
 {
   "name": "@remanx/ui-ng",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "peerDependencies": {
     "@angular/common": "^19.0.0",
     "@angular/core": "^19.0.0"
@@ -8,5 +8,7 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "exports": {
+    "./assets/css/reset.css": "./assets/css/reset.css"
+  }
 }

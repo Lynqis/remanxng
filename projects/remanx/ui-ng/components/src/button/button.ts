@@ -42,6 +42,8 @@ export class RxButton {
 
   @Input() value?: string;
 
+  @Input() hidden: boolean = false;
+
   @Output() onClick: EventEmitter<MouseEvent> = new EventEmitter();
 
   public _loading: boolean = false;
@@ -49,8 +51,9 @@ export class RxButton {
 
   get buttonClasses() {
     return {
-      'rx-button': true,
-      [`rx-button-${this.severity}`]: this.severity
+      'rx-button': !this.hidden,
+      'rx-button-hide': this.hidden,
+      [`rx-button-${this.severity}`]: this.severity && !this.hidden
     };
   }
 }

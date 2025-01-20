@@ -3,5 +3,6 @@
   "dest": "../../../dist/remanx/ui-ng",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": ["./assets"]
 }
