@@ -14,6 +14,7 @@ export default {
     loading: { control: 'boolean' },
     label: { control: 'text' },
     type: { control: 'text' },
+    hidden: { control: 'boolean' }
   },
 } as Meta<RxButton>;
 

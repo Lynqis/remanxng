@@ -1,15 +1,4 @@
 {
-  "name": "remanx-ui-ng",
-  "version": "0.0.1",
-  "description": "A simple angular UI",
-  "author": {
-    "name": "Fallourd Matthieu"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Dexarys/remanxng.git"
-  },
-  "license": "GPL-3.0-only",
   "packageManager": "yarn@4.5.3",
   "scripts": {
     "ng": "ng",
@@ -22,7 +11,7 @@
     "build-storybook": "ng run @remanx/ui-ng:build-storybook"
   },
   "workspaces": [
-    "projects/*"
+    "projects/remanx/ui-ng"
   ],
   "dependencies": {
     "@angular/animations": "^19.0.4",
@@ -52,7 +41,7 @@
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/addon-interactions": "^8.4.7",
     "@storybook/addon-onboarding": "^8.4.7",
-    "@storybook/angular": "^8.4.7",
+    "@storybook/angular": "^8.5.0",
     "@storybook/blocks": "^8.4.7",
     "@storybook/test": "^8.4.7",
     "@types/express": "^4.17.21",
