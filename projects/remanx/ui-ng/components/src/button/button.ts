@@ -18,6 +18,7 @@ import { Severity } from "@remanx/ui-ng/api";
               <span [attr.aria-hidden]="true">Load</span>
             </ng-container>
             <span *ngIf="label" class="rx-button-label">{{ label }}</span>
+            <ng-content></ng-content>
         </button>
     `,
     imports: [NgClass, NgIf],
