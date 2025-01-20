@@ -37,8 +37,8 @@
                 "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    visible: true\n  }\n}"
+                "type": "",
+                "defaultValue": "(args: RxDialog) => ({\n  component: RxDialog,\n  template: `\n    <rx-button (click)=\"onToggle()\" [label]=\"'Open a modal'\"></rx-button>\n    <rx-dialog [visible]=\"visible\" (visibleChange)=\"visible = $event\">\n      <p>This is a modal dialog</p>\n    </rx-dialog>\n  `,\n  props: {\n    ...args,\n    view: 'hhh scc fff',\n    visible: false,\n    onToggle: function () {\n      this.visible = !this.visible;\n    },\n  }\n})"
             },
             {
                 "name": "Default",
@@ -47,8 +47,8 @@
                 "file": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    view: 'hhh scc fff',\n    container: false\n  }\n}"
+                "type": "",
+                "defaultValue": "() => ({\n  component: RxLayout,\n  template: `\n    <rx-layout>\n      <rx-header>Header</rx-header>\n      <rx-sidebar [visible]=\"true\">\n        Sidebar\n      </rx-sidebar>\n      <rx-main>\n        Main Content\n      </rx-main>\n      <rx-footer>Footer</rx-footer>\n    </rx-layout>\n  `,\n  props: {\n    view: 'hhh scc fff'\n  }\n})"
             },
             {
                 "name": "Disabled",
@@ -79,16 +79,6 @@
                 "deprecationMessage": "",
                 "type": "Preview",
                 "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n  },\n}"
-            },
-            {
-                "name": "Test",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "() => ({\n  component: RxLayout,\n  template: `\n    <rx-layout [view]=\"view\" [container]=\"container\">\n      <div style=\"background: #d3d3d3; padding: 20px;\">Header (hhh)</div>\n      <div style=\"background: #f0f0f0; padding: 20px;\">Body (scc)</div>\n      <div style=\"background: #b0b0b0; padding: 20px;\">Footer (fff)</div>\n    </rx-layout>\n  `,\n  props: {\n    view: 'hhh scc fff'\n  }\n})"
             }
         ],
         "functions": [],
@@ -99,28 +89,6 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<RxButton>",
                 "file": "projects/remanx/ui-ng/components/src/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<RxDialog>",
-                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<RxLayout>",
-                "file": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -179,8 +147,8 @@
                     "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    visible: true\n  }\n}"
+                    "type": "",
+                    "defaultValue": "(args: RxDialog) => ({\n  component: RxDialog,\n  template: `\n    <rx-button (click)=\"onToggle()\" [label]=\"'Open a modal'\"></rx-button>\n    <rx-dialog [visible]=\"visible\" (visibleChange)=\"visible = $event\">\n      <p>This is a modal dialog</p>\n    </rx-dialog>\n  `,\n  props: {\n    ...args,\n    view: 'hhh scc fff',\n    visible: false,\n    onToggle: function () {\n      this.visible = !this.visible;\n    },\n  }\n})"
                 }
             ],
             "projects/remanx/ui-ng/components/src/layout/layout.stories.ts": [
@@ -191,18 +159,8 @@
                     "file": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    view: 'hhh scc fff',\n    container: false\n  }\n}"
-                },
-                {
-                    "name": "Test",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "() => ({\n  component: RxLayout,\n  template: `\n    <rx-layout [view]=\"view\" [container]=\"container\">\n      <div style=\"background: #d3d3d3; padding: 20px;\">Header (hhh)</div>\n      <div style=\"background: #f0f0f0; padding: 20px;\">Body (scc)</div>\n      <div style=\"background: #b0b0b0; padding: 20px;\">Footer (fff)</div>\n    </rx-layout>\n  `,\n  props: {\n    view: 'hhh scc fff'\n  }\n})"
+                    "defaultValue": "() => ({\n  component: RxLayout,\n  template: `\n    <rx-layout>\n      <rx-header>Header</rx-header>\n      <rx-sidebar [visible]=\"true\">\n        Sidebar\n      </rx-sidebar>\n      <rx-main>\n        Main Content\n      </rx-main>\n      <rx-footer>Footer</rx-footer>\n    </rx-layout>\n  `,\n  props: {\n    view: 'hhh scc fff'\n  }\n})"
                 }
             ],
             "projects/remanx/ui-ng/.storybook/preview.ts": [
@@ -228,32 +186,6 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<RxButton>",
                     "file": "projects/remanx/ui-ng/components/src/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<RxDialog>",
-                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "projects/remanx/ui-ng/components/src/layout/layout.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<RxLayout>",
-                    "file": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -338,41 +270,11 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
-                "type": "type alias",
-                "linktype": "miscellaneous",
-                "linksubtype": "typealias",
-                "name": "Story",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
                 "filePath": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Test",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
-                "type": "type alias",
-                "linktype": "miscellaneous",
-                "linksubtype": "typealias",
-                "name": "Story",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
