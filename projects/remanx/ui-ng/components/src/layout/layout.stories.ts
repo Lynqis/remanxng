@@ -50,14 +50,14 @@ export const Default = () => ({
   component: RxLayout,
   template: `
     <rx-layout>
-      <rx-header>Header</rx-header>
-      <rx-sidebar [visible]="true">
+      <rx-header [$style]="'background-color:blue'">Header</rx-header>
+      <rx-sidebar [visible]="true" [$style]="'background-color:red'">
         Sidebar
       </rx-sidebar>
-      <rx-main>
+      <rx-main [$style]="'background-color:green'">
         Main Content
       </rx-main>
-      <rx-footer>Footer</rx-footer>
+      <rx-footer [$style]="'background-color:yellow'">Footer</rx-footer>
     </rx-layout>
   `,
   props: {

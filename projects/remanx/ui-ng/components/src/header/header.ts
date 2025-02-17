@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
+  Input,
   QueryList,
   TemplateRef,
 } from '@angular/core';
@@ -16,7 +17,7 @@ import { Nullable, RxTemplate } from '@remanx/ui-ng/api';
     </ng-container>
 
     <ng-template #notTemplate>
-      <header class="rx-header">
+      <header class="rx-header" [style]="$style">
           <ng-content></ng-content>
       </header>
     </ng-template>
@@ -28,6 +29,8 @@ import { Nullable, RxTemplate } from '@remanx/ui-ng/api';
 })
 export class RxHeader implements AfterContentInit {
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
+
+  @Input() $style: string = '';
 
   headlessTemplate: Nullable<TemplateRef<any>>;
 

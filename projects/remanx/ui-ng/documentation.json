@@ -48,7 +48,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "() => ({\n  component: RxLayout,\n  template: `\n    <rx-layout>\n      <rx-header>Header</rx-header>\n      <rx-sidebar [visible]=\"true\">\n        Sidebar\n      </rx-sidebar>\n      <rx-main>\n        Main Content\n      </rx-main>\n      <rx-footer>Footer</rx-footer>\n    </rx-layout>\n  `,\n  props: {\n    view: 'hhh scc fff'\n  }\n})"
+                "defaultValue": "() => ({\n  component: RxLayout,\n  template: `\n    <rx-layout>\n      <rx-header [style]=\"'background-color:blue'\">Header</rx-header>\n      <rx-sidebar [visible]=\"true\" [style]=\"'background-color:red'\">\n        Sidebar\n      </rx-sidebar>\n      <rx-main [style]=\"'background-color:green'\">\n        Main Content\n      </rx-main>\n      <rx-footer [style]=\"'background-color:yellow'\">Footer</rx-footer>\n    </rx-layout>\n  `,\n  props: {\n    view: 'hhh scc fff'\n  }\n})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/ui-ng/components/src/overlaypanel/overlaypanel.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "(args: RxOverlayPanel) => ({\n  component: RxOverlayPanel,\n  template: `\n    <rx-button (click)=\"op.toggle($event, button)\" [label]=\"'Open a modal'\"></rx-button>\n    <rx-overlaypanel #op>\n      <p>This is a modal dialog</p>\n    </rx-overlaypanel>\n  `,\n  props: {\n    ...args\n  }\n})"
             },
             {
                 "name": "Disabled",
@@ -160,7 +170,19 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "() => ({\n  component: RxLayout,\n  template: `\n    <rx-layout>\n      <rx-header>Header</rx-header>\n      <rx-sidebar [visible]=\"true\">\n        Sidebar\n      </rx-sidebar>\n      <rx-main>\n        Main Content\n      </rx-main>\n      <rx-footer>Footer</rx-footer>\n    </rx-layout>\n  `,\n  props: {\n    view: 'hhh scc fff'\n  }\n})"
+                    "defaultValue": "() => ({\n  component: RxLayout,\n  template: `\n    <rx-layout>\n      <rx-header [style]=\"'background-color:blue'\">Header</rx-header>\n      <rx-sidebar [visible]=\"true\" [style]=\"'background-color:red'\">\n        Sidebar\n      </rx-sidebar>\n      <rx-main [style]=\"'background-color:green'\">\n        Main Content\n      </rx-main>\n      <rx-footer [style]=\"'background-color:yellow'\">Footer</rx-footer>\n    </rx-layout>\n  `,\n  props: {\n    view: 'hhh scc fff'\n  }\n})"
+                }
+            ],
+            "projects/remanx/ui-ng/components/src/overlaypanel/overlaypanel.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/ui-ng/components/src/overlaypanel/overlaypanel.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "(args: RxOverlayPanel) => ({\n  component: RxOverlayPanel,\n  template: `\n    <rx-button (click)=\"op.toggle($event, button)\" [label]=\"'Open a modal'\"></rx-button>\n    <rx-overlaypanel #op>\n      <p>This is a modal dialog</p>\n    </rx-overlaypanel>\n  `,\n  props: {\n    ...args\n  }\n})"
                 }
             ],
             "projects/remanx/ui-ng/.storybook/preview.ts": [
@@ -271,6 +293,16 @@
             },
             {
                 "filePath": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/remanx/ui-ng/components/src/overlaypanel/overlaypanel.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",

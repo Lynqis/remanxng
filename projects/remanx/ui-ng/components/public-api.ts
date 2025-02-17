@@ -7,3 +7,4 @@ export * from './src/layout';
 export * from './src/main-content';
 export * from './src/menubar';
 export * from './src/sidebar';
+export * from './src/popover';
