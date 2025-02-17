@@ -1,6 +1,7 @@
-import { Meta, moduleMetadata, StoryFn, StoryObj } from "@storybook/angular";
+import { Meta, moduleMetadata } from "@storybook/angular";
 import { RxDialog } from "./dialog";
 import { RxButton } from "../button";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
   title: 'Surfaces/RxDialog',
@@ -10,6 +11,7 @@ export default {
     moduleMetadata({
       imports: [
         RxButton,
+        BrowserAnimationsModule
       ],
     }),
   ]

@@ -14,7 +14,8 @@ import { Nullable, RxTemplate } from '@remanx/ui-ng/api';
     template: `
     <div
       #container
-      [class]="styleClass"
+      [class]="$class"
+      [style]="$style"
       *ngIf="visible"
       [ngClass]="{
         'rx-sidebar': true,
@@ -41,7 +42,8 @@ import { Nullable, RxTemplate } from '@remanx/ui-ng/api';
 export class RxSidebar implements AfterContentInit {
   @Input() overlay: boolean = false;
   @Input() visible: boolean = true;
-  @Input() styleClass: string = '';
+  @Input() $class: string = '';
+  @Input() $style: string = '';
 
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
