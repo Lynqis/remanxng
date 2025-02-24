@@ -77,7 +77,7 @@ export const Default: Story = {
 export const ToggleSidebar: Story = {
   render: () => ({
     template: `
-      <rx-layout #layout>
+      <rx-layout #layout [view]="view">
         <rx-header [$style]="'background-color:blue'">
           <button (click)="layout.onToggleSidebar()">Toggle Sidebar</button>
         </rx-header>
@@ -91,7 +91,7 @@ export const ToggleSidebar: Story = {
       </rx-layout>
     `,
     props: {
-      view: 'shh scc fff',
+      view: 'hhh scc fff',
       sidebarVisible: signal(true)
     }
   })

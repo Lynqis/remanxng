@@ -7,6 +7,14 @@
     margin: 0;
     padding: 0;
 
+    &.layout-sidebar-anim-shrink  {
+        transition: all 0.3s ease-in-out;
+    }
+
+    &.layout-sidebar-anim-opacity {
+        transition: all 0.3s ease-in-out;
+    }
+
     &.layout-sidebar-left-fullwidth {
         grid-template-columns: 15rem 1fr 1fr;
     }
@@ -15,8 +23,16 @@
         grid-template-columns: 5rem 1fr 1fr;
     }
 
+    &.layout-no-sidebar-left {
+        grid-template-columns: 0rem 1fr 1fr;
+    }
+
     &.layout-no-sidebar {
         grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    &.layout-no-sidebar-right {
+        grid-template-columns: 1fr 1fr 0rem;
     }
 
     &.layout-sidebar-right-fullwidth {

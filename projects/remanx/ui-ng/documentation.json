@@ -108,7 +108,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout [view]=\"view\">\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"onToggle()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"visible\" [shrink]=\"shrink\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      visible: true,\n      view: 'shh scc sff',\n      shrink: true\n    }\n  })\n}"
+                "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout [view]=\"view\" #layout>\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"layout.onToggleSidebar()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"sidebarVisible()\" [shrink]=\"shrink\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      sidebarVisible: signal(true),\n      view: 'shh scc sff',\n      shrink: true\n    }\n  })\n}"
             },
             {
                 "name": "ToggleSidebar",
@@ -118,7 +118,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout>\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"onToggleSidebar()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"sidebarVisible()\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'shh scc fff',\n      sidebarVisible: true,\n      onToggleSidebar: fn()\n    }\n  })\n}"
+                "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout #layout>\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"layout.onToggleSidebar()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"sidebarVisible()\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh ccc fff',\n      sidebarVisible: signal(true)\n    }\n  })\n}"
             }
         ],
         "functions": [],
@@ -231,7 +231,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout [view]=\"view\">\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"onToggle()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"visible\" [shrink]=\"shrink\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      visible: true,\n      view: 'shh scc sff',\n      shrink: true\n    }\n  })\n}"
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout [view]=\"view\" #layout>\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"layout.onToggleSidebar()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"sidebarVisible()\" [shrink]=\"shrink\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      sidebarVisible: signal(true),\n      view: 'shh scc sff',\n      shrink: true\n    }\n  })\n}"
                 },
                 {
                     "name": "ToggleSidebar",
@@ -241,7 +241,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout>\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"onToggleSidebar()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"sidebarVisible()\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'shh scc fff',\n      sidebarVisible: true,\n      onToggleSidebar: fn()\n    }\n  })\n}"
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout #layout>\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"layout.onToggleSidebar()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"sidebarVisible()\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh ccc fff',\n      sidebarVisible: signal(true)\n    }\n  })\n}"
                 }
             ],
             "projects/remanx/ui-ng/components/src/popover/popover.stories.ts": [

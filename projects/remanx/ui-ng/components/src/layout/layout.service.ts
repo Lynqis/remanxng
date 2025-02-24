@@ -10,7 +10,6 @@ export class LayoutService {
   isShrink = signal(false);
 
   toggleSidebar() {
-    console.log(this.sidebarShrink())
     if (!this.sidebarShrink()) {
       this.setSidebarVisible(!this.sidebarVisible());
     } else {
