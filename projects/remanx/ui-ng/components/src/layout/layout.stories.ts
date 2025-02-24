@@ -6,6 +6,7 @@ import { RxMainContent } from '../main-content';
 import { RxFooter } from '../footer';
 import { fn } from '@storybook/test';
 import { CommonModule } from '@angular/common';
+import { signal } from '@angular/core';
 
 const meta: Meta<RxLayout> = {
   title: 'Layout/RxLayout',
@@ -76,11 +77,11 @@ export const Default: Story = {
 export const ToggleSidebar: Story = {
   render: () => ({
     template: `
-      <rx-layout>
+      <rx-layout #layout>
         <rx-header [$style]="'background-color:blue'">
-          <button (click)="onToggleSidebar()">Toggle Sidebar</button>
+          <button (click)="layout.onToggleSidebar()">Toggle Sidebar</button>
         </rx-header>
-        <rx-sidebar [visible]="sidebarVisible" [$style]="'background-color:red'">
+        <rx-sidebar [visible]="sidebarVisible()" [$style]="'background-color:red'">
           Sidebar
         </rx-sidebar>
         <rx-main [$style]="'background-color:green'">
@@ -91,8 +92,7 @@ export const ToggleSidebar: Story = {
     `,
     props: {
       view: 'shh scc fff',
-      sidebarVisible: true,
-      onToggleSidebar: fn()
+      sidebarVisible: signal(true)
     }
   })
 };
@@ -100,11 +100,11 @@ export const ToggleSidebar: Story = {
 export const ShrinkSidebar: Story = {
   render: () => ({
     template: `
-      <rx-layout [view]="view">
+      <rx-layout [view]="view" #layout>
         <rx-header [$style]="'background-color:blue'">
-          <button (click)="onToggle()">Toggle Sidebar</button>
+          <button (click)="layout.onToggleSidebar()">Toggle Sidebar</button>
         </rx-header>
-        <rx-sidebar [visible]="visible" [shrink]="shrink" [$style]="'background-color:red'">
+        <rx-sidebar [visible]="sidebarVisible()" [shrink]="shrink" [$style]="'background-color:red'">
           Sidebar
         </rx-sidebar>
         <rx-main [$style]="'background-color:green'">
@@ -114,7 +114,7 @@ export const ShrinkSidebar: Story = {
       </rx-layout>
     `,
     props: {
-      visible: true,
+      sidebarVisible: signal(true),
       view: 'shh scc sff',
       shrink: true
     }

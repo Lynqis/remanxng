@@ -12,7 +12,7 @@ import {
   Signal,
   effect,
 } from '@angular/core';
-import { BehaviorSubject, distinctUntilChanged, merge, Subscription } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { LayoutService } from './layout.service';
 
@@ -51,27 +51,17 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
   positionSidebar: string = '';
   noSidebarClasse: string = 'layout-hhh-ccc-fff';
 
-  private subscriptions: Subscription[] = [];
-  private shrinkSub: Subscription | undefined;
-  private sidebarSub: Subscription | undefined;
-  private sidebarShrinkSub: Subscription | undefined;
+  sidebarVisible: Signal<boolean> = this._layout.sidebarVisible;
 
-  sidebarVisible: boolean = false;
+  constructor() {
+    effect(() => {
+      this.initializeLayout();
+    });
+  }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.initializeLayout();
-
-      this.shrinkSub = this._layout.isShrink$.subscribe(() => {
-        this.initializeLayout();
-      });
-      this.sidebarSub = this._layout.sidebarVisible$.subscribe((visible) => {
-        this.sidebarVisible = visible;
-        this.initializeLayout();
-      });
-      this.sidebarShrinkSub = this._layout.sidebarShrink$.subscribe(() => {
-        this.initializeLayout();
-      })
     }
   }
 
@@ -82,7 +72,6 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   initializeClasses() {
@@ -96,7 +85,7 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
     const [header, body, footer] = this.view.split(' ');
     this.declarePositionSidebar();
 
-    this.classes += this._layout.sidebarVisible ? ` layout-${header}-${body}-${footer}` : ' ' + this.noSidebarClasse;
+    this.classes += this._layout.sidebarVisible() ? ` layout-${header}-${body}-${footer}` : ' ' + this.noSidebarClasse;
 
     this.style = this.container
       ? null
@@ -139,13 +128,13 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
         break;
     }
 
-    console.log('visible : ' + this._layout.sidebarVisible);
-    console.log('isShrink : ' + this._layout.isShrink);
-    console.log('sidebarShrink : ' + this._layout.sidebarShrink);
+    console.log('visible : ' + this._layout.sidebarVisible());
+    console.log('isShrink : ' + this._layout.isShrink());
+    console.log('sidebarShrink : ' + this._layout.sidebarShrink());
 
-    if (!this._layout.sidebarVisible || position === 'none') {
+    if (!this._layout.sidebarVisible() || position === 'none') {
       this.classes += ' layout-no-sidebar';
-    } else if (this._layout.sidebarVisible && this._layout.sidebarShrink && this._layout.isShrink) {
+    } else if (this._layout.sidebarVisible() && this._layout.sidebarShrink() && this._layout.isShrink()) {
       this.classes += ` layout-sidebar-${this.positionSidebar}-shrink`;
     } else {
       this.classes += ` layout-sidebar-${this.positionSidebar}-fullwidth`;

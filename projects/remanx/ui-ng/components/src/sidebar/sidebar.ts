@@ -7,13 +7,11 @@ import {
   ContentChildren,
   inject,
   Input,
-  OnInit,
   QueryList,
   TemplateRef,
 } from '@angular/core';
 import { Nullable, RxTemplate } from '@remanx/ui-ng/api';
 import { LayoutService } from '../layout/layout.service';
-import { Subscription } from 'rxjs';
 
 @Component({
     template: `
@@ -21,10 +19,10 @@ import { Subscription } from 'rxjs';
       #container
       [class]="$class"
       [style]="$style"
-      *ngIf="_layout.sidebarVisible$ | async"
+      *ngIf="_layout.sidebarVisible()"
       [ngClass]="{
         'rx-sidebar': true,
-        'rx-sidebar-active': _layout.sidebarVisible$ | async,
+        'rx-sidebar-active': _layout.sidebarVisible(),
         'rx-sidebar-overlay': overlay,
       }"
     >
@@ -41,10 +39,10 @@ import { Subscription } from 'rxjs';
   `,
     selector: 'rx-sidebar',
     styleUrl: './sidebar.css',
-    imports: [NgIf, NgClass, NgTemplateOutlet, AsyncPipe],
+    imports: [NgIf, NgClass, NgTemplateOutlet],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RxSidebar {
+export class RxSidebar implements AfterContentInit {
   @Input() overlay: boolean = false;
   @Input()
   set visible(value: boolean) {
