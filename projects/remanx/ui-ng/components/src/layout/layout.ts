@@ -5,9 +5,16 @@ import {
   inject,
   OnInit,
   ChangeDetectionStrategy,
+  OnChanges,
+  SimpleChanges,
+  ChangeDetectorRef,
+  OnDestroy,
+  Signal,
+  effect,
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, merge, Subscription } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
+import { LayoutService } from './layout.service';
 
 @Component({
     selector: 'rx-layout',
@@ -26,8 +33,10 @@ import { isPlatformBrowser } from '@angular/common';
     styleUrls: ['./layout.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RxLayout implements OnInit {
+export class RxLayout implements OnInit, OnChanges, OnDestroy {
   private platformId: any = inject(PLATFORM_ID);
+  private _layout: LayoutService = inject(LayoutService);
+  private cd: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   @Input() container: boolean = false;
   @Input() view: string = 'hhh scc fff';
@@ -39,35 +48,114 @@ export class RxLayout implements OnInit {
 
   classes: string = '';
   style: any = {};
+  positionSidebar: string = '';
+  noSidebarClasse: string = 'layout-hhh-ccc-fff';
+
+  private subscriptions: Subscription[] = [];
+  private shrinkSub: Subscription | undefined;
+  private sidebarSub: Subscription | undefined;
+  private sidebarShrinkSub: Subscription | undefined;
+
+  sidebarVisible: boolean = false;
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.initializeLayout();
+
+      this.shrinkSub = this._layout.isShrink$.subscribe(() => {
+        this.initializeLayout();
+      });
+      this.sidebarSub = this._layout.sidebarVisible$.subscribe((visible) => {
+        this.sidebarVisible = visible;
+        this.initializeLayout();
+      });
+      this.sidebarShrinkSub = this._layout.sidebarShrink$.subscribe(() => {
+        this.initializeLayout();
+      })
     }
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['view']) {
+      this.initializeLayout();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  initializeClasses() {
+    this.classes = 'rx-layout';
+  }
+
   initializeLayout() {
-    this.parseView();
+    this.initializeClasses();
     this.height$.next(window.innerHeight);
     this.width$.next(window.innerWidth);
+    const [header, body, footer] = this.view.split(' ');
+    this.declarePositionSidebar();
 
-    this.classes = this.container
-      ? 'rx-layout rx-layout--containerized'
-      : 'rx-layout rx-layout--standard';
-
-    this.classes += ` layout-${this.layoutConfig.header}-${this.layoutConfig.body}-${this.layoutConfig.footer}`;
+    this.classes += this._layout.sidebarVisible ? ` layout-${header}-${body}-${footer}` : ' ' + this.noSidebarClasse;
 
     this.style = this.container
       ? null
       : { minHeight: `${window.innerHeight}px` };
+
+    this.cd.markForCheck();
   }
 
-  parseView() {
-    const viewParts = this.view.split(' ');
-    this.layoutConfig = {
-      header: viewParts[0] || '',
-      body: viewParts[1] || '',
-      footer: viewParts[2] || '',
-    };
+  hasSidebar(): boolean {
+    return this.view.includes('s');
+  }
+
+  checkPositionSidebar(): string {
+    if (!this.hasSidebar()) return 'none';
+
+    const [header, body, footer] = this.view.split(' ');
+    const sidebarLeft = header.startsWith('s') || body.startsWith('s') || footer.startsWith('s');
+    const sidebarRight = header.endsWith('s') || body.endsWith('s') || footer.endsWith('s');
+
+    if (sidebarLeft && sidebarRight) return 'both';
+    if (sidebarLeft) return 'left';
+    if (sidebarRight) return 'right';
+    return 'none';
+  }
+
+  declarePositionSidebar() {
+    const position = this.checkPositionSidebar();
+
+    switch (position) {
+      case 'both':
+        throw new Error('Cannot have two sidebars');
+      case 'left':
+        this.positionSidebar = 'left';
+        break;
+      case 'right':
+        this.positionSidebar = 'right';
+        break;
+      default:
+        this.positionSidebar = 'none';
+        break;
+    }
+
+    console.log('visible : ' + this._layout.sidebarVisible);
+    console.log('isShrink : ' + this._layout.isShrink);
+    console.log('sidebarShrink : ' + this._layout.sidebarShrink);
+
+    if (!this._layout.sidebarVisible || position === 'none') {
+      this.classes += ' layout-no-sidebar';
+    } else if (this._layout.sidebarVisible && this._layout.sidebarShrink && this._layout.isShrink) {
+      this.classes += ` layout-sidebar-${this.positionSidebar}-shrink`;
+    } else {
+      this.classes += ` layout-sidebar-${this.positionSidebar}-fullwidth`;
+    }
+
+    this.cd.markForCheck();
+  }
+
+  onToggleSidebar() {
+    console.log('test')
+    this._layout.toggleSidebar();
   }
 }

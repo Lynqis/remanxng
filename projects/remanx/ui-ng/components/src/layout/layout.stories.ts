@@ -4,8 +4,10 @@ import { RxHeader } from '../header';
 import { RxSidebar } from '../sidebar';
 import { RxMainContent } from '../main-content';
 import { RxFooter } from '../footer';
+import { fn } from '@storybook/test';
+import { CommonModule } from '@angular/common';
 
-export default {
+const meta: Meta<RxLayout> = {
   title: 'Layout/RxLayout',
   component: RxLayout,
   tags: ['autodocs'],
@@ -41,26 +43,80 @@ L'attribut \`container\` définit si le layout est en mode containerisé.
         RxSidebar,
         RxMainContent,
         RxFooter,
-      ],
+        CommonModule
+      ]
     }),
   ]
-} as Meta<RxLayout>;
+}
 
-export const Default = () => ({
-  component: RxLayout,
-  template: `
-    <rx-layout>
-      <rx-header [$style]="'background-color:blue'">Header</rx-header>
-      <rx-sidebar [visible]="true" [$style]="'background-color:red'">
-        Sidebar
-      </rx-sidebar>
-      <rx-main [$style]="'background-color:green'">
-        Main Content
-      </rx-main>
-      <rx-footer [$style]="'background-color:yellow'">Footer</rx-footer>
-    </rx-layout>
-  `,
-  props: {
-    view: 'hhh scc fff'
-  }
-});
+export default meta;
+type Story = StoryObj<RxLayout>;
+
+
+export const Default: Story = {
+  render: () => ({
+    template: `
+      <rx-layout>
+        <rx-header [$style]="'background-color:blue'">Header</rx-header>
+        <rx-sidebar [visible]="true" [$style]="'background-color:red'">
+          Sidebar
+        </rx-sidebar>
+        <rx-main [$style]="'background-color:green'">
+          Main Content
+        </rx-main>
+        <rx-footer [$style]="'background-color:yellow'">Footer</rx-footer>
+      </rx-layout>
+    `,
+    props: {
+      view: 'hhh scc fff'
+    }
+  })
+};
+
+export const ToggleSidebar: Story = {
+  render: () => ({
+    template: `
+      <rx-layout>
+        <rx-header [$style]="'background-color:blue'">
+          <button (click)="onToggleSidebar()">Toggle Sidebar</button>
+        </rx-header>
+        <rx-sidebar [visible]="sidebarVisible" [$style]="'background-color:red'">
+          Sidebar
+        </rx-sidebar>
+        <rx-main [$style]="'background-color:green'">
+          Main Content
+        </rx-main>
+        <rx-footer [$style]="'background-color:yellow'">Footer</rx-footer>
+      </rx-layout>
+    `,
+    props: {
+      view: 'shh scc fff',
+      sidebarVisible: true,
+      onToggleSidebar: fn()
+    }
+  })
+};
+
+export const ShrinkSidebar: Story = {
+  render: () => ({
+    template: `
+      <rx-layout [view]="view">
+        <rx-header [$style]="'background-color:blue'">
+          <button (click)="onToggle()">Toggle Sidebar</button>
+        </rx-header>
+        <rx-sidebar [visible]="visible" [shrink]="shrink" [$style]="'background-color:red'">
+          Sidebar
+        </rx-sidebar>
+        <rx-main [$style]="'background-color:green'">
+          Main Content
+        </rx-main>
+        <rx-footer [$style]="'background-color:yellow'">Footer</rx-footer>
+      </rx-layout>
+    `,
+    props: {
+      visible: true,
+      view: 'shh scc sff',
+      shrink: true
+    }
+  })
+};

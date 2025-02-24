@@ -1,14 +1,19 @@
-import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
+import { AsyncPipe, NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
+  inject,
   Input,
+  OnInit,
   QueryList,
   TemplateRef,
 } from '@angular/core';
 import { Nullable, RxTemplate } from '@remanx/ui-ng/api';
+import { LayoutService } from '../layout/layout.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     template: `
@@ -16,10 +21,10 @@ import { Nullable, RxTemplate } from '@remanx/ui-ng/api';
       #container
       [class]="$class"
       [style]="$style"
-      *ngIf="visible"
+      *ngIf="_layout.sidebarVisible$ | async"
       [ngClass]="{
         'rx-sidebar': true,
-        'rx-sidebar-active': visible,
+        'rx-sidebar-active': _layout.sidebarVisible$ | async,
         'rx-sidebar-overlay': overlay,
       }"
     >
@@ -28,7 +33,7 @@ import { Nullable, RxTemplate } from '@remanx/ui-ng/api';
       </ng-container>
 
       <ng-template #notHeadless>
-        <div #content class="r-sidebar-content">
+        <div #content class="rx-sidebar-content">
           <ng-content></ng-content>
         </div>
       </ng-template>
@@ -36,18 +41,44 @@ import { Nullable, RxTemplate } from '@remanx/ui-ng/api';
   `,
     selector: 'rx-sidebar',
     styleUrl: './sidebar.css',
-    imports: [NgIf, NgClass, NgTemplateOutlet],
+    imports: [NgIf, NgClass, NgTemplateOutlet, AsyncPipe],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RxSidebar implements AfterContentInit {
+export class RxSidebar {
   @Input() overlay: boolean = false;
-  @Input() visible: boolean = true;
+  @Input()
+  set visible(value: boolean) {
+    this._visible = value;
+    this._layout.setSidebarVisible(value);
+    this.cd.markForCheck();
+  }
+  get visible(): boolean {
+    return this._visible;
+  }
+
+  @Input()
+  set shrink(value: boolean) {
+    this._shrink = value;
+    this._layout.setSidebarShrink(value);
+    this.cd.markForCheck();
+  }
+  get shrink(): boolean {
+    return this._shrink;
+  }
   @Input() $class: string = '';
   @Input() $style: string = '';
 
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
   headlessTemplate: Nullable<TemplateRef<any>>;
+
+  _visible: boolean = false;
+
+  _shrink: boolean = false;
+
+  _layout: LayoutService = inject(LayoutService);
+
+  private cd: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   ngAfterContentInit(): void {
     this.templates?.forEach((item) => {

@@ -27,7 +27,6 @@ export const Default = (args: RxDialog) => ({
   `,
   props: {
     ...args,
-    view: 'hhh scc fff',
     visible: false,
     onToggle: function () {
       this.visible = !this.visible;
