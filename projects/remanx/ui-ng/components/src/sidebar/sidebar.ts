@@ -19,22 +19,25 @@ import { LayoutService } from '../layout/layout.service';
       #container
       [class]="$class"
       [style]="$style"
-      *ngIf="_layout.sidebarVisible()"
       [ngClass]="{
         'rx-sidebar': true,
         'rx-sidebar-active': _layout.sidebarVisible(),
         'rx-sidebar-overlay': overlay,
       }"
     >
-      <ng-container *ngIf="headlessTemplate; else notHeadless">
-        <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
-      </ng-container>
+      <div
+      *ngIf="_layout.sidebarVisible()"
+      >
+        <ng-container *ngIf="headlessTemplate; else notHeadless">
+          <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
+        </ng-container>
 
-      <ng-template #notHeadless>
-        <div #content class="rx-sidebar-content">
-          <ng-content></ng-content>
-        </div>
-      </ng-template>
+        <ng-template #notHeadless>
+          <div #content class="rx-sidebar-content">
+            <ng-content></ng-content>
+          </div>
+        </ng-template>
+      </div>
     </div>
   `,
     selector: 'rx-sidebar',

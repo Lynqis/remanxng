@@ -128,23 +128,27 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
         break;
     }
 
-    console.log('visible : ' + this._layout.sidebarVisible());
-    console.log('isShrink : ' + this._layout.isShrink());
-    console.log('sidebarShrink : ' + this._layout.sidebarShrink());
-
     if (!this._layout.sidebarVisible() || position === 'none') {
       this.classes += ' layout-no-sidebar';
+      if (position !== 'none') {
+        this.classes += `-${this.positionSidebar}`;
+      }
     } else if (this._layout.sidebarVisible() && this._layout.sidebarShrink() && this._layout.isShrink()) {
-      this.classes += ` layout-sidebar-${this.positionSidebar}-shrink`;
+      this.classes += ` layout-sidebar-${this.positionSidebar}-shrink layout-sidebar-anim-shrink`;
     } else {
       this.classes += ` layout-sidebar-${this.positionSidebar}-fullwidth`;
+
+      if (this._layout.sidebarShrink()) {
+        this.classes += ' layout-sidebar-anim-shrink';
+      } else {
+        this.classes += ' layout-sidebar-anim-opacity';
+      }
     }
 
     this.cd.markForCheck();
   }
 
   onToggleSidebar() {
-    console.log('test')
     this._layout.toggleSidebar();
   }
 }
