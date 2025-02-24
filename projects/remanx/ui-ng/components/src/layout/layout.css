@@ -1,19 +1,38 @@
 @layer remanx {
-  
+
   .rx-layout {
     display: grid;
     width: 100%;
     height: 100vh;
     margin: 0;
     padding: 0;
-    
+
+    &.layout-sidebar-left-fullwidth {
+        grid-template-columns: 15rem 1fr 1fr;
+    }
+
+    &.layout-sidebar-left-shrink {
+        grid-template-columns: 5rem 1fr 1fr;
+    }
+
+    &.layout-no-sidebar {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    &.layout-sidebar-right-fullwidth {
+        grid-template-columns: 1fr 1fr 15rem;
+    }
+
+    &.layout-sidebar-right-shrink {
+        grid-template-columns: 1fr 1fr 5rem;
+    }
+
     &.layout-hhh-scc-fff {
       grid-template-areas:
         "header header header"
         "sidebar main main"
         "footer footer footer";
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 15rem 1fr 1fr;
     }
 
     &.layout-shh-ccc-fff {
@@ -22,7 +41,6 @@
         "main main main"
         "footer footer footer";
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 15rem 1fr 1fr;
     }
 
     &.layout-hhh-ccc-sff {
@@ -31,7 +49,6 @@
         "main main main"
         "sidebar footer footer";
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 15rem 1fr 1fr;
     }
 
     &.layout-shh-scc-fff {
@@ -40,7 +57,6 @@
         "sidebar main main"
         "footer footer footer";
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 15rem 1fr 1fr;
     }
 
     &.layout-shh-ccc-sff {
@@ -49,7 +65,6 @@
         "main main main"
         "sidebar footer footer";
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 15rem 1fr 1fr;
     }
 
     &.layout-hhh-scc-sff {
@@ -58,7 +73,6 @@
         "sidebar main main"
         "sidebar footer footer";
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 15rem 1fr 1fr;
     }
 
     &.layout-shh-scc-sff {
@@ -67,16 +81,14 @@
         "sidebar main main"
         "sidebar footer footer";
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 15rem 1fr 1fr;
     }
-  
+
     &.layout-hhh-ccc-fff {
       grid-template-areas:
         "header header header"
         "main main main"
         "footer footer footer";
-      grid-template-rows: auto 1fr auto; 
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto 1fr auto;
     }
 
     &.layout-hhs-ccs-ffs {
@@ -85,7 +97,6 @@
         "main main sidebar"
         "footer footer sidebar";
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 1fr 1fr 15rem;
     }
 
     &.layout-hhh-ccs-fff {
@@ -94,7 +105,6 @@
         "main main sidebar"
         "footer footer footer";
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 1fr 1fr 15rem;
     }
 
     &.layout-hhs-ccc-fff {
@@ -103,7 +113,6 @@
         "main main main"
         "footer footer footer";
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 1fr 1fr 15rem;
     }
 
     &.layout-hhh-ccc-ffs {
@@ -112,7 +121,6 @@
         "main main main"
         "footer footer sidebar";
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 1fr 1fr 15rem;
     }
 
     &.layout-hhs-ccc-ffs {
@@ -121,7 +129,6 @@
         "main main main"
         "footer footer sidebar";
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 1fr 1fr 15rem;
     }
 
     &.layout-hhh-ccs-ffs {
@@ -130,7 +137,6 @@
         "main main sidebar"
         "footer footer sidebar";
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 1fr 1fr 15rem;
     }
 
     &.layout-hhs-ccs-fff {
@@ -139,15 +145,14 @@
         "main main sidebar"
         "footer footer footer";
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 1fr 1fr 15rem;
     }
   }
-  
+
   ::ng-deep rx-header {
     grid-area: header;
     box-sizing: border-box;
   }
-  
+
   ::ng-deep rx-footer {
     grid-area: footer;
   }
@@ -156,15 +161,15 @@
     grid-area: header;
     box-sizing: border-box;
   }
-  
+
   ::ng-deep footer {
     grid-area: footer;
   }
-  
+
   ::ng-deep rx-sidebar {
     grid-area: sidebar;
   }
-  
+
   ::ng-deep rx-main {
     grid-area: main;
     box-sizing: border-box;
