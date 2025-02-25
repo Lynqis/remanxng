@@ -4,7 +4,6 @@ import { RxHeader } from '../header';
 import { RxSidebar } from '../sidebar';
 import { RxMainContent } from '../main-content';
 import { RxFooter } from '../footer';
-import { fn } from '@storybook/test';
 import { CommonModule } from '@angular/common';
 import { signal } from '@angular/core';
 
