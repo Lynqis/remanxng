@@ -1,9 +1,9 @@
-import { Meta, moduleMetadata } from "@storybook/angular";
+import { Meta, moduleMetadata, StoryObj } from "@storybook/angular";
 import { RxDialog } from "./dialog";
 import { RxButton } from "../button";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 
-export default {
+const meta: Meta<RxDialog> = {
   title: 'Surfaces/RxDialog',
   component: RxDialog,
   tags: ['autodocs'],
@@ -13,25 +13,27 @@ export default {
         RxButton,
         BrowserAnimationsModule
       ],
+      providers: [
+        provideAnimations()
+      ]
     }),
   ]
-} as Meta<RxDialog>;
+}
 
-export const Default = (args: RxDialog) => ({
-  component: RxDialog,
-  template: `
-    <rx-button (click)="onToggle()" [label]="'Open a modal'"></rx-button>
-    <rx-dialog [visible]="visible" (visibleChange)="visible = $event">
-      <p>This is a modal dialog</p>
-    </rx-dialog>
-  `,
-  props: {
-    ...args,
-    visible: false,
-    onToggle: function () {
-      this.visible = !this.visible;
-    },
+export default meta;
+type Story = StoryObj<RxDialog>;
+
+export const Default: Story = {
+  render: () => {
+    return {
+      template: `
+        <rx-button (click)="pop.toggle()" [label]="'Open a modal'"></rx-button>
+        <rx-dialog #pop (visibleChange)="true">
+          <p>This is a modal dialog</p>
+        </rx-dialog>
+      `
+    };
   }
-});
+};
 
 

@@ -1,7 +1,29 @@
-import { animate, AnimationEvent, state, style, transition, trigger } from "@angular/animations";
-import { DOCUMENT, isPlatformBrowser, NgIf, NgStyle } from "@angular/common";
-import { booleanAttribute, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, OnDestroy, Output, PLATFORM_ID, Renderer2, TemplateRef, ViewRef } from "@angular/core";
-import { Dom, Nullable, VoidListener } from "@remanx/ui-ng/api";
+import {
+  animate,
+  AnimationEvent,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { DOCUMENT, isPlatformBrowser, NgIf, NgStyle } from '@angular/common';
+import {
+  booleanAttribute,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  inject,
+  Input,
+  OnDestroy,
+  Output,
+  PLATFORM_ID,
+  Renderer2,
+  TemplateRef,
+  ViewRef,
+} from '@angular/core';
+import { Dom, Nullable, VoidListener } from '@remanx/ui-ng/api';
 
 @Component({
   selector: 'rx-popover',
@@ -11,12 +33,21 @@ import { Dom, Nullable, VoidListener } from "@remanx/ui-ng/api";
       role="dialog"
       *ngIf="render"
       [@animation]="{
-        value: overlayVisible ? 'open' : 'close', params: { showTransitionParams: showTransition, hideTransitionParams: hideTransition }
+        value: overlayVisible ? 'open' : 'close',
+        params: {
+          showTransitionParams: showTransition,
+          hideTransitionParams: hideTransition
+        }
       }"
       (@animation.start)="onAnimationStart($event)"
       (@animation.done)="onAnimationEnd($event)"
       class="rx-popover"
-      [ngStyle]="{ top: position?.top + 'px', left: position?.left + 'px', height: $height, width: $width }"
+      [ngStyle]="{
+        top: position?.top + 'px',
+        left: position?.left + 'px',
+        height: $height,
+        width: $width
+      }"
     >
       <div class="rx-mask">
         <ng-content></ng-content>
@@ -51,14 +82,21 @@ import { Dom, Nullable, VoidListener } from "@remanx/ui-ng/api";
       transition('open => close', animate('{{hideTransitionParams}}')),
     ]),
   ],
-  styleUrls: ['./popover.css']
+  styleUrls: ['./popover.css'],
 })
 export class RxPopover implements OnDestroy {
   @Input() ariaLabel: string | undefined;
 
   @Input({ transform: booleanAttribute }) closeOnOutside: boolean = true;
 
-  @Input() appendTo: HTMLElement | ElementRef | TemplateRef<any> | string | null | undefined | any = 'body';
+  @Input() appendTo:
+    | HTMLElement
+    | ElementRef
+    | TemplateRef<any>
+    | string
+    | null
+    | undefined
+    | any = 'body';
 
   @Input() $height: string = '';
 
@@ -82,7 +120,7 @@ export class RxPopover implements OnDestroy {
 
   render: boolean = false;
 
-  position: { top: number, left: number } | null = null;
+  position: { top: number; left: number } | null = null;
 
   private readonly el: ElementRef = inject(ElementRef);
 
@@ -97,19 +135,29 @@ export class RxPopover implements OnDestroy {
   bindDocumentClickListener() {
     if (isPlatformBrowser(this.platformId)) {
       if (!this.documentClickListener) {
-        const documentTarget: any = this.el ? this.el.nativeElement.ownerDocument : this.document;
+        const documentTarget: any = this.el
+          ? this.el.nativeElement.ownerDocument
+          : this.document;
 
-        this.documentClickListener = this.renderer.listen(documentTarget, 'click', (event) => {
-          if (!this.closeOnOutside) {
-            return;
+        this.documentClickListener = this.renderer.listen(
+          documentTarget,
+          'click',
+          (event) => {
+            if (!this.closeOnOutside) {
+              return;
+            }
+
+            if (
+              !this.container?.contains(event.target) &&
+              this.target !== event.target &&
+              !this.target.contains(event.target)
+            ) {
+              this.hide();
+            }
+
+            this.cd.markForCheck();
           }
-
-          if (!this.container?.contains(event.target) && this.target !== event.target && !this.target.contains(event.target)) {
-            this.hide();
-          }
-
-          this.cd.markForCheck();
-      });
+        );
       }
     }
   }
