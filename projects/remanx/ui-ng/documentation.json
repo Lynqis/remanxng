@@ -37,8 +37,8 @@
                 "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "(args: RxDialog) => ({\n  component: RxDialog,\n  template: `\n    <rx-button (click)=\"onToggle()\" [label]=\"'Open a modal'\"></rx-button>\n    <rx-dialog [visible]=\"visible\" (visibleChange)=\"visible = $event\">\n      <p>This is a modal dialog</p>\n    </rx-dialog>\n  `,\n  props: {\n    ...args,\n    visible: false,\n    onToggle: function () {\n      this.visible = !this.visible;\n    },\n  }\n})"
+                "type": "Story",
+                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p>This is a modal dialog</p>\n        </rx-dialog>\n      `\n    };\n  }\n}"
             },
             {
                 "name": "Default",
@@ -57,8 +57,8 @@
                 "file": "projects/remanx/ui-ng/components/src/popover/popover.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "(args: RxPopover) => ({\n  component: RxPopover,\n  template: `\n    <rx-button (click)=\"op.toggle($event, button)\" [label]=\"'Open a modal'\"></rx-button>\n    <rx-overlaypanel #op [$height]=\"'200px'\" [$width]=\"'50%'\">\n      <h1>Popover</h1>\n      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n      when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n    </rx-overlaypanel>\n  `,\n  props: {\n    ...args\n  }\n})"
+                "type": "Story",
+                "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-button (click)=\"op.toggle($event, button)\" [label]=\"'Open a modal'\"></rx-button>\n      <rx-popover #op [$height]=\"'200px'\" [$width]=\"'50%'\">\n        <h1>Popover</h1>\n        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n        when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n      </rx-popover>\n    `\n  })\n}"
             },
             {
                 "name": "Disabled",
@@ -84,11 +84,31 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<RxDialog>",
+                "defaultValue": "{\n  title: 'Surfaces/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton,\n        BrowserAnimationsModule\n      ],\n      providers: [\n        provideAnimations()\n      ]\n    }),\n  ]\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<RxLayout>",
                 "defaultValue": "{\n  title: 'Layout/RxLayout',\n  component: RxLayout,\n  tags: ['autodocs'],\n  argTypes: {\n    container: {\n      control: 'boolean',\n      description: 'Définit si le layout est containerisé ou non.',\n    },\n    view: {\n      control: 'text',\n      description: 'Définit la structure du layout sous la forme \"header body footer\".',\n    },\n  },\n  args: {\n    view: 'hhh scc fff'\n  },\n  parameters: {\n    docs: {\n      description: {\n        component: `\nLe composant **RxLayout** permet de structurer une page avec des zones configurables via \\`view\\`.\nPar exemple : \"header body footer\".\nL'attribut \\`container\\` définit si le layout est en mode containerisé.\n        `,\n      },\n    },\n  },\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxLayout,\n        RxHeader,\n        RxSidebar,\n        RxMainContent,\n        RxFooter,\n        CommonModule\n      ]\n    }),\n  ]\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/ui-ng/components/src/popover/popover.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<RxPopover>",
+                "defaultValue": "{\n  title: 'Surfaces/RxPopover',\n  component: RxPopover,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton,\n        BrowserAnimationsModule\n      ],\n    }),\n  ]\n}"
             },
             {
                 "name": "preview",
@@ -118,7 +138,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout #layout>\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"layout.onToggleSidebar()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"sidebarVisible()\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh ccc fff',\n      sidebarVisible: signal(true)\n    }\n  })\n}"
+                "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout #layout [view]=\"view\">\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"layout.onToggleSidebar()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"sidebarVisible()\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh scc fff',\n      sidebarVisible: signal(true)\n    }\n  })\n}"
             }
         ],
         "functions": [],
@@ -138,8 +158,30 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<RxDialog>",
+                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<RxLayout>",
                 "file": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<RxPopover>",
+                "file": "projects/remanx/ui-ng/components/src/popover/popover.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -198,8 +240,18 @@
                     "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "(args: RxDialog) => ({\n  component: RxDialog,\n  template: `\n    <rx-button (click)=\"onToggle()\" [label]=\"'Open a modal'\"></rx-button>\n    <rx-dialog [visible]=\"visible\" (visibleChange)=\"visible = $event\">\n      <p>This is a modal dialog</p>\n    </rx-dialog>\n  `,\n  props: {\n    ...args,\n    visible: false,\n    onToggle: function () {\n      this.visible = !this.visible;\n    },\n  }\n})"
+                    "type": "Story",
+                    "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p>This is a modal dialog</p>\n        </rx-dialog>\n      `\n    };\n  }\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<RxDialog>",
+                    "defaultValue": "{\n  title: 'Surfaces/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton,\n        BrowserAnimationsModule\n      ],\n      providers: [\n        provideAnimations()\n      ]\n    }),\n  ]\n}"
                 }
             ],
             "projects/remanx/ui-ng/components/src/layout/layout.stories.ts": [
@@ -241,7 +293,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout #layout>\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"layout.onToggleSidebar()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"sidebarVisible()\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh ccc fff',\n      sidebarVisible: signal(true)\n    }\n  })\n}"
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout #layout [view]=\"view\">\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"layout.onToggleSidebar()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"sidebarVisible()\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh scc fff',\n      sidebarVisible: signal(true)\n    }\n  })\n}"
                 }
             ],
             "projects/remanx/ui-ng/components/src/popover/popover.stories.ts": [
@@ -252,8 +304,18 @@
                     "file": "projects/remanx/ui-ng/components/src/popover/popover.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "(args: RxPopover) => ({\n  component: RxPopover,\n  template: `\n    <rx-button (click)=\"op.toggle($event, button)\" [label]=\"'Open a modal'\"></rx-button>\n    <rx-overlaypanel #op [$height]=\"'200px'\" [$width]=\"'50%'\">\n      <h1>Popover</h1>\n      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n      when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n    </rx-overlaypanel>\n  `,\n  props: {\n    ...args\n  }\n})"
+                    "type": "Story",
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-button (click)=\"op.toggle($event, button)\" [label]=\"'Open a modal'\"></rx-button>\n      <rx-popover #op [$height]=\"'200px'\" [$width]=\"'50%'\">\n        <h1>Popover</h1>\n        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n        when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n      </rx-popover>\n    `\n  })\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/ui-ng/components/src/popover/popover.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<RxPopover>",
+                    "defaultValue": "{\n  title: 'Surfaces/RxPopover',\n  component: RxPopover,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton,\n        BrowserAnimationsModule\n      ],\n    }),\n  ]\n}"
                 }
             ],
             "projects/remanx/ui-ng/.storybook/preview.ts": [
@@ -285,6 +347,19 @@
                     "kind": 183
                 }
             ],
+            "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<RxDialog>",
+                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/remanx/ui-ng/components/src/layout/layout.stories.ts": [
                 {
                     "name": "Story",
@@ -292,6 +367,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<RxLayout>",
                     "file": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/remanx/ui-ng/components/src/popover/popover.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<RxPopover>",
+                    "file": "projects/remanx/ui-ng/components/src/popover/popover.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -376,6 +464,26 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -431,6 +539,26 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/remanx/ui-ng/components/src/popover/popover.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/remanx/ui-ng/components/src/popover/popover.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
