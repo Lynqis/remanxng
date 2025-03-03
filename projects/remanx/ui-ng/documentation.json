@@ -88,7 +88,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<RxDialog>",
-                "defaultValue": "{\n  title: 'Surfaces/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton,\n        BrowserAnimationsModule\n      ],\n      providers: [\n        provideAnimations()\n      ]\n    }),\n  ]\n}"
+                "defaultValue": "{\n  title: 'Surfaces/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton\n      ],\n    }),\n    applicationConfig({\n      providers: [\n        importProvidersFrom(BrowserAnimationsModule)\n      ]\n    })\n  ]\n}"
             },
             {
                 "name": "meta",
@@ -251,7 +251,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<RxDialog>",
-                    "defaultValue": "{\n  title: 'Surfaces/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton,\n        BrowserAnimationsModule\n      ],\n      providers: [\n        provideAnimations()\n      ]\n    }),\n  ]\n}"
+                    "defaultValue": "{\n  title: 'Surfaces/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton\n      ],\n    }),\n    applicationConfig({\n      providers: [\n        importProvidersFrom(BrowserAnimationsModule)\n      ]\n    })\n  ]\n}"
                 }
             ],
             "projects/remanx/ui-ng/components/src/layout/layout.stories.ts": [

@@ -11,4 +11,8 @@
         margin: 0.5rem 0;
         padding: 0.5rem;
     }
+
+    .rx-popover-flipped {
+        transform: translateY(-100%);
+    }
 }
