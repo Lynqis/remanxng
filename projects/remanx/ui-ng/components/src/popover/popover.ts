@@ -29,9 +29,8 @@ import {
   ViewRef,
 } from '@angular/core';
 import { BaseComponent } from '../base/basecomponent';
-import { Dom, Nullable, RxTemplate, VoidListener } from '@remanx/ui-ng/api';
+import { Dom, Nullable, RxTemplate, VoidListener, ZIndexUtils } from '@remanx/ui-ng/api';
 import { Subscription } from 'rxjs';
-import zindexutils from '@remanx/ui-ng/api/src/utils/zindexutils';
 
 /**
  * Popover is a container component that can overlay other components on page.
@@ -409,7 +408,7 @@ export class RxPopover
 
       case 'close':
         if (this.autoZIndex) {
-          zindexutils.clear(this.container);
+          ZIndexUtils.clear(this.container);
         }
 
         if (this.overlaySubscription) {
@@ -454,7 +453,7 @@ export class RxPopover
 
   ngOnDestroy() {
     if (this.container && this.autoZIndex) {
-        zindexutils.clear(this.container);
+        ZIndexUtils.clear(this.container);
     }
 
     if (!(this.cd as ViewRef).destroyed) {

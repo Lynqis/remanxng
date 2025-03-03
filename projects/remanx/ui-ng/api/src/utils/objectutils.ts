@@ -16,7 +16,7 @@ export class ObjectUtils {
   }
 
   public static isFunction(obj: any) {
-    return !!(obj?.constructor && obj?.call && obj?.apply);  
+    return !!(obj?.constructor && obj?.call && obj?.apply);
   }
 
   public static getItemValue(obj: any, ...params: any) {
