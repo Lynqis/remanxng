@@ -17,8 +17,8 @@
                 "file": "projects/remanx/ui-ng/components/src/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "() => ({\n  template: `\n    <div style=\"display: flex; gap: 16px; flex-wrap: wrap;\">\n      <rx-button *ngFor=\"let color of colors\"\n        [severity]=\"color\"\n        label=\"{{ color | titlecase }}\"\n        [disabled]=\"false\">\n      </rx-button>\n    </div>\n  `,\n  props: {\n    colors: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'help', 'contrast'],\n  },\n})"
+                "type": "Story",
+                "defaultValue": "{\n  render: (args) => ({\n    template: `\n      <div style=\"display: flex; gap: 16px; flex-wrap: wrap;\">\n        <rx-button *ngFor=\"let color of colors\"\n          [severity]=\"color\"\n          label=\"{{ color | titlecase }}\"\n          [disabled]=\"false\">\n        </rx-button>\n      </div>\n    `,\n    props: {\n      colors: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'help', 'contrast'],\n    },\n  }),\n}"
             },
             {
                 "name": "Default",
@@ -198,8 +198,8 @@
                     "file": "projects/remanx/ui-ng/components/src/button/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "() => ({\n  template: `\n    <div style=\"display: flex; gap: 16px; flex-wrap: wrap;\">\n      <rx-button *ngFor=\"let color of colors\"\n        [severity]=\"color\"\n        label=\"{{ color | titlecase }}\"\n        [disabled]=\"false\">\n      </rx-button>\n    </div>\n  `,\n  props: {\n    colors: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'help', 'contrast'],\n  },\n})"
+                    "type": "Story",
+                    "defaultValue": "{\n  render: (args) => ({\n    template: `\n      <div style=\"display: flex; gap: 16px; flex-wrap: wrap;\">\n        <rx-button *ngFor=\"let color of colors\"\n          [severity]=\"color\"\n          label=\"{{ color | titlecase }}\"\n          [disabled]=\"false\">\n        </rx-button>\n      </div>\n    `,\n    props: {\n      colors: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'help', 'contrast'],\n    },\n  }),\n}"
                 },
                 {
                     "name": "Default",

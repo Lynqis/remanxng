@@ -14,7 +14,8 @@ export default {
     loading: { control: 'boolean' },
     label: { control: 'text' },
     type: { control: 'text' },
-    hidden: { control: 'boolean' }
+    hidden: { control: 'boolean' },
+    noStyle: { control: 'boolean' }
   },
 } as Meta<RxButton>;
 
@@ -26,6 +27,9 @@ export const Default: Story = {
     severity: 'primary',
     disabled: false,
     loading: false,
+    hidden: false,
+    noStyle: false,
+    type: 'button'
   },
 };
 
@@ -38,26 +42,29 @@ export const Disabled: Story = {
   },
 };
 
-export const Loading: Story = {
+export const NoStyle: Story = {
   args: {
     label: 'Loading',
     severity: 'secondary',
     disabled: false,
-    loading: true,
+    loading: false,
+    noStyle: true
   },
 };
 
-export const ColorShowcase = () => ({
-  template: `
-    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-      <rx-button *ngFor="let color of colors"
-        [severity]="color"
-        label="{{ color | titlecase }}"
-        [disabled]="false">
-      </rx-button>
-    </div>
-  `,
-  props: {
-    colors: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'help', 'contrast'],
-  },
-});
+export const ColorShowcase: Story = {
+  render: (args) => ({
+    template: `
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <rx-button *ngFor="let color of colors"
+          [severity]="color"
+          label="{{ color | titlecase }}"
+          [disabled]="false">
+        </rx-button>
+      </div>
+    `,
+    props: {
+      colors: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'help', 'contrast'],
+    },
+  }),
+};
