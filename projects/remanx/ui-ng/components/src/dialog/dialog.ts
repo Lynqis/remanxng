@@ -1,18 +1,13 @@
-import { DOCUMENT, isPlatformBrowser, NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
+import { isPlatformBrowser, NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChildren,
-  ElementRef,
   EventEmitter,
-  inject,
   Input,
   Output,
-  PLATFORM_ID,
   QueryList,
-  Renderer2,
   TemplateRef,
 } from '@angular/core';
 import {
@@ -30,6 +25,8 @@ import {
   RxTemplate,
   VoidListener,
 } from '@remanx/ui-ng/api';
+import { BaseComponent } from '../base/basecomponent';
+import { RxButton } from "../button/button";
 
 const showAnimation = animation([
   style({ transform: '{{transform}}', opacity: 0 }),
@@ -77,14 +74,22 @@ const hideAnimation = animation([
 
         <ng-template #notHeadless>
           <div class="rx-dialog-content">
-            <h2>Dialog</h2>
-            <button (click)="close($event)">X</button>
+            <div class="rx-dialog-header">
+              <h2>{{label}}</h2>
+              <div class="button-close">
+                <rx-button [severity]="'contrast'" class="" (click)="close($event)">X</rx-button>
+                <span>ESC</span>
+              </div>
+            </div>
+            <div class="rx-dialog-body">
+              <ng-content></ng-content>
+            </div>
           </div>
         </ng-template>
       </div>
     </div>
   `,
-  imports: [NgIf, NgClass, NgTemplateOutlet],
+  imports: [NgIf, NgClass, NgTemplateOutlet, RxButton],
   styleUrls: ['./dialog.css'],
   animations: [
     trigger('animation', [
@@ -94,7 +99,7 @@ const hideAnimation = animation([
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RxDialog implements AfterContentInit {
+export class RxDialog extends BaseComponent implements AfterContentInit {
   @Input() maskVisible: boolean = true;
 
   @Input() transitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
@@ -107,7 +112,11 @@ export class RxDialog implements AfterContentInit {
 
   @Input() position: Position = 'center';
 
+  @Input() label: string = 'Dialog';
+
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
@@ -126,16 +135,6 @@ export class RxDialog implements AfterContentInit {
   documentEscapeListener: VoidListener;
 
   documentClickListener: VoidListener;
-
-  private readonly el: ElementRef = inject(ElementRef);
-
-  private readonly renderer: Renderer2 = inject(Renderer2);
-
-  private readonly cd: ChangeDetectorRef = inject(ChangeDetectorRef);
-
-  private readonly platformId: any = inject(PLATFORM_ID);
-
-  private readonly document: Document = inject(DOCUMENT);
 
   ngAfterContentInit(): void {
     this.templates?.forEach((item) => {
@@ -175,6 +174,16 @@ export class RxDialog implements AfterContentInit {
   hide() {
     this.overlayVisible = false;
     this.render = false;
+    this.sendCloseEmitter();
+  }
+
+  sendOpenEmitter() {
+    this.visibleChange.emit(true);
+  }
+
+  sendCloseEmitter() {
+    this.visibleChange.emit(false);
+    this.onClose.emit(true);
   }
 
   bindGlobalListeners() {
@@ -239,7 +248,6 @@ export class RxDialog implements AfterContentInit {
   }
 
   close(event: Event) {
-    this.visibleChange.emit(false);
     this.hide();
     event.preventDefault();
   }
