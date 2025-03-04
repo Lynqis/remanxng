@@ -67,6 +67,7 @@ const hideAnimation = animation([
         }"
         (@animation.start)="onAnimationStart($event)"
         (@animation.done)="onAnimationEnd($event)"
+        [style]="{ width: width, height: height }"
       >
         <ng-container *ngIf="headlessTemplate; else notHeadless">
           <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
@@ -113,6 +114,10 @@ export class RxDialog extends BaseComponent implements AfterContentInit {
   @Input() position: Position = 'center';
 
   @Input() label: string = 'Dialog';
+
+  @Input() width: string = 'auto';
+
+  @Input() height: string = 'auto';
 
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 

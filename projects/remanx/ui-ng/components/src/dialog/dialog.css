@@ -65,6 +65,9 @@
         min-width: 20rem;
         min-height: 15rem;
         padding: 1rem;
+        width: auto;
+        height: auto;
+        overflow: auto;
     }
 
     .rx-dialog-header {
