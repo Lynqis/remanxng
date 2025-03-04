@@ -9,7 +9,7 @@
     "url": "https://github.com/Dexarys/remanxng.git"
   },
   "license": "GPL-3.0-only",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "peerDependencies": {
     "@angular/common": "^19.0.0",
     "@angular/core": "^19.0.0"

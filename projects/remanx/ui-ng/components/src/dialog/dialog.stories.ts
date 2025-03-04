@@ -31,7 +31,7 @@ export const Default: Story = {
       template: `
         <rx-button (click)="pop.toggle()" [label]="'Open a modal'"></rx-button>
         <rx-dialog #pop (visibleChange)="true">
-          <p>This is a modal dialog</p>
+          <p style="width: 900px">This is a modal dialog</p>
         </rx-dialog>
       `
     };
