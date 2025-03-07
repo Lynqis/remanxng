@@ -1,4 +1,5 @@
 export * from './src/button';
+export * from './src/card';
 export * from './src/dialog';
 export * from './src/footer';
 export * from './src/header';
