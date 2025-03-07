@@ -1,20 +1,21 @@
 @layer remanx {
+    .rx-card-outer {
+        padding: 1rem;
+    }
 
-    .rx-popover {
-        position: absolute;
+    .rx-card {
         border: 1px solid #ccc;
         min-width: 100px;
         min-height: 100px;
         background-color: white;
         border-radius: 10px;
         box-shadow: 8px 8px 25px -10px #ddd;
-        margin: 0.5rem 0;
-        padding: 0.5rem;
         width: auto;
         height: auto;
-    }
-
-    .rx-popover-flipped {
-        transform: translateY(-100%);
+        margin: 0.5rem 0;
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
 }
