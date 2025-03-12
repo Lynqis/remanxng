@@ -42,10 +42,7 @@ import { NgClass, NgIf } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   host: {
     '[class.rx-avatar]': 'true',
-    '[class.rx-component]': 'true',
     '[class.rx-avatar-circle]': 'shape === "circle"',
-    '[class.rx-avatar-lg]': 'size === "large"',
-    '[class.rx-avatar-xl]': 'size === "xlarge"',
     '[class.rx-avatar-image]': 'image != null',
     '[attr.data-pc-name]': '"avatar"',
     '[attr.aria-label]': 'ariaLabel',

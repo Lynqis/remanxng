@@ -7,4 +7,7 @@ export interface MenuItem {
     routerLink?: any;
     separator?: boolean;
     visible?: boolean;
+    component?: string;
+    icon?: string;
+    iconPosition?: 'left' | 'right';
 }
