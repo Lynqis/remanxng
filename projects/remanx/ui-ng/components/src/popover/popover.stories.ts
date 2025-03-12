@@ -23,7 +23,7 @@ type Story = StoryObj<RxPopover>;
 export const Default: Story = {
   render: () => ({
     template: `
-      <rx-button (click)="op.toggle($event, button)" [lbel]="'Open a modal'"></rx-button>
+      <rx-button (click)="op.toggle($event, button)" [label]="'Open a modal'"></rx-button>
       <rx-popover #op [$height]="'200px'" [$width]="'50%'">
         <h1>Popover</h1>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.

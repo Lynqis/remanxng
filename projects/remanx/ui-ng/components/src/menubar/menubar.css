@@ -1,0 +1,119 @@
+@layer remanx {
+    .rx-menubar-list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        min-width: 12rem;
+    }
+
+    .rx-menubar {
+        width: auto;
+        height: auto;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .rx-menubar li {
+        cursor: pointer;
+        position: relative;
+        width: 100%;
+    }
+
+    .rx-menubar-item-content {
+        padding: 0.5rem 1rem;
+        transition: background-color 0.2s;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        background: var(--rx-surface-overlay, #ffffff);
+    }
+
+    .rx-menubar-item-content > a {
+        display: flex;
+        align-items: center;
+    }
+
+    .rx-menubar-item-content:hover {
+        background-color: var(--rx-hover-bg, rgba(0, 0, 0, 0.04));
+    }
+
+    .rx-menubar-flex {
+        display: flex;
+    }
+
+    .rx-menubar-row {
+        flex-direction: row;
+    }
+
+    .rx-menubar-row > .rx-menubar-list > li {
+        width: auto;
+    }
+
+    .rx-menubar-column {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .rx-menubar-sub {
+        background-color: var(--rx-surface-overlay, #ffffff);
+        border: 1px solid var(--rx-surface-border, #dee2e6);
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .rx-menubar-row .rx-absolute {
+        position: absolute;
+    }
+
+    .rx-menubar-row > .rx-menubar-list .rx-menubar-sub {
+        top: 100%;
+        left: 0;
+    }
+
+    .rx-menubar-row > .rx-menubar-list .rx-menubar-sub .rx-menubar-sub {
+        top: 0;
+        left: 100%;
+    }
+
+    .rx-menubar-column .rx-absolute {
+        position: static;
+    }
+
+    .rx-menubar-column > .rx-menubar-list .rx-menubar-sub {
+        margin-left: 1.5rem;
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+        width: calc(100% - 1.5rem);
+    }
+
+    .separator {
+        border-top: 1px solid var(--rx-surface-border, #dee2e6);
+        margin: 0.25rem 0;
+        cursor: default;
+    }
+
+    .rx-relative {
+        position: relative;
+    }
+
+    .rx-menubar-link {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .rx-menubar-disabled {
+        opacity: 0.6;
+        cursor: default;
+        pointer-events: none;
+    }
+
+    .rx-menubar-item-icon {
+        display: inline-flex;
+        align-items: center;
+    }
+}
