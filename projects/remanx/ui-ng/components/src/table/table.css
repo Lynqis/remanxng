@@ -1,0 +1,54 @@
+@layer remanx {
+    .rx-table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .rx-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        background-color: var(--rx-surface-overlay, #ffffff);
+    }
+
+    .rx-table thead th {
+        background-color: var(--rx-surface-section, #f8f9fa);
+        padding: 1rem;
+        text-align: left;
+        font-weight: 600;
+        border-width: 0 0 1px 0;
+        border-style: solid;
+        border-color: var(--rx-surface-border, #dee2e6);
+    }
+
+    .rx-table tbody td {
+        padding: 1rem;
+        border-width: 0 0 1px 0;
+        border-style: solid;
+        border-color: var(--rx-surface-border, #dee2e6);
+    }
+
+    .rx-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .rx-table tbody tr:hover {
+        background-color: var(--rx-hover-bg, rgba(0, 0, 0, 0.04));
+    }
+
+    .rx-table-empty td {
+        text-align: center;
+        padding: 1rem;
+        color: var(--rx-text-color-secondary, #6c757d);
+    }
+
+    /* Style pour les bordures de grille */
+    .rx-table-gridlines .rx-table {
+        border: 1px solid var(--rx-surface-border, #dee2e6);
+    }
+
+    .rx-table-gridlines .rx-table th,
+    .rx-table-gridlines .rx-table td {
+        border: 1px solid var(--rx-surface-border, #dee2e6);
+    }
+}
