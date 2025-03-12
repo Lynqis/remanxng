@@ -5,12 +5,14 @@ import {
   ViewEncapsulation,
   HostListener,
 } from '@angular/core';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MenuItem, ObjectUtils } from '@remanx/ui-ng/api';
 import { BaseComponent } from '../base/basecomponent';
 
 @Component({
   selector: 'rx-menubar-sub',
+  standalone: true,
+  imports: [CommonModule],
   template: `
     <div
       [ngClass]="{
@@ -74,7 +76,6 @@ import { BaseComponent } from '../base/basecomponent';
       </ng-template>
     </div>
   `,
-  imports: [NgFor, NgIf, NgClass],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RxMenuBarSub extends BaseComponent {
@@ -161,6 +162,7 @@ export class RxMenuBarSub extends BaseComponent {
 
 @Component({
   selector: 'rx-menubar',
+  standalone: true,
   template: `
     <rx-menubar-sub [items]="model" [direction]="direction"></rx-menubar-sub>
   `,
