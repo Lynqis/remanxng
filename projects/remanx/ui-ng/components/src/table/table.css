@@ -1,30 +1,31 @@
 @layer remanx {
     .rx-table-wrapper {
+        position: relative;
         width: 100%;
-        overflow-x: auto;
+        overflow: auto;
     }
 
     .rx-table {
         width: 100%;
         border-collapse: collapse;
-        border-spacing: 0;
+        min-width: 100%;
+        table-layout: auto;
         background-color: var(--rx-surface-overlay, #ffffff);
     }
 
     .rx-table thead th {
-        background-color: var(--rx-surface-section, #f8f9fa);
-        padding: 1rem;
         text-align: left;
+        padding: 1rem;
+        border-bottom: 1px solid var(--rx-border-color);
         font-weight: 600;
-        border-width: 0 0 1px 0;
-        border-style: solid;
-        border-color: var(--rx-surface-border, #dee2e6);
+        white-space: nowrap;
+        position: relative;
+        background-color: var(--rx-surface-section, #f8f9fa);
     }
 
     .rx-table tbody td {
         padding: 1rem;
-        border-width: 0 0 1px 0;
-        border-style: solid;
+        border-bottom: 1px solid var(--rx-border-color);
         border-color: var(--rx-surface-border, #dee2e6);
     }
 
@@ -36,10 +37,62 @@
         background-color: var(--rx-hover-bg, rgba(0, 0, 0, 0.04));
     }
 
-    .rx-table-empty td {
+    .rx-table tbody tr.rx-table-row-selected {
+        background-color: var(--rx-selected-bg);
+        color: var(--rx-selected-text-color);
+    }
+
+    .rx-sort-column {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .rx-sort-column:hover {
+        background-color: var(--rx-hover-bg);
+    }
+
+    .rx-sort-column.rx-sort-column-active {
+        background-color: var(--rx-active-bg);
+    }
+
+    .rx-sort-icon {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 0.5rem;
+    }
+
+    .rx-sort-icon::before {
+        font-family: "Material Icons";
+        font-size: 1rem;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .rx-sort-icon-asc::before {
+        content: "arrow_upward";
+    }
+
+    .rx-sort-icon-desc::before {
+        content: "arrow_downward";
+    }
+
+    .rx-table-empty {
         text-align: center;
         padding: 1rem;
         color: var(--rx-text-color-secondary, #6c757d);
+    }
+
+    .rx-selectable-row {
+        cursor: pointer;
+    }
+
+    .rx-selectable-row:hover {
+        background-color: var(--rx-hover-bg);
+    }
+
+    .rx-selectable-row.rx-row-selected {
+        background-color: var(--rx-selected-bg);
+        color: var(--rx-selected-text-color);
     }
 
     /* Style pour les bordures de grille */
