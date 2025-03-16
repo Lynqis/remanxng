@@ -1,5 +1,4 @@
 import type { StorybookConfig } from "@storybook/angular";
-
 import { join, dirname } from "path";
 
 /**
@@ -9,18 +8,29 @@ import { join, dirname } from "path";
 function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, "package.json")));
 }
+
 const config: StorybookConfig = {
-  stories: ["../components/**/*.mdx", "../components/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  stories: [
+    "../components/*.@(mdx|stories.@(ts))",
+    "../components/**/*.@(mdx|stories.@(js|jsx|mjs|ts|tsx))"
+  ],
   addons: [
     getAbsolutePath("@storybook/addon-essentials"),
-    getAbsolutePath("@chromatic-com/storybook"),
     getAbsolutePath("@storybook/addon-interactions"),
+    "@chromatic-com/storybook"
   ],
   framework: {
     name: getAbsolutePath("@storybook/angular"),
     options: {
-      enableNgStandalone: true
+      enableNgStandalone: true,
     },
   },
+  docs: {
+    defaultName: 'Documentation'
+  },
+  core: {
+    disableTelemetry: true,
+  },
+  staticDirs: ['../assets'],
 };
 export default config;
