@@ -2,20 +2,22 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
+  ContentChildren,
   EventEmitter,
+  inject,
   Injectable,
   Input,
+  OnInit,
   Output,
-  TemplateRef,
+  QueryList,
+  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import { NgClass, NgStyle, NgTemplateOutlet, NgIf } from '@angular/common';
 import { Subject } from 'rxjs';
-
-export interface SortMeta {
-  field: string;
-  order: 1 | -1;
-}
+import { BaseComponent } from '../base/basecomponent';
+import { ObjectUtils, RxTemplate, SortMeta, TemplateNull } from '@remanx/ui-ng/api';
+import { RxTableBody } from './tablebody';
 
 @Injectable()
 export class RxTableService {
@@ -47,37 +49,31 @@ export class RxTableService {
       class="rx-table-wrapper"
       [ngClass]="{ 'rx-table-gridlines': showGridlines }"
     >
-      <table
-        class="rx-table"
-        [ngClass]="tableClass"
-        [ngStyle]="tableStyle"
-      >
+      <table class="rx-table" [ngClass]="tableClass" [ngStyle]="tableStyle">
         <thead>
-          <ng-container
-            *ngTemplateOutlet="headerTemplate"
-          ></ng-container>
+          <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
         </thead>
-        <tbody>
-          <ng-container
-            *ngTemplateOutlet="bodyTemplate; context: { $implicit: processedData }"
-          ></ng-container>
-          <tr *ngIf="!processedData?.length" class="rx-table-empty">
-            <td colspan="100%">
-              {{ emptyMessage }}
-            </td>
-          </tr>
-        </tbody>
+        <tbody
+          [rxTableBody]="value"
+          [bodyTemplate]="bodyTemplate"
+          [value]="value"
+        ></tbody>
       </table>
     </div>
   `,
   standalone: true,
-  imports: [NgClass, NgIf, NgTemplateOutlet, NgStyle],
+  imports: [NgClass, NgTemplateOutlet, NgStyle, RxTableBody],
   providers: [RxTableService],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
-export class RxTable<T = any> {
-  @Input() value: T[] = [];
+export class RxTable extends BaseComponent implements OnInit {
+  @Input() get value(): any[] {
+    return this._value;
+  }
+  set value(val: any[]) {
+    this._value = val;
+  }
   @Input() tableClass: string = '';
   @Input() tableStyle: { [key: string]: string | number } = {};
   @Input() showGridlines: boolean = false;
@@ -85,44 +81,80 @@ export class RxTable<T = any> {
   @Input() selection: any;
   @Input() selectionMode: 'single' | 'multiple' | null = null;
   @Input() dataKey: string = '';
-  @Input() sortField: string = '';
-  @Input() sortOrder: 1 | -1 = 1;
+  @Input() get sortField(): string | undefined | null {
+    return this._sortField;
+  }
+  set sortField(val: string | undefined | null) {
+    this._sortField = val;
+  }
+  @Input() get sortOrder(): number {
+    return this._sortOrder;
+  }
+  set sortOrder(val: number) {
+    this._sortOrder = val;
+  }
   @Input() multiSortMeta: SortMeta[] = [];
   @Input() sortMode: 'single' | 'multiple' = 'single';
+  @Input() defaultSortOrder: number = 1;
 
   @Output() selectionChange = new EventEmitter<any>();
   @Output() sortChange = new EventEmitter<SortMeta>();
 
-  @ContentChild('header') headerTemplate!: TemplateRef<any>;
-  @ContentChild('body') bodyTemplate!: TemplateRef<any>;
+  @ContentChild('header') headerTemplate: TemplateNull<any>;
+  @ContentChild('body', { descendants: false }) bodyTemplate: TemplateNull<any>;
 
-  processedData: T[] = [];
+  @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
-  constructor(public tableService: RxTableService) {}
+  get processedData() {
+    return this.value || [];
+  }
+
+  _value: any[] = [];
+
+  _sortField: string | undefined | null;
+
+  _sortOrder: number = 1;
+
+  public tableService: RxTableService = inject(RxTableService);
 
   ngOnInit() {
-    this.processedData = [...this.value];
     this.tableService.onValueChange(this.value);
   }
 
-  ngOnChanges(changes: any) {
-    if (changes.value) {
-      this.processedData = [...this.value];
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['value']) {
       this.tableService.onValueChange(this.value);
+    }
+    this.cd.detectChanges();
+  }
+
+  dataToRender(data: any) {
+    const _data = data || this.processedData;
+
+    return _data;
+  }
+
+  sortData(event: any) {
+    if (this.sortMode === 'single') {
+      this._sortOrder =
+        this.sortField === event.field
+          ? this.sortOrder * -1
+          : this.defaultSortOrder;
+      this._sortField = event.field;
+      this.sortSingle();
     }
   }
 
-  sort(field: string) {
-    const order: 1 | -1 = this.sortField === field ? (this.sortOrder === 1 ? -1 : 1) : 1;
+  sortSingle() {
+    const field = this.sortField;
+    const order: number = this.sortField ? this.sortOrder : 1;
 
     if (this.sortMode === 'single') {
-      this.sortOrder = order;
-      this.sortField = field;
-
-      this.processedData.sort((a: any, b: any) => {
-        const value1 = a[field];
-        const value2 = b[field];
-        let result = 0;
+      console.log('sortSingle =>', field);
+      this.value.sort((a: any, b: any) => {
+        let value1 = ObjectUtils.resolveFieldData(a, field);
+        let value2 = ObjectUtils.resolveFieldData(b, field);
+        let result = null;
 
         if (value1 == null && value2 != null) result = -1;
         else if (value1 != null && value2 == null) result = 1;
@@ -134,9 +166,24 @@ export class RxTable<T = any> {
         return order * result;
       });
 
-      this.sortChange.emit({ field, order });
+      this._value = [...this.value];
     }
-    this.tableService.onSort({ field, order });
+
+    let sortMeta: SortMeta = {
+      field: field,
+      order: order,
+    };
+
+    this.sortChange.emit(sortMeta);
+    this.tableService.onSort(sortMeta);
+    this.cd.detectChanges();
+  }
+
+  isSorted(field: string) {
+    if (this.sortMode === 'single') {
+      return this.sortField && this.sortField === field;
+    }
+    return false;
   }
 
   isSelected(rowData: any): boolean {
@@ -152,7 +199,9 @@ export class RxTable<T = any> {
       return this.selection[this.dataKey] === rowData[this.dataKey];
     } else if (this.selectionMode === 'multiple') {
       if (Array.isArray(this.selection)) {
-        return this.selection.some((selectedRow) => selectedRow[this.dataKey] === rowData[this.dataKey]);
+        return this.selection.some(
+          (selectedRow) => selectedRow[this.dataKey] === rowData[this.dataKey]
+        );
       }
     }
     return false;

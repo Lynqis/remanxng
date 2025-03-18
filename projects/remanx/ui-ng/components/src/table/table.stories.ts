@@ -2,25 +2,29 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { NgFor, NgIf, DecimalPipe } from '@angular/common';
 import { RxTable } from './table';
-import { RxSelectableRow, RxSortIcon, RxSortableColumn } from './table.directives';
+import {
+  RxSelectableRow,
+  RxSortIcon,
+  RxSortableColumn,
+} from './table.directives';
 
 /**
  * # RxTable
- * 
+ *
  * Le composant RxTable est un composant de tableau avancé qui offre des fonctionnalités de tri et de sélection.
- * 
+ *
  * ## Fonctionnalités
- * 
+ *
  * - Tri des colonnes (simple)
  * - Sélection de lignes (simple ou multiple)
  * - Affichage de bordures de grille
  * - Message personnalisable en cas de données vides
- * 
+ *
  * ## Installation
- * 
+ *
  * ```typescript
  * import { RxTableModule } from '@remanx/ui-ng';
- * 
+ *
  * @NgModule({
  *   imports: [
  *     RxTableModule
@@ -28,9 +32,9 @@ import { RxSelectableRow, RxSortIcon, RxSortableColumn } from './table.directive
  * })
  * export class AppModule { }
  * ```
- * 
+ *
  * ## Utilisation de base
- * 
+ *
  * ```html
  * <rx-table [value]="data" [showGridlines]="true">
  *   <ng-template #header>
@@ -47,26 +51,26 @@ import { RxSelectableRow, RxSortIcon, RxSortableColumn } from './table.directive
  *   </ng-template>
  * </rx-table>
  * ```
- * 
+ *
  * ## Tri des colonnes
- * 
+ *
  * Pour ajouter le tri sur une colonne, utilisez la directive `rxSortableColumn` et `rxSortIcon` :
- * 
+ *
  * ```html
  * <th [rxSortableColumn]="'name'">
  *   Nom
  *   <span rxSortIcon="name"></span>
  * </th>
  * ```
- * 
+ *
  * ## Sélection de lignes
- * 
+ *
  * Le composant supporte deux modes de sélection : simple et multiple.
- * 
+ *
  * ### Sélection simple
- * 
+ *
  * ```html
- * <rx-table [value]="data" 
+ * <rx-table [value]="data"
  *     [selectionMode]="'single'"
  *     [(selection)]="selectedItem"
  *     [dataKey]="'id'">
@@ -76,11 +80,11 @@ import { RxSelectableRow, RxSortIcon, RxSortableColumn } from './table.directive
  *   </tr>
  * </rx-table>
  * ```
- * 
+ *
  * ### Sélection multiple
- * 
+ *
  * ```html
- * <rx-table [value]="data" 
+ * <rx-table [value]="data"
  *     [selectionMode]="'multiple'"
  *     [(selection)]="selectedItems"
  *     [dataKey]="'id'">
@@ -90,11 +94,11 @@ import { RxSelectableRow, RxSortIcon, RxSortableColumn } from './table.directive
  *   </tr>
  * </rx-table>
  * ```
- * 
+ *
  * ## Styles
- * 
+ *
  * Le composant utilise des variables CSS pour la personnalisation :
- * 
+ *
  * ```css
  * :root {
  *   --rx-border-color: #dee2e6;
@@ -109,7 +113,14 @@ const meta: Meta<RxTable> = {
   component: RxTable,
   decorators: [
     moduleMetadata({
-      imports: [NgFor, NgIf, DecimalPipe, RxSortableColumn, RxSortIcon, RxSelectableRow],
+      imports: [
+        NgFor,
+        NgIf,
+        DecimalPipe,
+        RxSortableColumn,
+        RxSortIcon,
+        RxSelectableRow,
+      ],
     }),
   ],
   tags: ['autodocs'],
@@ -168,14 +179,12 @@ const meta: Meta<RxTable> = {
       table: {
         type: { summary: 'EventEmitter<any | any[]>' },
       },
-      action: 'selectionChange',
     },
-    sort: {
+    sortData: {
       description: 'Émis lorsque le tri est effectué',
       table: {
         type: { summary: 'EventEmitter<SortEvent>' },
       },
-      action: 'sort',
     },
   },
 };
@@ -206,7 +215,7 @@ const products: Product[] = [
     category: 'Électronique',
     quantity: 24,
     inventoryStatus: 'En stock',
-    rating: 5
+    rating: 5,
   },
   {
     id: 2,
@@ -217,7 +226,7 @@ const products: Product[] = [
     category: 'Électronique',
     quantity: 61,
     inventoryStatus: 'En stock',
-    rating: 4
+    rating: 4,
   },
   {
     id: 3,
@@ -228,7 +237,7 @@ const products: Product[] = [
     category: 'Accessoires',
     quantity: 2,
     inventoryStatus: 'Faible stock',
-    rating: 4
+    rating: 4,
   },
   {
     id: 4,
@@ -239,7 +248,7 @@ const products: Product[] = [
     category: 'Accessoires',
     quantity: 0,
     inventoryStatus: 'Rupture de stock',
-    rating: 3
+    rating: 3,
   },
   {
     id: 5,
@@ -250,13 +259,13 @@ const products: Product[] = [
     category: 'Audio',
     quantity: 15,
     inventoryStatus: 'En stock',
-    rating: 5
-  }
+    rating: 5,
+  },
 ];
 
 /**
  * Exemple de base avec tri des colonnes.
- * 
+ *
  * Cette story montre comment utiliser le composant RxTable avec le tri des colonnes.
  * Les colonnes "Nom", "Catégorie" et "Prix" sont triables.
  */
@@ -273,21 +282,12 @@ export const Basic: Story = {
       selectedProduct: null,
       sortField: '',
       sortOrder: 1,
-      onSort: (event: any) => {
-        const { field, order } = event;
-        const sortedProducts = [...products].sort((a, b) => {
-          const valueA = a[field as keyof Product];
-          const valueB = b[field as keyof Product];
-          return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0) * order;
-        });
-        args.value = sortedProducts;
-      }
     },
     template: `
-      <rx-table [value]="products" 
+      <rx-table [value]="products"
                 [showGridlines]="showGridlines"
                 [emptyMessage]="emptyMessage"
-                (sort)="onSort($event)">
+                >
         <ng-template #header>
           <tr>
             <th [rxSortableColumn]="'name'">
@@ -306,8 +306,8 @@ export const Basic: Story = {
             <th>Statut</th>
           </tr>
         </ng-template>
-        <ng-template #body let-items>
-          <tr *ngFor="let item of items">
+        <ng-template #body let-item>
+          <tr>
             <td>{{item.name}}</td>
             <td>{{item.category}}</td>
             <td>{{item.price | number:'1.2-2'}} €</td>
@@ -316,13 +316,13 @@ export const Basic: Story = {
           </tr>
         </ng-template>
       </rx-table>
-    `
-  })
+    `,
+  }),
 };
 
 /**
  * Exemple avec sélection multiple.
- * 
+ *
  * Cette story montre comment utiliser le composant RxTable avec la sélection multiple.
  * Les utilisateurs peuvent sélectionner plusieurs lignes en utilisant des cases à cocher.
  */
@@ -337,26 +337,28 @@ export const MultipleSelection: Story = {
     // Création d'une classe pour gérer la sélection et éviter les problèmes de typage
     class SelectionManager {
       selectedProducts: Product[] = [];
-      
+
       isSelected(product: Product): boolean {
-        return this.selectedProducts.some(p => p.id === product.id);
+        return this.selectedProducts.some((p) => p.id === product.id);
       }
-      
+
       toggleSelection(product: Product): void {
         if (this.isSelected(product)) {
-          this.selectedProducts = this.selectedProducts.filter(p => p.id !== product.id);
+          this.selectedProducts = this.selectedProducts.filter(
+            (p) => p.id !== product.id
+          );
         } else {
           this.selectedProducts = [...this.selectedProducts, product];
         }
       }
-      
+
       onSelectionChange(event: any): void {
         console.log('Selection changed:', event);
       }
     }
-    
+
     const selectionManager = new SelectionManager();
-    
+
     return {
       props: {
         ...args,
@@ -367,7 +369,7 @@ export const MultipleSelection: Story = {
         <div class="mb-3">
           <strong>Produits sélectionnés:</strong> {{selectionManager.selectedProducts.length}}
         </div>
-        <rx-table [value]="products" 
+        <rx-table [value]="products"
                   [showGridlines]="showGridlines"
                   [selectionMode]="'multiple'"
                   [emptyMessage]="emptyMessage"
@@ -381,11 +383,11 @@ export const MultipleSelection: Story = {
               <th>Statut</th>
             </tr>
           </ng-template>
-          <ng-template #body let-items>
-            <tr *ngFor="let item of items" [class.selected]="selectionManager.isSelected(item)">
+          <ng-template #body let-item>
+            <tr [class.selected]="selectionManager.isSelected(item)">
               <td>
-                <input type="checkbox" 
-                       [checked]="selectionManager.isSelected(item)" 
+                <input type="checkbox"
+                       [checked]="selectionManager.isSelected(item)"
                        (change)="selectionManager.toggleSelection(item)" />
               </td>
               <td>{{item.name}}</td>
@@ -395,14 +397,14 @@ export const MultipleSelection: Story = {
             </tr>
           </ng-template>
         </rx-table>
-      `
+      `,
     };
-  }
+  },
 };
 
 /**
  * Exemple sans sélection.
- * 
+ *
  * Cette story montre comment utiliser le composant RxTable sans fonctionnalité de sélection.
  * C'est utile pour l'affichage simple de données tabulaires.
  */
@@ -418,7 +420,7 @@ export const NoSelection: Story = {
       products: [...products],
     },
     template: `
-      <rx-table [value]="products" 
+      <rx-table [value]="products"
                 [showGridlines]="showGridlines"
                 [emptyMessage]="emptyMessage">
         <ng-template #header>
@@ -432,22 +434,22 @@ export const NoSelection: Story = {
             <th>Évaluation</th>
           </tr>
         </ng-template>
-        <ng-template #body let-items>
-          <tr *ngFor="let item of items">
+        <ng-template #body let-item>
+          <tr>
             <td><span class="code-badge">{{item.code}}</span></td>
             <td>{{item.name}}</td>
             <td>{{item.category}}</td>
             <td>{{item.price | number:'1.2-2'}} €</td>
             <td>{{item.quantity}}</td>
             <td>
-              <span [class]="'status-badge status-' + (item.inventoryStatus === 'En stock' ? 'instock' : 
+              <span [class]="'status-badge status-' + (item.inventoryStatus === 'En stock' ? 'instock' :
                               item.inventoryStatus === 'Faible stock' ? 'lowstock' : 'outofstock')">
                 {{item.inventoryStatus}}
               </span>
             </td>
             <td>
               <span class="rating">
-                <span *ngFor="let star of [1,2,3,4,5]" 
+                <span *ngFor="let star of [1,2,3,4,5]"
                       [class.filled]="star <= item.rating">★</span>
               </span>
             </td>
@@ -487,13 +489,13 @@ export const NoSelection: Story = {
           color: #ffc107;
         }
       </style>
-    `
-  })
+    `,
+  }),
 };
 
 /**
  * Exemple de table vide.
- * 
+ *
  * Cette story montre comment le composant RxTable gère l'absence de données.
  * Un message personnalisable est affiché lorsque le tableau est vide.
  */
@@ -509,7 +511,7 @@ export const Empty: Story = {
       products: [],
     },
     template: `
-      <rx-table [value]="products" 
+      <rx-table [value]="products"
                 [showGridlines]="showGridlines"
                 [emptyMessage]="emptyMessage">
         <ng-template #header>
@@ -533,6 +535,6 @@ export const Empty: Story = {
           </tr>
         </ng-template>
       </rx-table>
-    `
-  })
+    `,
+  }),
 };
