@@ -1,4 +1,12 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Input, NgZone, Output } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Host,
+  HostListener,
+  inject,
+  Input,
+  Optional,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { RxTable } from './table';
 
@@ -11,31 +19,56 @@ export class RxSortableColumn {
   @Input() rxSortableColumnDisabled: boolean = false;
 
   sorted: boolean = false;
-  sortOrder: 'asc' | 'desc' = 'asc';
-  private subscription: Subscription;
+  sortOrder: 'asc' | 'desc' | 'none' = 'asc';
+  private subscription: Subscription | undefined;
 
-  constructor(public table: RxTable, private zone: NgZone) {
-    this.subscription = this.table.tableService.sortSource$.subscribe(() => {
-      this.updateSortState();
-    });
+  dt: RxTable = inject(RxTable);
+
+  constructor() {
+    if (!this.dt) {
+      throw new Error(
+        'RxSortableColumn must be used inside an RxTable component.'
+      );
+    }
+    if (this.isEnabled()) {
+      this.subscription = this.dt.tableService.sortSource$.subscribe(() => {
+        this.updateSortState();
+      });
+    }
   }
 
   ngOnInit() {
-    this.updateSortState();
+    if (this.isEnabled()) {
+      this.updateSortState();
+    }
   }
 
   updateSortState() {
-    this.sorted = this.table.sortField === this.field;
-    this.sortOrder = this.table.sortOrder === 1 ? 'asc' : 'desc';
+    let sorted = false;
+    let sortOrder = 0;
+
+    if (this.dt.sortMode === 'single') {
+      sorted = this.dt.isSorted(this.field) as boolean;
+      sortOrder = this.dt.sortOrder;
+    }
+
+    this.sorted = sorted;
+    this.sortOrder = sorted ? (sortOrder === 1 ? 'asc' : 'desc') : 'none';
   }
 
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent) {
-    if (!this.rxSortableColumnDisabled) {
-      this.zone.run(() => {
-        this.table.sort(this.field);
+    if (this.isEnabled()) {
+      this.updateSortState();
+      this.dt.sortData({
+        originalEvent: event,
+        field: this.field,
       });
     }
+  }
+
+  isEnabled() {
+    return this.rxSortableColumnDisabled !== true;
   }
 
   ngOnDestroy() {
@@ -57,10 +90,20 @@ export class RxSelectableRow {
   selected: boolean = false;
   private subscription: Subscription;
 
-  constructor(public table: RxTable, private el: ElementRef) {
-    this.subscription = this.table.tableService.selectionSource$.subscribe(() => {
-      this.selected = this.table.isSelected(this.data);
-    });
+  constructor(
+    @Optional() @Host() public table: RxTable,
+    private el: ElementRef
+  ) {
+    if (!this.table) {
+      throw new Error(
+        'RxSortableColumn must be used inside an RxTable component.'
+      );
+    }
+    this.subscription = this.table.tableService.selectionSource$.subscribe(
+      () => {
+        this.selected = this.table.isSelected(this.data);
+      }
+    );
   }
 
   ngOnInit() {
@@ -91,8 +134,8 @@ export class RxSelectableRow {
   host: {
     '[class.rx-sort-icon]': 'true',
     '[class.rx-sort-icon-asc]': 'sorted && sortOrder === "asc"',
-    '[class.rx-sort-icon-desc]': 'sorted && sortOrder === "desc"'
-  }
+    '[class.rx-sort-icon-desc]': 'sorted && sortOrder === "desc"',
+  },
 })
 export class RxSortIcon {
   @Input('rxSortIcon') field: string = '';
@@ -101,7 +144,12 @@ export class RxSortIcon {
   sortOrder: 'asc' | 'desc' = 'asc';
   private subscription: Subscription;
 
-  constructor(public table: RxTable) {
+  constructor(@Optional() @Host() public table: RxTable) {
+    if (!this.table) {
+      throw new Error(
+        'RxSortableColumn must be used inside an RxTable component.'
+      );
+    }
     this.subscription = this.table.tableService.sortSource$.subscribe(() => {
       this.updateSortState();
     });
