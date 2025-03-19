@@ -1,15 +1,19 @@
-export interface Message {
-  severity?: string;
-  summary?: string;
-  detail?: string;
+import { Severity } from "../helpers";
+
+export interface ToastMessage {
+  severity?: Severity;
+  title?: string;
+  content?: string;
   id?: any;
-  key?: string;
-  life?: number;
-  sticky?: boolean;
+  lifetime?: number;
   closable?: boolean;
-  data?: any;
-  icon?: string;
-  contentStyleClass?: string;
-  styleClass?: string;
-  closeIcon?: string;
+  sticky?: boolean;
+}
+
+export interface ToastClose {
+  message: ToastMessage;
+}
+
+export interface ToastItemCloseEvent extends ToastClose {
+  index: number;
 }

@@ -1,0 +1,117 @@
+@layer remanx {
+    .rx-toast {
+        white-space: pre-line;
+        word-break: break-word;
+        width: 400px;
+        cursor: pointer;
+
+        & .info,
+        .success,
+        .warning,
+        .error,
+        .secondary,
+        .contrast {
+            border-width: 1xp;
+            border-style: solid;
+            backdrop-filter: blur(2px);
+            border-radius: 5px;
+        }
+    }
+
+    .rx-toast-message {
+
+        margin: 0 0 1rem 0;
+
+        &.success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            & .rx-toast-title {
+                color: #155724;
+            }
+        }
+
+        &.warning {
+            background-color: #fff3cd;
+            border-color: #ffeeba;
+            color: black;
+            & .rx-toast-title {
+                color: #856404;
+            }
+        }
+
+        &.error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            & .rx-toast-title {
+                color: #721c24;
+            }
+        }
+
+        &.info {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            & .rx-toast-title {
+                color: #0c5460;
+            }
+        }
+
+        &.secondary {
+            background-color: #e2e3e5;
+            border-color: #ced4da;
+            & .rx-toast-title {
+                color: #383d41;
+            }
+        }
+
+        &.contrast {
+            background-color: #fff;
+            border-color: #111;
+            & .rx-toast-title {
+                color: #111;
+            }
+        }
+    }
+
+    .rx-toast-content {
+        display: flex;
+        align-items: flex-start;
+        padding: 0.5rem;
+        gap: 0.3rem;
+    }
+
+    .rx-toast-text {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+
+        & > .rx-toast-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        & > .rx-toast-content {
+            font-weight: normal;
+            font-size: 0.9rem;
+        }
+    }
+
+    .rx-toast .close {
+        background: none;
+        border: none;
+        font-size: 20px;
+        color: inherit;
+        cursor: pointer;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+    }
+
+    .rx-toast.fade-in {
+        opacity: 1;
+    }
+
+    .rx-toast.fade-out {
+        opacity: 0;
+    }
+}

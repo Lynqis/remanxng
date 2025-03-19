@@ -8,7 +8,7 @@ export default {
   argTypes: {
     severity: {
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'help', 'contrast'],
+      options: ['primary', 'secondary', 'success', 'error', 'warning', 'info', 'help', 'contrast'],
     },
     disabled: { control: 'boolean' },
     loading: { control: 'boolean' },
@@ -64,7 +64,7 @@ export const ColorShowcase: Story = {
       </div>
     `,
     props: {
-      colors: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'help', 'contrast'],
+      colors: ['primary', 'secondary', 'success', 'error', 'warning', 'info', 'help', 'contrast'],
     },
   }),
 };

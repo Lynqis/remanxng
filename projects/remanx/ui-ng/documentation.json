@@ -3,12 +3,12 @@
     "interfaces": [
         {
             "name": "Product",
-            "id": "interface-Product-2e67f1d1a2b011403f35afc299e5add71b4eec52e6153775089e84fe0d00b9f55a0e88d1d1592b0872f2918139e686d00dd0503cc61e783ccc99d158a81c76c7",
+            "id": "interface-Product-c021326110080ec7ef0c9cbf05eb99f52f710141a75fad7a77e38f666b7a4ad9e4cbac772ecc2b12ceeefe59b8f89a32fb907c157dbc5001696247eace3968dc",
             "file": "projects/remanx/ui-ng/components/src/table/table.stories.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import type { Meta, StoryObj } from '@storybook/angular';\nimport { moduleMetadata } from '@storybook/angular';\nimport { NgFor, NgIf, DecimalPipe } from '@angular/common';\nimport { RxTable } from './table';\nimport {\n  RxSelectableRow,\n  RxSortIcon,\n  RxSortableColumn,\n} from './table.directives';\n\n/**\n * # RxTable\n *\n * Le composant RxTable est un composant de tableau avancé qui offre des fonctionnalités de tri et de sélection.\n *\n * ## Fonctionnalités\n *\n * - Tri des colonnes (simple)\n * - Sélection de lignes (simple ou multiple)\n * - Affichage de bordures de grille\n * - Message personnalisable en cas de données vides\n *\n * ## Installation\n *\n * ```typescript\n * import { RxTableModule } from '@remanx/ui-ng';\n *\n * @NgModule({\n *   imports: [\n *     RxTableModule\n *   ],\n * })\n * export class AppModule { }\n * ```\n *\n * ## Utilisation de base\n *\n * ```html\n * <rx-table [value]=\"data\" [showGridlines]=\"true\">\n *   <ng-template #header>\n *     <tr>\n *       <th>Nom</th>\n *       <th>Catégorie</th>\n *     </tr>\n *   </ng-template>\n *   <ng-template #body let-items>\n *     <tr *ngFor=\"let item of items\">\n *       <td>{{item.name}}</td>\n *       <td>{{item.category}}</td>\n *     </tr>\n *   </ng-template>\n * </rx-table>\n * ```\n *\n * ## Tri des colonnes\n *\n * Pour ajouter le tri sur une colonne, utilisez la directive `rxSortableColumn` et `rxSortIcon` :\n *\n * ```html\n * <th [rxSortableColumn]=\"'name'\">\n *   Nom\n *   <span rxSortIcon=\"name\"></span>\n * </th>\n * ```\n *\n * ## Sélection de lignes\n *\n * Le composant supporte deux modes de sélection : simple et multiple.\n *\n * ### Sélection simple\n *\n * ```html\n * <rx-table [value]=\"data\"\n *     [selectionMode]=\"'single'\"\n *     [(selection)]=\"selectedItem\"\n *     [dataKey]=\"'id'\">\n *   ...\n *   <tr *ngFor=\"let item of items\" [rxSelectableRow]=\"item\">\n *     ...\n *   </tr>\n * </rx-table>\n * ```\n *\n * ### Sélection multiple\n *\n * ```html\n * <rx-table [value]=\"data\"\n *     [selectionMode]=\"'multiple'\"\n *     [(selection)]=\"selectedItems\"\n *     [dataKey]=\"'id'\">\n *   ...\n *   <tr *ngFor=\"let item of items\" [rxSelectableRow]=\"item\">\n *     ...\n *   </tr>\n * </rx-table>\n * ```\n *\n * ## Styles\n *\n * Le composant utilise des variables CSS pour la personnalisation :\n *\n * ```css\n * :root {\n *   --rx-border-color: #dee2e6;\n *   --rx-hover-bg: rgba(0, 0, 0, 0.04);\n *   --rx-selected-bg: #e3f2fd;\n *   --rx-selected-text-color: #1976d2;\n * }\n * ```\n */\nconst meta: Meta<RxTable> = {\n  title: 'Data/RxTable',\n  component: RxTable,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        NgFor,\n        NgIf,\n        DecimalPipe,\n        RxSortableColumn,\n        RxSortIcon,\n        RxSelectableRow,\n      ],\n    }),\n  ],\n  tags: ['autodocs'],\n  parameters: {\n    layout: 'centered',\n    docs: {\n      description: {\n        component: 'Un composant de tableau avancé avec tri et sélection.',\n      },\n    },\n  },\n  argTypes: {\n    value: {\n      description: 'Les données à afficher dans le tableau',\n      control: 'object',\n      table: {\n        type: { summary: 'any[]' },\n        defaultValue: { summary: '[]' },\n      },\n    },\n    showGridlines: {\n      description: 'Affiche les bordures de grille',\n      control: 'boolean',\n      table: {\n        type: { summary: 'boolean' },\n        defaultValue: { summary: 'false' },\n      },\n    },\n    selectionMode: {\n      description: 'Mode de sélection des lignes',\n      control: 'select',\n      options: [null, 'single', 'multiple'],\n      table: {\n        type: { summary: \"'single' | 'multiple' | null\" },\n        defaultValue: { summary: 'null' },\n      },\n    },\n    selection: {\n      description: 'Élément(s) sélectionné(s)',\n      control: 'object',\n      table: {\n        type: { summary: 'any | any[]' },\n        defaultValue: { summary: 'null' },\n      },\n    },\n    emptyMessage: {\n      description: 'Message à afficher lorsque le tableau est vide',\n      control: 'text',\n      table: {\n        type: { summary: 'string' },\n        defaultValue: { summary: \"'Aucune donnée'\" },\n      },\n    },\n    selectionChange: {\n      description: 'Émis lorsque la sélection change',\n      table: {\n        type: { summary: 'EventEmitter<any | any[]>' },\n      },\n      action: 'selectionChange',\n    },\n    sort: {\n      description: 'Émis lorsque le tri est effectué',\n      table: {\n        type: { summary: 'EventEmitter<SortEvent>' },\n      },\n      action: 'sort',\n    },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<RxTable>;\n\n// Définition du type Product pour éviter les erreurs de typage\ninterface Product {\n  id: number;\n  code: string;\n  name: string;\n  description: string;\n  price: number;\n  category: string;\n  quantity: number;\n  inventoryStatus: string;\n  rating: number;\n}\n\nconst products: Product[] = [\n  {\n    id: 1,\n    code: 'P001',\n    name: 'Ordinateur portable',\n    description: 'Ordinateur portable 15\" avec processeur i7',\n    price: 1200,\n    category: 'Électronique',\n    quantity: 24,\n    inventoryStatus: 'En stock',\n    rating: 5,\n  },\n  {\n    id: 2,\n    code: 'P002',\n    name: 'Écran 27\"',\n    description: 'Écran 27\" 4K',\n    price: 450,\n    category: 'Électronique',\n    quantity: 61,\n    inventoryStatus: 'En stock',\n    rating: 4,\n  },\n  {\n    id: 3,\n    code: 'P003',\n    name: 'Clavier mécanique',\n    description: 'Clavier mécanique avec rétroéclairage RGB',\n    price: 120,\n    category: 'Accessoires',\n    quantity: 2,\n    inventoryStatus: 'Faible stock',\n    rating: 4,\n  },\n  {\n    id: 4,\n    code: 'P004',\n    name: 'Souris sans fil',\n    description: 'Souris sans fil ergonomique',\n    price: 80,\n    category: 'Accessoires',\n    quantity: 0,\n    inventoryStatus: 'Rupture de stock',\n    rating: 3,\n  },\n  {\n    id: 5,\n    code: 'P005',\n    name: 'Casque audio',\n    description: 'Casque audio sans fil avec réduction de bruit',\n    price: 200,\n    category: 'Audio',\n    quantity: 15,\n    inventoryStatus: 'En stock',\n    rating: 5,\n  },\n];\n\n/**\n * Exemple de base avec tri des colonnes.\n *\n * Cette story montre comment utiliser le composant RxTable avec le tri des colonnes.\n * Les colonnes \"Nom\", \"Catégorie\" et \"Prix\" sont triables.\n */\nexport const Basic: Story = {\n  args: {\n    value: products,\n    showGridlines: true,\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      products: [...products],\n      selectedProduct: null,\n      sortField: '',\n      sortOrder: 1,\n    },\n    template: `\n      <rx-table [value]=\"products\"\n                [showGridlines]=\"showGridlines\"\n                [emptyMessage]=\"emptyMessage\"\n                >\n        <ng-template #header>\n          <tr>\n            <th [rxSortableColumn]=\"'name'\">\n              Nom\n              <span rxSortIcon=\"name\"></span>\n            </th>\n            <th [rxSortableColumn]=\"'category'\">\n              Catégorie\n              <span rxSortIcon=\"category\"></span>\n            </th>\n            <th [rxSortableColumn]=\"'price'\">\n              Prix\n              <span rxSortIcon=\"price\"></span>\n            </th>\n            <th>Quantité</th>\n            <th>Statut</th>\n          </tr>\n        </ng-template>\n        <ng-template #body let-items>\n          <tr *ngFor=\"let item of items\">\n            <td>{{item.name}}</td>\n            <td>{{item.category}}</td>\n            <td>{{item.price | number:'1.2-2'}} €</td>\n            <td>{{item.quantity}}</td>\n            <td>{{item.inventoryStatus}}</td>\n          </tr>\n        </ng-template>\n      </rx-table>\n    `,\n  }),\n};\n\n/**\n * Exemple avec sélection multiple.\n *\n * Cette story montre comment utiliser le composant RxTable avec la sélection multiple.\n * Les utilisateurs peuvent sélectionner plusieurs lignes en utilisant des cases à cocher.\n */\nexport const MultipleSelection: Story = {\n  args: {\n    value: products,\n    showGridlines: true,\n    selectionMode: 'multiple',\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => {\n    // Création d'une classe pour gérer la sélection et éviter les problèmes de typage\n    class SelectionManager {\n      selectedProducts: Product[] = [];\n\n      isSelected(product: Product): boolean {\n        return this.selectedProducts.some((p) => p.id === product.id);\n      }\n\n      toggleSelection(product: Product): void {\n        if (this.isSelected(product)) {\n          this.selectedProducts = this.selectedProducts.filter(\n            (p) => p.id !== product.id\n          );\n        } else {\n          this.selectedProducts = [...this.selectedProducts, product];\n        }\n      }\n\n      onSelectionChange(event: any): void {\n        console.log('Selection changed:', event);\n      }\n    }\n\n    const selectionManager = new SelectionManager();\n\n    return {\n      props: {\n        ...args,\n        products: [...products],\n        selectionManager,\n      },\n      template: `\n        <div class=\"mb-3\">\n          <strong>Produits sélectionnés:</strong> {{selectionManager.selectedProducts.length}}\n        </div>\n        <rx-table [value]=\"products\"\n                  [showGridlines]=\"showGridlines\"\n                  [selectionMode]=\"'multiple'\"\n                  [emptyMessage]=\"emptyMessage\"\n                  (selectionChange)=\"selectionManager.onSelectionChange($event)\">\n          <ng-template #header>\n            <tr>\n              <th style=\"width: 3rem\">Sélection</th>\n              <th>Nom</th>\n              <th>Catégorie</th>\n              <th>Prix</th>\n              <th>Statut</th>\n            </tr>\n          </ng-template>\n          <ng-template #body let-items>\n            <tr *ngFor=\"let item of items\" [class.selected]=\"selectionManager.isSelected(item)\">\n              <td>\n                <input type=\"checkbox\"\n                       [checked]=\"selectionManager.isSelected(item)\"\n                       (change)=\"selectionManager.toggleSelection(item)\" />\n              </td>\n              <td>{{item.name}}</td>\n              <td>{{item.category}}</td>\n              <td>{{item.price | number:'1.2-2'}} €</td>\n              <td>{{item.inventoryStatus}}</td>\n            </tr>\n          </ng-template>\n        </rx-table>\n      `,\n    };\n  },\n};\n\n/**\n * Exemple sans sélection.\n *\n * Cette story montre comment utiliser le composant RxTable sans fonctionnalité de sélection.\n * C'est utile pour l'affichage simple de données tabulaires.\n */\nexport const NoSelection: Story = {\n  args: {\n    value: products,\n    showGridlines: true,\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      products: [...products],\n    },\n    template: `\n      <rx-table [value]=\"products\"\n                [showGridlines]=\"showGridlines\"\n                [emptyMessage]=\"emptyMessage\">\n        <ng-template #header>\n          <tr>\n            <th>Code</th>\n            <th>Nom</th>\n            <th>Catégorie</th>\n            <th>Prix</th>\n            <th>Quantité</th>\n            <th>Statut</th>\n            <th>Évaluation</th>\n          </tr>\n        </ng-template>\n        <ng-template #body let-items>\n          <tr *ngFor=\"let item of items\">\n            <td><span class=\"code-badge\">{{item.code}}</span></td>\n            <td>{{item.name}}</td>\n            <td>{{item.category}}</td>\n            <td>{{item.price | number:'1.2-2'}} €</td>\n            <td>{{item.quantity}}</td>\n            <td>\n              <span [class]=\"'status-badge status-' + (item.inventoryStatus === 'En stock' ? 'instock' :\n                              item.inventoryStatus === 'Faible stock' ? 'lowstock' : 'outofstock')\">\n                {{item.inventoryStatus}}\n              </span>\n            </td>\n            <td>\n              <span class=\"rating\">\n                <span *ngFor=\"let star of [1,2,3,4,5]\"\n                      [class.filled]=\"star <= item.rating\">★</span>\n              </span>\n            </td>\n          </tr>\n        </ng-template>\n      </rx-table>\n      <style>\n        .code-badge {\n          background-color: #f5f5f5;\n          border-radius: 4px;\n          padding: 2px 6px;\n          font-family: monospace;\n          font-size: 0.9em;\n        }\n        .status-badge {\n          border-radius: 4px;\n          padding: 2px 8px;\n          font-size: 0.9em;\n        }\n        .status-instock {\n          background-color: #c8e6c9;\n          color: #256029;\n        }\n        .status-lowstock {\n          background-color: #feedaf;\n          color: #8a5340;\n        }\n        .status-outofstock {\n          background-color: #ffcdd2;\n          color: #c63737;\n        }\n        .rating {\n          color: #ccc;\n          font-size: 1.2em;\n        }\n        .rating .filled {\n          color: #ffc107;\n        }\n      </style>\n    `,\n  }),\n};\n\n/**\n * Exemple de table vide.\n *\n * Cette story montre comment le composant RxTable gère l'absence de données.\n * Un message personnalisable est affiché lorsque le tableau est vide.\n */\nexport const Empty: Story = {\n  args: {\n    value: [],\n    showGridlines: true,\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      products: [],\n    },\n    template: `\n      <rx-table [value]=\"products\"\n                [showGridlines]=\"showGridlines\"\n                [emptyMessage]=\"emptyMessage\">\n        <ng-template #header>\n          <tr>\n            <th>Code</th>\n            <th>Nom</th>\n            <th>Catégorie</th>\n            <th>Prix</th>\n            <th>Quantité</th>\n            <th>Statut</th>\n          </tr>\n        </ng-template>\n        <ng-template #body let-items>\n          <tr *ngFor=\"let item of items\">\n            <td>{{item.code}}</td>\n            <td>{{item.name}}</td>\n            <td>{{item.category}}</td>\n            <td>{{item.price | number:'1.2-2'}} €</td>\n            <td>{{item.quantity}}</td>\n            <td>{{item.inventoryStatus}}</td>\n          </tr>\n        </ng-template>\n      </rx-table>\n    `,\n  }),\n};\n",
+            "sourceCode": "import type { Meta, StoryObj } from '@storybook/angular';\nimport { moduleMetadata } from '@storybook/angular';\nimport { NgFor, NgIf, DecimalPipe } from '@angular/common';\nimport { RxTable } from './table';\nimport {\n  RxSelectableRow,\n  RxSortIcon,\n  RxSortableColumn,\n} from './table.directives';\n\n/**\n * # RxTable\n *\n * Le composant RxTable est un composant de tableau avancé qui offre des fonctionnalités de tri et de sélection.\n *\n * ## Fonctionnalités\n *\n * - Tri des colonnes (simple)\n * - Sélection de lignes (simple ou multiple)\n * - Affichage de bordures de grille\n * - Message personnalisable en cas de données vides\n *\n * ## Installation\n *\n * ```typescript\n * import { RxTableModule } from '@remanx/ui-ng';\n *\n * @NgModule({\n *   imports: [\n *     RxTableModule\n *   ],\n * })\n * export class AppModule { }\n * ```\n *\n * ## Utilisation de base\n *\n * ```html\n * <rx-table [value]=\"data\" [showGridlines]=\"true\">\n *   <ng-template #header>\n *     <tr>\n *       <th>Nom</th>\n *       <th>Catégorie</th>\n *     </tr>\n *   </ng-template>\n *   <ng-template #body let-items>\n *     <tr *ngFor=\"let item of items\">\n *       <td>{{item.name}}</td>\n *       <td>{{item.category}}</td>\n *     </tr>\n *   </ng-template>\n * </rx-table>\n * ```\n *\n * ## Tri des colonnes\n *\n * Pour ajouter le tri sur une colonne, utilisez la directive `rxSortableColumn` et `rxSortIcon` :\n *\n * ```html\n * <th [rxSortableColumn]=\"'name'\">\n *   Nom\n *   <span rxSortIcon=\"name\"></span>\n * </th>\n * ```\n *\n * ## Sélection de lignes\n *\n * Le composant supporte deux modes de sélection : simple et multiple.\n *\n * ### Sélection simple\n *\n * ```html\n * <rx-table [value]=\"data\"\n *     [selectionMode]=\"'single'\"\n *     [(selection)]=\"selectedItem\"\n *     [dataKey]=\"'id'\">\n *   ...\n *   <tr *ngFor=\"let item of items\" [rxSelectableRow]=\"item\">\n *     ...\n *   </tr>\n * </rx-table>\n * ```\n *\n * ### Sélection multiple\n *\n * ```html\n * <rx-table [value]=\"data\"\n *     [selectionMode]=\"'multiple'\"\n *     [(selection)]=\"selectedItems\"\n *     [dataKey]=\"'id'\">\n *   ...\n *   <tr *ngFor=\"let item of items\" [rxSelectableRow]=\"item\">\n *     ...\n *   </tr>\n * </rx-table>\n * ```\n *\n * ## Styles\n *\n * Le composant utilise des variables CSS pour la personnalisation :\n *\n * ```css\n * :root {\n *   --rx-border-color: #dee2e6;\n *   --rx-hover-bg: rgba(0, 0, 0, 0.04);\n *   --rx-selected-bg: #e3f2fd;\n *   --rx-selected-text-color: #1976d2;\n * }\n * ```\n */\nconst meta: Meta<RxTable> = {\n  title: 'Data/RxTable',\n  component: RxTable,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        NgFor,\n        NgIf,\n        DecimalPipe,\n        RxSortableColumn,\n        RxSortIcon,\n        RxSelectableRow,\n      ],\n    }),\n  ],\n  tags: ['autodocs'],\n  parameters: {\n    layout: 'centered',\n    docs: {\n      description: {\n        component: 'Un composant de tableau avancé avec tri et sélection.',\n      },\n    },\n  },\n  argTypes: {\n    value: {\n      description: 'Les données à afficher dans le tableau',\n      control: 'object',\n      table: {\n        type: { summary: 'any[]' },\n        defaultValue: { summary: '[]' },\n      },\n    },\n    showGridlines: {\n      description: 'Affiche les bordures de grille',\n      control: 'boolean',\n      table: {\n        type: { summary: 'boolean' },\n        defaultValue: { summary: 'false' },\n      },\n    },\n    selectionMode: {\n      description: 'Mode de sélection des lignes',\n      control: 'select',\n      options: [null, 'single', 'multiple'],\n      table: {\n        type: { summary: \"'single' | 'multiple' | null\" },\n        defaultValue: { summary: 'null' },\n      },\n    },\n    selection: {\n      description: 'Élément(s) sélectionné(s)',\n      control: 'object',\n      table: {\n        type: { summary: 'any | any[]' },\n        defaultValue: { summary: 'null' },\n      },\n    },\n    emptyMessage: {\n      description: 'Message à afficher lorsque le tableau est vide',\n      control: 'text',\n      table: {\n        type: { summary: 'string' },\n        defaultValue: { summary: \"'Aucune donnée'\" },\n      },\n    },\n    selectionChange: {\n      description: 'Émis lorsque la sélection change',\n      table: {\n        type: { summary: 'EventEmitter<any | any[]>' },\n      },\n    },\n    sortData: {\n      description: 'Émis lorsque le tri est effectué',\n      table: {\n        type: { summary: 'EventEmitter<SortEvent>' },\n      },\n    },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<RxTable>;\n\n// Définition du type Product pour éviter les erreurs de typage\ninterface Product {\n  id: number;\n  code: string;\n  name: string;\n  description: string;\n  price: number;\n  category: string;\n  quantity: number;\n  inventoryStatus: string;\n  rating: number;\n}\n\nconst products: Product[] = [\n  {\n    id: 1,\n    code: 'P001',\n    name: 'Ordinateur portable',\n    description: 'Ordinateur portable 15\" avec processeur i7',\n    price: 1200,\n    category: 'Électronique',\n    quantity: 24,\n    inventoryStatus: 'En stock',\n    rating: 5,\n  },\n  {\n    id: 2,\n    code: 'P002',\n    name: 'Écran 27\"',\n    description: 'Écran 27\" 4K',\n    price: 450,\n    category: 'Électronique',\n    quantity: 61,\n    inventoryStatus: 'En stock',\n    rating: 4,\n  },\n  {\n    id: 3,\n    code: 'P003',\n    name: 'Clavier mécanique',\n    description: 'Clavier mécanique avec rétroéclairage RGB',\n    price: 120,\n    category: 'Accessoires',\n    quantity: 2,\n    inventoryStatus: 'Faible stock',\n    rating: 4,\n  },\n  {\n    id: 4,\n    code: 'P004',\n    name: 'Souris sans fil',\n    description: 'Souris sans fil ergonomique',\n    price: 80,\n    category: 'Accessoires',\n    quantity: 0,\n    inventoryStatus: 'Rupture de stock',\n    rating: 3,\n  },\n  {\n    id: 5,\n    code: 'P005',\n    name: 'Casque audio',\n    description: 'Casque audio sans fil avec réduction de bruit',\n    price: 200,\n    category: 'Audio',\n    quantity: 15,\n    inventoryStatus: 'En stock',\n    rating: 5,\n  },\n];\n\n/**\n * Exemple de base avec tri des colonnes.\n *\n * Cette story montre comment utiliser le composant RxTable avec le tri des colonnes.\n * Les colonnes \"Nom\", \"Catégorie\" et \"Prix\" sont triables.\n */\nexport const Basic: Story = {\n  args: {\n    value: products,\n    showGridlines: true,\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      products: [...products],\n      selectedProduct: null,\n      sortField: '',\n      sortOrder: 1,\n    },\n    template: `\n      <rx-table [value]=\"products\"\n                [showGridlines]=\"showGridlines\"\n                [emptyMessage]=\"emptyMessage\"\n                >\n        <ng-template #header>\n          <tr>\n            <th [rxSortableColumn]=\"'name'\">\n              Nom\n              <span rxSortIcon=\"name\"></span>\n            </th>\n            <th [rxSortableColumn]=\"'category'\">\n              Catégorie\n              <span rxSortIcon=\"category\"></span>\n            </th>\n            <th [rxSortableColumn]=\"'price'\">\n              Prix\n              <span rxSortIcon=\"price\"></span>\n            </th>\n            <th>Quantité</th>\n            <th>Statut</th>\n          </tr>\n        </ng-template>\n        <ng-template #body let-item>\n          <tr>\n            <td>{{item.name}}</td>\n            <td>{{item.category}}</td>\n            <td>{{item.price | number:'1.2-2'}} €</td>\n            <td>{{item.quantity}}</td>\n            <td>{{item.inventoryStatus}}</td>\n          </tr>\n        </ng-template>\n      </rx-table>\n    `,\n  }),\n};\n\n/**\n * Exemple avec sélection multiple.\n *\n * Cette story montre comment utiliser le composant RxTable avec la sélection multiple.\n * Les utilisateurs peuvent sélectionner plusieurs lignes en utilisant des cases à cocher.\n */\nexport const MultipleSelection: Story = {\n  args: {\n    value: products,\n    showGridlines: true,\n    selectionMode: 'multiple',\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => {\n    // Création d'une classe pour gérer la sélection et éviter les problèmes de typage\n    class SelectionManager {\n      selectedProducts: Product[] = [];\n\n      isSelected(product: Product): boolean {\n        return this.selectedProducts.some((p) => p.id === product.id);\n      }\n\n      toggleSelection(product: Product): void {\n        if (this.isSelected(product)) {\n          this.selectedProducts = this.selectedProducts.filter(\n            (p) => p.id !== product.id\n          );\n        } else {\n          this.selectedProducts = [...this.selectedProducts, product];\n        }\n      }\n\n      onSelectionChange(event: any): void {\n        console.log('Selection changed:', event);\n      }\n    }\n\n    const selectionManager = new SelectionManager();\n\n    return {\n      props: {\n        ...args,\n        products: [...products],\n        selectionManager,\n      },\n      template: `\n        <div class=\"mb-3\">\n          <strong>Produits sélectionnés:</strong> {{selectionManager.selectedProducts.length}}\n        </div>\n        <rx-table [value]=\"products\"\n                  [showGridlines]=\"showGridlines\"\n                  [selectionMode]=\"'multiple'\"\n                  [emptyMessage]=\"emptyMessage\"\n                  (selectionChange)=\"selectionManager.onSelectionChange($event)\">\n          <ng-template #header>\n            <tr>\n              <th style=\"width: 3rem\">Sélection</th>\n              <th>Nom</th>\n              <th>Catégorie</th>\n              <th>Prix</th>\n              <th>Statut</th>\n            </tr>\n          </ng-template>\n          <ng-template #body let-item>\n            <tr [class.selected]=\"selectionManager.isSelected(item)\">\n              <td>\n                <input type=\"checkbox\"\n                       [checked]=\"selectionManager.isSelected(item)\"\n                       (change)=\"selectionManager.toggleSelection(item)\" />\n              </td>\n              <td>{{item.name}}</td>\n              <td>{{item.category}}</td>\n              <td>{{item.price | number:'1.2-2'}} €</td>\n              <td>{{item.inventoryStatus}}</td>\n            </tr>\n          </ng-template>\n        </rx-table>\n      `,\n    };\n  },\n};\n\n/**\n * Exemple sans sélection.\n *\n * Cette story montre comment utiliser le composant RxTable sans fonctionnalité de sélection.\n * C'est utile pour l'affichage simple de données tabulaires.\n */\nexport const NoSelection: Story = {\n  args: {\n    value: products,\n    showGridlines: true,\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      products: [...products],\n    },\n    template: `\n      <rx-table [value]=\"products\"\n                [showGridlines]=\"showGridlines\"\n                [emptyMessage]=\"emptyMessage\">\n        <ng-template #header>\n          <tr>\n            <th>Code</th>\n            <th>Nom</th>\n            <th>Catégorie</th>\n            <th>Prix</th>\n            <th>Quantité</th>\n            <th>Statut</th>\n            <th>Évaluation</th>\n          </tr>\n        </ng-template>\n        <ng-template #body let-item>\n          <tr>\n            <td><span class=\"code-badge\">{{item.code}}</span></td>\n            <td>{{item.name}}</td>\n            <td>{{item.category}}</td>\n            <td>{{item.price | number:'1.2-2'}} €</td>\n            <td>{{item.quantity}}</td>\n            <td>\n              <span [class]=\"'status-badge status-' + (item.inventoryStatus === 'En stock' ? 'instock' :\n                              item.inventoryStatus === 'Faible stock' ? 'lowstock' : 'outofstock')\">\n                {{item.inventoryStatus}}\n              </span>\n            </td>\n            <td>\n              <span class=\"rating\">\n                <span *ngFor=\"let star of [1,2,3,4,5]\"\n                      [class.filled]=\"star <= item.rating\">★</span>\n              </span>\n            </td>\n          </tr>\n        </ng-template>\n      </rx-table>\n      <style>\n        .code-badge {\n          background-color: #f5f5f5;\n          border-radius: 4px;\n          padding: 2px 6px;\n          font-family: monospace;\n          font-size: 0.9em;\n        }\n        .status-badge {\n          border-radius: 4px;\n          padding: 2px 8px;\n          font-size: 0.9em;\n        }\n        .status-instock {\n          background-color: #c8e6c9;\n          color: #256029;\n        }\n        .status-lowstock {\n          background-color: #feedaf;\n          color: #8a5340;\n        }\n        .status-outofstock {\n          background-color: #ffcdd2;\n          color: #c63737;\n        }\n        .rating {\n          color: #ccc;\n          font-size: 1.2em;\n        }\n        .rating .filled {\n          color: #ffc107;\n        }\n      </style>\n    `,\n  }),\n};\n\n/**\n * Exemple de table vide.\n *\n * Cette story montre comment le composant RxTable gère l'absence de données.\n * Un message personnalisable est affiché lorsque le tableau est vide.\n */\nexport const Empty: Story = {\n  args: {\n    value: [],\n    showGridlines: true,\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      products: [],\n    },\n    template: `\n      <rx-table [value]=\"products\"\n                [showGridlines]=\"showGridlines\"\n                [emptyMessage]=\"emptyMessage\">\n        <ng-template #header>\n          <tr>\n            <th>Code</th>\n            <th>Nom</th>\n            <th>Catégorie</th>\n            <th>Prix</th>\n            <th>Quantité</th>\n            <th>Statut</th>\n          </tr>\n        </ng-template>\n        <ng-template #body let-items>\n          <tr *ngFor=\"let item of items\">\n            <td>{{item.code}}</td>\n            <td>{{item.name}}</td>\n            <td>{{item.category}}</td>\n            <td>{{item.price | number:'1.2-2'}} €</td>\n            <td>{{item.quantity}}</td>\n            <td>{{item.inventoryStatus}}</td>\n          </tr>\n        </ng-template>\n      </rx-table>\n    `,\n  }),\n};\n",
             "properties": [
                 {
                     "name": "category",
@@ -18,7 +18,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 204
+                    "line": 202
                 },
                 {
                     "name": "code",
@@ -28,7 +28,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 200
+                    "line": 198
                 },
                 {
                     "name": "description",
@@ -38,7 +38,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 202
+                    "line": 200
                 },
                 {
                     "name": "id",
@@ -48,7 +48,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 199
+                    "line": 197
                 },
                 {
                     "name": "inventoryStatus",
@@ -58,7 +58,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 206
+                    "line": 204
                 },
                 {
                     "name": "name",
@@ -68,7 +68,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 201
+                    "line": 199
                 },
                 {
                     "name": "price",
@@ -78,7 +78,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 203
+                    "line": 201
                 },
                 {
                     "name": "quantity",
@@ -88,7 +88,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 205
+                    "line": 203
                 },
                 {
                     "name": "rating",
@@ -98,7 +98,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 207
+                    "line": 205
                 }
             ],
             "indexSignatures": [],
@@ -124,7 +124,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    value: products,\n    showGridlines: true,\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      products: [...products],\n      selectedProduct: null,\n      sortField: '',\n      sortOrder: 1,\n    },\n    template: `\n      <rx-table [value]=\"products\"\n                [showGridlines]=\"showGridlines\"\n                [emptyMessage]=\"emptyMessage\"\n                >\n        <ng-template #header>\n          <tr>\n            <th [rxSortableColumn]=\"'name'\">\n              Nom\n              <span rxSortIcon=\"name\"></span>\n            </th>\n            <th [rxSortableColumn]=\"'category'\">\n              Catégorie\n              <span rxSortIcon=\"category\"></span>\n            </th>\n            <th [rxSortableColumn]=\"'price'\">\n              Prix\n              <span rxSortIcon=\"price\"></span>\n            </th>\n            <th>Quantité</th>\n            <th>Statut</th>\n          </tr>\n        </ng-template>\n        <ng-template #body let-items>\n          <tr *ngFor=\"let item of items\">\n            <td>{{item.name}}</td>\n            <td>{{item.category}}</td>\n            <td>{{item.price | number:'1.2-2'}} €</td>\n            <td>{{item.quantity}}</td>\n            <td>{{item.inventoryStatus}}</td>\n          </tr>\n        </ng-template>\n      </rx-table>\n    `,\n  }),\n}",
+                "defaultValue": "{\n  args: {\n    value: products,\n    showGridlines: true,\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      products: [...products],\n      selectedProduct: null,\n      sortField: '',\n      sortOrder: 1,\n    },\n    template: `\n      <rx-table [value]=\"products\"\n                [showGridlines]=\"showGridlines\"\n                [emptyMessage]=\"emptyMessage\"\n                >\n        <ng-template #header>\n          <tr>\n            <th [rxSortableColumn]=\"'name'\">\n              Nom\n              <span rxSortIcon=\"name\"></span>\n            </th>\n            <th [rxSortableColumn]=\"'category'\">\n              Catégorie\n              <span rxSortIcon=\"category\"></span>\n            </th>\n            <th [rxSortableColumn]=\"'price'\">\n              Prix\n              <span rxSortIcon=\"price\"></span>\n            </th>\n            <th>Quantité</th>\n            <th>Statut</th>\n          </tr>\n        </ng-template>\n        <ng-template #body let-item>\n          <tr>\n            <td>{{item.name}}</td>\n            <td>{{item.category}}</td>\n            <td>{{item.price | number:'1.2-2'}} €</td>\n            <td>{{item.quantity}}</td>\n            <td>{{item.inventoryStatus}}</td>\n          </tr>\n        </ng-template>\n      </rx-table>\n    `,\n  }),\n}",
                 "rawdescription": "Exemple de base avec tri des colonnes.\n\nCette story montre comment utiliser le composant RxTable avec le tri des colonnes.\nLes colonnes \"Nom\", \"Catégorie\" et \"Prix\" sont triables.",
                 "description": "<p>Exemple de base avec tri des colonnes.</p>\n<p>Cette story montre comment utiliser le composant RxTable avec le tri des colonnes.\nLes colonnes &quot;Nom&quot;, &quot;Catégorie&quot; et &quot;Prix&quot; sont triables.</p>\n"
             },
@@ -136,7 +136,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: (args) => ({\n    template: `\n      <div style=\"display: flex; gap: 16px; flex-wrap: wrap;\">\n        <rx-button *ngFor=\"let color of colors\"\n          [severity]=\"color\"\n          label=\"{{ color | titlecase }}\"\n          [disabled]=\"false\">\n        </rx-button>\n      </div>\n    `,\n    props: {\n      colors: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'help', 'contrast'],\n    },\n  }),\n}"
+                "defaultValue": "{\n  render: (args) => ({\n    template: `\n      <div style=\"display: flex; gap: 16px; flex-wrap: wrap;\">\n        <rx-button *ngFor=\"let color of colors\"\n          [severity]=\"color\"\n          label=\"{{ color | titlecase }}\"\n          [disabled]=\"false\">\n        </rx-button>\n      </div>\n    `,\n    props: {\n      colors: ['primary', 'secondary', 'success', 'error', 'warning', 'info', 'help', 'contrast'],\n    },\n  }),\n}"
             },
             {
                 "name": "Default",
@@ -162,21 +162,21 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p style=\"width: 900px\">This is a modal dialog</p>\n        </rx-dialog>\n      `\n    };\n  }\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-card>\n          <h1>This is a card</h1>\n          <p>content</p>\n          <h4>footer</h4>\n        </rx-card>\n      `\n    };\n  }\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p style=\"width: 900px\">This is a modal dialog</p>\n        </rx-dialog>\n      `\n    };\n  }\n}"
             },
             {
                 "name": "Default",
@@ -197,6 +197,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-button (click)=\"op.toggle($event, button)\" [label]=\"'Open a modal'\"></rx-button>\n      <rx-popover #op [$height]=\"'200px'\" [$width]=\"'50%'\">\n        <h1>Popover</h1>\n        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n        when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n      </rx-popover>\n    `\n  })\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    data: messages\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      data: messages\n    },\n    template: `\n      <rx-toast [data]=\"data\"></rx-toast>\n    `\n  })\n}"
             },
             {
                 "name": "Disabled",
@@ -241,6 +251,16 @@
                 "defaultValue": "{\n  render: () => ({\n    props: {\n      model: items\n    },\n    template: `\n      <rx-menubar [model]=\"model\"></rx-menubar>\n    `,\n  }),\n}"
             },
             {
+                "name": "messages",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ToastMessage[]",
+                "defaultValue": "[\n  {\n    severity: 'primary',\n    text: 'This is a popup'\n  }\n]"
+            },
+            {
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -254,21 +274,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<RxDialog>",
-                "defaultValue": "{\n  title: 'Surfaces/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton\n      ],\n    }),\n    applicationConfig({\n      providers: [\n        importProvidersFrom(BrowserAnimationsModule)\n      ]\n    })\n  ]\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<RxCard>",
                 "defaultValue": "{\n  title: 'Panel/RxCard',\n  component: RxCard,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n      ],\n    }),\n    applicationConfig({\n      providers: [\n      ]\n    })\n  ]\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<RxDialog>",
+                "defaultValue": "{\n  title: 'Surfaces/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton\n      ],\n    }),\n    applicationConfig({\n      providers: [\n        importProvidersFrom(BrowserAnimationsModule)\n      ]\n    })\n  ]\n}"
             },
             {
                 "name": "meta",
@@ -308,7 +328,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<RxTable>",
-                "defaultValue": "{\n  title: 'Data/RxTable',\n  component: RxTable,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        NgFor,\n        NgIf,\n        DecimalPipe,\n        RxSortableColumn,\n        RxSortIcon,\n        RxSelectableRow,\n      ],\n    }),\n  ],\n  tags: ['autodocs'],\n  parameters: {\n    layout: 'centered',\n    docs: {\n      description: {\n        component: 'Un composant de tableau avancé avec tri et sélection.',\n      },\n    },\n  },\n  argTypes: {\n    value: {\n      description: 'Les données à afficher dans le tableau',\n      control: 'object',\n      table: {\n        type: { summary: 'any[]' },\n        defaultValue: { summary: '[]' },\n      },\n    },\n    showGridlines: {\n      description: 'Affiche les bordures de grille',\n      control: 'boolean',\n      table: {\n        type: { summary: 'boolean' },\n        defaultValue: { summary: 'false' },\n      },\n    },\n    selectionMode: {\n      description: 'Mode de sélection des lignes',\n      control: 'select',\n      options: [null, 'single', 'multiple'],\n      table: {\n        type: { summary: \"'single' | 'multiple' | null\" },\n        defaultValue: { summary: 'null' },\n      },\n    },\n    selection: {\n      description: 'Élément(s) sélectionné(s)',\n      control: 'object',\n      table: {\n        type: { summary: 'any | any[]' },\n        defaultValue: { summary: 'null' },\n      },\n    },\n    emptyMessage: {\n      description: 'Message à afficher lorsque le tableau est vide',\n      control: 'text',\n      table: {\n        type: { summary: 'string' },\n        defaultValue: { summary: \"'Aucune donnée'\" },\n      },\n    },\n    selectionChange: {\n      description: 'Émis lorsque la sélection change',\n      table: {\n        type: { summary: 'EventEmitter<any | any[]>' },\n      },\n      action: 'selectionChange',\n    },\n    sort: {\n      description: 'Émis lorsque le tri est effectué',\n      table: {\n        type: { summary: 'EventEmitter<SortEvent>' },\n      },\n      action: 'sort',\n    },\n  },\n}",
+                "defaultValue": "{\n  title: 'Data/RxTable',\n  component: RxTable,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        NgFor,\n        NgIf,\n        DecimalPipe,\n        RxSortableColumn,\n        RxSortIcon,\n        RxSelectableRow,\n      ],\n    }),\n  ],\n  tags: ['autodocs'],\n  parameters: {\n    layout: 'centered',\n    docs: {\n      description: {\n        component: 'Un composant de tableau avancé avec tri et sélection.',\n      },\n    },\n  },\n  argTypes: {\n    value: {\n      description: 'Les données à afficher dans le tableau',\n      control: 'object',\n      table: {\n        type: { summary: 'any[]' },\n        defaultValue: { summary: '[]' },\n      },\n    },\n    showGridlines: {\n      description: 'Affiche les bordures de grille',\n      control: 'boolean',\n      table: {\n        type: { summary: 'boolean' },\n        defaultValue: { summary: 'false' },\n      },\n    },\n    selectionMode: {\n      description: 'Mode de sélection des lignes',\n      control: 'select',\n      options: [null, 'single', 'multiple'],\n      table: {\n        type: { summary: \"'single' | 'multiple' | null\" },\n        defaultValue: { summary: 'null' },\n      },\n    },\n    selection: {\n      description: 'Élément(s) sélectionné(s)',\n      control: 'object',\n      table: {\n        type: { summary: 'any | any[]' },\n        defaultValue: { summary: 'null' },\n      },\n    },\n    emptyMessage: {\n      description: 'Message à afficher lorsque le tableau est vide',\n      control: 'text',\n      table: {\n        type: { summary: 'string' },\n        defaultValue: { summary: \"'Aucune donnée'\" },\n      },\n    },\n    selectionChange: {\n      description: 'Émis lorsque la sélection change',\n      table: {\n        type: { summary: 'EventEmitter<any | any[]>' },\n      },\n    },\n    sortData: {\n      description: 'Émis lorsque le tri est effectué',\n      table: {\n        type: { summary: 'EventEmitter<SortEvent>' },\n      },\n    },\n  },\n}",
                 "rawdescription": "# RxTable\n\nLe composant RxTable est un composant de tableau avancé qui offre des fonctionnalités de tri et de sélection.\n\n## Fonctionnalités\n\n- Tri des colonnes (simple)\n- Sélection de lignes (simple ou multiple)\n- Affichage de bordures de grille\n- Message personnalisable en cas de données vides\n\n## Installation\n\n```typescript\nimport { RxTableModule } from '@remanx/ui-ng';",
                 "description": "<h1>RxTable</h1>\n<p>Le composant RxTable est un composant de tableau avancé qui offre des fonctionnalités de tri et de sélection.</p>\n<h2>Fonctionnalités</h2>\n<ul>\n<li>Tri des colonnes (simple)</li>\n<li>Sélection de lignes (simple ou multiple)</li>\n<li>Affichage de bordures de grille</li>\n<li>Message personnalisable en cas de données vides</li>\n</ul>\n<h2>Installation</h2>\n<b>Example :</b><div><pre class=\"line-numbers\"><code class=\"language-typescript\">import { RxTableModule } from &#39;&#64;remanx/ui-ng&#39;;</code></pre></div>"
             },
@@ -320,7 +340,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    value: products,\n    showGridlines: true,\n    selectionMode: 'multiple',\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => {\n    // Création d'une classe pour gérer la sélection et éviter les problèmes de typage\n    class SelectionManager {\n      selectedProducts: Product[] = [];\n\n      isSelected(product: Product): boolean {\n        return this.selectedProducts.some((p) => p.id === product.id);\n      }\n\n      toggleSelection(product: Product): void {\n        if (this.isSelected(product)) {\n          this.selectedProducts = this.selectedProducts.filter(\n            (p) => p.id !== product.id\n          );\n        } else {\n          this.selectedProducts = [...this.selectedProducts, product];\n        }\n      }\n\n      onSelectionChange(event: any): void {\n        console.log('Selection changed:', event);\n      }\n    }\n\n    const selectionManager = new SelectionManager();\n\n    return {\n      props: {\n        ...args,\n        products: [...products],\n        selectionManager,\n      },\n      template: `\n        <div class=\"mb-3\">\n          <strong>Produits sélectionnés:</strong> {{selectionManager.selectedProducts.length}}\n        </div>\n        <rx-table [value]=\"products\"\n                  [showGridlines]=\"showGridlines\"\n                  [selectionMode]=\"'multiple'\"\n                  [emptyMessage]=\"emptyMessage\"\n                  (selectionChange)=\"selectionManager.onSelectionChange($event)\">\n          <ng-template #header>\n            <tr>\n              <th style=\"width: 3rem\">Sélection</th>\n              <th>Nom</th>\n              <th>Catégorie</th>\n              <th>Prix</th>\n              <th>Statut</th>\n            </tr>\n          </ng-template>\n          <ng-template #body let-items>\n            <tr *ngFor=\"let item of items\" [class.selected]=\"selectionManager.isSelected(item)\">\n              <td>\n                <input type=\"checkbox\"\n                       [checked]=\"selectionManager.isSelected(item)\"\n                       (change)=\"selectionManager.toggleSelection(item)\" />\n              </td>\n              <td>{{item.name}}</td>\n              <td>{{item.category}}</td>\n              <td>{{item.price | number:'1.2-2'}} €</td>\n              <td>{{item.inventoryStatus}}</td>\n            </tr>\n          </ng-template>\n        </rx-table>\n      `,\n    };\n  },\n}",
+                "defaultValue": "{\n  args: {\n    value: products,\n    showGridlines: true,\n    selectionMode: 'multiple',\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => {\n    // Création d'une classe pour gérer la sélection et éviter les problèmes de typage\n    class SelectionManager {\n      selectedProducts: Product[] = [];\n\n      isSelected(product: Product): boolean {\n        return this.selectedProducts.some((p) => p.id === product.id);\n      }\n\n      toggleSelection(product: Product): void {\n        if (this.isSelected(product)) {\n          this.selectedProducts = this.selectedProducts.filter(\n            (p) => p.id !== product.id\n          );\n        } else {\n          this.selectedProducts = [...this.selectedProducts, product];\n        }\n      }\n\n      onSelectionChange(event: any): void {\n        console.log('Selection changed:', event);\n      }\n    }\n\n    const selectionManager = new SelectionManager();\n\n    return {\n      props: {\n        ...args,\n        products: [...products],\n        selectionManager,\n      },\n      template: `\n        <div class=\"mb-3\">\n          <strong>Produits sélectionnés:</strong> {{selectionManager.selectedProducts.length}}\n        </div>\n        <rx-table [value]=\"products\"\n                  [showGridlines]=\"showGridlines\"\n                  [selectionMode]=\"'multiple'\"\n                  [emptyMessage]=\"emptyMessage\"\n                  (selectionChange)=\"selectionManager.onSelectionChange($event)\">\n          <ng-template #header>\n            <tr>\n              <th style=\"width: 3rem\">Sélection</th>\n              <th>Nom</th>\n              <th>Catégorie</th>\n              <th>Prix</th>\n              <th>Statut</th>\n            </tr>\n          </ng-template>\n          <ng-template #body let-item>\n            <tr [class.selected]=\"selectionManager.isSelected(item)\">\n              <td>\n                <input type=\"checkbox\"\n                       [checked]=\"selectionManager.isSelected(item)\"\n                       (change)=\"selectionManager.toggleSelection(item)\" />\n              </td>\n              <td>{{item.name}}</td>\n              <td>{{item.category}}</td>\n              <td>{{item.price | number:'1.2-2'}} €</td>\n              <td>{{item.inventoryStatus}}</td>\n            </tr>\n          </ng-template>\n        </rx-table>\n      `,\n    };\n  },\n}",
                 "rawdescription": "Exemple avec sélection multiple.\n\nCette story montre comment utiliser le composant RxTable avec la sélection multiple.\nLes utilisateurs peuvent sélectionner plusieurs lignes en utilisant des cases à cocher.",
                 "description": "<p>Exemple avec sélection multiple.</p>\n<p>Cette story montre comment utiliser le composant RxTable avec la sélection multiple.\nLes utilisateurs peuvent sélectionner plusieurs lignes en utilisant des cases à cocher.</p>\n"
             },
@@ -332,7 +352,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    value: products,\n    showGridlines: true,\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      products: [...products],\n    },\n    template: `\n      <rx-table [value]=\"products\"\n                [showGridlines]=\"showGridlines\"\n                [emptyMessage]=\"emptyMessage\">\n        <ng-template #header>\n          <tr>\n            <th>Code</th>\n            <th>Nom</th>\n            <th>Catégorie</th>\n            <th>Prix</th>\n            <th>Quantité</th>\n            <th>Statut</th>\n            <th>Évaluation</th>\n          </tr>\n        </ng-template>\n        <ng-template #body let-items>\n          <tr *ngFor=\"let item of items\">\n            <td><span class=\"code-badge\">{{item.code}}</span></td>\n            <td>{{item.name}}</td>\n            <td>{{item.category}}</td>\n            <td>{{item.price | number:'1.2-2'}} €</td>\n            <td>{{item.quantity}}</td>\n            <td>\n              <span [class]=\"'status-badge status-' + (item.inventoryStatus === 'En stock' ? 'instock' :\n                              item.inventoryStatus === 'Faible stock' ? 'lowstock' : 'outofstock')\">\n                {{item.inventoryStatus}}\n              </span>\n            </td>\n            <td>\n              <span class=\"rating\">\n                <span *ngFor=\"let star of [1,2,3,4,5]\"\n                      [class.filled]=\"star <= item.rating\">★</span>\n              </span>\n            </td>\n          </tr>\n        </ng-template>\n      </rx-table>\n      <style>\n        .code-badge {\n          background-color: #f5f5f5;\n          border-radius: 4px;\n          padding: 2px 6px;\n          font-family: monospace;\n          font-size: 0.9em;\n        }\n        .status-badge {\n          border-radius: 4px;\n          padding: 2px 8px;\n          font-size: 0.9em;\n        }\n        .status-instock {\n          background-color: #c8e6c9;\n          color: #256029;\n        }\n        .status-lowstock {\n          background-color: #feedaf;\n          color: #8a5340;\n        }\n        .status-outofstock {\n          background-color: #ffcdd2;\n          color: #c63737;\n        }\n        .rating {\n          color: #ccc;\n          font-size: 1.2em;\n        }\n        .rating .filled {\n          color: #ffc107;\n        }\n      </style>\n    `,\n  }),\n}",
+                "defaultValue": "{\n  args: {\n    value: products,\n    showGridlines: true,\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      products: [...products],\n    },\n    template: `\n      <rx-table [value]=\"products\"\n                [showGridlines]=\"showGridlines\"\n                [emptyMessage]=\"emptyMessage\">\n        <ng-template #header>\n          <tr>\n            <th>Code</th>\n            <th>Nom</th>\n            <th>Catégorie</th>\n            <th>Prix</th>\n            <th>Quantité</th>\n            <th>Statut</th>\n            <th>Évaluation</th>\n          </tr>\n        </ng-template>\n        <ng-template #body let-item>\n          <tr>\n            <td><span class=\"code-badge\">{{item.code}}</span></td>\n            <td>{{item.name}}</td>\n            <td>{{item.category}}</td>\n            <td>{{item.price | number:'1.2-2'}} €</td>\n            <td>{{item.quantity}}</td>\n            <td>\n              <span [class]=\"'status-badge status-' + (item.inventoryStatus === 'En stock' ? 'instock' :\n                              item.inventoryStatus === 'Faible stock' ? 'lowstock' : 'outofstock')\">\n                {{item.inventoryStatus}}\n              </span>\n            </td>\n            <td>\n              <span class=\"rating\">\n                <span *ngFor=\"let star of [1,2,3,4,5]\"\n                      [class.filled]=\"star <= item.rating\">★</span>\n              </span>\n            </td>\n          </tr>\n        </ng-template>\n      </rx-table>\n      <style>\n        .code-badge {\n          background-color: #f5f5f5;\n          border-radius: 4px;\n          padding: 2px 6px;\n          font-family: monospace;\n          font-size: 0.9em;\n        }\n        .status-badge {\n          border-radius: 4px;\n          padding: 2px 8px;\n          font-size: 0.9em;\n        }\n        .status-instock {\n          background-color: #c8e6c9;\n          color: #256029;\n        }\n        .status-lowstock {\n          background-color: #feedaf;\n          color: #8a5340;\n        }\n        .status-outofstock {\n          background-color: #ffcdd2;\n          color: #c63737;\n        }\n        .rating {\n          color: #ccc;\n          font-size: 1.2em;\n        }\n        .rating .filled {\n          color: #ffc107;\n        }\n      </style>\n    `,\n  }),\n}",
                 "rawdescription": "Exemple sans sélection.\n\nCette story montre comment utiliser le composant RxTable sans fonctionnalité de sélection.\nC'est utile pour l'affichage simple de données tabulaires.",
                 "description": "<p>Exemple sans sélection.</p>\n<p>Cette story montre comment utiliser le composant RxTable sans fonctionnalité de sélection.\nC&#39;est utile pour l&#39;affichage simple de données tabulaires.</p>\n"
             },
@@ -415,8 +435,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RxDialog>",
-                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "rawtype": "StoryObj<RxCard>",
+                "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -426,8 +446,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RxCard>",
-                "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
+                "rawtype": "StoryObj<RxDialog>",
+                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -476,6 +496,17 @@
                 "deprecationMessage": "",
                 "description": "",
                 "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<RxToast>",
+                "file": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
             }
         ],
         "enumerations": [],
@@ -489,7 +520,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    value: products,\n    showGridlines: true,\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      products: [...products],\n      selectedProduct: null,\n      sortField: '',\n      sortOrder: 1,\n    },\n    template: `\n      <rx-table [value]=\"products\"\n                [showGridlines]=\"showGridlines\"\n                [emptyMessage]=\"emptyMessage\"\n                >\n        <ng-template #header>\n          <tr>\n            <th [rxSortableColumn]=\"'name'\">\n              Nom\n              <span rxSortIcon=\"name\"></span>\n            </th>\n            <th [rxSortableColumn]=\"'category'\">\n              Catégorie\n              <span rxSortIcon=\"category\"></span>\n            </th>\n            <th [rxSortableColumn]=\"'price'\">\n              Prix\n              <span rxSortIcon=\"price\"></span>\n            </th>\n            <th>Quantité</th>\n            <th>Statut</th>\n          </tr>\n        </ng-template>\n        <ng-template #body let-items>\n          <tr *ngFor=\"let item of items\">\n            <td>{{item.name}}</td>\n            <td>{{item.category}}</td>\n            <td>{{item.price | number:'1.2-2'}} €</td>\n            <td>{{item.quantity}}</td>\n            <td>{{item.inventoryStatus}}</td>\n          </tr>\n        </ng-template>\n      </rx-table>\n    `,\n  }),\n}",
+                    "defaultValue": "{\n  args: {\n    value: products,\n    showGridlines: true,\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      products: [...products],\n      selectedProduct: null,\n      sortField: '',\n      sortOrder: 1,\n    },\n    template: `\n      <rx-table [value]=\"products\"\n                [showGridlines]=\"showGridlines\"\n                [emptyMessage]=\"emptyMessage\"\n                >\n        <ng-template #header>\n          <tr>\n            <th [rxSortableColumn]=\"'name'\">\n              Nom\n              <span rxSortIcon=\"name\"></span>\n            </th>\n            <th [rxSortableColumn]=\"'category'\">\n              Catégorie\n              <span rxSortIcon=\"category\"></span>\n            </th>\n            <th [rxSortableColumn]=\"'price'\">\n              Prix\n              <span rxSortIcon=\"price\"></span>\n            </th>\n            <th>Quantité</th>\n            <th>Statut</th>\n          </tr>\n        </ng-template>\n        <ng-template #body let-item>\n          <tr>\n            <td>{{item.name}}</td>\n            <td>{{item.category}}</td>\n            <td>{{item.price | number:'1.2-2'}} €</td>\n            <td>{{item.quantity}}</td>\n            <td>{{item.inventoryStatus}}</td>\n          </tr>\n        </ng-template>\n      </rx-table>\n    `,\n  }),\n}",
                     "rawdescription": "Exemple de base avec tri des colonnes.\n\nCette story montre comment utiliser le composant RxTable avec le tri des colonnes.\nLes colonnes \"Nom\", \"Catégorie\" et \"Prix\" sont triables.",
                     "description": "<p>Exemple de base avec tri des colonnes.</p>\n<p>Cette story montre comment utiliser le composant RxTable avec le tri des colonnes.\nLes colonnes &quot;Nom&quot;, &quot;Catégorie&quot; et &quot;Prix&quot; sont triables.</p>\n"
                 },
@@ -513,7 +544,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<RxTable>",
-                    "defaultValue": "{\n  title: 'Data/RxTable',\n  component: RxTable,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        NgFor,\n        NgIf,\n        DecimalPipe,\n        RxSortableColumn,\n        RxSortIcon,\n        RxSelectableRow,\n      ],\n    }),\n  ],\n  tags: ['autodocs'],\n  parameters: {\n    layout: 'centered',\n    docs: {\n      description: {\n        component: 'Un composant de tableau avancé avec tri et sélection.',\n      },\n    },\n  },\n  argTypes: {\n    value: {\n      description: 'Les données à afficher dans le tableau',\n      control: 'object',\n      table: {\n        type: { summary: 'any[]' },\n        defaultValue: { summary: '[]' },\n      },\n    },\n    showGridlines: {\n      description: 'Affiche les bordures de grille',\n      control: 'boolean',\n      table: {\n        type: { summary: 'boolean' },\n        defaultValue: { summary: 'false' },\n      },\n    },\n    selectionMode: {\n      description: 'Mode de sélection des lignes',\n      control: 'select',\n      options: [null, 'single', 'multiple'],\n      table: {\n        type: { summary: \"'single' | 'multiple' | null\" },\n        defaultValue: { summary: 'null' },\n      },\n    },\n    selection: {\n      description: 'Élément(s) sélectionné(s)',\n      control: 'object',\n      table: {\n        type: { summary: 'any | any[]' },\n        defaultValue: { summary: 'null' },\n      },\n    },\n    emptyMessage: {\n      description: 'Message à afficher lorsque le tableau est vide',\n      control: 'text',\n      table: {\n        type: { summary: 'string' },\n        defaultValue: { summary: \"'Aucune donnée'\" },\n      },\n    },\n    selectionChange: {\n      description: 'Émis lorsque la sélection change',\n      table: {\n        type: { summary: 'EventEmitter<any | any[]>' },\n      },\n      action: 'selectionChange',\n    },\n    sort: {\n      description: 'Émis lorsque le tri est effectué',\n      table: {\n        type: { summary: 'EventEmitter<SortEvent>' },\n      },\n      action: 'sort',\n    },\n  },\n}",
+                    "defaultValue": "{\n  title: 'Data/RxTable',\n  component: RxTable,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        NgFor,\n        NgIf,\n        DecimalPipe,\n        RxSortableColumn,\n        RxSortIcon,\n        RxSelectableRow,\n      ],\n    }),\n  ],\n  tags: ['autodocs'],\n  parameters: {\n    layout: 'centered',\n    docs: {\n      description: {\n        component: 'Un composant de tableau avancé avec tri et sélection.',\n      },\n    },\n  },\n  argTypes: {\n    value: {\n      description: 'Les données à afficher dans le tableau',\n      control: 'object',\n      table: {\n        type: { summary: 'any[]' },\n        defaultValue: { summary: '[]' },\n      },\n    },\n    showGridlines: {\n      description: 'Affiche les bordures de grille',\n      control: 'boolean',\n      table: {\n        type: { summary: 'boolean' },\n        defaultValue: { summary: 'false' },\n      },\n    },\n    selectionMode: {\n      description: 'Mode de sélection des lignes',\n      control: 'select',\n      options: [null, 'single', 'multiple'],\n      table: {\n        type: { summary: \"'single' | 'multiple' | null\" },\n        defaultValue: { summary: 'null' },\n      },\n    },\n    selection: {\n      description: 'Élément(s) sélectionné(s)',\n      control: 'object',\n      table: {\n        type: { summary: 'any | any[]' },\n        defaultValue: { summary: 'null' },\n      },\n    },\n    emptyMessage: {\n      description: 'Message à afficher lorsque le tableau est vide',\n      control: 'text',\n      table: {\n        type: { summary: 'string' },\n        defaultValue: { summary: \"'Aucune donnée'\" },\n      },\n    },\n    selectionChange: {\n      description: 'Émis lorsque la sélection change',\n      table: {\n        type: { summary: 'EventEmitter<any | any[]>' },\n      },\n    },\n    sortData: {\n      description: 'Émis lorsque le tri est effectué',\n      table: {\n        type: { summary: 'EventEmitter<SortEvent>' },\n      },\n    },\n  },\n}",
                     "rawdescription": "# RxTable\n\nLe composant RxTable est un composant de tableau avancé qui offre des fonctionnalités de tri et de sélection.\n\n## Fonctionnalités\n\n- Tri des colonnes (simple)\n- Sélection de lignes (simple ou multiple)\n- Affichage de bordures de grille\n- Message personnalisable en cas de données vides\n\n## Installation\n\n```typescript\nimport { RxTableModule } from '@remanx/ui-ng';",
                     "description": "<h1>RxTable</h1>\n<p>Le composant RxTable est un composant de tableau avancé qui offre des fonctionnalités de tri et de sélection.</p>\n<h2>Fonctionnalités</h2>\n<ul>\n<li>Tri des colonnes (simple)</li>\n<li>Sélection de lignes (simple ou multiple)</li>\n<li>Affichage de bordures de grille</li>\n<li>Message personnalisable en cas de données vides</li>\n</ul>\n<h2>Installation</h2>\n<b>Example :</b><div><pre class=\"line-numbers\"><code class=\"language-typescript\">import { RxTableModule } from &#39;&#64;remanx/ui-ng&#39;;</code></pre></div>"
                 },
@@ -525,7 +556,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    value: products,\n    showGridlines: true,\n    selectionMode: 'multiple',\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => {\n    // Création d'une classe pour gérer la sélection et éviter les problèmes de typage\n    class SelectionManager {\n      selectedProducts: Product[] = [];\n\n      isSelected(product: Product): boolean {\n        return this.selectedProducts.some((p) => p.id === product.id);\n      }\n\n      toggleSelection(product: Product): void {\n        if (this.isSelected(product)) {\n          this.selectedProducts = this.selectedProducts.filter(\n            (p) => p.id !== product.id\n          );\n        } else {\n          this.selectedProducts = [...this.selectedProducts, product];\n        }\n      }\n\n      onSelectionChange(event: any): void {\n        console.log('Selection changed:', event);\n      }\n    }\n\n    const selectionManager = new SelectionManager();\n\n    return {\n      props: {\n        ...args,\n        products: [...products],\n        selectionManager,\n      },\n      template: `\n        <div class=\"mb-3\">\n          <strong>Produits sélectionnés:</strong> {{selectionManager.selectedProducts.length}}\n        </div>\n        <rx-table [value]=\"products\"\n                  [showGridlines]=\"showGridlines\"\n                  [selectionMode]=\"'multiple'\"\n                  [emptyMessage]=\"emptyMessage\"\n                  (selectionChange)=\"selectionManager.onSelectionChange($event)\">\n          <ng-template #header>\n            <tr>\n              <th style=\"width: 3rem\">Sélection</th>\n              <th>Nom</th>\n              <th>Catégorie</th>\n              <th>Prix</th>\n              <th>Statut</th>\n            </tr>\n          </ng-template>\n          <ng-template #body let-items>\n            <tr *ngFor=\"let item of items\" [class.selected]=\"selectionManager.isSelected(item)\">\n              <td>\n                <input type=\"checkbox\"\n                       [checked]=\"selectionManager.isSelected(item)\"\n                       (change)=\"selectionManager.toggleSelection(item)\" />\n              </td>\n              <td>{{item.name}}</td>\n              <td>{{item.category}}</td>\n              <td>{{item.price | number:'1.2-2'}} €</td>\n              <td>{{item.inventoryStatus}}</td>\n            </tr>\n          </ng-template>\n        </rx-table>\n      `,\n    };\n  },\n}",
+                    "defaultValue": "{\n  args: {\n    value: products,\n    showGridlines: true,\n    selectionMode: 'multiple',\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => {\n    // Création d'une classe pour gérer la sélection et éviter les problèmes de typage\n    class SelectionManager {\n      selectedProducts: Product[] = [];\n\n      isSelected(product: Product): boolean {\n        return this.selectedProducts.some((p) => p.id === product.id);\n      }\n\n      toggleSelection(product: Product): void {\n        if (this.isSelected(product)) {\n          this.selectedProducts = this.selectedProducts.filter(\n            (p) => p.id !== product.id\n          );\n        } else {\n          this.selectedProducts = [...this.selectedProducts, product];\n        }\n      }\n\n      onSelectionChange(event: any): void {\n        console.log('Selection changed:', event);\n      }\n    }\n\n    const selectionManager = new SelectionManager();\n\n    return {\n      props: {\n        ...args,\n        products: [...products],\n        selectionManager,\n      },\n      template: `\n        <div class=\"mb-3\">\n          <strong>Produits sélectionnés:</strong> {{selectionManager.selectedProducts.length}}\n        </div>\n        <rx-table [value]=\"products\"\n                  [showGridlines]=\"showGridlines\"\n                  [selectionMode]=\"'multiple'\"\n                  [emptyMessage]=\"emptyMessage\"\n                  (selectionChange)=\"selectionManager.onSelectionChange($event)\">\n          <ng-template #header>\n            <tr>\n              <th style=\"width: 3rem\">Sélection</th>\n              <th>Nom</th>\n              <th>Catégorie</th>\n              <th>Prix</th>\n              <th>Statut</th>\n            </tr>\n          </ng-template>\n          <ng-template #body let-item>\n            <tr [class.selected]=\"selectionManager.isSelected(item)\">\n              <td>\n                <input type=\"checkbox\"\n                       [checked]=\"selectionManager.isSelected(item)\"\n                       (change)=\"selectionManager.toggleSelection(item)\" />\n              </td>\n              <td>{{item.name}}</td>\n              <td>{{item.category}}</td>\n              <td>{{item.price | number:'1.2-2'}} €</td>\n              <td>{{item.inventoryStatus}}</td>\n            </tr>\n          </ng-template>\n        </rx-table>\n      `,\n    };\n  },\n}",
                     "rawdescription": "Exemple avec sélection multiple.\n\nCette story montre comment utiliser le composant RxTable avec la sélection multiple.\nLes utilisateurs peuvent sélectionner plusieurs lignes en utilisant des cases à cocher.",
                     "description": "<p>Exemple avec sélection multiple.</p>\n<p>Cette story montre comment utiliser le composant RxTable avec la sélection multiple.\nLes utilisateurs peuvent sélectionner plusieurs lignes en utilisant des cases à cocher.</p>\n"
                 },
@@ -537,7 +568,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    value: products,\n    showGridlines: true,\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      products: [...products],\n    },\n    template: `\n      <rx-table [value]=\"products\"\n                [showGridlines]=\"showGridlines\"\n                [emptyMessage]=\"emptyMessage\">\n        <ng-template #header>\n          <tr>\n            <th>Code</th>\n            <th>Nom</th>\n            <th>Catégorie</th>\n            <th>Prix</th>\n            <th>Quantité</th>\n            <th>Statut</th>\n            <th>Évaluation</th>\n          </tr>\n        </ng-template>\n        <ng-template #body let-items>\n          <tr *ngFor=\"let item of items\">\n            <td><span class=\"code-badge\">{{item.code}}</span></td>\n            <td>{{item.name}}</td>\n            <td>{{item.category}}</td>\n            <td>{{item.price | number:'1.2-2'}} €</td>\n            <td>{{item.quantity}}</td>\n            <td>\n              <span [class]=\"'status-badge status-' + (item.inventoryStatus === 'En stock' ? 'instock' :\n                              item.inventoryStatus === 'Faible stock' ? 'lowstock' : 'outofstock')\">\n                {{item.inventoryStatus}}\n              </span>\n            </td>\n            <td>\n              <span class=\"rating\">\n                <span *ngFor=\"let star of [1,2,3,4,5]\"\n                      [class.filled]=\"star <= item.rating\">★</span>\n              </span>\n            </td>\n          </tr>\n        </ng-template>\n      </rx-table>\n      <style>\n        .code-badge {\n          background-color: #f5f5f5;\n          border-radius: 4px;\n          padding: 2px 6px;\n          font-family: monospace;\n          font-size: 0.9em;\n        }\n        .status-badge {\n          border-radius: 4px;\n          padding: 2px 8px;\n          font-size: 0.9em;\n        }\n        .status-instock {\n          background-color: #c8e6c9;\n          color: #256029;\n        }\n        .status-lowstock {\n          background-color: #feedaf;\n          color: #8a5340;\n        }\n        .status-outofstock {\n          background-color: #ffcdd2;\n          color: #c63737;\n        }\n        .rating {\n          color: #ccc;\n          font-size: 1.2em;\n        }\n        .rating .filled {\n          color: #ffc107;\n        }\n      </style>\n    `,\n  }),\n}",
+                    "defaultValue": "{\n  args: {\n    value: products,\n    showGridlines: true,\n    emptyMessage: 'Aucune donnée disponible',\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      products: [...products],\n    },\n    template: `\n      <rx-table [value]=\"products\"\n                [showGridlines]=\"showGridlines\"\n                [emptyMessage]=\"emptyMessage\">\n        <ng-template #header>\n          <tr>\n            <th>Code</th>\n            <th>Nom</th>\n            <th>Catégorie</th>\n            <th>Prix</th>\n            <th>Quantité</th>\n            <th>Statut</th>\n            <th>Évaluation</th>\n          </tr>\n        </ng-template>\n        <ng-template #body let-item>\n          <tr>\n            <td><span class=\"code-badge\">{{item.code}}</span></td>\n            <td>{{item.name}}</td>\n            <td>{{item.category}}</td>\n            <td>{{item.price | number:'1.2-2'}} €</td>\n            <td>{{item.quantity}}</td>\n            <td>\n              <span [class]=\"'status-badge status-' + (item.inventoryStatus === 'En stock' ? 'instock' :\n                              item.inventoryStatus === 'Faible stock' ? 'lowstock' : 'outofstock')\">\n                {{item.inventoryStatus}}\n              </span>\n            </td>\n            <td>\n              <span class=\"rating\">\n                <span *ngFor=\"let star of [1,2,3,4,5]\"\n                      [class.filled]=\"star <= item.rating\">★</span>\n              </span>\n            </td>\n          </tr>\n        </ng-template>\n      </rx-table>\n      <style>\n        .code-badge {\n          background-color: #f5f5f5;\n          border-radius: 4px;\n          padding: 2px 6px;\n          font-family: monospace;\n          font-size: 0.9em;\n        }\n        .status-badge {\n          border-radius: 4px;\n          padding: 2px 8px;\n          font-size: 0.9em;\n        }\n        .status-instock {\n          background-color: #c8e6c9;\n          color: #256029;\n        }\n        .status-lowstock {\n          background-color: #feedaf;\n          color: #8a5340;\n        }\n        .status-outofstock {\n          background-color: #ffcdd2;\n          color: #c63737;\n        }\n        .rating {\n          color: #ccc;\n          font-size: 1.2em;\n        }\n        .rating .filled {\n          color: #ffc107;\n        }\n      </style>\n    `,\n  }),\n}",
                     "rawdescription": "Exemple sans sélection.\n\nCette story montre comment utiliser le composant RxTable sans fonctionnalité de sélection.\nC'est utile pour l'affichage simple de données tabulaires.",
                     "description": "<p>Exemple sans sélection.</p>\n<p>Cette story montre comment utiliser le composant RxTable sans fonctionnalité de sélection.\nC&#39;est utile pour l&#39;affichage simple de données tabulaires.</p>\n"
                 },
@@ -561,7 +592,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: (args) => ({\n    template: `\n      <div style=\"display: flex; gap: 16px; flex-wrap: wrap;\">\n        <rx-button *ngFor=\"let color of colors\"\n          [severity]=\"color\"\n          label=\"{{ color | titlecase }}\"\n          [disabled]=\"false\">\n        </rx-button>\n      </div>\n    `,\n    props: {\n      colors: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'help', 'contrast'],\n    },\n  }),\n}"
+                    "defaultValue": "{\n  render: (args) => ({\n    template: `\n      <div style=\"display: flex; gap: 16px; flex-wrap: wrap;\">\n        <rx-button *ngFor=\"let color of colors\"\n          [severity]=\"color\"\n          label=\"{{ color | titlecase }}\"\n          [disabled]=\"false\">\n        </rx-button>\n      </div>\n    `,\n    props: {\n      colors: ['primary', 'secondary', 'success', 'error', 'warning', 'info', 'help', 'contrast'],\n    },\n  }),\n}"
                 },
                 {
                     "name": "Default",
@@ -616,28 +647,6 @@
                     "defaultValue": "{\n  title: 'Misc/RxAvatar',\n  component: RxAvatar,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n      ],\n    }),\n    applicationConfig({\n      providers: [\n      ]\n    })\n  ]\n}"
                 }
             ],
-            "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p style=\"width: 900px\">This is a modal dialog</p>\n        </rx-dialog>\n      `\n    };\n  }\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<RxDialog>",
-                    "defaultValue": "{\n  title: 'Surfaces/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton\n      ],\n    }),\n    applicationConfig({\n      providers: [\n        importProvidersFrom(BrowserAnimationsModule)\n      ]\n    })\n  ]\n}"
-                }
-            ],
             "projects/remanx/ui-ng/components/src/card/card.stories.ts": [
                 {
                     "name": "Default",
@@ -658,6 +667,28 @@
                     "deprecationMessage": "",
                     "type": "Meta<RxCard>",
                     "defaultValue": "{\n  title: 'Panel/RxCard',\n  component: RxCard,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n      ],\n    }),\n    applicationConfig({\n      providers: [\n      ]\n    })\n  ]\n}"
+                }
+            ],
+            "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p style=\"width: 900px\">This is a modal dialog</p>\n        </rx-dialog>\n      `\n    };\n  }\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<RxDialog>",
+                    "defaultValue": "{\n  title: 'Surfaces/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton\n      ],\n    }),\n    applicationConfig({\n      providers: [\n        importProvidersFrom(BrowserAnimationsModule)\n      ]\n    })\n  ]\n}"
                 }
             ],
             "projects/remanx/ui-ng/components/src/layout/layout.stories.ts": [
@@ -722,6 +753,28 @@
                     "deprecationMessage": "",
                     "type": "Meta<RxPopover>",
                     "defaultValue": "{\n  title: 'Overlay/RxPopover',\n  component: RxPopover,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton,\n        BrowserAnimationsModule\n      ],\n    }),\n  ]\n}"
+                }
+            ],
+            "projects/remanx/ui-ng/components/src/toast/toast.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    data: messages\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      data: messages\n    },\n    template: `\n      <rx-toast [data]=\"data\"></rx-toast>\n    `\n  })\n}"
+                },
+                {
+                    "name": "messages",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ToastMessage[]",
+                    "defaultValue": "[\n  {\n    severity: 'primary',\n    text: 'This is a popup'\n  }\n]"
                 }
             ],
             "projects/remanx/ui-ng/components/src/menubar/menubar.stories.ts": [
@@ -798,19 +851,6 @@
                     "kind": 183
                 }
             ],
-            "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<RxDialog>",
-                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/remanx/ui-ng/components/src/card/card.stories.ts": [
                 {
                     "name": "Story",
@@ -818,6 +858,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<RxCard>",
                     "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<RxDialog>",
+                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -875,12 +928,25 @@
                     "description": "",
                     "kind": 183
                 }
+            ],
+            "projects/remanx/ui-ng/components/src/toast/toast.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<RxToast>",
+                    "file": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
             ]
         }
     },
     "routes": [],
     "coverage": {
-        "count": 14,
+        "count": 13,
         "status": "low",
         "files": [
             {
@@ -1224,6 +1290,36 @@
             },
             {
                 "filePath": "projects/remanx/ui-ng/components/src/table/table.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "messages",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
