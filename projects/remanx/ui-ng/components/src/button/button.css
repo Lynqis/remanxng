@@ -144,23 +144,23 @@
             border-color: #e9d5ff;
         }
 
-        &.rx-button-danger {
+        &.rx-button-error {
             color: #450a0a;
             background: #f87171;
             border: 1px solid #f87171;
         }
 
-        &.rx-button-danger:not(:disabled):hover {
+        &.rx-button-error:not(:disabled):hover {
             background: #fca5a5;
             color: #450a0a;
             border-color: #fca5a5;
         }
 
-        &.rx-button-danger:not(:disabled):focus {
+        &.rx-button-error:not(:disabled):focus {
             box-shadow: none;
         }
 
-        &.rx-button-danger:not(:disabled):active {
+        &.rx-button-error:not(:disabled):active {
             background: #fecaca;
             color: #450a0a;
             border-color: #fecaca;
