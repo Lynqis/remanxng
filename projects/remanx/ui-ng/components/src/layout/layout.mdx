@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title='Layout/RxLayout' />
+
+# Documentation for RxLayout
+
+## Overview
+The `RxLayout` component is designed to create flexible and responsive layouts in Angular applications. It allows developers to structure their UI components efficiently.
+
+## Features
+- **Grid System**: Utilize a grid layout for organizing content.
+- **Responsive Design**: Automatically adjusts to various screen sizes.
+- **Customizable Styles**: Apply custom styles to suit your application's theme.
+
+## Usage
+To use the `RxLayout`, import it into your Angular module:
+
+```typescript
+import { RxLayout } from './path/to/rx-layout';
+```
+
+### Example Stories
+Refer to the following stories for examples of how to implement the `RxLayout`:
+- [Default Layout](./layout.stories.ts#default-layout)
+- [Responsive Layout](./layout.stories.ts#responsive-layout)
+
+## Props
+| Property         | Type             | Description                               |
+|------------------|------------------|-------------------------------------------|
+| `direction`      | `string`         | Defines the direction of the layout.     |
+| `align`          | `string`         | Aligns children within the layout.       |
+
+## Events
+- **onLayoutChange**: Emitted when the layout changes.
+
+## Styling
+The layout can be styled using CSS. Refer to the `layout.css` file for default styles.
+
+## Conclusion
+The `RxLayout` component provides a robust solution for creating layouts in your Angular application. Customize it according to your needs and refer to the provided stories for implementation examples.

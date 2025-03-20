@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title='Misc/RxButton' />
+
+# Documentation for RxButton
+
+## Overview
+The `RxButton` component is designed to create customizable buttons in Angular applications. It supports various styles, sizes, and click events.
+
+## Features
+- **Customizable Styles**: Define styles for different button states (hover, active, disabled).
+- **Size Options**: Choose from small, medium, and large button sizes.
+- **Loading State**: Display a loading spinner while processing actions.
+
+## Usage
+To use the `RxButton`, import it into your Angular module:
+
+```typescript
+import { RxButton } from './path/to/rx-button';
+```
+
+### Example Stories
+Refer to the following stories for examples of how to implement the `RxButton`:
+- [Default Button](./button.stories.ts#default-button)
+- [Loading Button](./button.stories.ts#loading-button)
+
+## Props
+| Property         | Type             | Description                               |
+|------------------|------------------|-------------------------------------------|
+| `size`           | `string`         | Defines the size of the button.          |
+| `loading`        | `boolean`        | Indicates if the button is in a loading state. |
+
+## Events
+- **onClick**: Emitted when the button is clicked.
+
+## Styling
+The button can be styled using CSS. Refer to the `button.css` file for default styles.
+
+## Conclusion
+The `RxButton` component provides a versatile solution for creating buttons in your Angular application. Customize it according to your needs and refer to the provided stories for implementation examples.

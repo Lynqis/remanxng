@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title='Messages/RxToast' />
+
+# Documentation for RxToast
+
+## Overview
+The `RxToast` component is designed to display brief messages or notifications in Angular applications. It supports various features such as customizable durations, positions, and types.
+
+## Features
+- **Customizable Duration**: Set how long the toast message should be displayed.
+- **Position Options**: Choose where the toast will appear on the screen.
+- **Different Types**: Display different types of messages (success, error, info).
+
+## Usage
+To use the `RxToast`, import it into your Angular module:
+
+```typescript
+import { RxToast } from './path/to/rx-toast';
+```
+
+### Example Stories
+Refer to the following stories for examples of how to implement the `RxToast`:
+- [Default Toast](./toast.stories.ts#default-toast)
+- [Success Toast](./toast.stories.ts#success-toast)
+
+## Props
+| Property         | Type             | Description                               |
+|------------------|------------------|-------------------------------------------|
+| `duration`       | `number`         | Defines how long the toast is visible.   |
+| `position`       | `string`         | Defines the position of the toast on the screen. |
+
+## Events
+- **onClose**: Emitted when the toast is closed.
+
+## Styling
+The toast can be styled using CSS. Refer to the `toast.css` file for default styles.
+
+## Conclusion
+The `RxToast` component provides a simple way to display notifications in your Angular application. Customize it according to your needs and refer to the provided stories for implementation examples.

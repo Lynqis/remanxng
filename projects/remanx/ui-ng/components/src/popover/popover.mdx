@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title='Overlay/RxPopover' />
+
+# Documentation for RxPopover
+
+## Overview
+The `RxPopover` component is designed to display additional information or actions in a popup format in Angular applications. It supports various features such as customizable content, positions, and triggers.
+
+## Features
+- **Customizable Content**: Easily define the content to display in the popover.
+- **Position Options**: Choose where the popover will appear relative to the target element.
+- **Trigger Options**: Set how the popover is triggered (click, hover, etc.).
+
+## Usage
+To use the `RxPopover`, import it into your Angular module:
+
+```typescript
+import { RxPopover } from './path/to/rx-popover';
+```
+
+### Example Stories
+Refer to the following stories for examples of how to implement the `RxPopover`:
+- [Default Popover](./popover.stories.ts#default-popover)
+- [With Custom Content](./popover.stories.ts#with-custom-content)
+
+## Props
+| Property         | Type             | Description                               |
+|------------------|------------------|-------------------------------------------|
+| `content`        | `string`         | Defines the content of the popover.      |
+| `position`       | `string`         | Defines the position of the popover.     |
+
+## Events
+- **onPopoverOpen**: Emitted when the popover is opened.
+- **onPopoverClose**: Emitted when the popover is closed.
+
+## Styling
+The popover can be styled using CSS. Refer to the `popover.css` file for default styles.
+
+## Conclusion
+The `RxPopover` component provides a flexible way to display additional information in your Angular application. Customize it according to your needs and refer to the provided stories for implementation examples.

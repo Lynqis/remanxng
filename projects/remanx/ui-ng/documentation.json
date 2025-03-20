@@ -156,7 +156,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.showConfirmDialog()\" [label]=\"'Open Confirm Dialog'\"></rx-button>\n        <rx-dialog #pop [confirmDialogVisible]=\"true\" [confirmDialogTitle]=\"'Confirm Action'\" [confirmDialogMessage]=\"'Are you sure you want to proceed?'\" (onConfirm)=\"confirm($event)\">\n          <p>This is the main dialog content.</p>\n        </rx-dialog>\n      `,\n      methods: {\n        confirm: (result: boolean) => {\n          console.log('Confirmation result:', result);\n        }\n      }\n    };\n  }\n}"
+                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.showConfirmDialog()\" [label]=\"'Open Confirm Dialog'\"></rx-button>\n        <rx-dialog #pop [confirmDialog]=\"true\" [label]=\"'Confirm Action'\">\n          <p>Are you sure you want to proceed?</p>\n        </rx-dialog>\n      `,\n    };\n  },\n}"
+            },
+            {
+                "name": "ConfirmTemplateDialog",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.showConfirmDialog()\" [label]=\"'Open Confirm Dialog'\"></rx-button>\n        <rx-dialog #pop [confirmDialog]=\"true\" [label]=\"'Confirm Action'\">\n          <p>Are you sure you want to proceed?</p>\n          <ng-template #confirm>\n            <rx-button [severity]=\"'contrast'\" (click)=\"pop.cancel()\"\n              >Cancel</rx-button\n            >\n            <rx-button [severity]=\"'error'\" (click)=\"pop.confirm()\"\n              >Delete</rx-button\n            >\n          </ng-template>\n        </rx-dialog>\n      `,\n    };\n  },\n}"
             },
             {
                 "name": "Default",
@@ -182,21 +192,21 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p style=\"width: 900px\">This is a modal dialog</p>\n        </rx-dialog>\n      `\n    };\n  }\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-card>\n          <h1>This is a card</h1>\n          <p>content</p>\n          <h4>footer</h4>\n        </rx-card>\n      `\n    };\n  }\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p style=\"width: 900px\">This is a modal dialog</p>\n        </rx-dialog>\n      `,\n    };\n  },\n}"
             },
             {
                 "name": "Default",
@@ -294,21 +304,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<RxDialog>",
-                "defaultValue": "{\n  title: 'Overlay/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton\n      ],\n    }),\n    applicationConfig({\n      providers: [\n        importProvidersFrom(BrowserAnimationsModule)\n      ]\n    })\n  ]\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<RxCard>",
                 "defaultValue": "{\n  title: 'Panel/RxCard',\n  component: RxCard,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n      ],\n    }),\n    applicationConfig({\n      providers: [\n      ]\n    })\n  ]\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<RxDialog>",
+                "defaultValue": "{\n  title: 'Overlay/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [RxButton],\n    }),\n    applicationConfig({\n      providers: [importProvidersFrom(BrowserAnimationsModule)],\n    }),\n  ],\n}"
             },
             {
                 "name": "meta",
@@ -455,8 +465,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RxDialog>",
-                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "rawtype": "StoryObj<RxCard>",
+                "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -466,8 +476,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RxCard>",
-                "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
+                "rawtype": "StoryObj<RxDialog>",
+                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -686,7 +696,17 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.showConfirmDialog()\" [label]=\"'Open Confirm Dialog'\"></rx-button>\n        <rx-dialog #pop [confirmDialogVisible]=\"true\" [confirmDialogTitle]=\"'Confirm Action'\" [confirmDialogMessage]=\"'Are you sure you want to proceed?'\" (onConfirm)=\"confirm($event)\">\n          <p>This is the main dialog content.</p>\n        </rx-dialog>\n      `,\n      methods: {\n        confirm: (result: boolean) => {\n          console.log('Confirmation result:', result);\n        }\n      }\n    };\n  }\n}"
+                    "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.showConfirmDialog()\" [label]=\"'Open Confirm Dialog'\"></rx-button>\n        <rx-dialog #pop [confirmDialog]=\"true\" [label]=\"'Confirm Action'\">\n          <p>Are you sure you want to proceed?</p>\n        </rx-dialog>\n      `,\n    };\n  },\n}"
+                },
+                {
+                    "name": "ConfirmTemplateDialog",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.showConfirmDialog()\" [label]=\"'Open Confirm Dialog'\"></rx-button>\n        <rx-dialog #pop [confirmDialog]=\"true\" [label]=\"'Confirm Action'\">\n          <p>Are you sure you want to proceed?</p>\n          <ng-template #confirm>\n            <rx-button [severity]=\"'contrast'\" (click)=\"pop.cancel()\"\n              >Cancel</rx-button\n            >\n            <rx-button [severity]=\"'error'\" (click)=\"pop.confirm()\"\n              >Delete</rx-button\n            >\n          </ng-template>\n        </rx-dialog>\n      `,\n    };\n  },\n}"
                 },
                 {
                     "name": "Default",
@@ -696,7 +716,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p style=\"width: 900px\">This is a modal dialog</p>\n        </rx-dialog>\n      `\n    };\n  }\n}"
+                    "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p style=\"width: 900px\">This is a modal dialog</p>\n        </rx-dialog>\n      `,\n    };\n  },\n}"
                 },
                 {
                     "name": "meta",
@@ -706,7 +726,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<RxDialog>",
-                    "defaultValue": "{\n  title: 'Overlay/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton\n      ],\n    }),\n    applicationConfig({\n      providers: [\n        importProvidersFrom(BrowserAnimationsModule)\n      ]\n    })\n  ]\n}"
+                    "defaultValue": "{\n  title: 'Overlay/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [RxButton],\n    }),\n    applicationConfig({\n      providers: [importProvidersFrom(BrowserAnimationsModule)],\n    }),\n  ],\n}"
                 }
             ],
             "projects/remanx/ui-ng/components/src/avatar/avatar.stories.ts": [
@@ -891,19 +911,6 @@
                     "kind": 183
                 }
             ],
-            "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<RxDialog>",
-                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/remanx/ui-ng/components/src/card/card.stories.ts": [
                 {
                     "name": "Story",
@@ -911,6 +918,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<RxCard>",
                     "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<RxDialog>",
+                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -1115,6 +1135,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "ConfirmDialog",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ConfirmTemplateDialog",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

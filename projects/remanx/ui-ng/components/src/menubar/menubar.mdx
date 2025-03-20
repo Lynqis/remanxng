@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title='Menu/RxMenuBar' />
+
+# Documentation for RxMenuBar
+
+## Overview
+The `RxMenuBar` component is designed to create a navigation menu in Angular applications. It allows for easy organization of menu items and supports various features such as dropdowns and customizable styles.
+
+## Features
+- **Dropdown Support**: Easily create dropdown menus for nested navigation.
+- **Customizable Styles**: Apply custom styles to suit your application's theme.
+- **Responsive Design**: The menu adapts to different screen sizes.
+
+## Usage
+To use the `RxMenuBar`, import it into your Angular module:
+
+```typescript
+import { RxMenuBar } from './path/to/rx-menu-bar';
+```
+
+### Example Stories
+Refer to the following stories for examples of how to implement the `RxMenuBar`:
+- [Default MenuBar](./menubar.stories.ts#default-menubar)
+- [With Dropdowns](./menubar.stories.ts#with-dropdowns)
+
+## Props
+| Property         | Type             | Description                               |
+|------------------|------------------|-------------------------------------------|
+| `items`          | `Array`          | Defines the menu items to display.       |
+| `styleClass`     | `string`         | Additional styles to apply to the menu.  |
+
+## Events
+- **onItemSelect**: Emitted when a menu item is selected.
+
+## Styling
+The menu can be styled using CSS. Refer to the `menubar.css` file for default styles.
+
+## Conclusion
+The `RxMenuBar` component provides a flexible way to create navigation menus in your Angular application. Customize it according to your needs and refer to the provided stories for implementation examples.
