@@ -100,10 +100,8 @@ export class RxTable extends BaseComponent implements OnInit {
   @Output() selectionChange = new EventEmitter<any>();
   @Output() sortChange = new EventEmitter<SortMeta>();
 
-  @ContentChild('header') headerTemplate: TemplateNull<any>;
+  @ContentChild('header', { descendants: false }) headerTemplate: TemplateNull<any>;
   @ContentChild('body', { descendants: false }) bodyTemplate: TemplateNull<any>;
-
-  @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
   get processedData() {
     return this.value || [];
