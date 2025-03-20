@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title='Misc/RxAvatar' />
+
+# Documentation for RxAvatar
+
+## Overview
+The `RxAvatar` component is used to display user avatars in Angular applications. It supports various features such as customizable sizes, shapes, and fallback images.
+
+## Features
+- **Customizable Size**: Set the size of the avatar according to your needs.
+- **Shape Options**: Choose between circular or square avatars.
+- **Fallback Images**: Display a default image when the user image is not available.
+
+## Usage
+To use the `RxAvatar`, import it into your Angular module:
+
+```typescript
+import { RxAvatar } from './path/to/rx-avatar';
+```
+
+### Example Stories
+Refer to the following stories for examples of how to implement the `RxAvatar`:
+- [Default Avatar](./avatar.stories.ts#default-avatar)
+- [Fallback Avatar](./avatar.stories.ts#fallback-avatar)
+
+## Props
+| Property         | Type             | Description                               |
+|------------------|------------------|-------------------------------------------|
+| `size`           | `string`         | Defines the size of the avatar.          |
+| `shape`          | `string`         | Defines the shape of the avatar (circle/square). |
+
+## Events
+- **onError**: Emitted when the image fails to load.
+
+## Styling
+The avatar can be styled using CSS. Refer to the `avatar.css` file for default styles.
+
+## Conclusion
+The `RxAvatar` component provides a simple way to display user avatars in your Angular application. Customize it according to your needs and refer to the provided stories for implementation examples.

@@ -1,0 +1,43 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title='Overlay/RxDialog' />
+
+# Documentation for RxDialog
+
+## Overview
+The `RxDialog` component is a customizable dialog box for Angular applications. It supports various features such as confirmation dialogs, custom templates, and responsive design.
+
+## Features
+- **Customizable Size**: Set width and height according to your needs.
+- **Confirmation Dialogs**: Easily create confirmation dialogs with customizable buttons.
+- **Responsive Design**: The dialog adapts to different screen sizes.
+
+## Usage
+To use the `RxDialog`, import it into your Angular module:
+
+```typescript
+import { RxDialog } from './path/to/rx-dialog';
+```
+
+### Example Stories
+Refer to the following stories for examples of how to implement the `RxDialog`:
+- [Default Dialog](./dialog.stories.ts#default-dialog)
+- [Confirmation Dialog](./dialog.stories.ts#confirmation-dialog)
+- [Custom Template Dialog](./dialog.stories.ts#custom-template-dialog)
+
+## Props
+| Property         | Type             | Description                               |
+|------------------|------------------|-------------------------------------------|
+| `maskVisible`    | `boolean`        | Controls the visibility of the mask.     |
+| `transitionOptions` | `string`      | Transition effects for opening/closing.  |
+| `confirmDialog`  | `boolean`        | Indicates if the dialog is a confirmation dialog. |
+
+## Events
+- **onClose**: Emitted when the dialog is closed.
+- **onConfirm**: Emitted when the confirm button is clicked.
+
+## Styling
+The dialog can be styled using CSS. Refer to the `dialog.css` file for default styles.
+
+## Conclusion
+The `RxDialog` component is a versatile tool for creating dialogs in your Angular application. Customize it according to your needs and refer to the provided stories for implementation examples.

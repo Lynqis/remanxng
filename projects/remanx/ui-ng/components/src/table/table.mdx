@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title='Data/RxTable' />
+
+# Documentation for RxTable
+
+## Overview
+The `RxTable` component is designed to display tabular data in Angular applications. It supports various features such as sorting, filtering, and pagination.
+
+## Features
+- **Sorting**: Easily sort data by columns.
+- **Filtering**: Filter data based on specific criteria.
+- **Pagination**: Navigate through large datasets with pagination controls.
+
+## Usage
+To use the `Table`, import it into your Angular module:
+
+```typescript
+import { Table } from './path/to/table';
+```
+
+### Example Stories
+Refer to the following stories for examples of how to implement the `Table`:
+- [Default Table](./table.stories.ts#default-table)
+- [Sortable Table](./table.stories.ts#sortable-table)
+
+## Props
+| Property         | Type             | Description                               |
+|------------------|------------------|-------------------------------------------|
+| `data`           | `Array`          | The data to display in the table.        |
+| `columns`        | `Array`          | Defines the columns of the table.        |
+
+## Events
+- **onRowClick**: Emitted when a row is clicked.
+
+## Conclusion
+The `Table` component provides a flexible way to display tabular data in your Angular application. Customize it according to your needs and refer to the provided stories for implementation examples.

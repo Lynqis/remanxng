@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { RxButton } from './button';
 
 export default {
-  title: 'Buttons/RxButton',
+  title: 'Misc/RxButton',
   component: RxButton,
   tags: ['autodocs'],
   argTypes: {
