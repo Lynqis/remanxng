@@ -1,4 +1,9 @@
-import { isPlatformBrowser, NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
+import {
+  isPlatformBrowser,
+  NgClass,
+  NgIf,
+  NgTemplateOutlet,
+} from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -26,7 +31,7 @@ import {
   VoidListener,
 } from '@remanx/ui-ng/api';
 import { BaseComponent } from '../base/basecomponent';
-import { RxButton } from "../button/button";
+import { RxButton } from '../button/button';
 
 const showAnimation = animation([
   style({ transform: '{{transform}}', opacity: 0 }),
@@ -69,24 +74,37 @@ const hideAnimation = animation([
         (@animation.done)="onAnimationEnd($event)"
         [style]="{ width: width, height: height }"
       >
-        <ng-container *ngIf="headlessTemplate; else notHeadless">
-          <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
-        </ng-container>
-
-        <ng-template #notHeadless>
-          <div class="rx-dialog-content">
-            <div class="rx-dialog-header">
-              <h2>{{label}}</h2>
-              <div class="button-close">
-                <rx-button [severity]="'contrast'" class="" (click)="close($event)">X</rx-button>
-                <span>ESC</span>
-              </div>
-            </div>
-            <div class="rx-dialog-body">
-              <ng-content></ng-content>
+        @if (headlessTemplate) {
+        <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
+        } @else {
+        <div class="rx-dialog-content">
+          <div class="rx-dialog-header">
+            <h2>{{ label }}</h2>
+            <div class="button-close">
+              <rx-button
+                [severity]="'contrast'"
+                class=""
+                (click)="close($event)"
+                >X</rx-button
+              >
+              <span>ESC</span>
             </div>
           </div>
-        </ng-template>
+          <div class="rx-dialog-body">
+            <ng-content></ng-content>
+          </div>
+          @if (confirmDialog) {
+          <div class="rx-dialog-button-confirm">
+            <rx-button [severity]="'contrast'" (click)="cancel()"
+              >Cancel</rx-button
+            >
+            <rx-button [severity]="'primary'" (click)="confirm()"
+              >Confirm</rx-button
+            >
+          </div>
+          }
+        </div>
+        }
       </div>
     </div>
   `,
@@ -119,9 +137,13 @@ export class RxDialog extends BaseComponent implements AfterContentInit {
 
   @Input() height: string = 'auto';
 
+  @Input() confirmDialog: boolean = false;
+
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @Output() onConfirm: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
 
@@ -229,18 +251,27 @@ export class RxDialog extends BaseComponent implements AfterContentInit {
   bindDocumentClickListener() {
     if (isPlatformBrowser(this.platformId)) {
       if (!this.documentClickListener) {
-        const documentTarget: any = this.el ? this.el.nativeElement.ownerDocument : this.document;
-        this.documentClickListener = this.renderer.listen(documentTarget, 'mousedown', (event) => {
-          if (!this.closeOnOutside) {
-            return;
-          }
+        const documentTarget: any = this.el
+          ? this.el.nativeElement.ownerDocument
+          : this.document;
+        this.documentClickListener = this.renderer.listen(
+          documentTarget,
+          'mousedown',
+          (event) => {
+            if (!this.closeOnOutside) {
+              return;
+            }
 
-          if (this.el.nativeElement.firstChild && this.el.nativeElement.firstChild.isSameNode(event.target)) {
-            this.close(event);
-          }
+            if (
+              this.el.nativeElement.firstChild &&
+              this.el.nativeElement.firstChild.isSameNode(event.target)
+            ) {
+              this.close(event);
+            }
 
-          this.cd.markForCheck();
-      });
+            this.cd.markForCheck();
+          }
+        );
       }
     }
   }
@@ -259,5 +290,20 @@ export class RxDialog extends BaseComponent implements AfterContentInit {
 
   onContainerDestroy() {
     this.unbindGlobalListeners();
+  }
+
+  showConfirmDialog() {
+    this.show();
+    this.cd.markForCheck();
+  }
+
+  confirm() {
+    this.onConfirm.emit(true);
+    this.hide();
+  }
+
+  cancel() {
+    this.onConfirm.emit(false);
+    this.hide();
   }
 }

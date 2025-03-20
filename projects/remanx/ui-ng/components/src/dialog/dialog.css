@@ -68,6 +68,8 @@
         width: auto;
         height: auto;
         overflow: auto;
+        overflow-x: hidden;
+        position: relative;
     }
 
     .rx-dialog-header {
@@ -85,5 +87,14 @@
             font-size: smaller;
             color: #ccc;
         }
+    }
+
+    .rx-dialog-button-confirm {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        gap: 10px;
     }
 }

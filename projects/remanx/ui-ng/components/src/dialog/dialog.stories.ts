@@ -5,7 +5,7 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
 import { importProvidersFrom } from "@angular/core";
 
 const meta: Meta<RxDialog> = {
-  title: 'Surfaces/RxDialog',
+  title: 'Overlay/RxDialog',
   component: RxDialog,
   tags: ['autodocs'],
   decorators: [
@@ -38,4 +38,20 @@ export const Default: Story = {
   }
 };
 
-
+export const ConfirmDialog: Story = {
+  render: () => {
+    return {
+      template: `
+        <rx-button (click)="pop.showConfirmDialog()" [label]="'Open Confirm Dialog'"></rx-button>
+        <rx-dialog #pop [confirmDialog]="true" [label]="'Confirm Action'" (onConfirm)="confirm($event)">
+          <p>Are you sure you want to proceed?</p>
+        </rx-dialog>
+      `,
+      methods: {
+        confirm: (result: boolean) => {
+          console.log('Confirmation result:', result);
+        }
+      }
+    };
+  }
+};
