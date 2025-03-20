@@ -8,6 +8,7 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
+  ContentChild,
   ContentChildren,
   EventEmitter,
   Input,
@@ -28,6 +29,7 @@ import {
   Nullable,
   Position,
   RxTemplate,
+  TemplateNull,
   VoidListener,
 } from '@remanx/ui-ng/api';
 import { BaseComponent } from '../base/basecomponent';
@@ -95,12 +97,16 @@ const hideAnimation = animation([
           </div>
           @if (confirmDialog) {
           <div class="rx-dialog-button-confirm">
-            <rx-button [severity]="'contrast'" (click)="cancel()"
-              >Cancel</rx-button
-            >
-            <rx-button [severity]="'primary'" (click)="confirm()"
-              >Confirm</rx-button
-            >
+            @if (confirmTemplate) {
+              <ng-container *ngTemplateOutlet="confirmTemplate"></ng-container>
+            } @else {
+              <rx-button [severity]="'contrast'" (click)="cancel()"
+                >Cancel</rx-button
+              >
+              <rx-button [severity]="'primary'" (click)="confirm()"
+                >Confirm</rx-button
+              >
+            }
           </div>
           }
         </div>
@@ -118,7 +124,7 @@ const hideAnimation = animation([
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RxDialog extends BaseComponent implements AfterContentInit {
+export class RxDialog extends BaseComponent {
   @Input() maskVisible: boolean = true;
 
   @Input() transitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
@@ -145,9 +151,9 @@ export class RxDialog extends BaseComponent implements AfterContentInit {
 
   @Output() onConfirm: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
+  @ContentChild('headless', { descendants: false }) headlessTemplate: TemplateNull<any>;
 
-  headlessTemplate: Nullable<TemplateRef<any>>;
+  @ContentChild('confirm', { descendants: false }) confirmTemplate: TemplateNull<any>;
 
   overlayVisible: boolean = false;
 
@@ -162,14 +168,6 @@ export class RxDialog extends BaseComponent implements AfterContentInit {
   documentEscapeListener: VoidListener;
 
   documentClickListener: VoidListener;
-
-  ngAfterContentInit(): void {
-    this.templates?.forEach((item) => {
-      if (item.getType() === 'headless') {
-        this.headlessTemplate = item.template;
-      }
-    });
-  }
 
   onAnimationStart(event: AnimationEvent) {
     if (event.toState === 'visible') {
