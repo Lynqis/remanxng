@@ -139,6 +139,26 @@
                 "defaultValue": "{\n  render: (args) => ({\n    template: `\n      <div style=\"display: flex; gap: 16px; flex-wrap: wrap;\">\n        <rx-button *ngFor=\"let color of colors\"\n          [severity]=\"color\"\n          label=\"{{ color | titlecase }}\"\n          [disabled]=\"false\">\n        </rx-button>\n      </div>\n    `,\n    props: {\n      colors: ['primary', 'secondary', 'success', 'error', 'warning', 'info', 'help', 'contrast'],\n    },\n  }),\n}"
             },
             {
+                "name": "ColorShowcase",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    messages: messages\n  },\n  render: (args) => ({\n    template: `\n      <rx-toast [messages]=\"messages\">\n      </rx-toast>\n    `,\n    props: {\n      ...args,\n      messages: [\n        {\n          title: 'Success',\n          content: 'This is a success toast notification.',\n          severity: 'success'\n        },\n        {\n          title: 'Warning',\n          content: 'This is a warning toast notification.',\n          severity: 'warning'\n        },\n        {\n          title: 'Error',\n          content: 'This is an error toast notification.',\n          severity: 'error'\n        },\n        {\n          title: 'Info',\n          content: 'This is an info toast notification.',\n          severity: 'info'\n        },\n        {\n          title: 'Secondary',\n          content: 'This is a secondary toast notification.',\n          severity: 'secondary'\n        },\n        {\n          title: 'Contrast',\n          content: 'This is a contrast toast notification.',\n          severity: 'contrast'\n        }\n      ]\n    }\n  }),\n  parameters: {\n    docs: {\n      storyDescription: 'Showcases different severity types of toast notifications for visual differentiation.'\n    }\n  }\n}"
+            },
+            {
+                "name": "ConfirmDialog",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.showConfirmDialog()\" [label]=\"'Open Confirm Dialog'\"></rx-button>\n        <rx-dialog #pop [confirmDialogVisible]=\"true\" [confirmDialogTitle]=\"'Confirm Action'\" [confirmDialogMessage]=\"'Are you sure you want to proceed?'\" (onConfirm)=\"confirm($event)\">\n          <p>This is the main dialog content.</p>\n        </rx-dialog>\n      `,\n      methods: {\n        confirm: (result: boolean) => {\n          console.log('Confirmation result:', result);\n        }\n      }\n    };\n  }\n}"
+            },
+            {
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -162,21 +182,21 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-card>\n          <h1>This is a card</h1>\n          <p>content</p>\n          <h4>footer</h4>\n        </rx-card>\n      `\n    };\n  }\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p style=\"width: 900px\">This is a modal dialog</p>\n        </rx-dialog>\n      `\n    };\n  }\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-card>\n          <h1>This is a card</h1>\n          <p>content</p>\n          <h4>footer</h4>\n        </rx-card>\n      `\n    };\n  }\n}"
             },
             {
                 "name": "Default",
@@ -206,7 +226,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    data: messages\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      data: messages\n    },\n    template: `\n      <rx-toast [data]=\"data\"></rx-toast>\n    `\n  })\n}"
+                "defaultValue": "{\n  args: {\n    messages: messages\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      messages: messages\n    },\n    template: `\n      <rx-toast [messages]=\"messages\"></rx-toast>\n    `\n  }),\n  parameters: {\n    docs: {\n      storyDescription: 'The default toast notification displays a success message.'\n    }\n  }\n}"
             },
             {
                 "name": "Disabled",
@@ -258,7 +278,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "ToastMessage[]",
-                "defaultValue": "[\n  {\n    severity: 'primary',\n    text: 'This is a popup'\n  }\n]"
+                "defaultValue": "[\n  {\n    severity: 'success',\n    title: 'Success!',\n    content: 'This is a success toast notification.'\n  }\n]"
             },
             {
                 "name": "meta",
@@ -274,6 +294,16 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<RxDialog>",
+                "defaultValue": "{\n  title: 'Overlay/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton\n      ],\n    }),\n    applicationConfig({\n      providers: [\n        importProvidersFrom(BrowserAnimationsModule)\n      ]\n    })\n  ]\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -284,21 +314,11 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<RxDialog>",
-                "defaultValue": "{\n  title: 'Surfaces/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton\n      ],\n    }),\n    applicationConfig({\n      providers: [\n        importProvidersFrom(BrowserAnimationsModule)\n      ]\n    })\n  ]\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/remanx/ui-ng/components/src/layout/layout.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<RxLayout>",
-                "defaultValue": "{\n  title: 'Layout/RxLayout',\n  component: RxLayout,\n  tags: ['autodocs'],\n  argTypes: {\n    container: {\n      control: 'boolean',\n      description: 'Définit si le layout est containerisé ou non.',\n    },\n    view: {\n      control: 'text',\n      description: 'Définit la structure du layout sous la forme \"header body footer\".',\n    },\n  },\n  args: {\n    view: 'hhh scc fff'\n  },\n  parameters: {\n    docs: {\n      description: {\n        component: `\nLe composant **RxLayout** permet de structurer une page avec des zones configurables via \\`view\\`.\nPar exemple : \"header body footer\".\nL'attribut \\`container\\` définit si le layout est en mode containerisé.\n        `,\n      },\n    },\n  },\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxLayout,\n        RxHeader,\n        RxSidebar,\n        RxMainContent,\n        RxFooter,\n        CommonModule\n      ]\n    }),\n  ]\n}"
+                "defaultValue": "{\n  title: 'Overlay/RxLayout',\n  component: RxLayout,\n  tags: ['autodocs'],\n  argTypes: {\n    container: {\n      control: 'boolean',\n      description: 'Définit si le layout est containerisé ou non.',\n    },\n    view: {\n      control: 'text',\n      description: 'Définit la structure du layout sous la forme \"header body footer\".',\n    },\n  },\n  args: {\n    view: 'hhh scc fff'\n  },\n  parameters: {\n    docs: {\n      description: {\n        component: `\nLe composant **RxLayout** permet de structurer une page avec des zones configurables via \\`view\\`.\nPar exemple : \"header body footer\".\nL'attribut \\`container\\` définit si le layout est en mode containerisé.\n        `,\n      },\n    },\n  },\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxLayout,\n        RxHeader,\n        RxSidebar,\n        RxMainContent,\n        RxFooter,\n        CommonModule\n      ]\n    }),\n  ]\n}"
             },
             {
                 "name": "meta",
@@ -435,8 +455,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RxCard>",
-                "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
+                "rawtype": "StoryObj<RxDialog>",
+                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -446,8 +466,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RxDialog>",
-                "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "rawtype": "StoryObj<RxCard>",
+                "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -625,6 +645,70 @@
                     "defaultValue": "{\n  args: {\n    label: 'Loading',\n    severity: 'secondary',\n    disabled: false,\n    loading: false,\n    noStyle: true\n  },\n}"
                 }
             ],
+            "projects/remanx/ui-ng/components/src/toast/toast.stories.ts": [
+                {
+                    "name": "ColorShowcase",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    messages: messages\n  },\n  render: (args) => ({\n    template: `\n      <rx-toast [messages]=\"messages\">\n      </rx-toast>\n    `,\n    props: {\n      ...args,\n      messages: [\n        {\n          title: 'Success',\n          content: 'This is a success toast notification.',\n          severity: 'success'\n        },\n        {\n          title: 'Warning',\n          content: 'This is a warning toast notification.',\n          severity: 'warning'\n        },\n        {\n          title: 'Error',\n          content: 'This is an error toast notification.',\n          severity: 'error'\n        },\n        {\n          title: 'Info',\n          content: 'This is an info toast notification.',\n          severity: 'info'\n        },\n        {\n          title: 'Secondary',\n          content: 'This is a secondary toast notification.',\n          severity: 'secondary'\n        },\n        {\n          title: 'Contrast',\n          content: 'This is a contrast toast notification.',\n          severity: 'contrast'\n        }\n      ]\n    }\n  }),\n  parameters: {\n    docs: {\n      storyDescription: 'Showcases different severity types of toast notifications for visual differentiation.'\n    }\n  }\n}"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    messages: messages\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      messages: messages\n    },\n    template: `\n      <rx-toast [messages]=\"messages\"></rx-toast>\n    `\n  }),\n  parameters: {\n    docs: {\n      storyDescription: 'The default toast notification displays a success message.'\n    }\n  }\n}"
+                },
+                {
+                    "name": "messages",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ToastMessage[]",
+                    "defaultValue": "[\n  {\n    severity: 'success',\n    title: 'Success!',\n    content: 'This is a success toast notification.'\n  }\n]"
+                }
+            ],
+            "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts": [
+                {
+                    "name": "ConfirmDialog",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.showConfirmDialog()\" [label]=\"'Open Confirm Dialog'\"></rx-button>\n        <rx-dialog #pop [confirmDialogVisible]=\"true\" [confirmDialogTitle]=\"'Confirm Action'\" [confirmDialogMessage]=\"'Are you sure you want to proceed?'\" (onConfirm)=\"confirm($event)\">\n          <p>This is the main dialog content.</p>\n        </rx-dialog>\n      `,\n      methods: {\n        confirm: (result: boolean) => {\n          console.log('Confirmation result:', result);\n        }\n      }\n    };\n  }\n}"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p style=\"width: 900px\">This is a modal dialog</p>\n        </rx-dialog>\n      `\n    };\n  }\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<RxDialog>",
+                    "defaultValue": "{\n  title: 'Overlay/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton\n      ],\n    }),\n    applicationConfig({\n      providers: [\n        importProvidersFrom(BrowserAnimationsModule)\n      ]\n    })\n  ]\n}"
+                }
+            ],
             "projects/remanx/ui-ng/components/src/avatar/avatar.stories.ts": [
                 {
                     "name": "Default",
@@ -669,28 +753,6 @@
                     "defaultValue": "{\n  title: 'Panel/RxCard',\n  component: RxCard,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n      ],\n    }),\n    applicationConfig({\n      providers: [\n      ]\n    })\n  ]\n}"
                 }
             ],
-            "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p style=\"width: 900px\">This is a modal dialog</p>\n        </rx-dialog>\n      `\n    };\n  }\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<RxDialog>",
-                    "defaultValue": "{\n  title: 'Surfaces/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton\n      ],\n    }),\n    applicationConfig({\n      providers: [\n        importProvidersFrom(BrowserAnimationsModule)\n      ]\n    })\n  ]\n}"
-                }
-            ],
             "projects/remanx/ui-ng/components/src/layout/layout.stories.ts": [
                 {
                     "name": "Default",
@@ -710,7 +772,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<RxLayout>",
-                    "defaultValue": "{\n  title: 'Layout/RxLayout',\n  component: RxLayout,\n  tags: ['autodocs'],\n  argTypes: {\n    container: {\n      control: 'boolean',\n      description: 'Définit si le layout est containerisé ou non.',\n    },\n    view: {\n      control: 'text',\n      description: 'Définit la structure du layout sous la forme \"header body footer\".',\n    },\n  },\n  args: {\n    view: 'hhh scc fff'\n  },\n  parameters: {\n    docs: {\n      description: {\n        component: `\nLe composant **RxLayout** permet de structurer une page avec des zones configurables via \\`view\\`.\nPar exemple : \"header body footer\".\nL'attribut \\`container\\` définit si le layout est en mode containerisé.\n        `,\n      },\n    },\n  },\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxLayout,\n        RxHeader,\n        RxSidebar,\n        RxMainContent,\n        RxFooter,\n        CommonModule\n      ]\n    }),\n  ]\n}"
+                    "defaultValue": "{\n  title: 'Overlay/RxLayout',\n  component: RxLayout,\n  tags: ['autodocs'],\n  argTypes: {\n    container: {\n      control: 'boolean',\n      description: 'Définit si le layout est containerisé ou non.',\n    },\n    view: {\n      control: 'text',\n      description: 'Définit la structure du layout sous la forme \"header body footer\".',\n    },\n  },\n  args: {\n    view: 'hhh scc fff'\n  },\n  parameters: {\n    docs: {\n      description: {\n        component: `\nLe composant **RxLayout** permet de structurer une page avec des zones configurables via \\`view\\`.\nPar exemple : \"header body footer\".\nL'attribut \\`container\\` définit si le layout est en mode containerisé.\n        `,\n      },\n    },\n  },\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxLayout,\n        RxHeader,\n        RxSidebar,\n        RxMainContent,\n        RxFooter,\n        CommonModule\n      ]\n    }),\n  ]\n}"
                 },
                 {
                     "name": "ShrinkSidebar",
@@ -753,28 +815,6 @@
                     "deprecationMessage": "",
                     "type": "Meta<RxPopover>",
                     "defaultValue": "{\n  title: 'Overlay/RxPopover',\n  component: RxPopover,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton,\n        BrowserAnimationsModule\n      ],\n    }),\n  ]\n}"
-                }
-            ],
-            "projects/remanx/ui-ng/components/src/toast/toast.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    data: messages\n  },\n  render: (args) => ({\n    props: {\n      ...args,\n      data: messages\n    },\n    template: `\n      <rx-toast [data]=\"data\"></rx-toast>\n    `\n  })\n}"
-                },
-                {
-                    "name": "messages",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "ToastMessage[]",
-                    "defaultValue": "[\n  {\n    severity: 'primary',\n    text: 'This is a popup'\n  }\n]"
                 }
             ],
             "projects/remanx/ui-ng/components/src/menubar/menubar.stories.ts": [
@@ -851,19 +891,6 @@
                     "kind": 183
                 }
             ],
-            "projects/remanx/ui-ng/components/src/card/card.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<RxCard>",
-                    "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts": [
                 {
                     "name": "Story",
@@ -871,6 +898,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<RxDialog>",
                     "file": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/remanx/ui-ng/components/src/card/card.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<RxCard>",
+                    "file": "projects/remanx/ui-ng/components/src/card/card.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -946,7 +986,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 13,
+        "count": 12,
         "status": "low",
         "files": [
             {
@@ -1065,6 +1105,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
                 "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/remanx/ui-ng/components/src/dialog/dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ConfirmDialog",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -1294,6 +1344,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
                 "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/remanx/ui-ng/components/src/toast/toast.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ColorShowcase",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

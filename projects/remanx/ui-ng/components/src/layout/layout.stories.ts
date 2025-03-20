@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { signal } from '@angular/core';
 
 const meta: Meta<RxLayout> = {
-  title: 'Layout/RxLayout',
+  title: 'Overlay/RxLayout',
   component: RxLayout,
   tags: ['autodocs'],
   argTypes: {
