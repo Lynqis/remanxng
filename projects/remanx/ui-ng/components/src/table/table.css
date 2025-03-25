@@ -1,50 +1,110 @@
 @layer remanx {
+    .rx-table-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .rx-pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        border-top: 1px solid var(--rx-surface-border, #dee2e6);
+    }
+
+    .rx-pagination .rx-pagination-info {
+        font-size: 0.875rem;
+        color: var(--rx-text-color-secondary, #6c757d);
+    }
+
+    .rx-pagination .rx-pagination-controls {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .rx-pagination .rx-pagination-controls button {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 4px;
+        background-color: var(--rx-surface-overlay, #ffffff);
+        color: var(--rx-text-color-primary, #212529);
+        cursor: pointer;
+    }
+
+    .rx-pagination .rx-pagination-controls button:hover {
+        background-color: var(--rx-hover-bg, rgba(0, 0, 0, 0.04));
+    }
+
+    .rx-pagination .rx-pagination-controls button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
     .rx-table-wrapper {
         position: relative;
         width: 100%;
         overflow: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     }
 
     .rx-table {
         width: 100%;
-        border-collapse: collapse;
+        border-collapse: separate;
+        border-spacing: 0;
         min-width: 100%;
         table-layout: auto;
         background-color: var(--rx-surface-overlay, #ffffff);
+        border-radius: 8px;
     }
 
     .rx-table thead th {
         text-align: left;
-        padding: 1rem;
+        padding: 1rem 1.5rem;
         border-bottom: 1px solid var(--rx-border-color);
         font-weight: 600;
         white-space: nowrap;
         position: relative;
         background-color: var(--rx-surface-section, #f8f9fa);
+        color: var(--rx-text-color-primary, #212529);
+        font-size: 0.875rem;
+        line-height: 1.5;
     }
 
     .rx-table tbody td {
-        padding: 1rem;
+        padding: 1rem 1.5rem;
         border-bottom: 1px solid var(--rx-border-color);
         border-color: var(--rx-surface-border, #dee2e6);
+        color: var(--rx-text-color-primary, #212529);
+        font-size: 0.875rem;
+        line-height: 1.5;
     }
 
     .rx-table tbody tr:last-child td {
         border-bottom: none;
     }
 
+    .rx-table tbody tr {
+        transition: background-color 0.2s ease;
+    }
+
     .rx-table tbody tr:hover {
         background-color: var(--rx-hover-bg, rgba(0, 0, 0, 0.04));
+        transform: translateY(-1px);
     }
 
     .rx-table tbody tr.rx-table-row-selected {
         background-color: var(--rx-selected-bg);
         color: var(--rx-selected-text-color);
+        font-weight: 500;
     }
 
     .rx-sort-column {
         cursor: pointer;
         user-select: none;
+        position: relative;
+        padding-right: 2rem;
     }
 
     .rx-sort-column:hover {
@@ -59,6 +119,11 @@
         display: inline-block;
         vertical-align: middle;
         margin-left: 0.5rem;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.7;
     }
 
     .rx-sort-icon::before {
@@ -78,30 +143,57 @@
 
     .rx-table-empty {
         text-align: center;
-        padding: 1rem;
+        padding: 2rem;
         color: var(--rx-text-color-secondary, #6c757d);
+        font-size: 0.875rem;
+        line-height: 1.5;
     }
 
     .rx-selectable-row {
         cursor: pointer;
+        transition: all 0.2s ease;
     }
 
     .rx-selectable-row:hover {
         background-color: var(--rx-hover-bg);
+        transform: translateY(-1px);
     }
 
     .rx-selectable-row.rx-row-selected {
         background-color: var(--rx-selected-bg);
         color: var(--rx-selected-text-color);
+        font-weight: 500;
     }
 
     /* Style pour les bordures de grille */
     .rx-table-gridlines .rx-table {
         border: 1px solid var(--rx-surface-border, #dee2e6);
+        border-radius: 8px;
     }
 
     .rx-table-gridlines .rx-table th,
     .rx-table-gridlines .rx-table td {
         border: 1px solid var(--rx-surface-border, #dee2e6);
+    }
+
+    /* Styles responsifs */
+    @media (max-width: 768px) {
+        .rx-table thead th,
+        .rx-table tbody td {
+            padding: 0.75rem 1rem;
+            font-size: 0.8125rem;
+        }
+    }
+
+    /* Animation de chargement */
+    .rx-table-loading {
+        opacity: 0.8;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.8; }
+        50% { opacity: 1; }
+        100% { opacity: 0.8; }
     }
 }

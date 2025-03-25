@@ -3,12 +3,13 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
+  ContentChild,
   ContentChildren,
   Input,
   QueryList,
   TemplateRef,
 } from '@angular/core';
-import { Nullable, RxTemplate } from '@remanx/ui-ng/api';
+import { Nullable, RxTemplate, TemplateNull } from '@remanx/ui-ng/api';
 
 @Component({
     template: `
@@ -27,18 +28,8 @@ import { Nullable, RxTemplate } from '@remanx/ui-ng/api';
     imports: [NgIf, NgTemplateOutlet],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RxHeader implements AfterContentInit {
-  @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
+export class RxHeader {
+  @ContentChild('headless', { descendants: false }) headlessTemplate: TemplateNull<any>;
 
   @Input() $style: string = '';
-
-  headlessTemplate: Nullable<TemplateRef<any>>;
-
-  ngAfterContentInit(): void {
-    this.templates?.forEach((item) => {
-      if (item.getType() === 'headless') {
-        this.headlessTemplate = item.template;
-      }
-    });
-  }
 }

@@ -9,7 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BaseComponent } from '../base/basecomponent';
-import { RxTable } from './table';
+import { RxTableService } from './table';
 import { NgTemplateOutlet } from '@angular/common';
 import { TemplateNull } from '@remanx/ui-ng/api';
 import { Subscription } from 'rxjs';
@@ -38,6 +38,7 @@ import { Subscription } from 'rxjs';
   imports: [NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./table.css']
 })
 export class RxTableBody extends BaseComponent implements OnDestroy {
   @Input('rxTableBody') columns: any[] | undefined;
@@ -56,17 +57,18 @@ export class RxTableBody extends BaseComponent implements OnDestroy {
   }
   set value(val: any[] | undefined) {
     this._value = val;
+    this.cd.detectChanges();
   }
 
   _value: any[] | undefined;
 
-  dt: RxTable = inject(RxTable);
+  private _table: RxTableService = inject(RxTableService);
 
   subscription: Subscription | undefined;
 
   constructor() {
     super();
-    this.subscription = this.dt.tableService.valueSource$.subscribe(() => {
+    this.subscription = this._table.valueSource$.subscribe(() => {
       this.cd.detectChanges();
     });
   }

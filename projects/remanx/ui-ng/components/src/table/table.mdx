@@ -1,37 +1,160 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { RxTable } from './table';
+import { RxPagination } from '../pagination/pagination';
+import { RxTableBody } from './tablebody';
+import * as RxTableStories from './table.stories.ts';
 
-<Meta title='Data/RxTable' />
+<Meta title='Data/RxTable' of={RxTableStories} />
 
-# Documentation for RxTable
+# RxTable
 
-## Overview
-The `RxTable` component is designed to display tabular data in Angular applications. It supports various features such as sorting, filtering, and pagination.
+Le composant `RxTable` est conçu pour afficher des données tabulaires dans les applications Angular. Il prend en charge diverses fonctionnalités telles que le tri, la sélection et la pagination.
 
-## Features
-- **Sorting**: Easily sort data by columns.
-- **Filtering**: Filter data based on specific criteria.
-- **Pagination**: Navigate through large datasets with pagination controls.
+## Caractéristiques
 
-## Usage
-To use the `Table`, import it into your Angular module:
+- **Tri**: Tri des colonnes (simple ou multiple)
+- **Sélection**: Sélection de lignes (simple ou multiple)
+- **Pagination**: Navigation à travers de grands ensembles de données
+- **Affichage de grille**: Option pour afficher les bordures de la grille
+- **Message personnalisable**: Message configurable pour les données vides
+
+## Installation
 
 ```typescript
-import { Table } from './path/to/table';
+import { RxTable } from '@remanx/ui-ng/components/table';
 ```
 
-### Example Stories
-Refer to the following stories for examples of how to implement the `Table`:
-- [Default Table](./table.stories.ts#default-table)
-- [Sortable Table](./table.stories.ts#sortable-table)
+## Exemples d'utilisation
 
-## Props
-| Property         | Type             | Description                               |
-|------------------|------------------|-------------------------------------------|
-| `data`           | `Array`          | The data to display in the table.        |
-| `columns`        | `Array`          | Defines the columns of the table.        |
+### Table de base
 
-## Events
-- **onRowClick**: Emitted when a row is clicked.
+<Story name="Base" />
 
-## Conclusion
-The `Table` component provides a flexible way to display tabular data in your Angular application. Customize it according to your needs and refer to the provided stories for implementation examples.
+```html
+<rx-table [value]="data">
+  <ng-template #header let-columns="columns">
+    <tr>
+      <th *ngFor="let column of columns">{{column.header}}</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item="item" let-columns="columns">
+    <tr>
+      <td *ngFor="let column of columns">{{item[column.field]}}</td>
+    </tr>
+  </ng-template>
+</rx-table>
+```
+
+### Table avec pagination
+
+<Story name="WithPagination" />
+
+```html
+<rx-table [value]="data" [rows]="10">
+  <ng-template #header let-columns="columns">
+    <tr>
+      <th *ngFor="let column of columns">{{column.header}}</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item="item" let-columns="columns">
+    <tr>
+      <td *ngFor="let column of columns">{{item[column.field]}}</td>
+    </tr>
+  </ng-template>
+</rx-table>
+```
+
+### Table avec tri
+
+<Story name="WithSorting" />
+
+```html
+<rx-table [value]="data" [sortMode]="'single'">
+  <ng-template #header let-columns="columns">
+    <tr>
+      <th *ngFor="let column of columns" [class.rx-sort-column]="true" [class.rx-sort-column-active]="isSorted(column.field)" (click)="sortData({field: column.field})">
+        {{column.header}}
+        <span *ngIf="isSorted(column.field)" class="rx-sort-icon {{sortOrder === 1 ? 'rx-sort-icon-asc' : 'rx-sort-icon-desc'}}"></span>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item="item" let-columns="columns">
+    <tr>
+      <td *ngFor="let column of columns">{{item[column.field]}}</td>
+    </tr>
+  </ng-template>
+</rx-table>
+```
+
+### Table avec sélection
+
+<Story name="WithSelection" />
+
+```html
+<rx-table [value]="data" [selectionMode]="'single'">
+  <ng-template #header let-columns="columns">
+    <tr>
+      <th *ngFor="let column of columns">{{column.header}}</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item="item" let-columns="columns">
+    <tr [class.rx-selectable-row]="true" [class.rx-row-selected]="isSelected(item)" (click)="onRowSelect(item)">
+      <td *ngFor="let column of columns">{{item[column.field]}}</td>
+    </tr>
+  </ng-template>
+</rx-table>
+```
+
+## Propriétés
+
+### Tableau des propriétés
+
+| Propriété           | Type             | Description                               | Défaut       |
+|:--------------------|:-----------------|:-----------------------------------------|:-------------|
+| `value`             | `any[]`          | Les données à afficher                    | `[]`         |
+| `tableClass`        | `string`         | Classes CSS supplémentaires               | `''`         |
+| `tableStyle`        | `` | Styles CSS supplémentaires          | `{}`         |
+| `showGridlines`     | `boolean`        | Afficher les bordures de la grille        | `true`       |
+| `emptyMessage`      | `string`         | Message à afficher quand il n'y a pas de données | `Aucune donnée disponible` |
+| `selection`         | `any`            | Valeur de sélection actuelle              | `null`       |
+| `selectionMode`     | `'single' | 'multiple' | null` | Mode de sélection | `null`       |
+| `dataKey`           | `string`         | Clé pour la sélection                    | `''`         |
+| `sortField`         | `string`         | Champ de tri actuel                      | `null`       |
+| `sortOrder`         | `number`         | Ordre de tri actuel                      | `1`          |
+| `multiSortMeta`     | `SortMeta[]`     | Métadonnées pour le tri multiple         | `[]`         |
+| `sortMode`          | `'single' | 'multiple'` | Mode de tri | `'single'` |
+| `defaultSortOrder`  | `number`         | Ordre de tri par défaut                  | `1`          |
+| `rows`              | `number`         | Nombre d'éléments par page               | `10`         |
+
+### Description des propriétés
+
+*   `value`: Les données à afficher
+*   `tableClass`: Classes CSS supplémentaires
+*   `tableStyle`: Styles CSS supplémentaires
+*   `showGridlines`: Afficher les bordures de la grille
+*   `emptyMessage`: Message à afficher quand il n'y a pas de données
+*   `selection`: Valeur de sélection actuelle
+*   `selectionMode`: Mode de sélection
+*   `dataKey`: Clé pour la sélection
+*   `sortField`: Champ de tri actuel
+*   `sortOrder`: Ordre de tri actuel
+*   `multiSortMeta`: Métadonnées pour le tri multiple
+*   `sortMode`: Mode de tri
+*   `defaultSortOrder`: Ordre de tri par défaut
+*   `rows`: Nombre d'éléments par page
+
+## Événements
+
+| Événement           | Type             | Description                               |
+|:--------------------|:-----------------|-------------------------------------------|
+| `selectionChange`   | `EventEmitter<any>` | Émis quand la sélection change         |
+| `sortChange`        | `EventEmitter<SortMeta>` | Émis quand le tri change            |
+
+### Description des événements
+
+*   `selectionChange`: Émis quand la sélection change
+*   `sortChange`: Émis quand le tri change

@@ -2,24 +2,25 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  ContentChildren,
   EventEmitter,
   inject,
   Injectable,
   Input,
   OnInit,
   Output,
-  QueryList,
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { NgClass, NgStyle, NgTemplateOutlet, NgIf } from '@angular/common';
+import { NgClass, NgTemplateOutlet, NgStyle, NgIf } from '@angular/common';
 import { Subject } from 'rxjs';
 import { BaseComponent } from '../base/basecomponent';
-import { ObjectUtils, RxTemplate, SortMeta, TemplateNull } from '@remanx/ui-ng/api';
+import { ObjectUtils, SortMeta, TemplateNull } from '@remanx/ui-ng/api';
 import { RxTableBody } from './tablebody';
+import { RxPagination } from '../pagination/pagination';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RxTableService {
   private sortSource = new Subject<SortMeta>();
   private selectionSource = new Subject<any>();
@@ -45,27 +46,39 @@ export class RxTableService {
 @Component({
   selector: 'rx-table',
   template: `
-    <div
-      class="rx-table-wrapper"
-      [ngClass]="{ 'rx-table-gridlines': showGridlines }"
-    >
-      <table class="rx-table" [ngClass]="tableClass" [ngStyle]="tableStyle">
-        <thead>
-          <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
-        </thead>
-        <tbody
-          [rxTableBody]="value"
-          [bodyTemplate]="bodyTemplate"
-          [value]="value"
-        ></tbody>
-      </table>
+    <div class="rx-table-container">
+      <div
+        class="rx-table-wrapper"
+        [ngClass]="{ 'rx-table-gridlines': showGridlines }"
+      >
+        <table class="rx-table" [ngClass]="tableClass" [ngStyle]="tableStyle">
+          <thead>
+            <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+          </thead>
+          <tbody
+            [rxTableBody]="value"
+            [bodyTemplate]="bodyTemplate"
+            [value]="pagedData"
+          ></tbody>
+        </table>
+      </div>
+
+      <rx-pagination
+        *ngIf="value && value.length > 0"
+        [value]="value"
+        [rows]="rows"
+        [totalRecords]="value.length"
+        (pageChange)="onPageChange($event)"
+        (rowsChange)="rows = $event"
+      ></rx-pagination>
     </div>
   `,
   standalone: true,
-  imports: [NgClass, NgTemplateOutlet, NgStyle, RxTableBody],
-  providers: [RxTableService],
+  imports: [NgClass, NgTemplateOutlet, NgStyle, NgIf, RxPagination, RxTableBody],
+  providers: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./table.css']
 })
 export class RxTable extends BaseComponent implements OnInit {
   @Input() get value(): any[] {
@@ -73,10 +86,13 @@ export class RxTable extends BaseComponent implements OnInit {
   }
   set value(val: any[]) {
     this._value = val;
+    this.updatePagination();
+    this._table.onValueChange(val);
   }
+
   @Input() tableClass: string = '';
   @Input() tableStyle: { [key: string]: string | number } = {};
-  @Input() showGridlines: boolean = false;
+  @Input() showGridlines: boolean = true;
   @Input() emptyMessage: string = 'Aucune donnée disponible';
   @Input() selection: any;
   @Input() selectionMode: 'single' | 'multiple' | null = null;
@@ -86,14 +102,27 @@ export class RxTable extends BaseComponent implements OnInit {
   }
   set sortField(val: string | undefined | null) {
     this._sortField = val;
+    this.updateSortMeta();
   }
+
   @Input() get sortOrder(): number {
     return this._sortOrder;
   }
   set sortOrder(val: number) {
     this._sortOrder = val;
+    this.updateSortMeta();
   }
-  @Input() multiSortMeta: SortMeta[] = [];
+
+  @Input() get sortIcon(): string {
+    return this._sortIcon;
+  }
+  set sortIcon(val: string) {
+    this._sortIcon = val;
+    this.updateSortMeta();
+  }
+
+  @Input() rows: number = 10;
+  @Input() page: number = 0;
   @Input() sortMode: 'single' | 'multiple' = 'single';
   @Input() defaultSortOrder: number = 1;
 
@@ -107,29 +136,43 @@ export class RxTable extends BaseComponent implements OnInit {
     return this.value || [];
   }
 
-  _value: any[] = [];
+  get pagedData(): any[] {
+    const start = this.page * this.rows;
+    const end = start + this.rows;
+    return this.value.slice(start, end);
+  }
 
-  _sortField: string | undefined | null;
+  private _value: any[] = [];
+  private _sortField: string | undefined | null = undefined;
+  private _sortOrder: number = 1;
+  private _sortIcon: string = '';
+  public _table: RxTableService = inject(RxTableService);
 
-  _sortOrder: number = 1;
+  constructor() {
+    super();
+  }
 
-  public tableService: RxTableService = inject(RxTableService);
-
-  ngOnInit() {
-    this.tableService.onValueChange(this.value);
+  ngOnInit(): void {
+    this.updatePagination();
+    this._table.onValueChange(this._value);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['value']) {
-      this.tableService.onValueChange(this.value);
+      this.updatePagination();
+      this._table.onValueChange(this._value);
+    }
+    if (changes['sortField'] || changes['sortOrder'] || changes['sortIcon']) {
+      this.updateSortMeta();
     }
     this.cd.detectChanges();
   }
 
-  dataToRender(data: any) {
-    const _data = data || this.processedData;
-
-    return _data;
+  updateSortMeta() {
+    this._table.onSort({
+      field: this._sortField,
+      order: this._sortOrder
+    });
   }
 
   sortData(event: any) {
@@ -173,8 +216,17 @@ export class RxTable extends BaseComponent implements OnInit {
     };
 
     this.sortChange.emit(sortMeta);
-    this.tableService.onSort(sortMeta);
+    this._table.onSort(sortMeta);
     this.cd.detectChanges();
+  }
+
+  onPageChange(event: any) {
+    this.page = event.page;
+    this.cd.detectChanges();
+  }
+
+  updatePagination() {
+    this.page = 0;
   }
 
   isSorted(field: string) {
@@ -184,61 +236,41 @@ export class RxTable extends BaseComponent implements OnInit {
     return false;
   }
 
+  isSortedUp(field: string) {
+    return this.isSorted(field) && this.sortOrder === 1;
+  }
+
+  isSortedDown(field: string) {
+    return this.isSorted(field) && this.sortOrder === -1;
+  }
+
   isSelected(rowData: any): boolean {
     if (!this.selection || !rowData) {
       return false;
     }
 
-    if (!this.dataKey) {
-      return this.selection === rowData;
-    }
-
     if (this.selectionMode === 'single') {
-      return this.selection[this.dataKey] === rowData[this.dataKey];
-    } else if (this.selectionMode === 'multiple') {
-      if (Array.isArray(this.selection)) {
-        return this.selection.some(
-          (selectedRow) => selectedRow[this.dataKey] === rowData[this.dataKey]
-        );
-      }
+      return this.selection === rowData;
+    } else {
+      return (this.selection as any[]).includes(rowData);
     }
-    return false;
   }
 
-  onRowSelect(rowData: any) {
-    if (!this.selectionMode) {
-      return;
-    }
-
+  selectRow(rowData: any) {
     if (this.selectionMode === 'single') {
       this.selection = rowData;
     } else if (this.selectionMode === 'multiple') {
-      if (!Array.isArray(this.selection)) {
-        this.selection = [];
-      }
-      this.selection = [...this.selection, rowData];
-    }
+      const selection = this.selection as any[];
+      const index = selection.indexOf(rowData);
 
-    this.selectionChange.emit(this.selection);
-    this.tableService.onSelectionChange();
-  }
-
-  onRowUnselect(rowData: any) {
-    if (!this.selectionMode) {
-      return;
-    }
-
-    if (this.selectionMode === 'single') {
-      this.selection = null;
-    } else if (this.selectionMode === 'multiple') {
-      if (Array.isArray(this.selection)) {
-        this.selection = this.selection.filter(
-          (val) => val[this.dataKey] === rowData[this.dataKey]
-        );
+      if (index === -1) {
+        selection.push(rowData);
+      } else {
+        selection.splice(index, 1);
       }
     }
 
     this.selectionChange.emit(this.selection);
-    this.tableService.onSelectionChange();
+    this.cd.detectChanges();
   }
 }
