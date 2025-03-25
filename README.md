@@ -1,6 +1,50 @@
-# Monorepo
+# Remanx UI Library
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.4.
+Une bibliothèque de composants Angular modernes et réactifs, conçue pour faciliter le développement d'applications web professionnelles.
+
+## Composants Disponibles
+
+### RxTable
+Un composant de tableau avancé avec les fonctionnalités suivantes :
+- Tri des colonnes (simple)
+- Sélection de lignes (simple ou multiple)
+- Affichage de bordures de grille
+- Message personnalisable en cas de données vides
+- Pagination
+- Tri multiple
+- Support des thèmes
+- Styles responsifs
+
+## Installation
+
+Pour installer la bibliothèque, utilisez la commande suivante :
+
+```bash
+npm install @remanx/ui-ng
+```
+
+## Structure du Projet
+
+```
+remanx/
+├── projects/
+│   └── remanx/ui-ng/
+│       ├── components/
+│       │   ├── table/
+│       │   │   ├── table.ts
+│       │   │   ├── tablebody.ts
+│       │   │   ├── table.stories.ts
+│       │   │   └── data/
+│       │   │       └── products.ts
+│       │   └── base/
+│       │       └── basecomponent.ts
+│       └── pagination/
+│           └── pagination.ts
+└── src/
+    └── lib/
+        └── table/
+            └── table.module.ts
+```
 
 ## Development server
 
@@ -57,3 +101,24 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Documentation
+
+La documentation complète est disponible dans les stories de chaque composant. Vous pouvez l'explorer en lançant Storybook :
+
+```bash
+ng run remanx:storybook
+```
+
+## Ressources Supplémentaires
+
+Pour plus d'informations sur l'utilisation de l'Angular CLI, y compris les références détaillées des commandes, consultez la [Documentation Angular CLI](https://angular.dev/tools/cli).
+
+## Contributeurs
+
+- [Dexarys](https://github.com/Dexarys)
+- [Contributors](https://github.com/Dexarys/remanxng/graphs/contributors)
+
+## Licence
+
+Ce projet est sous licence GNU GPL v3. Voir le fichier [LICENSE](LICENSE) pour plus de détails.

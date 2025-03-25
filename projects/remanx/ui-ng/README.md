@@ -1,6 +1,6 @@
-# UiNg
+# Remanx UI NG
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.0.
+La bibliothèque Angular de composants pour Remanx, conçue pour faciliter le développement d'applications web modernes et réactives.
 
 ## Code scaffolding
 
@@ -16,9 +16,50 @@ For a complete list of available schematics (such as `components`, `directives`,
 ng generate --help
 ```
 
-## Building
+## 🚀 Composants Disponibles
 
-To build the library, run:
+### RxTable
+Un composant de tableau avancé avec les fonctionnalités suivantes :
+- 🔄 Tri des colonnes (simple)
+- 🎯 Sélection de lignes (simple ou multiple)
+- 📊 Affichage de bordures de grille
+- 📝 Message personnalisable en cas de données vides
+- 🔄 Pagination
+- 🔄 Tri multiple
+- 🔄 Support des thèmes
+- 📱 Styles responsifs
+
+### RxPagination
+Un composant de pagination simple et élégant pour naviguer dans vos listes de données.
+
+## 🛠️ Installation
+
+Pour installer la bibliothèque, utilisez la commande suivante :
+
+```bash
+npm install @remanx/ui-ng
+```
+
+## 🏗️ Structure du Projet
+
+```
+ui-ng/
+├── components/
+│   ├── table/
+│   │   ├── table.ts
+│   │   ├── tablebody.ts
+│   │   ├── table.stories.ts
+│   │   └── data/
+│   │       └── products.ts
+│   └── base/
+│       └── basecomponent.ts
+└── pagination/
+    └── pagination.ts
+```
+
+## 🚀 Building
+
+Pour compiler le projet, exécutez la commande suivante :
 
 ```bash
 ng build ui-ng
@@ -40,24 +81,43 @@ Once the project is built, you can publish your library by following these steps
    npm publish
    ```
 
-## Running unit tests
+## 🧪 Tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Unit Tests
+
+Pour exécuter les tests unitaires avec [Karma](https://karma-runner.github.io), utilisez la commande :
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+### End-to-End Tests
 
-For end-to-end (e2e) testing, run:
+Pour les tests end-to-end, exécutez :
 
 ```bash
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Note : Angular CLI ne fournit pas de framework de test end-to-end par défaut. Choisissez celui qui convient le mieux à vos besoins.
 
-## Additional Resources
+## 📚 Documentation
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+La documentation complète est disponible dans les stories de chaque composant. Vous pouvez l'explorer en lançant Storybook :
+
+```bash
+ng run remanx:storybook
+```
+
+## 📚 Ressources Supplémentaires
+
+Pour plus d'informations sur l'utilisation de l'Angular CLI, y compris les références détaillées des commandes, consultez la [Documentation Angular CLI](https://angular.dev/tools/cli).
+
+## 📝 Contributeurs
+
+- [Dexarys](https://github.com/Dexarys)
+- [Contributors](https://github.com/Dexarys/remanxng/graphs/contributors)
+
+## 📝 Licence
+
+Ce projet est sous licence GNU GPL v3. Voir le fichier [LICENSE](LICENSE) pour plus de détails.

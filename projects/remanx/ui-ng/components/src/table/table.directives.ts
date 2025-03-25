@@ -31,7 +31,7 @@ export class RxSortableColumn {
       );
     }
     if (this.isEnabled()) {
-      this.subscription = this.dt.tableService.sortSource$.subscribe(() => {
+      this.subscription = this.dt._table.sortSource$.subscribe(() => {
         this.updateSortState();
       });
     }
@@ -99,7 +99,7 @@ export class RxSelectableRow {
         'RxSortableColumn must be used inside an RxTable component.'
       );
     }
-    this.subscription = this.table.tableService.selectionSource$.subscribe(
+    this.subscription = this.table._table.selectionSource$.subscribe(
       () => {
         this.selected = this.table.isSelected(this.data);
       }
@@ -114,9 +114,9 @@ export class RxSelectableRow {
   onClick(event: Event) {
     if (!this.rxSelectableRowDisabled) {
       if (this.selected) {
-        this.table.onRowUnselect(this.data);
+        // this.table.onRowUnselect(this.data);
       } else {
-        this.table.onRowSelect(this.data);
+        // this.table.onRowSelect(this.data);
       }
     }
   }
@@ -150,7 +150,7 @@ export class RxSortIcon {
         'RxSortableColumn must be used inside an RxTable component.'
       );
     }
-    this.subscription = this.table.tableService.sortSource$.subscribe(() => {
+    this.subscription = this.table._table.sortSource$.subscribe(() => {
       this.updateSortState();
     });
   }

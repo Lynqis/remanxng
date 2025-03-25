@@ -47,7 +47,7 @@ import { NgClass, NgIf } from '@angular/common';
     '[attr.data-pc-name]': '"avatar"',
     '[attr.aria-label]': 'ariaLabel',
     '[attr.aria-labelledby]': 'ariaLabelledBy',
-    '[style]': '_style',
+    '[style]': '$style',
   },
   providers: [],
   styleUrls: ['./avatar.css']
@@ -82,12 +82,12 @@ export class RxAvatar extends BaseComponent {
    * Inline style of the element.
    * @group Props
    */
-  @Input() _style: { [klass: string]: any } | null | undefined;
+  @Input() $style: { [klass: string]: any } | null | undefined;
   /**
    * Class of the element.
    * @group Props
    */
-  @Input() _class: string | undefined;
+  @Input() $class: string | undefined;
   /**
    * Establishes a string value that labels the component.
    * @group Props
@@ -110,6 +110,6 @@ export class RxAvatar extends BaseComponent {
   }
 
   @HostBinding('class') get hostClass(): any {
-    return this._class;
+    return this.$class;
   }
 }

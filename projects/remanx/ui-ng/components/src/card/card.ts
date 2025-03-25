@@ -11,8 +11,8 @@ import { Component, Input } from "@angular/core";
         [ngClass]="{
           'rx-card': !noStyle
         }"
-        [ngStyle]="_style"
-        [class]="_class"
+        [ngStyle]="$style"
+        [class]="$class"
       >
         <ng-content></ng-content>
       </div>
@@ -23,6 +23,6 @@ import { Component, Input } from "@angular/core";
 })
 export class RxCard {
   @Input() noStyle: boolean = false;
-  @Input() _style: { [klass: string]: any } | null | undefined;
-  @Input() _class: string = '';
+  @Input() $style: { [klass: string]: any } | null | undefined;
+  @Input() $class: string = '';
 }

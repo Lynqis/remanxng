@@ -1,5 +1,6 @@
 import type { StorybookConfig } from "@storybook/angular";
 import { join, dirname } from "path";
+import remarkGfm from 'remark-gfm';
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -15,9 +16,24 @@ const config: StorybookConfig = {
     "../components/**/*.@(mdx|stories.@(js|jsx|mjs|ts|tsx))"
   ],
   addons: [
-    getAbsolutePath("@storybook/addon-essentials"),
     getAbsolutePath("@storybook/addon-interactions"),
-    "@chromatic-com/storybook"
+    getAbsolutePath("@chromatic-com/storybook"),
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        docs: true
+      },
+    },
+    {
+      name: "@storybook/addon-docs",
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            remarkPlugins: [remarkGfm],
+          },
+        },
+      }
+    }
   ],
   framework: {
     name: getAbsolutePath("@storybook/angular"),

@@ -44,8 +44,8 @@ import { Subscription } from 'rxjs';
     <div
       *ngIf="render"
       class="rx-popover"
-      [ngClass]="_class"
-      [ngStyle]="_style"
+      [ngClass]="$class"
+      [ngStyle]="$style"
       (click)="onOverlayClick($event)"
       [@animation]="{
         value: overlayVisible ? 'open' : 'close',
@@ -123,12 +123,12 @@ export class RxPopover
    * Inline style of the component.
    * @group Props
    */
-  @Input() _style: { [klass: string]: any } | null | undefined;
+  @Input() $style: { [klass: string]: any } | null | undefined;
   /**
    * Style class of the component.
    * @group Props
    */
-  @Input() _class: string | undefined;
+  @Input() $class: string | undefined;
   /**
    * Target element to attach the panel, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
    * @group Props
