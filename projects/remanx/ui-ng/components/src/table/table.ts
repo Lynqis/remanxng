@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ContentChild,
@@ -14,12 +15,17 @@ import {
 import { NgClass, NgTemplateOutlet, NgStyle, NgIf } from '@angular/common';
 import { Subject } from 'rxjs';
 import { BaseComponent } from '../base/basecomponent';
-import { ObjectUtils, SortMeta, TemplateNull } from '@remanx/ui-ng/api';
+import {
+  ObjectUtils,
+  SortMeta,
+  TemplateNull,
+  UniqueComponentId,
+} from '@remanx/ui-ng/api';
 import { RxTableBody } from './tablebody';
 import { RxPagination } from '../pagination/pagination';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RxTableService {
   private sortSource = new Subject<SortMeta>();
@@ -43,6 +49,8 @@ export class RxTableService {
   }
 }
 
+let instanceCounter = 0;
+
 @Component({
   selector: 'rx-table',
   template: `
@@ -51,7 +59,12 @@ export class RxTableService {
         class="rx-table-wrapper"
         [ngClass]="{ 'rx-table-gridlines': showGridlines }"
       >
-        <table class="rx-table" [ngClass]="tableClass" [ngStyle]="tableStyle">
+        <table
+          class="rx-table"
+          [ngClass]="tableClass"
+          [ngStyle]="tableStyle"
+          [attr.id]="id"
+        >
           <thead>
             <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
           </thead>
@@ -74,13 +87,20 @@ export class RxTableService {
     </div>
   `,
   standalone: true,
-  imports: [NgClass, NgTemplateOutlet, NgStyle, NgIf, RxPagination, RxTableBody],
+  imports: [
+    NgClass,
+    NgTemplateOutlet,
+    NgStyle,
+    NgIf,
+    RxPagination,
+    RxTableBody,
+  ],
   providers: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./table.css']
+  styleUrls: ['./table.css'],
 })
-export class RxTable extends BaseComponent implements OnInit {
+export class RxTable extends BaseComponent implements OnInit, AfterViewInit {
   @Input() get value(): any[] {
     return this._value;
   }
@@ -96,7 +116,7 @@ export class RxTable extends BaseComponent implements OnInit {
   @Input() emptyMessage: string = 'Aucune donnée disponible';
   @Input() selection: any;
   @Input() selectionMode: 'single' | 'multiple' | null = null;
-  @Input() dataKey: string = '';
+  @Input() key: string = '';
   @Input() get sortField(): string | undefined | null {
     return this._sortField;
   }
@@ -129,7 +149,8 @@ export class RxTable extends BaseComponent implements OnInit {
   @Output() selectionChange = new EventEmitter<any>();
   @Output() sortChange = new EventEmitter<SortMeta>();
 
-  @ContentChild('header', { descendants: false }) headerTemplate: TemplateNull<any>;
+  @ContentChild('header', { descendants: false })
+  headerTemplate: TemplateNull<any>;
   @ContentChild('body', { descendants: false }) bodyTemplate: TemplateNull<any>;
 
   get processedData() {
@@ -137,6 +158,9 @@ export class RxTable extends BaseComponent implements OnInit {
   }
 
   get pagedData(): any[] {
+    if (!this.value) {
+      return [];
+    }
     const start = this.page * this.rows;
     const end = start + this.rows;
     return this.value.slice(start, end);
@@ -147,6 +171,10 @@ export class RxTable extends BaseComponent implements OnInit {
   private _sortOrder: number = 1;
   private _sortIcon: string = '';
   public _table: RxTableService = inject(RxTableService);
+
+  instanceId: number = ++instanceCounter;
+
+  id: string = UniqueComponentId();
 
   constructor() {
     super();
@@ -168,10 +196,14 @@ export class RxTable extends BaseComponent implements OnInit {
     this.cd.detectChanges();
   }
 
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
+
   updateSortMeta() {
     this._table.onSort({
       field: this._sortField,
-      order: this._sortOrder
+      order: this._sortOrder,
     });
   }
 
@@ -191,7 +223,6 @@ export class RxTable extends BaseComponent implements OnInit {
     const order: number = this.sortField ? this.sortOrder : 1;
 
     if (this.sortMode === 'single') {
-      console.log('sortSingle =>', field);
       this.value.sort((a: any, b: any) => {
         let value1 = ObjectUtils.resolveFieldData(a, field);
         let value2 = ObjectUtils.resolveFieldData(b, field);
@@ -217,12 +248,12 @@ export class RxTable extends BaseComponent implements OnInit {
 
     this.sortChange.emit(sortMeta);
     this._table.onSort(sortMeta);
-    this.cd.detectChanges();
+    this.cd.markForCheck();
   }
 
   onPageChange(event: any) {
     this.page = event.page;
-    this.cd.detectChanges();
+    this.cd.markForCheck();
   }
 
   updatePagination() {
@@ -271,6 +302,6 @@ export class RxTable extends BaseComponent implements OnInit {
     }
 
     this.selectionChange.emit(this.selection);
-    this.cd.detectChanges();
+    this.cd.markForCheck();
   }
 }
