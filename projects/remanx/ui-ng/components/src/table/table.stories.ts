@@ -31,7 +31,7 @@ const meta: Meta<RxTable> = {
       description: {
         component: 'Un composant de tableau avancé avec tri et sélection.',
       },
-    },
+    }
   },
   argTypes: {
     value: {
@@ -93,18 +93,6 @@ const meta: Meta<RxTable> = {
 export default meta;
 type Story = StoryObj<RxTable>;
 
-interface Product {
-  id: number;
-  code: string;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  quantity: number;
-  inventoryStatus: string;
-  rating: number;
-}
-
 /**
  * Exemple de base avec tri des colonnes.
  *
@@ -113,7 +101,7 @@ interface Product {
  */
 export const Basic: Story = {
   args: {
-    value: products,
+    value: [...products],
     showGridlines: true,
     emptyMessage: 'Aucune donnée disponible',
   },
@@ -122,11 +110,13 @@ export const Basic: Story = {
       ...args,
       sortField: '',
       sortOrder: 1,
+      key: 'basic'
     },
     template: `
       <rx-table [value]="value"
                 [showGridlines]="showGridlines"
                 [emptyMessage]="emptyMessage"
+                [attr.data-key]="key"
                 >
         <ng-template #header>
           <tr>
@@ -168,7 +158,7 @@ export const Basic: Story = {
  */
 export const MultipleSelection: Story = {
   args: {
-    value: products,
+    value: [...products],
     showGridlines: true,
     selectionMode: 'multiple',
     emptyMessage: 'Aucune donnée disponible',
@@ -215,7 +205,7 @@ export const MultipleSelection: Story = {
  */
 export const NoSelection: Story = {
   args: {
-    value: products,
+    value: [...products],
     showGridlines: true,
     emptyMessage: 'Aucune donnée disponible',
   },
@@ -301,7 +291,7 @@ export const EmptyTable: Story = {
  */
 export const Pagination: Story = {
   args: {
-    value: products,
+    value: [...products],
     showGridlines: true,
     emptyMessage: 'Aucune donnée disponible',
     rows: 5,
@@ -309,11 +299,13 @@ export const Pagination: Story = {
   render: (args) => ({
     props: {
       ...args,
+      key: 'pagination'
     },
     template: `
       <rx-table [value]="value"
                 [showGridlines]="showGridlines"
                 [emptyMessage]="emptyMessage"
+                [attr.data-key]="key"
                 [rows]="rows">
         <ng-template #header>
           <tr>

@@ -1,8 +1,7 @@
 import { Meta, Story } from '@storybook/addon-docs/blocks';
 import { RxTable } from './table';
 import { RxPagination } from '../pagination/pagination';
-import { RxTableBody } from './tablebody';
-import * as RxTableStories from './table.stories.ts';
+import * as RxTableStories from './table.stories';
 
 <Meta title='Data/RxTable' of={RxTableStories} />
 
@@ -28,7 +27,7 @@ import { RxTable } from '@remanx/ui-ng/components/table';
 
 ### Table de base
 
-<Story name="Base" />
+<Story name="Basic" of={RxTableStories.Basic} />
 
 ```html
 <rx-table [value]="data">
@@ -48,7 +47,7 @@ import { RxTable } from '@remanx/ui-ng/components/table';
 
 ### Table avec pagination
 
-<Story name="WithPagination" />
+<Story name="Pagination" of={RxTableStories.Pagination} />
 
 ```html
 <rx-table [value]="data" [rows]="10">
@@ -68,7 +67,6 @@ import { RxTable } from '@remanx/ui-ng/components/table';
 
 ### Table avec tri
 
-<Story name="WithSorting" />
 
 ```html
 <rx-table [value]="data" [sortMode]="'single'">
@@ -91,7 +89,6 @@ import { RxTable } from '@remanx/ui-ng/components/table';
 
 ### Table avec sélection
 
-<Story name="WithSelection" />
 
 ```html
 <rx-table [value]="data" [selectionMode]="'single'">

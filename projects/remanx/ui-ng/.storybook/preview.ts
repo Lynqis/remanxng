@@ -17,6 +17,9 @@ const preview: Preview = {
         order: ['Introduction', '*'],
       },
     },
+    docs: {
+      disable: false
+    }
   },
 
   tags: ["autodocs"]
