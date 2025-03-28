@@ -76,14 +76,15 @@ let instanceCounter = 0;
         </table>
       </div>
 
-      <rx-pagination
-        *ngIf="value && value.length > 0"
-        [value]="value"
-        [rows]="rows"
-        [totalRecords]="value.length"
-        (pageChange)="onPageChange($event)"
-        (rowsChange)="rows = $event"
-      ></rx-pagination>
+      @if (value && value.length > 0) {
+        <rx-pagination
+          [value]="value"
+          [rows]="rows"
+          [totalRecords]="value.length"
+          (pageChange)="onPageChange($event)"
+          (rowsChange)="rows = $event"
+        ></rx-pagination>
+      }
     </div>
   `,
   standalone: true,
@@ -91,7 +92,6 @@ let instanceCounter = 0;
     NgClass,
     NgTemplateOutlet,
     NgStyle,
-    NgIf,
     RxPagination,
     RxTableBody,
   ],

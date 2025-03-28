@@ -5,16 +5,12 @@ import {
   NgTemplateOutlet,
 } from '@angular/common';
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  ContentChildren,
   EventEmitter,
   Input,
   Output,
-  QueryList,
-  TemplateRef,
 } from '@angular/core';
 import {
   AnimationEvent,
@@ -28,7 +24,6 @@ import {
 import {
   Nullable,
   Position,
-  RxTemplate,
   TemplateNull,
   VoidListener,
 } from '@remanx/ui-ng/api';
