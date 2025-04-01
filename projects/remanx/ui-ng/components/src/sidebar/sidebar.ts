@@ -1,16 +1,13 @@
-import { AsyncPipe, NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
+import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChildren,
+  ContentChild,
   inject,
   Input,
-  QueryList,
-  TemplateRef,
 } from '@angular/core';
-import { Nullable, RxTemplate } from '@remanx/ui-ng/api';
+import { TemplateNull } from '@remanx/ui-ng/api';
 import { LayoutService } from '../layout/layout.service';
 
 @Component({
@@ -25,27 +22,31 @@ import { LayoutService } from '../layout/layout.service';
         'rx-sidebar-overlay': overlay,
       }"
     >
-      <div
-      *ngIf="_layout.sidebarVisible()"
-      >
-        <ng-container *ngIf="headlessTemplate; else notHeadless">
-          <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
-        </ng-container>
+      @if (_layout.sidebarVisible()) {
+        <div
+        >
+          @if (headlessTemplate) {
+            <ng-container>
+              <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
+            </ng-container>
+          } @else {
+            <ng-template #notHeadless>
+              <div #content class="rx-sidebar-content">
+                <ng-content></ng-content>
+              </div>
+            </ng-template>
+          }
 
-        <ng-template #notHeadless>
-          <div #content class="rx-sidebar-content">
-            <ng-content></ng-content>
-          </div>
-        </ng-template>
-      </div>
+        </div>
+      }
     </div>
   `,
     selector: 'rx-sidebar',
     styleUrl: './sidebar.css',
-    imports: [NgIf, NgClass, NgTemplateOutlet],
+    imports: [NgClass, NgTemplateOutlet],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RxSidebar implements AfterContentInit {
+export class RxSidebar {
   @Input() overlay: boolean = false;
   @Input()
   set visible(value: boolean) {
@@ -69,9 +70,7 @@ export class RxSidebar implements AfterContentInit {
   @Input() $class: string = '';
   @Input() $style: string = '';
 
-  @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
-
-  headlessTemplate: Nullable<TemplateRef<any>>;
+  @ContentChild('headless', { descendants: false }) headlessTemplate: TemplateNull<any>;
 
   _visible: boolean = false;
 
@@ -80,12 +79,4 @@ export class RxSidebar implements AfterContentInit {
   _layout: LayoutService = inject(LayoutService);
 
   private cd: ChangeDetectorRef = inject(ChangeDetectorRef);
-
-  ngAfterContentInit(): void {
-    this.templates?.forEach((item) => {
-      if (item.getType() === 'headless') {
-        this.headlessTemplate = item.template;
-      }
-    });
-  }
 }

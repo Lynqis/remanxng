@@ -8,12 +8,10 @@ import {
 } from '@angular/animations';
 import { isPlatformBrowser, NgClass, NgIf, NgStyle } from '@angular/common';
 import {
-  AfterContentInit,
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  ContentChildren,
   ElementRef,
   EventEmitter,
   HostListener,
@@ -23,52 +21,48 @@ import {
   numberAttribute,
   OnDestroy,
   Output,
-  QueryList,
   TemplateRef,
   ViewEncapsulation,
   ViewRef,
 } from '@angular/core';
 import { BaseComponent } from '../base/basecomponent';
-import { Dom, Nullable, RxTemplate, VoidListener, ZIndexUtils } from '@remanx/ui-ng/api';
+import { Dom, Nullable, TemplateNull, VoidListener, ZIndexUtils } from '@remanx/ui-ng/api';
 import { Subscription } from 'rxjs';
 
-/**
- * Popover is a container component that can overlay other components on page.
- * @group Components
- */
 @Component({
   selector: 'rx-popover',
   standalone: true,
-  imports: [NgIf, NgClass, NgStyle],
+  imports: [NgClass, NgStyle],
   template: `
-    <div
-      *ngIf="render"
-      class="rx-popover"
-      [ngClass]="$class"
-      [ngStyle]="$style"
-      (click)="onOverlayClick($event)"
-      [@animation]="{
-        value: overlayVisible ? 'open' : 'close',
-        params: {
-          showTransitionParams: showTransitionOptions,
-          hideTransitionParams: hideTransitionOptions
-        }
-      }"
-      (@animation.start)="onAnimationStart($event)"
-      (@animation.done)="onAnimationEnd($event)"
-      role="dialog"
-      [attr.aria-modal]="overlayVisible"
-      [attr.aria-label]="ariaLabel"
-      [attr.aria-labelledBy]="ariaLabelledBy"
-    >
+    @if (render) {
       <div
-        class="rx-popover-content"
-        (click)="onContentClick($event)"
-        (mousedown)="onContentClick($event)"
+        class="rx-popover"
+        [ngClass]="$class"
+        [ngStyle]="$style"
+        (click)="onOverlayClick($event)"
+        [@animation]="{
+          value: overlayVisible ? 'open' : 'close',
+          params: {
+            showTransitionParams: showTransitionOptions,
+            hideTransitionParams: hideTransitionOptions
+          }
+        }"
+        (@animation.start)="onAnimationStart($event)"
+        (@animation.done)="onAnimationEnd($event)"
+        role="dialog"
+        [attr.aria-modal]="overlayVisible"
+        [attr.aria-label]="ariaLabel"
+        [attr.aria-labelledBy]="ariaLabelledBy"
       >
-        <ng-content></ng-content>
+        <div
+          class="rx-popover-content"
+          (click)="onContentClick($event)"
+          (mousedown)="onContentClick($event)"
+        >
+          <ng-content></ng-content>
+        </div>
       </div>
-    </div>
+    }
   `,
   animations: [
     trigger('animation', [
@@ -102,37 +96,13 @@ import { Subscription } from 'rxjs';
 })
 export class RxPopover
   extends BaseComponent
-  implements AfterContentInit, OnDestroy
+  implements OnDestroy
 {
-  /**
-   * Defines a string that labels the input for accessibility.
-   * @group Props
-   */
-  @Input() ariaLabel: string | undefined;
-  /**
-   * Establishes relationships between the component and label(s) where its value should be one or more element IDs.
-   * @group Props
-   */
+    @Input() ariaLabel: string | undefined;
   @Input() ariaLabelledBy: string | undefined;
-  /**
-   * Enables to hide the overlay when outside is clicked.
-   * @group Props
-   */
   @Input({ transform: booleanAttribute }) dismissable: boolean = true;
-  /**
-   * Inline style of the component.
-   * @group Props
-   */
   @Input() $style: { [klass: string]: any } | null | undefined;
-  /**
-   * Style class of the component.
-   * @group Props
-   */
   @Input() $class: string | undefined;
-  /**
-   * Target element to attach the panel, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
-   * @group Props
-   */
   @Input() appendTo:
     | HTMLElement
     | ElementRef
@@ -141,45 +111,13 @@ export class RxPopover
     | null
     | undefined
     | any = 'body';
-  /**
-   * Whether to automatically manage layering.
-   * @group Props
-   */
   @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
-  /**
-   * Aria label of the close icon.
-   * @group Props
-   */
   @Input() ariaCloseLabel: string | undefined;
-  /**
-   * Base zIndex value to use in layering.
-   * @group Props
-   */
   @Input({ transform: numberAttribute }) baseZIndex: number = 0;
-  /**
-   * When enabled, first button receives focus on show.
-   * @group Props
-   */
   @Input({ transform: booleanAttribute }) focusOnShow: boolean = true;
-  /**
-   * Transition options of the show animation.
-   * @group Props
-   */
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
-  /**
-   * Transition options of the hide animation.
-   * @group Props
-   */
   @Input() hideTransitionOptions: string = '.1s linear';
-  /**
-   * Callback to invoke when an overlay becomes visible.
-   * @group Emits
-   */
   @Output() onShow: EventEmitter<any> = new EventEmitter();
-  /**
-   * Callback to invoke when an overlay gets hidden.
-   * @group Emits
-   */
   @Output() onHide: EventEmitter<any> = new EventEmitter<any>();
 
   container: Nullable<HTMLDivElement>;
@@ -200,17 +138,7 @@ export class RxPopover
 
   documentResizeListener: VoidListener;
 
-  /**
-   * Custom content template.
-   * @group Templates
-   */
-  @ContentChild('content', { descendants: false }) contentTemplate: Nullable<
-    TemplateRef<any>
-  >;
-
-  @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
-
-  _contentTemplate: TemplateRef<any> | undefined;
+  @ContentChild('headless', { descendants: false }) contentTemplate: TemplateNull<any>;
 
   destroyCallback: Nullable<Function>;
 
@@ -219,16 +147,6 @@ export class RxPopover
   overlaySubscription: Subscription | undefined;
 
   zone = inject(NgZone);
-
-  ngAfterContentInit() {
-    this.templates?.forEach((item) => {
-      switch (item.getType()) {
-        case 'content':
-          this._contentTemplate = item.template;
-          break;
-      }
-    });
-  }
 
   bindDocumentClickListener() {
     if (isPlatformBrowser(this.platformId)) {
@@ -271,12 +189,6 @@ export class RxPopover
     }
   }
 
-  /**
-   * Toggles the visibility of the panel.
-   * @param {Event} event - Browser event
-   * @param {Target} target - Target element.
-   * @group Method
-   */
   toggle(event: any, target?: any) {
     if (this.isOverlayAnimationInProgress) {
       return;
@@ -294,12 +206,7 @@ export class RxPopover
       this.show(event, target);
     }
   }
-  /**
-   * Displays the panel.
-   * @param {Event} event - Browser event
-   * @param {Target} target - Target element.
-   * @group Method
-   */
+
   show(event: any, target?: any) {
     target && event && event.stopPropagation();
     if (this.isOverlayAnimationInProgress) {
