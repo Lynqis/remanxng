@@ -1,31 +1,30 @@
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  ContentChildren,
   Input,
-  QueryList,
-  TemplateRef,
 } from '@angular/core';
-import { Nullable, RxTemplate, TemplateNull } from '@remanx/ui-ng/api';
+import { TemplateNull } from '@remanx/ui-ng/api';
 
 @Component({
     template: `
-    <ng-container *ngIf="headlessTemplate; else notTemplate">
-      <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
-    </ng-container>
+    @if (headlessTemplate) {
+      <ng-container>
+        <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
+      </ng-container>
+    } @else {
+      <ng-template #notTemplate>
+        <header class="rx-header" [style]="$style">
+            <ng-content></ng-content>
+        </header>
+      </ng-template>
+    }
 
-    <ng-template #notTemplate>
-      <header class="rx-header" [style]="$style">
-          <ng-content></ng-content>
-      </header>
-    </ng-template>
   `,
     selector: 'rx-header',
     styleUrls: ['./header.css'],
-    imports: [NgIf, NgTemplateOutlet],
+    imports: [NgTemplateOutlet],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RxHeader {

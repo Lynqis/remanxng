@@ -25,11 +25,12 @@ import { BaseComponent } from '../base/basecomponent';
     >
       <ng-template ngFor let-processedItem [ngForOf]="items" let-index="index">
         <ul class="rx-menubar-list">
-          <li *ngIf="getItemProp(processedItem, 'separator')">
+          @if (getItemProp(processedItem, 'separator')) {
+          <li>
             <div class="separator"></div>
           </li>
+          } @if (!getItemProp(processedItem, 'separator')) {
           <li
-            *ngIf="!getItemProp(processedItem, 'separator')"
             (click)="onItemClick($event, processedItem)"
             (mouseleave)="onItemMouseLeave(processedItem)"
             (mouseenter)="onItemMouseEnter(processedItem)"
@@ -41,37 +42,36 @@ import { BaseComponent } from '../base/basecomponent';
                   'rx-menubar-disabled': getItemProp(processedItem, 'disabled')
                 }"
               >
+                @if (getItemProp(processedItem, 'icon') &&
+                getItemProp(processedItem, 'iconPosition') === 'left') {
                 <span
-                  *ngIf="
-                    getItemProp(processedItem, 'icon') &&
-                    getItemProp(processedItem, 'iconPosition') === 'left'
-                  "
                   class="rx-menubar-item-icon"
                   [ngClass]="getItemProp(processedItem, 'icon')"
                 ></span>
+                }
                 <span>{{ getItemLabel(processedItem) }}</span>
+                @if (getItemProp(processedItem, 'icon') &&
+                getItemProp(processedItem, 'iconPosition') === 'right') {
                 <span
-                  *ngIf="
-                    getItemProp(processedItem, 'icon') &&
-                    getItemProp(processedItem, 'iconPosition') === 'right'
-                  "
-                  class=""
+                  class="rx-menubar-item-icon"
                   [ngClass]="getItemProp(processedItem, 'icon')"
                 ></span>
-                <div *ngIf="getItemProp(processedItem, 'items')"></div>
+                } @if (getItemProp(processedItem, 'items')) {
+                <div></div>
+                }
               </a>
             </div>
+            @if (getItemProp(processedItem, 'items') &&
+            isItemActive(processedItem)) {
             <rx-menubar-sub
-              *ngIf="
-                getItemProp(processedItem, 'items') &&
-                isItemActive(processedItem)
-              "
               [items]="processedItem.items"
               [direction]="direction"
               [level]="level + 1"
               [parentMenu]="this"
             />
+            }
           </li>
+          }
         </ul>
       </ng-template>
     </div>
@@ -89,10 +89,7 @@ export class RxMenuBarSub extends BaseComponent {
 
   @HostListener('document:click', ['$event'])
   handleClick(event: Event) {
-    if (
-      this.level === 0 &&
-      !this.el.nativeElement.contains(event.target)
-    ) {
+    if (this.level === 0 && !this.el.nativeElement.contains(event.target)) {
       this.getRootMenu().closeAllMenus();
     }
   }

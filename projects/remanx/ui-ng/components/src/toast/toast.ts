@@ -3,12 +3,13 @@ import { BaseComponent } from "../base/basecomponent";
 import { Position, Severity } from "@remanx/ui-ng/api";
 import { ToastItemCloseEvent, ToastMessage } from "@remanx/ui-ng/api/src/interfaces/message";
 import { Subject } from 'rxjs';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'rx-toastitem',
   template: `
-    <div class="rx-toast-message" *ngIf="visible" [ngClass]="message?.severity" (click)="dismiss()">
+  @if (visible) {
+    <div class="rx-toast-message" [ngClass]="message?.severity" (click)="dismiss()">
       <div class="rx-toast-content">
         <div class="rx-toast-text">
           <span class="rx-toast-title">{{ message?.title }}</span>
@@ -17,10 +18,11 @@ import { CommonModule } from '@angular/common';
       </div>
       <button class="close" (click)="dismiss()">&times;</button>
     </div>
+  }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [CommonModule],
+  imports: [NgClass],
   styleUrls: ['./toast.css']
 })
 export class RxToastItem extends BaseComponent implements OnInit, OnDestroy {

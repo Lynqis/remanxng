@@ -1,36 +1,34 @@
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  ContentChildren,
   Input,
-  QueryList,
-  TemplateRef,
 } from '@angular/core';
-import { Nullable, RxTemplate, TemplateNull } from '@remanx/ui-ng/api';
+import { TemplateNull } from '@remanx/ui-ng/api';
 
 @Component({
-    template: `
-    <ng-container *ngIf="headlessTemplate; else notTemplate">
+  template: `
+    @if (headlessTemplate) {
+    <ng-container>
       <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
     </ng-container>
-
+    } @else {
     <ng-template #notTemplate>
       <div class="rx-main-content" [style]="$style">
-          <ng-content></ng-content>
+        <ng-content></ng-content>
       </div>
     </ng-template>
+    }
   `,
-    selector: 'rx-main',
-    styleUrls: ['./main-content.css'],
-    imports: [NgIf, NgTemplateOutlet],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'rx-main',
+  styleUrls: ['./main-content.css'],
+  imports: [NgTemplateOutlet],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RxMainContent {
-
-  @ContentChild('headless', { descendants: false }) headlessTemplate: TemplateNull<any>;
+  @ContentChild('headless', { descendants: false })
+  headlessTemplate: TemplateNull<any>;
 
   @Input() $style: string = '';
 }

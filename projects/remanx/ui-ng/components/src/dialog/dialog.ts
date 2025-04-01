@@ -1,7 +1,6 @@
 import {
   isPlatformBrowser,
   NgClass,
-  NgIf,
   NgTemplateOutlet,
 } from '@angular/common';
 import {
@@ -42,11 +41,11 @@ const hideAnimation = animation([
 @Component({
   selector: 'rx-dialog',
   template: `
+  @if (render) {
     <div
       #dialog
       role="dialog"
       class="rx-dialog-mask"
-      *ngIf="render"
       [ngClass]="{
         'rx-dialog-mask-visible': maskVisible,
         'rx-dialog-mask-invisible': !maskVisible,
@@ -108,8 +107,9 @@ const hideAnimation = animation([
         }
       </div>
     </div>
+  }
   `,
-  imports: [NgIf, NgClass, NgTemplateOutlet, RxButton],
+  imports: [NgClass, NgTemplateOutlet, RxButton],
   styleUrls: ['./dialog.css'],
   animations: [
     trigger('animation', [

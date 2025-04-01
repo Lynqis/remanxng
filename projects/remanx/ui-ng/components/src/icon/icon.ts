@@ -1,60 +1,72 @@
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 import {
-  AfterContentInit,
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
-  ContentChildren,
+  ContentChild,
+  inject,
   Input,
   OnInit,
-  QueryList,
-  TemplateRef,
 } from '@angular/core';
-import { Nullable, ObjectUtils, RxTemplate } from '@remanx/ui-ng/api';
+import { ObjectUtils, TemplateNull } from '@remanx/ui-ng/api';
+import { IconRegistryService } from './icon-registry.service';
 
 @Component({
     selector: 'rx-icon',
     template: `
-    <ng-container *ngIf="headlessTemplate; else notTemplate">
-      <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
-    </ng-container>
 
-    <ng-template #notTemplate>
-      <ng-content
-        [attr.aria-label]="ariaLabel"
-        [attr.aria-hidden]="ariaHidden"
-        [attr.role]="role"
-      >
-        <span [class]="getClassNames()"></span>
-      </ng-content>
-    </ng-template>
+    @if (headlessTemplate) {
+      <ng-container>
+        <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
+      </ng-container>
+    } @else {
+      @if (iconSvg) {
+        <ng-template #notTemplate>
+          <ng-template #svgContent>
+            <span [innerHTML]="iconSvg"></span>
+          </ng-template>
+        </ng-template>
+      } @else {
+        <ng-template #notTemplate>
+          <ng-content
+            [attr.aria-label]="ariaLabel"
+            [attr.aria-hidden]="ariaHidden"
+            [attr.role]="role"
+          >
+            <span [class]="getClassNames()"></span>
+          </ng-content>
+        </ng-template>
+      }
+    }
   `,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgIf, NgTemplateOutlet]
+    imports: [NgTemplateOutlet]
 })
-export class RxIcon implements OnInit, AfterContentInit {
+export class RxIcon implements OnInit {
   @Input() label: string = '';
   @Input() styleClass: string = '';
   @Input({ transform: booleanAttribute }) spin: boolean = false;
+  @Input() iconName: string | undefined;
 
-  @ContentChildren(RxTemplate) templates: QueryList<RxTemplate> | undefined;
+  @ContentChild('headless', { descendants: false }) headlessTemplate: TemplateNull<any>;
 
-  headlessTemplate: Nullable<TemplateRef<any>>;
+  iconSvg: string | undefined;
 
-  ariaLabel?: string;
+  ariaLabel: string |undefined;
   ariaHidden: boolean = true;
-  role?: string;
+  role: string | undefined;
+
+  private _iconRegistry: IconRegistryService = inject(IconRegistryService);
 
   ngOnInit() {
     this.getAttributes();
+    this.loadIcon();
   }
 
-  ngAfterContentInit() {
-    this.templates?.forEach((item) => {
-      if (item.getType() === 'headless') {
-        this.headlessTemplate = item.template;
-      }
-    });
+  private loadIcon() {
+    if (this.iconName) {
+      this.iconSvg = this._iconRegistry.getIcon(this.iconName);
+    }
   }
 
   getAttributes() {
