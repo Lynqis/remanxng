@@ -1,0 +1,30 @@
+{
+  "name": "@dexarys/remanxng",
+  "description": "A simple angular UI",
+  "author": {
+    "name": "Fallourd Matthieu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dexarys/remanxng.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "license": "GPL-3.0-only",
+  "version": "0.1.6",
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "peerDependencies": {
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "exports": {
+    "./assets/css/reset.css": "./assets/css/reset.css"
+  }
+}
