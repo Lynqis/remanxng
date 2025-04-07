@@ -5,7 +5,7 @@ import {
   ContentChild,
   Input,
 } from '@angular/core';
-import { TemplateNull } from '@remanxng/api';
+import { TemplateNull } from '@dexarys/remanxng/api';
 
 @Component({
   template: `

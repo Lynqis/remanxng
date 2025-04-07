@@ -1,6 +1,6 @@
-import { NgClass, NgIf } from "@angular/common";
+import { NgClass } from "@angular/common";
 import { booleanAttribute, ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
-import { Severity } from "@remanxng/api";
+import { Severity } from "@dexarys/remanxng/api";
 
 @Component({
     selector: 'rx-button',

@@ -1,6 +1,6 @@
 import { moduleMetadata, Meta, StoryObj } from '@storybook/angular';
 import { RxToast } from './toast';
-import { ToastMessage } from '@remanxng/api/src/interfaces/message'; // todo
+import { ToastMessage } from '@dexarys/remanxng/api';
 
 export default {
   title: 'Messages/RxToast',

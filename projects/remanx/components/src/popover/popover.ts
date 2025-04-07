@@ -6,7 +6,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { isPlatformBrowser, NgClass, NgIf, NgStyle } from '@angular/common';
+import { isPlatformBrowser, NgClass, NgStyle } from '@angular/common';
 import {
   booleanAttribute,
   ChangeDetectionStrategy,
@@ -26,7 +26,7 @@ import {
   ViewRef,
 } from '@angular/core';
 import { BaseComponent } from '../base/basecomponent';
-import { Dom, Nullable, TemplateNull, VoidListener, ZIndexUtils } from '@remanxng/api';
+import { Dom, Nullable, TemplateNull, VoidListener, ZIndexUtils } from '@dexarys/remanxng/api';
 import { Subscription } from 'rxjs';
 
 @Component({

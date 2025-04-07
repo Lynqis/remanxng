@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { GlobalConfigService } from '@remanxng/api';
+import { GlobalConfigService } from '@dexarys/remanxng/api';
 
 @Injectable({ providedIn: 'root' })
 export class IconRegistryService {

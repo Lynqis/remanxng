@@ -16,8 +16,8 @@
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "paths": {
-      "@remanxng/*": ["./projects/remanx/*"],
-      "@remanxng/": ["./projects/remanx/"]
+      "@dexarys/remanxng/*": ["./projects/remanx/*"],
+      "@dexarys/remanxng/": ["./projects/remanx/"]
     },
     "importHelpers": true,
     "target": "ES2022",

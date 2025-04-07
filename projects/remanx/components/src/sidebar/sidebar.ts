@@ -1,4 +1,4 @@
-import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -7,7 +7,7 @@ import {
   inject,
   Input,
 } from '@angular/core';
-import { TemplateNull } from '@remanxng/api';
+import { TemplateNull } from '@dexarys/remanxng/api';
 import { LayoutService } from '../layout/layout.service';
 
 @Component({
