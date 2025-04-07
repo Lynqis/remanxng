@@ -12,7 +12,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { NgClass, NgTemplateOutlet, NgStyle, NgIf } from '@angular/common';
+import { NgClass, NgTemplateOutlet, NgStyle } from '@angular/common';
 import { Subject } from 'rxjs';
 import { BaseComponent } from '../base/basecomponent';
 import {
@@ -20,7 +20,7 @@ import {
   SortMeta,
   TemplateNull,
   UniqueComponentId,
-} from '@remanxng/api';
+} from '@dexarys/remanxng/api';
 import { RxTableBody } from './tablebody';
 import { RxPagination } from '../pagination/pagination';
 

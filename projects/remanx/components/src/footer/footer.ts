@@ -1,11 +1,11 @@
-import { NgIf, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
   Input,
 } from '@angular/core';
-import { TemplateNull } from '@remanxng/api';
+import { TemplateNull } from '@dexarys/remanxng/api';
 
 @Component({
     template: `

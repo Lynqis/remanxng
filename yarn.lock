@@ -1960,6 +1960,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@dexarys/remanxng@workspace:projects/remanx":
+  version: 0.0.0-use.local
+  resolution: "@dexarys/remanxng@workspace:projects/remanx"
+  dependencies:
+    tslib: "npm:^2.3.0"
+  peerDependencies:
+    "@angular/common": ^19.0.0
+    "@angular/core": ^19.0.0
+  languageName: unknown
+  linkType: soft
+
 "@discoveryjs/json-ext@npm:0.6.3":
   version: 0.6.3
   resolution: "@discoveryjs/json-ext@npm:0.6.3"
@@ -3370,17 +3381,6 @@ __metadata:
   checksum: 10c0/5bd7576bb1b38a47a7fc7b51ac9f38748e772beebc56200450c4a817d712232b8f1d3ef70532c80840243c657d491cf6a6be1e3a214cff907645819fdc34aadd
   languageName: node
   linkType: hard
-
-"@remanx/ui-ng@workspace:projects/remanx/ui-ng":
-  version: 0.0.0-use.local
-  resolution: "@remanx/ui-ng@workspace:projects/remanx/ui-ng"
-  dependencies:
-    tslib: "npm:^2.3.0"
-  peerDependencies:
-    "@angular/common": ^19.0.0
-    "@angular/core": ^19.0.0
-  languageName: unknown
-  linkType: soft
 
 "@rollup/plugin-json@npm:^6.1.0":
   version: 6.1.0

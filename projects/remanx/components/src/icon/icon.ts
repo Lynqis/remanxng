@@ -8,7 +8,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { ObjectUtils, TemplateNull } from '@remanxng/api';
+import { ObjectUtils, TemplateNull } from '@dexarys/remanxng/api';
 import { IconRegistryService } from './icon-registry.service';
 
 @Component({

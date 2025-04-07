@@ -1,6 +1,6 @@
 import { Component, HostListener, Input } from "@angular/core";
 import { BaseComponent } from "../base/basecomponent";
-import { VoidListener } from "@remanxng/api";
+import { VoidListener } from "@dexarys/remanxng/api";
 
 @Component({
   selector: 'rx-image',

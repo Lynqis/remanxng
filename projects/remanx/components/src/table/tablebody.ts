@@ -11,7 +11,7 @@ import {
 import { BaseComponent } from '../base/basecomponent';
 import { RxTableService } from './table';
 import { NgTemplateOutlet } from '@angular/common';
-import { TemplateNull } from '@remanxng/api';
+import { TemplateNull } from '@dexarys/remanxng/api';
 import { Subscription } from 'rxjs';
 
 @Component({
