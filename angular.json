@@ -3,23 +3,23 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "@remanx/ui-ng": {
+    "@dexarys/remanxng": {
       "projectType": "library",
-      "root": "projects/remanx/ui-ng",
-      "sourceRoot": "projects/remanx/ui-ng/src",
+      "root": "projects/remanx",
+      "sourceRoot": "projects/remanx/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/remanx/ui-ng/ng-package.json"
+            "project": "projects/remanx/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/remanx/ui-ng/tsconfig.lib.prod.json"
+              "tsConfig": "projects/remanx/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/remanx/ui-ng/tsconfig.lib.json"
+              "tsConfig": "projects/remanx/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,7 +27,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/remanx/ui-ng/tsconfig.spec.json",
+            "tsConfig": "projects/remanx/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -37,14 +37,14 @@
         "storybook": {
           "builder": "@storybook/angular:start-storybook",
           "options": {
-            "configDir": "projects/remanx/ui-ng/.storybook",
-            "browserTarget": "@remanx/ui-ng:build",
+            "configDir": "projects/remanx/.storybook",
+            "browserTarget": "@dexarys/remanxng:build",
             "compodoc": true,
             "compodocArgs": [
               "-e",
               "json",
               "-d",
-              "projects/remanx/ui-ng"
+              "projects/remanx"
             ],
             "port": 6006
           }
@@ -52,14 +52,14 @@
         "build-storybook": {
           "builder": "@storybook/angular:build-storybook",
           "options": {
-            "configDir": "projects/remanx/ui-ng/.storybook",
-            "browserTarget": "@remanx/ui-ng:build",
+            "configDir": "projects/remanx/.storybook",
+            "browserTarget": "@dexarys/remanxng:build",
             "compodoc": true,
             "compodocArgs": [
               "-e",
               "json",
               "-d",
-              "projects/remanx/ui-ng"
+              "projects/remanx"
             ],
             "outputDir": "storybook-static"
           }

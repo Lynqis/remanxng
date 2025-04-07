@@ -7,12 +7,12 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:remanxng": "node dist/remanxng/server/server.mjs",
-    "storybook": "ng run @remanx/ui-ng:storybook",
-    "build-storybook": "ng run @remanx/ui-ng:build-storybook",
+    "storybook": "ng run @dexarys/remanxng:storybook",
+    "build-storybook": "ng run @dexarys/remanxng:build-storybook",
     "serve:ssr:website": "node dist/website/server/server.mjs"
   },
   "workspaces": [
-    "projects/remanx/ui-ng"
+    "projects/remanx"
   ],
   "dependencies": {
     "@angular/animations": "^19.0.4",
