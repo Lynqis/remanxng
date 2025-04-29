@@ -1960,10 +1960,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@dexarys/remanx-icons@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "@dexarys/remanx-icons@npm:0.0.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40dexarys%2Fremanx-icons%2F0.0.1%2F407397d8f073bcfc26869605c91f0120a9169912"
+  dependencies:
+    chalk: "npm:^5.4.1"
+  checksum: 10c0/40161b9ca66829ecf4f1715290b6242ed0376458dde50f5019b8018d41d94cfee49d7d2a6d1af19fea580eb3b328d4832cbe62f5570dbc5fee9d09240c0099c5
+  languageName: node
+  linkType: hard
+
 "@dexarys/remanxng@workspace:projects/remanx":
   version: 0.0.0-use.local
   resolution: "@dexarys/remanxng@workspace:projects/remanx"
   dependencies:
+    "@dexarys/remanx-icons": "npm:^0.0.1"
     tslib: "npm:^2.3.0"
   peerDependencies:
     "@angular/common": ^19.0.0
@@ -5547,6 +5557,13 @@ __metadata:
     ansi-styles: "npm:^4.1.0"
     supports-color: "npm:^7.1.0"
   checksum: 10c0/4a3fef5cc34975c898ffe77141450f679721df9dde00f6c304353fa9c8b571929123b26a0e4617bde5018977eb655b31970c297b91b63ee83bb82aeb04666880
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^5.4.1":
+  version: 5.4.1
+  resolution: "chalk@npm:5.4.1"
+  checksum: 10c0/b23e88132c702f4855ca6d25cb5538b1114343e41472d5263ee8a37cccfccd9c4216d111e1097c6a27830407a1dc81fecdf2a56f2c63033d4dbbd88c10b0dcef
   languageName: node
   linkType: hard
 
