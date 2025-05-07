@@ -44,7 +44,8 @@ L'attribut \`container\` définit si le layout est en mode containerisé.
         RxMainContent,
         RxFooter,
         CommonModule
-      ]
+      ],
+      providers: []
     }),
   ]
 }

@@ -1960,10 +1960,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@dexarys/remanx-icons@npm:0.0.6":
+  version: 0.0.6
+  resolution: "@dexarys/remanx-icons@npm:0.0.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40dexarys%2Fremanx-icons%2F0.0.6%2F96658d15e01ca3c63b4cc5cb06199f6b9cab266f"
+  checksum: 10c0/4dc68d6e5acaf38689b275269d8fa420d63b66677f2f6df1bfdbafba444d2015a97a5dbf44915867c06965be982568b86476ca0f725e1d7a8cfddb43e0423f74
+  languageName: node
+  linkType: hard
+
+"@dexarys/remanx-icons@npm:0.0.7":
+  version: 0.0.7
+  resolution: "@dexarys/remanx-icons@npm:0.0.7::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40dexarys%2Fremanx-icons%2F0.0.7%2F81997248446879cba291bbb53282ffd567d876b1"
+  checksum: 10c0/8129771adf285bba5091cc9551c8da301035c5b429e8e329b97c296445f47d11d8c603716f240942100f18e4c39e7986481963819040729e0ad0e859dd343d36
+  languageName: node
+  linkType: hard
+
 "@dexarys/remanxng@workspace:projects/remanx":
   version: 0.0.0-use.local
   resolution: "@dexarys/remanxng@workspace:projects/remanx"
   dependencies:
+    "@dexarys/remanx-icons": "npm:0.0.7"
     tslib: "npm:^2.3.0"
   peerDependencies:
     "@angular/common": ^19.0.0
@@ -11595,6 +11610,7 @@ __metadata:
     "@angular/ssr": "npm:^19.0.5"
     "@chromatic-com/storybook": "npm:^3"
     "@compodoc/compodoc": "npm:^1.1.26"
+    "@dexarys/remanx-icons": "npm:0.0.6"
     "@storybook/addon-docs": "npm:^8.6.6"
     "@storybook/addon-essentials": "npm:^8.6.6"
     "@storybook/addon-interactions": "npm:^8.6.6"

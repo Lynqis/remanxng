@@ -48,5 +48,17 @@ const config: StorybookConfig = {
     disableTelemetry: true,
   },
   staticDirs: ['../assets'],
+  webpackFinal: async (config) => {
+    config.module?.rules?.push({
+      test: /\.json$/,
+      type: 'json',
+      use: [],
+      resolve: {
+        fullySpecified: false,
+      },
+    });
+
+    return config;
+  },
 };
 export default config;

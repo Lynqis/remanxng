@@ -6,11 +6,6 @@ import {
 } from '@storybook/angular';
 import { RxDialog } from './dialog';
 import { RxButton } from '../button';
-import {
-  BrowserAnimationsModule,
-  provideAnimations,
-} from '@angular/platform-browser/animations';
-import { importProvidersFrom } from '@angular/core';
 
 const meta: Meta<RxDialog> = {
   title: 'Overlay/RxDialog',
@@ -21,7 +16,7 @@ const meta: Meta<RxDialog> = {
       imports: [RxButton],
     }),
     applicationConfig({
-      providers: [importProvidersFrom(BrowserAnimationsModule)],
+      providers: [],
     }),
   ],
 };
