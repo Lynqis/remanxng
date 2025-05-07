@@ -14,7 +14,7 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "paths": {
       "@dexarys/remanxng/*": ["./projects/remanx/*"],
       "@dexarys/remanxng/": ["./projects/remanx/"]
@@ -23,7 +23,8 @@
     "target": "ES2022",
     "module": "ES2022",
     "traceResolution": false,
-    "lib": ["ES2022", "dom"]
+    "lib": ["ES2022", "dom"],
+    "resolveJsonModule": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

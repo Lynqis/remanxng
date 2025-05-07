@@ -1,13 +1,13 @@
-import { Injectable, signal } from "@angular/core";
+import { Injectable, signal, WritableSignal } from "@angular/core";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LayoutService {
 
-  sidebarVisible = signal(false);
-  sidebarShrink = signal(false);
-  isShrink = signal(false);
+  sidebarVisible: WritableSignal<boolean> = signal(false);
+  sidebarShrink: WritableSignal<boolean> = signal(false);
+  isShrink: WritableSignal<boolean> = signal(false);
 
   toggleSidebar() {
     if (!this.sidebarShrink()) {

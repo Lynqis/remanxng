@@ -10,24 +10,21 @@ import {
 } from '@angular/core';
 import { ObjectUtils, TemplateNull } from '@dexarys/remanxng/api';
 import { IconRegistryService } from './icon-registry.service';
+import { BaseComponent } from '../base/basecomponent';
+import { SafeHtml } from '@angular/platform-browser';
 
 @Component({
     selector: 'rx-icon',
     template: `
-
     @if (headlessTemplate) {
       <ng-container>
         <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
       </ng-container>
     } @else {
       @if (iconSvg) {
-        <ng-template #notTemplate>
-          <ng-template #svgContent>
-            <span [innerHTML]="iconSvg"></span>
-          </ng-template>
-        </ng-template>
+        <span [innerHTML]="iconSvg"></span>
       } @else {
-        <ng-template #notTemplate>
+        <ng-template>
           <ng-content
             [attr.aria-label]="ariaLabel"
             [attr.aria-hidden]="ariaHidden"
@@ -42,7 +39,7 @@ import { IconRegistryService } from './icon-registry.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgTemplateOutlet]
 })
-export class RxIcon implements OnInit {
+export class RxIcon extends BaseComponent implements OnInit {
   @Input() label: string = '';
   @Input() styleClass: string = '';
   @Input({ transform: booleanAttribute }) spin: boolean = false;
@@ -53,7 +50,7 @@ export class RxIcon implements OnInit {
 
   @ContentChild('headless', { descendants: false }) headlessTemplate: TemplateNull<any>;
 
-  iconSvg: string | undefined;
+  iconSvg: string | SafeHtml | null = null;
 
   ariaLabel: string |undefined;
   ariaHidden: boolean = true;
@@ -74,6 +71,7 @@ export class RxIcon implements OnInit {
         fill: this.fill,
       });
     }
+    this.cd.detectChanges();
   }
 
   getAttributes() {
