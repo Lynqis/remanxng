@@ -1,7 +1,11 @@
-import type { Preview } from "@storybook/angular";
+import { applicationConfig, type Preview } from "@storybook/angular";
 import { setCompodocJson } from "@storybook/addon-docs/angular";
 import docJson from "../documentation.json";
 import 'zone.js';
+import { provideHttpClient } from "@angular/common/http";
+import { provideAnimations } from "@angular/platform-browser/animations";
+import { inject, provideAppInitializer } from "@angular/core";
+import { IconRegistryService } from "../components/src/icon/icon-registry.service";
 setCompodocJson(docJson);
 
 const preview: Preview = {
@@ -21,6 +25,18 @@ const preview: Preview = {
       disable: false
     }
   },
+  decorators: [
+    applicationConfig({
+      providers: [
+        provideHttpClient(),
+        provideAnimations(),
+        provideAppInitializer(() => {
+          const _iconRegistry = inject(IconRegistryService);
+          _iconRegistry.initialize();
+        })
+      ]
+    })
+  ],
 
   tags: ["autodocs"]
 };

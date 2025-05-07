@@ -212,7 +212,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<RxDialog>",
-                "defaultValue": "{\n  title: 'Overlay/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [RxButton],\n    }),\n    applicationConfig({\n      providers: [importProvidersFrom(BrowserAnimationsModule)],\n    }),\n  ],\n}"
+                "defaultValue": "{\n  title: 'Overlay/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [RxButton],\n    }),\n    applicationConfig({\n      providers: [],\n    }),\n  ],\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/components/src/icon/icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<RxIcon>",
+                "defaultValue": "{\n  title: 'Misc/RxIcon',\n  component: RxIcon,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: []\n    }),\n    applicationConfig({\n      providers: [],\n    }),\n  ],\n}"
             },
             {
                 "name": "meta",
@@ -232,7 +242,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<RxLayout>",
-                "defaultValue": "{\n  title: 'Layout/RxLayout',\n  component: RxLayout,\n  tags: ['autodocs'],\n  argTypes: {\n    container: {\n      control: 'boolean',\n      description: 'Définit si le layout est containerisé ou non.',\n    },\n    view: {\n      control: 'text',\n      description: 'Définit la structure du layout sous la forme \"header body footer\".',\n    },\n  },\n  args: {\n    view: 'hhh scc fff'\n  },\n  parameters: {\n    docs: {\n      description: {\n        component: `\nLe composant **RxLayout** permet de structurer une page avec des zones configurables via \\`view\\`.\nPar exemple : \"header body footer\".\nL'attribut \\`container\\` définit si le layout est en mode containerisé.\n        `,\n      },\n    },\n  },\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxLayout,\n        RxHeader,\n        RxSidebar,\n        RxMainContent,\n        RxFooter,\n        CommonModule\n      ]\n    }),\n  ]\n}"
+                "defaultValue": "{\n  title: 'Layout/RxLayout',\n  component: RxLayout,\n  tags: ['autodocs'],\n  argTypes: {\n    container: {\n      control: 'boolean',\n      description: 'Définit si le layout est containerisé ou non.',\n    },\n    view: {\n      control: 'text',\n      description: 'Définit la structure du layout sous la forme \"header body footer\".',\n    },\n  },\n  args: {\n    view: 'hhh scc fff'\n  },\n  parameters: {\n    docs: {\n      description: {\n        component: `\nLe composant **RxLayout** permet de structurer une page avec des zones configurables via \\`view\\`.\nPar exemple : \"header body footer\".\nL'attribut \\`container\\` définit si le layout est en mode containerisé.\n        `,\n      },\n    },\n  },\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxLayout,\n        RxHeader,\n        RxSidebar,\n        RxMainContent,\n        RxFooter,\n        CommonModule\n      ],\n      providers: []\n    }),\n  ]\n}"
             },
             {
                 "name": "meta",
@@ -318,7 +328,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Preview",
-                "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    options: {\n      storySort: {\n        order: ['Introduction', '*'],\n      },\n    },\n    docs: {\n      disable: false\n    }\n  },\n\n  tags: [\"autodocs\"]\n}"
+                "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    options: {\n      storySort: {\n        order: ['Introduction', '*'],\n      },\n    },\n    docs: {\n      disable: false\n    }\n  },\n  decorators: [\n    applicationConfig({\n      providers: [\n        provideHttpClient(),\n        provideAnimations(),\n      ]\n    })\n  ],\n\n  tags: [\"autodocs\"]\n}"
             },
             {
                 "name": "ShrinkSidebar",
@@ -329,6 +339,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout [view]=\"view\" #layout>\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"layout.onToggleSidebar()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"sidebarVisible()\" [shrink]=\"shrink\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      sidebarVisible: signal(true),\n      view: 'shh scc sff',\n      shrink: true\n    }\n  })\n}"
+            },
+            {
+                "name": "SimpleExemple",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/components/src/icon/icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => ({\n    template: `<rx-icon [iconName]=\"home\" />`\n  })\n}"
             },
             {
                 "name": "ToggleSidebar",
@@ -392,6 +412,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<RxDialog>",
                 "file": "projects/remanx/components/src/dialog/dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<RxIcon>",
+                "file": "projects/remanx/components/src/icon/icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -651,7 +682,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<RxDialog>",
-                    "defaultValue": "{\n  title: 'Overlay/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [RxButton],\n    }),\n    applicationConfig({\n      providers: [importProvidersFrom(BrowserAnimationsModule)],\n    }),\n  ],\n}"
+                    "defaultValue": "{\n  title: 'Overlay/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [RxButton],\n    }),\n    applicationConfig({\n      providers: [],\n    }),\n  ],\n}"
                 }
             ],
             "projects/remanx/components/src/avatar/avatar.stories.ts": [
@@ -717,7 +748,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<RxLayout>",
-                    "defaultValue": "{\n  title: 'Layout/RxLayout',\n  component: RxLayout,\n  tags: ['autodocs'],\n  argTypes: {\n    container: {\n      control: 'boolean',\n      description: 'Définit si le layout est containerisé ou non.',\n    },\n    view: {\n      control: 'text',\n      description: 'Définit la structure du layout sous la forme \"header body footer\".',\n    },\n  },\n  args: {\n    view: 'hhh scc fff'\n  },\n  parameters: {\n    docs: {\n      description: {\n        component: `\nLe composant **RxLayout** permet de structurer une page avec des zones configurables via \\`view\\`.\nPar exemple : \"header body footer\".\nL'attribut \\`container\\` définit si le layout est en mode containerisé.\n        `,\n      },\n    },\n  },\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxLayout,\n        RxHeader,\n        RxSidebar,\n        RxMainContent,\n        RxFooter,\n        CommonModule\n      ]\n    }),\n  ]\n}"
+                    "defaultValue": "{\n  title: 'Layout/RxLayout',\n  component: RxLayout,\n  tags: ['autodocs'],\n  argTypes: {\n    container: {\n      control: 'boolean',\n      description: 'Définit si le layout est containerisé ou non.',\n    },\n    view: {\n      control: 'text',\n      description: 'Définit la structure du layout sous la forme \"header body footer\".',\n    },\n  },\n  args: {\n    view: 'hhh scc fff'\n  },\n  parameters: {\n    docs: {\n      description: {\n        component: `\nLe composant **RxLayout** permet de structurer une page avec des zones configurables via \\`view\\`.\nPar exemple : \"header body footer\".\nL'attribut \\`container\\` définit si le layout est en mode containerisé.\n        `,\n      },\n    },\n  },\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxLayout,\n        RxHeader,\n        RxSidebar,\n        RxMainContent,\n        RxFooter,\n        CommonModule\n      ],\n      providers: []\n    }),\n  ]\n}"
                 },
                 {
                     "name": "ShrinkSidebar",
@@ -794,6 +825,28 @@
                     "defaultValue": "{\n  title: 'Menu/RxMenuBar',\n  component: RxMenuBar,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [RxButton, BrowserAnimationsModule],\n    }),\n  ],\n}"
                 }
             ],
+            "projects/remanx/components/src/icon/icon.stories.ts": [
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/components/src/icon/icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<RxIcon>",
+                    "defaultValue": "{\n  title: 'Misc/RxIcon',\n  component: RxIcon,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: []\n    }),\n    applicationConfig({\n      providers: [],\n    }),\n  ],\n}"
+                },
+                {
+                    "name": "SimpleExemple",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/components/src/icon/icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: () => ({\n    template: `<rx-icon [iconName]=\"home\" />`\n  })\n}"
+                }
+            ],
             "projects/remanx/components/src/image/image.stories.ts": [
                 {
                     "name": "meta",
@@ -825,7 +878,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Preview",
-                    "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    options: {\n      storySort: {\n        order: ['Introduction', '*'],\n      },\n    },\n    docs: {\n      disable: false\n    }\n  },\n\n  tags: [\"autodocs\"]\n}"
+                    "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    options: {\n      storySort: {\n        order: ['Introduction', '*'],\n      },\n    },\n    docs: {\n      disable: false\n    }\n  },\n  decorators: [\n    applicationConfig({\n      providers: [\n        provideHttpClient(),\n        provideAnimations(),\n      ]\n    })\n  ],\n\n  tags: [\"autodocs\"]\n}"
                 }
             ]
         },
@@ -878,6 +931,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<RxDialog>",
                     "file": "projects/remanx/components/src/dialog/dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/remanx/components/src/icon/icon.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<RxIcon>",
+                    "file": "projects/remanx/components/src/icon/icon.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -966,7 +1032,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 11,
+        "count": 10,
         "status": "low",
         "files": [
             {
@@ -1131,6 +1197,36 @@
             },
             {
                 "filePath": "projects/remanx/components/src/dialog/dialog.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/remanx/components/src/icon/icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/remanx/components/src/icon/icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SimpleExemple",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/remanx/components/src/icon/icon.stories.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
