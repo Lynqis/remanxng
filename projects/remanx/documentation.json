@@ -328,7 +328,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Preview",
-                "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    options: {\n      storySort: {\n        order: ['Introduction', '*'],\n      },\n    },\n    docs: {\n      disable: false\n    }\n  },\n  decorators: [\n    applicationConfig({\n      providers: [\n        provideHttpClient(),\n        provideAnimations(),\n      ]\n    })\n  ],\n\n  tags: [\"autodocs\"]\n}"
+                "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    options: {\n      storySort: {\n        order: ['Introduction', '*'],\n      },\n    },\n    docs: {\n      disable: false\n    }\n  },\n  decorators: [\n    applicationConfig({\n      providers: [\n        provideHttpClient(),\n        provideAnimations(),\n        provideAppInitializer(() => {\n          const _iconRegistry = inject(IconRegistryService);\n          _iconRegistry.initialize();\n        })\n      ]\n    })\n  ],\n\n  tags: [\"autodocs\"]\n}"
             },
             {
                 "name": "ShrinkSidebar",
@@ -348,7 +348,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: () => ({\n    template: `<rx-icon [iconName]=\"home\" />`\n  })\n}"
+                "defaultValue": "{\n  render: () => ({\n    template: `\n    <div style=\"display: flex; gap: 5px;\">\n      <rx-icon [iconJson]=\"'home'\" />\n      <rx-icon [iconJson]=\"'eye'\" [stroke]=\"'red'\" />\n      <rx-icon [iconJson]=\"'info'\" [thickness]=\"'3'\" />\n      <rx-icon [iconJson]=\"'menu'\" [stroke]=\"'green'\" />\n      <rx-icon [iconJson]=\"'save'\" [fill]=\"'red'\" />\n    </div>\n    `\n  })\n}"
             },
             {
                 "name": "ToggleSidebar",
@@ -844,7 +844,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: () => ({\n    template: `<rx-icon [iconName]=\"home\" />`\n  })\n}"
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n    <div style=\"display: flex; gap: 5px;\">\n      <rx-icon [iconJson]=\"'home'\" />\n      <rx-icon [iconJson]=\"'eye'\" [stroke]=\"'red'\" />\n      <rx-icon [iconJson]=\"'info'\" [thickness]=\"'3'\" />\n      <rx-icon [iconJson]=\"'menu'\" [stroke]=\"'green'\" />\n      <rx-icon [iconJson]=\"'save'\" [fill]=\"'red'\" />\n    </div>\n    `\n  })\n}"
                 }
             ],
             "projects/remanx/components/src/image/image.stories.ts": [
@@ -878,7 +878,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Preview",
-                    "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    options: {\n      storySort: {\n        order: ['Introduction', '*'],\n      },\n    },\n    docs: {\n      disable: false\n    }\n  },\n  decorators: [\n    applicationConfig({\n      providers: [\n        provideHttpClient(),\n        provideAnimations(),\n      ]\n    })\n  ],\n\n  tags: [\"autodocs\"]\n}"
+                    "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    options: {\n      storySort: {\n        order: ['Introduction', '*'],\n      },\n    },\n    docs: {\n      disable: false\n    }\n  },\n  decorators: [\n    applicationConfig({\n      providers: [\n        provideHttpClient(),\n        provideAnimations(),\n        provideAppInitializer(() => {\n          const _iconRegistry = inject(IconRegistryService);\n          _iconRegistry.initialize();\n        })\n      ]\n    })\n  ],\n\n  tags: [\"autodocs\"]\n}"
                 }
             ]
         },

@@ -22,11 +22,13 @@ type Story = StoryObj<RxIcon>;
 export const SimpleExemple: Story = {
   render: () => ({
     template: `
-    <rx-icon [iconName]="'home'" />
-    <rx-icon [iconName]="'eye'" />
-    <rx-icon [iconName]="'info'" />
-    <rx-icon [iconName]="'menu'" />
-    <rx-icon [iconName]="'save'" />
+    <div style="display: flex; gap: 5px;">
+      <rx-icon [iconJson]="'home'" />
+      <rx-icon [iconJson]="'eye'" [stroke]="'red'" />
+      <rx-icon [iconJson]="'info'" [thickness]="'3'" />
+      <rx-icon [iconJson]="'menu'" [stroke]="'green'" />
+      <rx-icon [iconJson]="'save'" [fill]="'red'" />
+    </div>
     `
   })
 }

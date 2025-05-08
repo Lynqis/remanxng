@@ -43,7 +43,7 @@ export class RxIcon extends BaseComponent implements OnInit {
   @Input() label: string = '';
   /**
    * Call css implementation
-   * TODO: rename
+   * string of classes css
    * @param {string | undefined} iconCss
    */
   @Input() iconCss: string | undefined;
@@ -60,7 +60,6 @@ export class RxIcon extends BaseComponent implements OnInit {
   @Input() stroke: string = 'currentColor';
   /**
    * Thickness of the stroke
-   * TODO: rename
    * @param {string} thickness
    */
   @Input() thickness: string = '1';
@@ -69,6 +68,21 @@ export class RxIcon extends BaseComponent implements OnInit {
    * @param {string} fill
    */
   @Input() fill: string = 'none';
+  /**
+   * Height of the svg
+   * @param {string | undefined}
+   */
+  @Input() $height: string | undefined;
+  /**
+   * Width of the svg
+   * @param {string | undefined}
+   */
+  @Input() $width: string | undefined;
+  /**
+   * Add class attribute to the svg
+   * @param {string | undefined}
+   */
+  @Input() svgClasses: string | undefined;
 
   @ContentChild('headless', { descendants: false }) headlessTemplate: TemplateNull<any>;
 
@@ -77,7 +91,7 @@ export class RxIcon extends BaseComponent implements OnInit {
    */
   iconSvg: string | SafeHtml | null = null;
 
-  ariaLabel: string |undefined;
+  ariaLabel: string | undefined;
   ariaHidden: boolean = true;
   role: string | undefined;
 
@@ -94,6 +108,9 @@ export class RxIcon extends BaseComponent implements OnInit {
         stroke: this.stroke,
         thickness: this.thickness,
         fill: this.fill,
+        height: this.$height,
+        width: this.$width,
+        svgClasses: this.svgClasses
       });
     }
     this.cd.detectChanges();
