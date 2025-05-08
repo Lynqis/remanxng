@@ -24,6 +24,14 @@ To use the `RxIcon`, import it into your Angular module:
 import { RxIcon } from './path/to/rx-icon';
 ```
 
+```html
+<rx-icon [iconJson]="'home'" />
+<rx-icon [iconJson]="'eye'" [stroke]="'red'" />
+<rx-icon [iconJson]="'info'" [thickness]="'3'" />
+<rx-icon [iconJson]="'menu'" [stroke]="'green'" />
+<rx-icon [iconJson]="'save'" [fill]="'red'" />
+```
+
 <Story name="Basic" of={RxIconStories.SimpleExemple} />
 
 ## Props
@@ -32,7 +40,11 @@ import { RxIcon } from './path/to/rx-icon';
 | `stroke`           | `string`         | Defines the color of the icon's stroke.            |
 | `thickness`          | `string`         | Defines the thickness of the icon's stroke.           |
 | `fill`          | `string`         | Defines the color of the icon's fill.           |
+| `$height`          | `string`         | Defines the icon's height.           |
+| `$width`          | `string`         | Defines the icon's width.           |
+| `svgClasses`          | `string`         | Defines the icon's css classes.           |
 | `iconJson`          | `string`         | Call json implentation.           |
+| `iconCss`          | `string`         | Call css implentation.           |
 
 ## Conclusion
 The `RxIcon` component provides a flexible way to display icons in your Angular application. Customize it according to your needs.
