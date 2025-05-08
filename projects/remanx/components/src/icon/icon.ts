@@ -41,15 +41,40 @@ import { SafeHtml } from '@angular/platform-browser';
 })
 export class RxIcon extends BaseComponent implements OnInit {
   @Input() label: string = '';
-  @Input() styleClass: string = '';
+  /**
+   * Call css implementation
+   * TODO: rename
+   * @param {string | undefined} iconCss
+   */
+  @Input() iconCss: string | undefined;
   @Input({ transform: booleanAttribute }) spin: boolean = false;
-  @Input() iconName: string | undefined;
+  /**
+   * Call json implementation
+   * @param {string | undefined} iconJson
+   */
+  @Input() iconJson: string | undefined;
+  /**
+   * Color of the stroke
+   * @param {string} stroke
+   */
   @Input() stroke: string = 'currentColor';
-  @Input() strokeWidth: string = '1';
+  /**
+   * Thickness of the stroke
+   * TODO: rename
+   * @param {string} thickness
+   */
+  @Input() thickness: string = '1';
+  /**
+   * Color of the fill
+   * @param {string} fill
+   */
   @Input() fill: string = 'none';
 
   @ContentChild('headless', { descendants: false }) headlessTemplate: TemplateNull<any>;
 
+  /**
+   * Result when using json implementation
+   */
   iconSvg: string | SafeHtml | null = null;
 
   ariaLabel: string |undefined;
@@ -64,10 +89,10 @@ export class RxIcon extends BaseComponent implements OnInit {
   }
 
   private loadIcon() {
-    if (this.iconName) {
-      this.iconSvg = this._iconRegistry.getIcon(this.iconName, {
+    if (this.iconJson) {
+      this.iconSvg = this._iconRegistry.getIcon(this.iconJson, {
         stroke: this.stroke,
-        strokeWidth: this.strokeWidth,
+        thickness: this.thickness,
         fill: this.fill,
       });
     }
@@ -82,7 +107,7 @@ export class RxIcon extends BaseComponent implements OnInit {
   }
 
   getClassNames() {
-    return `r-icon ${this.styleClass ? this.styleClass + ' ' : ''}${
+    return `r-icon ${this.iconCss ? this.iconCss + ' ' : ''}${
       this.spin ? 'rx-icon-spin' : ''
     }`;
   }

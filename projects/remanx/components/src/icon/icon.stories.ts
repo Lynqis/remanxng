@@ -21,6 +21,12 @@ type Story = StoryObj<RxIcon>;
 
 export const SimpleExemple: Story = {
   render: () => ({
-    template: `<rx-icon [iconName]="'home'" />`
+    template: `
+    <rx-icon [iconName]="'home'" />
+    <rx-icon [iconName]="'eye'" />
+    <rx-icon [iconName]="'info'" />
+    <rx-icon [iconName]="'menu'" />
+    <rx-icon [iconName]="'save'" />
+    `
   })
 }

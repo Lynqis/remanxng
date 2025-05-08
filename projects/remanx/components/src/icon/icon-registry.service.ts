@@ -51,13 +51,13 @@ export class IconRegistryService {
     this.svg.set(value);
   }
 
-  getIcon(name: string, options?: { stroke?: string; strokeWidth?: string; fill?: string }): string | null | SafeHtml {
+  getIcon(name: string, options?: { stroke?: string; thickness?: string; fill?: string }): string | null | SafeHtml {
     this.svg.set(this.icons()[name]);
     if (!this.svg()) return null;
 
     if (options) {
       this.setSvg(this.svg().replace(/stroke="(.*?)"/, `stroke="${options.stroke || 'currentColor'}"`))
-      this.setSvg(this.svg().replace(/stroke-width="(.*?)"/, `stroke-width="${options.strokeWidth || '1'}"`))
+      this.setSvg(this.svg().replace(/stroke-width="(.*?)"/, `stroke-width="${options.thickness || '1'}"`))
       this.setSvg(this.svg().replace(/fill="(.*?)"/, `fill="${options.fill || 'none'}"`))
     }
 
