@@ -110,7 +110,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout>\n        <rx-header [$style]=\"'background-color:blue'\">Header</rx-header>\n        <rx-sidebar [visible]=\"true\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:red'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh scc fff'\n    }\n  })\n}"
+                "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout>\n        <rx-header [$style]=\"'background-color:blue'\">Header</rx-header>\n        <rx-sidebar [visible]=\"true\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh scc fff'\n    }\n  })\n}"
             },
             {
                 "name": "Default",
@@ -738,7 +738,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout>\n        <rx-header [$style]=\"'background-color:blue'\">Header</rx-header>\n        <rx-sidebar [visible]=\"true\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:red'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh scc fff'\n    }\n  })\n}"
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout>\n        <rx-header [$style]=\"'background-color:blue'\">Header</rx-header>\n        <rx-sidebar [visible]=\"true\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh scc fff'\n    }\n  })\n}"
                 },
                 {
                     "name": "meta",
