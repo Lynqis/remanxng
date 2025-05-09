@@ -14,11 +14,9 @@ import { TemplateNull } from '@dexarys/remanxng/api';
       <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
     </ng-container>
     } @else {
-    <ng-template #notTemplate>
-      <div class="rx-main-content" [style]="$style">
-        <ng-content></ng-content>
-      </div>
-    </ng-template>
+    <div class="rx-main-content" [style]="$style">
+      <ng-content></ng-content>
+    </div>
     }
   `,
   selector: 'rx-main',

@@ -86,16 +86,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/remanx/components/src/dialog/dialog.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p style=\"width: 900px\">This is a modal dialog</p>\n        </rx-dialog>\n      `,\n    };\n  },\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/remanx/components/src/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -106,11 +96,21 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/remanx/components/src/dialog/dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-button (click)=\"pop.toggle()\" [label]=\"'Open a modal'\"></rx-button>\n        <rx-dialog #pop (visibleChange)=\"true\">\n          <p style=\"width: 900px\">This is a modal dialog</p>\n        </rx-dialog>\n      `,\n    };\n  },\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/remanx/components/src/layout/layout.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout>\n        <rx-header [$style]=\"'background-color:blue'\">Header</rx-header>\n        <rx-sidebar [visible]=\"true\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh scc fff'\n    }\n  })\n}"
+                "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout>\n        <rx-header [$style]=\"'background-color:blue'\">Header</rx-header>\n        <rx-sidebar [visible]=\"true\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:red'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh scc fff'\n    }\n  })\n}"
             },
             {
                 "name": "Default",
@@ -198,21 +198,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/remanx/components/src/dialog/dialog.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<RxDialog>",
-                "defaultValue": "{\n  title: 'Overlay/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [RxButton],\n    }),\n    applicationConfig({\n      providers: [],\n    }),\n  ],\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/remanx/components/src/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<RxCard>",
                 "defaultValue": "{\n  title: 'Panel/RxCard',\n  component: RxCard,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n      ],\n    }),\n    applicationConfig({\n      providers: [\n      ]\n    })\n  ]\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/components/src/dialog/dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<RxDialog>",
+                "defaultValue": "{\n  title: 'Overlay/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [RxButton],\n    }),\n    applicationConfig({\n      providers: [],\n    }),\n  ],\n}"
             },
             {
                 "name": "meta",
@@ -399,8 +399,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RxDialog>",
-                "file": "projects/remanx/components/src/dialog/dialog.stories.ts",
+                "rawtype": "StoryObj<RxCard>",
+                "file": "projects/remanx/components/src/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -410,8 +410,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RxCard>",
-                "file": "projects/remanx/components/src/card/card.stories.ts",
+                "rawtype": "StoryObj<RxDialog>",
+                "file": "projects/remanx/components/src/dialog/dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -738,7 +738,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout>\n        <rx-header [$style]=\"'background-color:blue'\">Header</rx-header>\n        <rx-sidebar [visible]=\"true\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh scc fff'\n    }\n  })\n}"
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout>\n        <rx-header [$style]=\"'background-color:blue'\">Header</rx-header>\n        <rx-sidebar [visible]=\"true\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:red'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh scc fff'\n    }\n  })\n}"
                 },
                 {
                     "name": "meta",
@@ -911,19 +911,6 @@
                     "kind": 183
                 }
             ],
-            "projects/remanx/components/src/dialog/dialog.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<RxDialog>",
-                    "file": "projects/remanx/components/src/dialog/dialog.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/remanx/components/src/card/card.stories.ts": [
                 {
                     "name": "Story",
@@ -931,6 +918,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<RxCard>",
                     "file": "projects/remanx/components/src/card/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/remanx/components/src/dialog/dialog.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<RxDialog>",
+                    "file": "projects/remanx/components/src/dialog/dialog.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",

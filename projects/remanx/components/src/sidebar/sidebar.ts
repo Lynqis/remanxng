@@ -30,11 +30,9 @@ import { LayoutService } from '../layout/layout.service';
               <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
             </ng-container>
           } @else {
-            <ng-template #notHeadless>
-              <div #content class="rx-sidebar-content">
-                <ng-content></ng-content>
-              </div>
-            </ng-template>
+            <div #content class="rx-sidebar-content">
+              <ng-content></ng-content>
+            </div>
           }
 
         </div>
