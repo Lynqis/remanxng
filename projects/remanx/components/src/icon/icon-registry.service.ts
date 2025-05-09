@@ -68,7 +68,6 @@ export class IconRegistryService {
   }
 
   private setAttribute(svg: string, attr: string, value: string | undefined) {
-    console.log(value)
     if (!value || value === 'undefined') return svg;
     const regex = new RegExp(`${attr}="(.*?)"`);
     if (regex.test(svg)) {

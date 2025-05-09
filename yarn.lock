@@ -1967,10 +1967,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@dexarys/remanx-icons@npm:0.0.7":
-  version: 0.0.7
-  resolution: "@dexarys/remanx-icons@npm:0.0.7::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40dexarys%2Fremanx-icons%2F0.0.7%2F81997248446879cba291bbb53282ffd567d876b1"
-  checksum: 10c0/8129771adf285bba5091cc9551c8da301035c5b429e8e329b97c296445f47d11d8c603716f240942100f18e4c39e7986481963819040729e0ad0e859dd343d36
+"@dexarys/remanx-icons@npm:0.0.8":
+  version: 0.0.8
+  resolution: "@dexarys/remanx-icons@npm:0.0.8::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40dexarys%2Fremanx-icons%2F0.0.8%2F794fbcde67d8f9d819ef90e827ce3d2f203f3583"
+  checksum: 10c0/59424a58860be80b379a51a489ba4320b96830e66e76d2d633b721f7aa88a75f14839c748012c010ff5b08378067d61fb10f3fd7085e5fcbf715585393986268
   languageName: node
   linkType: hard
 
@@ -1978,7 +1978,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@dexarys/remanxng@workspace:projects/remanx"
   dependencies:
-    "@dexarys/remanx-icons": "npm:0.0.7"
+    "@dexarys/remanx-icons": "npm:0.0.8"
     tslib: "npm:^2.3.0"
   peerDependencies:
     "@angular/common": ^19.0.0

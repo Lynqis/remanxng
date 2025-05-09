@@ -17,8 +17,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { LayoutService } from './layout.service';
 
 @Component({
-    selector: 'rx-layout',
-    template: `
+  selector: 'rx-layout',
+  template: `
     <div class="rx-layout-container overflow-hidden">
       <div class="absolute-full">
         <div class="scroll">
@@ -29,9 +29,9 @@ import { LayoutService } from './layout.service';
       </div>
     </div>
   `,
-    imports: [],
-    styleUrls: ['./layout.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  imports: [],
+  styleUrls: ['./layout.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RxLayout implements OnInit, OnChanges, OnDestroy {
   private platformId: any = inject(PLATFORM_ID);
@@ -71,8 +71,7 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 
   initializeClasses() {
     this.classes = 'rx-layout';
@@ -85,7 +84,9 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
     const [header, body, footer] = this.view.split(' ');
     this.declarePositionSidebar();
 
-    this.classes += this._layout.sidebarVisible() ? ` layout-${header}-${body}-${footer}` : ' ' + this.noSidebarClasse;
+    this.classes += this._layout.sidebarVisible()
+      ? ` layout-${header}-${body}-${footer}`
+      : ' ' + this.noSidebarClasse;
 
     this.style = this.container
       ? null
@@ -102,8 +103,10 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
     if (!this.hasSidebar()) return 'none';
 
     const [header, body, footer] = this.view.split(' ');
-    const sidebarLeft = header.startsWith('s') || body.startsWith('s') || footer.startsWith('s');
-    const sidebarRight = header.endsWith('s') || body.endsWith('s') || footer.endsWith('s');
+    const sidebarLeft =
+      header.startsWith('s') || body.startsWith('s') || footer.startsWith('s');
+    const sidebarRight =
+      header.endsWith('s') || body.endsWith('s') || footer.endsWith('s');
 
     if (sidebarLeft && sidebarRight) return 'both';
     if (sidebarLeft) return 'left';
@@ -133,7 +136,11 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
       if (position !== 'none') {
         this.classes += `-${this.positionSidebar}`;
       }
-    } else if (this._layout.sidebarVisible() && this._layout.sidebarShrink() && this._layout.isShrink()) {
+    } else if (
+      this._layout.sidebarVisible() &&
+      this._layout.sidebarShrink() &&
+      this._layout.isShrink()
+    ) {
       this.classes += ` layout-sidebar-${this.positionSidebar}-shrink layout-sidebar-anim-shrink`;
     } else {
       this.classes += ` layout-sidebar-${this.positionSidebar}-fullwidth`;
