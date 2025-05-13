@@ -1,5 +1,5 @@
 {
-  "name": "@dexarys/remanxng",
+  "name": "@lynqis/remanxng",
   "description": "A simple angular UI",
   "author": {
     "name": "Fallourd Matthieu"
@@ -9,7 +9,8 @@
     "url": "https://github.com/Dexarys/remanxng.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/",
+    "access": "public"
   },
   "license": "GPL-3.0-only",
   "version": "0.1.6",
@@ -22,7 +23,7 @@
     "@angular/core": "^19.0.0"
   },
   "dependencies": {
-    "@dexarys/remanx-icons": "0.0.8",
+    "@lynqis/remanx-icons": "0.0.8",
     "tslib": "^2.3.0"
   },
   "exports": {
