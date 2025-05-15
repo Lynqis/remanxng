@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "@dexarys/remanxng": {
+    "@lynqis/remanxng": {
       "projectType": "library",
       "root": "projects/remanx",
       "sourceRoot": "projects/remanx/src",
@@ -38,7 +38,7 @@
           "builder": "@storybook/angular:start-storybook",
           "options": {
             "configDir": "projects/remanx/.storybook",
-            "browserTarget": "@dexarys/remanxng:build",
+            "browserTarget": "@lynqis/remanxng:build",
             "compodoc": true,
             "compodocArgs": [
               "-e",
@@ -53,7 +53,7 @@
           "builder": "@storybook/angular:build-storybook",
           "options": {
             "configDir": "projects/remanx/.storybook",
-            "browserTarget": "@dexarys/remanxng:build",
+            "browserTarget": "@lynqis/remanxng:build",
             "compodoc": true,
             "compodocArgs": [
               "-e",

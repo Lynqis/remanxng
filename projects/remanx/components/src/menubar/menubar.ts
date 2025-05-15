@@ -6,7 +6,7 @@ import {
   HostListener,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuItem, ObjectUtils } from '@dexarys/remanxng/api';
+import { MenuItem, ObjectUtils } from '@lynqis/remanxng/api';
 import { BaseComponent } from '../base/basecomponent';
 
 @Component({

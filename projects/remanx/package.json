@@ -13,7 +13,7 @@
     "access": "public"
   },
   "license": "GPL-3.0-only",
-  "version": "0.1.6",
+  "version": "0.0.0",
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -23,7 +23,7 @@
     "@angular/core": "^19.0.0"
   },
   "dependencies": {
-    "@lynqis/remanx-icons": "0.0.8",
+    "@lynqis/remanx-icons": "0.1.1",
     "tslib": "^2.3.0"
   },
   "exports": {

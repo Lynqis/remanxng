@@ -16,8 +16,8 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "paths": {
-      "@dexarys/remanxng/*": ["./projects/remanx/*"],
-      "@dexarys/remanxng/": ["./projects/remanx/"]
+      "@lynqis/remanxng/*": ["./projects/remanx/*"],
+      "@lynqis/remanxng/": ["./projects/remanx/"]
     },
     "importHelpers": true,
     "target": "ES2022",

@@ -25,7 +25,7 @@ import {
   Position,
   TemplateNull,
   VoidListener,
-} from '@dexarys/remanxng/api';
+} from '@lynqis/remanxng/api';
 import { BaseComponent } from '../base/basecomponent';
 import { RxButton } from '../button/button';
 

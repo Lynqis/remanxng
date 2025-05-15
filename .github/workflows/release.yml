@@ -2,10 +2,8 @@ name: Build assets icons
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - 'VERSION'
+    tags:
+      - 'v*'
 
 jobs:
   build:
@@ -49,3 +47,29 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+  release:
+    needs: publish-gpr
+    runs-on: ubuntu-latest
+    permissions:
+        contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract Changelog for version
+        id: changelog
+        run: |
+          version="${GITHUB_REF##*/}"
+          content=$(awk "/## ${version}/{flag=1; next} /^## /{flag=0} flag" CHANGELOG.md)
+
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "$content" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: ${{ steps.changelog.outputs.changelog }}

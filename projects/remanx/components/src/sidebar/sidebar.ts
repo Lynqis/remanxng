@@ -7,7 +7,7 @@ import {
   inject,
   Input,
 } from '@angular/core';
-import { TemplateNull } from '@dexarys/remanxng/api';
+import { TemplateNull } from '@lynqis/remanxng/api';
 import { LayoutService } from '../layout/layout.service';
 
 @Component({

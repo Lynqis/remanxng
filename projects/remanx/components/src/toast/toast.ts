@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation, OnInit, OnDestroy } from "@angular/core";
 import { BaseComponent } from "../base/basecomponent";
-import { Position, Severity, ToastItemCloseEvent, ToastMessage } from "@dexarys/remanxng/api";
+import { Position, Severity, ToastItemCloseEvent, ToastMessage } from "@lynqis/remanxng/api";
 import { Subject } from 'rxjs';
 import { NgClass } from '@angular/common';
 

@@ -26,7 +26,7 @@ import {
   ViewRef,
 } from '@angular/core';
 import { BaseComponent } from '../base/basecomponent';
-import { Dom, Nullable, TemplateNull, VoidListener, ZIndexUtils } from '@dexarys/remanxng/api';
+import { Dom, Nullable, TemplateNull, VoidListener, ZIndexUtils } from '@lynqis/remanxng/api';
 import { Subscription } from 'rxjs';
 
 @Component({

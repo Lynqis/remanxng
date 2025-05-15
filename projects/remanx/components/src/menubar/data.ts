@@ -1,4 +1,4 @@
-import { MenuItem } from "@dexarys/remanxng/api";
+import { MenuItem } from "@lynqis/remanxng/api";
 
 export const items: MenuItem[] = [
   {

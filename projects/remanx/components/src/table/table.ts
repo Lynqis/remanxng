@@ -20,7 +20,7 @@ import {
   SortMeta,
   TemplateNull,
   UniqueComponentId,
-} from '@dexarys/remanxng/api';
+} from '@lynqis/remanxng/api';
 import { RxTableBody } from './tablebody';
 import { RxPagination } from '../pagination/pagination';
 
