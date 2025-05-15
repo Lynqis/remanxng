@@ -4,10 +4,13 @@
         align-items: center;
         text-align: center;
         justify-content: center;
-        background-color: aqua;
         font-size: 1rem;
         width: 2rem;
         height: 2rem;
+    }
+
+    .rx-avatar-default  {
+        background-color: #ddd;
     }
 
     .rx-avatar-image {

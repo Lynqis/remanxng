@@ -17,26 +17,16 @@ import { NgClass } from '@angular/common';
   template: `
     <ng-content></ng-content>
     @if (label) {
-      <span class="rx-avatar-text">{{
-        label
-      }}</span>
+    <span class="rx-avatar-text">{{ label }}</span>
+    } @else { @if (icon) {
+    <span [class]="icon" [ngClass]="'rx-avatar-icon'"></span>
     } @else {
-      @if (icon) {
-        <ng-template #iconTemplate
-          ><span
-            [class]="icon"
-            [ngClass]="'rx-avatar-icon'"
-          ></span
-        ></ng-template>
-      } @else {
-        <ng-template #imageTemplate>
-          <img
-            [src]="image"
-            (error)="imageError($event)"
-            [attr.aria-label]="ariaLabel"
-        /></ng-template>
-      }
-    }
+    <img
+      [src]="image"
+      (error)="imageError($event)"
+      [attr.aria-label]="ariaLabel"
+    />
+    } }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -48,9 +38,10 @@ import { NgClass } from '@angular/common';
     '[attr.aria-label]': 'ariaLabel',
     '[attr.aria-labelledby]': 'ariaLabelledBy',
     '[style]': '$style',
+    '[class.rx-avatar-default]': '!$style && !$class'
   },
   providers: [],
-  styleUrls: ['./avatar.css']
+  styleUrls: ['./avatar.css'],
 })
 export class RxAvatar extends BaseComponent {
   @Input() label: string | undefined;
