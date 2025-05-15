@@ -43,11 +43,6 @@
         cursor: not-allowed;
     }
 
-    .rx-pagination-pages {
-        display: flex;
-        gap: 0.25rem;
-    }
-
     .rx-pagination-page {
         background-color: transparent;
         border: 1px solid var(--rx-border-color, #dee2e6);

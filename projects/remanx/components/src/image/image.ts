@@ -1,6 +1,8 @@
 import { Component, HostListener, Input } from "@angular/core";
 import { BaseComponent } from "../base/basecomponent";
 import { VoidListener } from "@lynqis/remanxng/api";
+import { RxIcon } from "../icon";
+import { RxButton } from "../button";
 
 @Component({
   selector: 'rx-image',
@@ -17,7 +19,12 @@ import { VoidListener } from "@lynqis/remanxng/api";
       @if(maskVisible) {
         <div class="rx-image-mask">
           <div class="rx-image-toolbar">
-            <button (click)="close()">X</button>
+            <rx-button
+                [severity]="'contrast'"
+                class=""
+                (click)="close()"
+                ><rx-icon [iconJson]="'x'" /></rx-button
+              >
           </div>
           <div class="rx-image-original">
             <img [attr.src]="src">
@@ -26,7 +33,8 @@ import { VoidListener } from "@lynqis/remanxng/api";
       }
     </span>
   `,
-  styleUrls: ['./image.css']
+  styleUrls: ['./image.css'],
+  imports: [RxIcon, RxButton]
 })
 export class RxImage extends BaseComponent {
   @Input() src: string | undefined;

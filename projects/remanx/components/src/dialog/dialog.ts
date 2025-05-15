@@ -28,6 +28,7 @@ import {
 } from '@lynqis/remanxng/api';
 import { BaseComponent } from '../base/basecomponent';
 import { RxButton } from '../button/button';
+import { RxIcon } from '../icon';
 
 const showAnimation = animation([
   style({ transform: '{{transform}}', opacity: 0 }),
@@ -81,7 +82,7 @@ const hideAnimation = animation([
                 [severity]="'contrast'"
                 class=""
                 (click)="close($event)"
-                >X</rx-button
+                ><rx-icon [iconJson]="'x'" /></rx-button
               >
               <span>ESC</span>
             </div>
@@ -109,7 +110,7 @@ const hideAnimation = animation([
     </div>
   }
   `,
-  imports: [NgClass, NgTemplateOutlet, RxButton],
+  imports: [NgClass, NgTemplateOutlet, RxButton, RxIcon],
   styleUrls: ['./dialog.css'],
   animations: [
     trigger('animation', [

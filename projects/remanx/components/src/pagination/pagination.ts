@@ -7,6 +7,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NgClass, NgFor, NgStyle } from '@angular/common';
+import { RxIcon } from '../icon';
 
 @Component({
   selector: 'rx-pagination',
@@ -17,7 +18,7 @@ import { NgClass, NgFor, NgStyle } from '@angular/common';
           Affichage de {{ first + 1 }} à {{ last }} sur {{ totalRecords }} éléments
         </span>
       </div>
-      
+
       <div class="rx-pagination-controls">
         <button
           class="rx-pagination-button"
@@ -34,20 +35,18 @@ import { NgClass, NgFor, NgStyle } from '@angular/common';
           (click)="previousPage()"
           title="Page précédente"
         >
-          <span class="material-icons">chevron_left</span>
+          <rx-icon [iconJson]="'chevron-left'" />
         </button>
 
-        <div class="rx-pagination-pages">
-          <ng-container *ngFor="let page of pageNumbers">
-            <button
-              class="rx-pagination-page"
-              [class.active]="page === currentPage"
-              (click)="gotoPage(page)"
-            >
-              {{ page }}
-            </button>
-          </ng-container>
-        </div>
+        <ng-container *ngFor="let page of pageNumbers">
+          <button
+            class="rx-pagination-page"
+            [class.active]="page === currentPage"
+            (click)="gotoPage(page)"
+          >
+            {{ page }}
+          </button>
+        </ng-container>
 
         <button
           class="rx-pagination-button"
@@ -55,7 +54,7 @@ import { NgClass, NgFor, NgStyle } from '@angular/common';
           (click)="nextPage()"
           title="Page suivante"
         >
-          <span class="material-icons">chevron_right</span>
+          <rx-icon [iconJson]="'chevron-right'" />
         </button>
 
         <button
@@ -80,7 +79,7 @@ import { NgClass, NgFor, NgStyle } from '@angular/common';
     </div>
   `,
   standalone: true,
-  imports: [NgClass, NgStyle, NgFor],
+  imports: [NgClass, NgStyle, NgFor, RxIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
