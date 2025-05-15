@@ -1,3 +1,8 @@
+## v0.2.3 - 2025-05-15
+
+### 🐛 Fixes
+- add permissions to the token
+
 ## v0.2.2 - 2025-05-15
 
 ### 🐛 Fixes
