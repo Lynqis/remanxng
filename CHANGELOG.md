@@ -1,3 +1,14 @@
+## v0.2.0 - 2025-05-15
+
+### ✨ Features
+- add default avatar
+
+### 🎨 Code Style
+- replaced text labels with icons
+
+### 🏗️ Build
+- add rx-icons to peerDependencies
+
 ## v0.1.0 - 2025-05-15
 
 ### ✨ Features
