@@ -1,3 +1,8 @@
+## v0.2.1 - 2025-05-15
+
+### 🐛 Fixes
+- update dependencies
+
 ## v0.2.0 - 2025-05-15
 
 ### ✨ Features
