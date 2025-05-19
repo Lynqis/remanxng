@@ -5,7 +5,7 @@ import 'zone.js';
 import { provideHttpClient } from "@angular/common/http";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { inject, provideAppInitializer } from "@angular/core";
-import { IconRegistryService } from "../components/src/icon/icon-registry.service";
+import { IconRegistryService } from "../components/src/icon";
 setCompodocJson(docJson);
 
 const preview: Preview = {
