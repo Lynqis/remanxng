@@ -1,3 +1,8 @@
+## v0.2.7 - 2025-05-19
+
+### 🐛 Fixes
+- export icon registry
+
 ## v0.2.6 - 2025-05-16
 
 ### 🐛 Fixes
