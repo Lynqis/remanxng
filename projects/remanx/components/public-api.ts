@@ -9,3 +9,7 @@ export * from './src/main-content';
 export * from './src/menubar';
 export * from './src/sidebar';
 export * from './src/popover';
+export * from './src/table';
+export * from './src/toast';
+export * from './src/image';
+export * from './src/pagination';
