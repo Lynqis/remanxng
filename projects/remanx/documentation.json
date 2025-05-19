@@ -76,21 +76,21 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/remanx/components/src/card/card.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-card>\n          <h1>This is a card</h1>\n          <p>content</p>\n          <h4>footer</h4>\n        </rx-card>\n      `\n    };\n  }\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/remanx/components/src/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    label: 'Primary',\n    severity: 'primary',\n    disabled: false,\n    loading: false,\n    hidden: false,\n    noStyle: false,\n    type: 'button'\n  },\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/components/src/card/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => {\n    return {\n      template: `\n        <rx-card>\n          <h1>This is a card</h1>\n          <p>content</p>\n          <h4>footer</h4>\n        </rx-card>\n      `\n    };\n  }\n}"
             },
             {
                 "name": "Default",
@@ -208,21 +208,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/remanx/components/src/icon/icon.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<RxIcon>",
-                "defaultValue": "{\n  title: 'Misc/RxIcon',\n  component: RxIcon,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: []\n    }),\n    applicationConfig({\n      providers: [],\n    }),\n  ],\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/remanx/components/src/dialog/dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<RxDialog>",
                 "defaultValue": "{\n  title: 'Overlay/RxDialog',\n  component: RxDialog,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [RxButton],\n    }),\n    applicationConfig({\n      providers: [],\n    }),\n  ],\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/components/src/icon/icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<RxIcon>",
+                "defaultValue": "{\n  title: 'Misc/RxIcon',\n  component: RxIcon,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: []\n    }),\n    applicationConfig({\n      providers: [],\n    }),\n  ],\n}"
             },
             {
                 "name": "meta",
@@ -348,7 +348,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: () => ({\n    template: `\n    <div style=\"display: flex; gap: 5px;\">\n      <rx-icon [iconJson]=\"'home'\" />\n      <rx-icon [iconJson]=\"'eye'\" [stroke]=\"'red'\" />\n      <rx-icon [iconJson]=\"'info'\" [thickness]=\"'3'\" />\n      <rx-icon [iconJson]=\"'menu'\" [stroke]=\"'green'\" />\n      <rx-icon [iconJson]=\"'save'\" [fill]=\"'red'\" />\n    </div>\n    `\n  })\n}"
+                "defaultValue": "{\n  render: () => ({\n    template: `\n    <div style=\"display: flex; gap: 5px;\">\n      <rx-icon [iconJson]=\"'home'\" />\n      <rx-icon [iconJson]=\"'eye'\" [stroke]=\"'red'\" />\n      <rx-icon [iconJson]=\"'info'\" [thickness]=\"'3'\" />\n      <rx-icon [iconJson]=\"'menu'\" [stroke]=\"'green'\" />\n      <rx-icon [iconJson]=\"'save'\" [fill]=\"'red'\" />\n      <rx-icon [iconJson]=\"'rx-leanqis'\" [fill]=\"'red'\" />\n    </div>\n    `\n  })\n}"
             },
             {
                 "name": "ToggleSidebar",
@@ -388,17 +388,6 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RxCard>",
-                "file": "projects/remanx/components/src/card/card.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
                 "rawtype": "StoryObj<RxButton>",
                 "file": "projects/remanx/components/src/button/button.stories.ts",
                 "deprecated": false,
@@ -410,8 +399,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RxIcon>",
-                "file": "projects/remanx/components/src/icon/icon.stories.ts",
+                "rawtype": "StoryObj<RxCard>",
+                "file": "projects/remanx/components/src/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -423,6 +412,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<RxDialog>",
                 "file": "projects/remanx/components/src/dialog/dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<RxIcon>",
+                "file": "projects/remanx/components/src/icon/icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -476,8 +476,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RxToast>",
-                "file": "projects/remanx/components/src/toast/toast.stories.ts",
+                "rawtype": "StoryObj<RxTable>",
+                "file": "projects/remanx/components/src/table/table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -487,8 +487,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RxTable>",
-                "file": "projects/remanx/components/src/table/table.stories.ts",
+                "rawtype": "StoryObj<RxToast>",
+                "file": "projects/remanx/components/src/toast/toast.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -844,7 +844,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: () => ({\n    template: `\n    <div style=\"display: flex; gap: 5px;\">\n      <rx-icon [iconJson]=\"'home'\" />\n      <rx-icon [iconJson]=\"'eye'\" [stroke]=\"'red'\" />\n      <rx-icon [iconJson]=\"'info'\" [thickness]=\"'3'\" />\n      <rx-icon [iconJson]=\"'menu'\" [stroke]=\"'green'\" />\n      <rx-icon [iconJson]=\"'save'\" [fill]=\"'red'\" />\n    </div>\n    `\n  })\n}"
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n    <div style=\"display: flex; gap: 5px;\">\n      <rx-icon [iconJson]=\"'home'\" />\n      <rx-icon [iconJson]=\"'eye'\" [stroke]=\"'red'\" />\n      <rx-icon [iconJson]=\"'info'\" [thickness]=\"'3'\" />\n      <rx-icon [iconJson]=\"'menu'\" [stroke]=\"'green'\" />\n      <rx-icon [iconJson]=\"'save'\" [fill]=\"'red'\" />\n      <rx-icon [iconJson]=\"'rx-leanqis'\" [fill]=\"'red'\" />\n    </div>\n    `\n  })\n}"
                 }
             ],
             "projects/remanx/components/src/image/image.stories.ts": [
@@ -898,19 +898,6 @@
                     "kind": 183
                 }
             ],
-            "projects/remanx/components/src/card/card.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<RxCard>",
-                    "file": "projects/remanx/components/src/card/card.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/remanx/components/src/button/button.stories.ts": [
                 {
                     "name": "Story",
@@ -924,13 +911,13 @@
                     "kind": 183
                 }
             ],
-            "projects/remanx/components/src/icon/icon.stories.ts": [
+            "projects/remanx/components/src/card/card.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<RxIcon>",
-                    "file": "projects/remanx/components/src/icon/icon.stories.ts",
+                    "rawtype": "StoryObj<RxCard>",
+                    "file": "projects/remanx/components/src/card/card.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -944,6 +931,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<RxDialog>",
                     "file": "projects/remanx/components/src/dialog/dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/remanx/components/src/icon/icon.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<RxIcon>",
+                    "file": "projects/remanx/components/src/icon/icon.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -1002,19 +1002,6 @@
                     "kind": 183
                 }
             ],
-            "projects/remanx/components/src/toast/toast.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<RxToast>",
-                    "file": "projects/remanx/components/src/toast/toast.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/remanx/components/src/table/table.stories.ts": [
                 {
                     "name": "Story",
@@ -1022,6 +1009,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<RxTable>",
                     "file": "projects/remanx/components/src/table/table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/remanx/components/src/toast/toast.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<RxToast>",
+                    "file": "projects/remanx/components/src/toast/toast.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",

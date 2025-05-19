@@ -10,7 +10,7 @@ The `RxIcon` component is designed to display icons in Angular applications. It 
 By default, It uses the library Rx-icons (Remanx-icons) but you can add yours if you want to. He can read a json format or css files.
 You can use both implementations and with multiple sources.
 
-Warning : The other components use the Rx-icons library. 
+Warning : The other components use the Rx-icons library.
 
 ## Features
 - **Customizable Size**: Easily define the size of the icon.
@@ -30,6 +30,7 @@ import { RxIcon } from './path/to/rx-icon';
 <rx-icon [iconJson]="'info'" [thickness]="'3'" />
 <rx-icon [iconJson]="'menu'" [stroke]="'green'" />
 <rx-icon [iconJson]="'save'" [fill]="'red'" />
+<rx-icon [iconJson]="'rx-leanqis'" [fill]="'red'" [stroke]="'#fff'" [$height]="'3rem'" [$width]="'3rem'" />
 ```
 
 <Story name="Basic" of={RxIconStories.SimpleExemple} />
@@ -45,6 +46,13 @@ import { RxIcon } from './path/to/rx-icon';
 | `svgClasses`          | `string`         | Defines the icon's css classes.           |
 | `iconJson`          | `string`         | Call json implentation.           |
 | `iconCss`          | `string`         | Call css implentation.           |
+
+
+## RxIcons (Remanx-icons)
+
+By default, remanxng use Remanx-icons, a svg icons library.
+
+<Story name="Basic" of={RxIconStories.AllIcons} />
 
 ## Conclusion
 The `RxIcon` component provides a flexible way to display icons in your Angular application. Customize it according to your needs.
