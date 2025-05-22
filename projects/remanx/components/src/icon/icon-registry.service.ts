@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { GlobalConfigService, SvgOptions } from '@lynqis/remanxng/api';
 import * as DefaultJson from '@lynqis/remanx-icons/icons.json';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { NumberControl } from '@storybook/blocks';
 
 @Injectable({ providedIn: 'root' })
 export class IconRegistryService {
@@ -52,14 +53,14 @@ export class IconRegistryService {
     if (!this.svg()) return null;
 
     if (options) {
-      let svg = this.svg();
-
-      svg = this.setAttribute(svg, 'stroke', options?.stroke);
-      svg = this.setAttribute(svg, 'stroke-width', options?.thickness);
-      svg = this.setAttribute(svg, 'fill', options?.fill);
-      svg = this.setAttribute(svg, 'height', options?.height);
-      svg = this.setAttribute(svg, 'width', options?.width);
-      svg = this.setAttribute(svg, 'class', options?.svgClasses);
+      const svg = this.setAttributes(this.svg(), {
+        stroke: options.stroke,
+        'stroke-width': options.thickness,
+        fill: options.fill,
+        width: options.width,
+        height: options.height,
+        class: options.svgClasses,
+      });
 
       this.setSvg(svg);
     }
@@ -67,13 +68,32 @@ export class IconRegistryService {
     return this.sanitizer.bypassSecurityTrustHtml(this.svg());
   }
 
-  private setAttribute(svg: string, attr: string, value: string | undefined) {
-    if (!value || value === 'undefined') return svg;
-    const regex = new RegExp(`${attr}="(.*?)"`);
-    if (regex.test(svg)) {
-      return svg.replace(regex, `${attr}="${value}"`);
-    } else {
-      return svg.replace(/<svg\b([^>]*)>/, `<svg$1 ${attr}="${value}">`);
+  private setAttributes(svg: string, attributes: Record<string, string | undefined>): string {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(svg, 'image/svg+xml');
+    const svgElement = doc.querySelector('svg');
+    if (!svgElement) return svg;
+
+    for (const [attr, value] of Object.entries(attributes)) {
+      if (!value || value === 'undefined') continue;
+
+      if (attr === 'stroke-width') {
+        const viewBox = svgElement.getAttribute('viewBox');
+        if (viewBox) {
+          const [x, y, width, height] = viewBox.split(' ').map(parseFloat);
+          const pad = parseFloat(value);
+          const newX = x - pad;
+          const newY = y - pad;
+          const newWidth = width + pad * 2;
+          const newHeight = height + pad * 2;
+          svgElement.setAttribute('viewBox', `${newX} ${newY} ${newWidth} ${newHeight}`);
+        }
+      }
+
+      svgElement.setAttribute(attr, value);
     }
+
+    return new XMLSerializer().serializeToString(doc.documentElement);
   }
+
 }

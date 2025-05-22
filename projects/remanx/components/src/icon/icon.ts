@@ -72,12 +72,12 @@ export class RxIcon extends BaseComponent implements OnInit {
    * Height of the svg
    * @param {string | undefined}
    */
-  @Input() $height: string | undefined;
+  @Input() $height: string = '24';
   /**
    * Width of the svg
    * @param {string | undefined}
    */
-  @Input() $width: string | undefined;
+  @Input() $width: string = '24';
   /**
    * Add class attribute to the svg
    * @param {string | undefined}
