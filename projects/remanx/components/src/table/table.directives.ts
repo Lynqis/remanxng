@@ -1,18 +1,26 @@
 import {
+  ComponentRef,
   Directive,
   ElementRef,
   Host,
   HostListener,
   inject,
   Input,
+  OnChanges,
   Optional,
+  SimpleChanges,
+  ViewContainerRef,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { RxTable } from './table';
+import { RxIcon } from '../icon';
 
 @Directive({
   selector: '[rxSortableColumn]',
   standalone: true,
+  host: {
+    '[class.rx-sort-column]': 'true'
+  },
 })
 export class RxSortableColumn {
   @Input('rxSortableColumn') field: string = '';
@@ -131,11 +139,6 @@ export class RxSelectableRow {
 @Directive({
   selector: '[rxSortIcon]',
   standalone: true,
-  host: {
-    '[class.rx-sort-icon]': 'true',
-    '[class.rx-sort-icon-asc]': 'sorted && sortOrder === "asc"',
-    '[class.rx-sort-icon-desc]': 'sorted && sortOrder === "desc"',
-  },
 })
 export class RxSortIcon {
   @Input('rxSortIcon') field: string = '';
@@ -143,6 +146,8 @@ export class RxSortIcon {
   sorted: boolean = false;
   sortOrder: 'asc' | 'desc' = 'asc';
   private subscription: Subscription;
+  private viewContainerRef: ViewContainerRef = inject(ViewContainerRef);
+  private iconRef?: ComponentRef<RxIcon>;
 
   constructor(@Optional() @Host() public table: RxTable) {
     if (!this.table) {
@@ -160,8 +165,15 @@ export class RxSortIcon {
   }
 
   updateSortState() {
+    this.viewContainerRef.clear();
     this.sorted = this.table.sortField === this.field;
     this.sortOrder = this.table.sortOrder === 1 ? 'asc' : 'desc';
+    if (this.sorted) {
+      const icon = this.viewContainerRef.createComponent(RxIcon);
+      icon.instance.iconJson = this.sortOrder === 'asc' ? 'chevron-up' : 'chevron-down';
+      icon.instance.svgClasses = this.sortOrder === 'asc' ? 'rx-sort-icon rx-sort-icon-asc' : 'rx-sort-icon rx-sort-icon-desc';
+      this.iconRef = icon;
+    }
   }
 
   ngOnDestroy() {

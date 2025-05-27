@@ -26,7 +26,7 @@ import { RxIcon } from '../icon';
           (click)="previousPage()"
           title="Première page"
         >
-          <span class="material-icons">first_page</span>
+          <rx-icon [iconJson]="'doublearrowleft'" />
         </button>
 
         <button
@@ -63,7 +63,7 @@ import { RxIcon } from '../icon';
           (click)="lastPage()"
           title="Dernière page"
         >
-          <span class="material-icons">last_page</span>
+          <rx-icon [iconJson]="'doublearrowright'" />
         </button>
       </div>
 

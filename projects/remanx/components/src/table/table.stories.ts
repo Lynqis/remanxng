@@ -121,15 +121,15 @@ export const Basic: Story = {
         <ng-template #header>
           <tr>
             <th [rxSortableColumn]="'name'">
-              Nom
+              <span>Nom</span>
               <span rxSortIcon="name"></span>
             </th>
             <th [rxSortableColumn]="'category'">
-              Catégorie
+              <span>Catégorie</span>
               <span rxSortIcon="category"></span>
             </th>
             <th [rxSortableColumn]="'price'">
-              Prix
+              <span>Prix</span>
               <span rxSortIcon="price"></span>
             </th>
             <th>Quantité</th>

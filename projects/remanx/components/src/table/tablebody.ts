@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: '[rxTableBody]',
   template: `
-    @if (hasData()) { @for (item of dataToRender(); track item) {
+    @if (hasData()) { @for (item of dataToRender(); track $index) {
     <ng-container
       *ngTemplateOutlet="
         bodyTemplate;
