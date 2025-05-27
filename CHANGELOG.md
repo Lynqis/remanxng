@@ -1,3 +1,13 @@
+## v0.3.0 - 2025-05-27
+
+### ✨ Features
+- improve sort icon's design
+- improve icon's svg personnalisation
+- new features
+
+### 📝 Documentation
+- add icons exemples
+
 ## v0.2.7 - 2025-05-19
 
 ### 🐛 Fixes
