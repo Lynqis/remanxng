@@ -10,6 +10,6 @@ export interface MenuItem {
   component?: string;
   icon?: string;
   iconPosition?: 'left' | 'right';
-  callback: () => void;
+  callback?: () => void;
   url?: string;
 }
