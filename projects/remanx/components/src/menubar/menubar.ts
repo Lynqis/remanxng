@@ -4,10 +4,12 @@ import {
   Input,
   ViewEncapsulation,
   HostListener,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuItem, ObjectUtils } from '@lynqis/remanxng/api';
 import { BaseComponent } from '../base/basecomponent';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'rx-menubar-sub',
@@ -87,6 +89,8 @@ export class RxMenuBarSub extends BaseComponent {
   hoveredItems = new Map<any, boolean>();
   clickedItems = new Map<any, boolean>();
 
+  private router: Router = inject(Router);
+
   @HostListener('document:click', ['$event'])
   handleClick(event: Event) {
     if (this.level === 0 && !this.el.nativeElement.contains(event.target)) {
@@ -118,6 +122,34 @@ export class RxMenuBarSub extends BaseComponent {
       } else {
         rootMenu.clickedItems.clear();
         rootMenu.clickedItems.set(processedItem, true);
+      }
+    } else {
+      const callback = this.getItemProp(processedItem, 'callback');
+      const routerLink = this.getItemProp(processedItem, 'routerLink');
+      const url = this.getItemProp(processedItem, 'url');
+
+      const definedHandlers = [
+        callback ?? null,
+        routerLink ?? null,
+        url ?? null
+      ].filter(Boolean);
+
+      if (definedHandlers.length > 1) {
+        console.log(`MenuItem conflict: only one of 'callback', 'routerLink', or 'url' should be defined.`,
+        { item: processedItem });
+        throw new Error(`Invalid MenuItem: multiple navigation methods defined (${definedHandlers.join(', ')})`);
+      }
+
+      if (typeof callback === 'function') {
+        callback();
+      }
+
+      if (routerLink) {
+        this.router.navigate(routerLink);
+      }
+
+      if (url) {
+        window.open(url);
       }
     }
   }
