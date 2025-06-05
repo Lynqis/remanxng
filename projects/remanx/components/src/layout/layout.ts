@@ -61,7 +61,7 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.initializeLayout();
+      this.initializeLayout(true);
     }
   }
 
@@ -77,16 +77,11 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
     this.classes = 'rx-layout';
   }
 
-  initializeLayout() {
+  initializeLayout(init?: boolean) {
     this.initializeClasses();
     this.height$.next(window.innerHeight);
     this.width$.next(window.innerWidth);
-    const [header, body, footer] = this.view.split(' ');
     this.declarePositionSidebar();
-
-    this.classes += this._layout.sidebarVisible()
-      ? ` layout-${header}-${body}-${footer}`
-      : ' ' + this.noSidebarClasse;
 
     this.style = this.container
       ? null
@@ -99,10 +94,16 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
     return this.view.includes('s');
   }
 
+  splitView(): [string, string, string] {
+    const [header, body, footer] = this.view.split(' ');
+    return [header, body, footer];
+  }
+
   checkPositionSidebar(): string {
     if (!this.hasSidebar()) return 'none';
 
-    const [header, body, footer] = this.view.split(' ');
+    const [header, body, footer] = this.splitView();
+
     const sidebarLeft =
       header.startsWith('s') || body.startsWith('s') || footer.startsWith('s');
     const sidebarRight =
@@ -131,28 +132,34 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
         break;
     }
 
-    if (!this._layout.sidebarVisible() || position === 'none') {
+    const [header, body, footer] = this.splitView();
+
+    if (position === 'none') {
+      this.classes += ' layout-no-sidebar ' + this.noSidebarClasse;
+      return;
+    }
+
+    this.classes += ` layout-${header}-${body}-${footer}`;
+
+    if (!this._layout.sidebarVisible() && position !== 'none') {
       this.classes += ' layout-no-sidebar';
-      if (position !== 'none') {
-        this.classes += `-${this.positionSidebar}`;
-      }
+      this.classes += `-${this.positionSidebar}`;
     } else if (
       this._layout.sidebarVisible() &&
       this._layout.sidebarShrink() &&
       this._layout.isShrink()
     ) {
-      this.classes += ` layout-sidebar-${this.positionSidebar}-shrink layout-sidebar-anim-shrink`;
+      this.classes += ` layout-sidebar-${this.positionSidebar}-shrink`;
     } else {
       this.classes += ` layout-sidebar-${this.positionSidebar}-fullwidth`;
-
-      if (this._layout.sidebarShrink()) {
-        this.classes += ' layout-sidebar-anim-shrink';
-      } else {
-        this.classes += ' layout-sidebar-anim-opacity';
-      }
     }
 
-    this.cd.markForCheck();
+    // Add animations
+    if (this._layout.sidebarShrink()) {
+      this.classes += ' layout-sidebar-anim-shrink';
+    } else {
+      this.classes += ' layout-sidebar-anim-opacity';
+    }
   }
 
   onToggleSidebar() {

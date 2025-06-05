@@ -8,11 +8,11 @@
     padding: 0;
 
     &.layout-sidebar-anim-shrink  {
-        transition: all 0.3s ease-in-out;
+        transition: grid-template-columns 0.3s ease-in-out;
     }
 
     &.layout-sidebar-anim-opacity {
-        transition: all 0.3s ease-in-out;
+        transition: grid-template-columns 0.3s ease-in-out;
     }
 
     &.layout-sidebar-left-fullwidth {

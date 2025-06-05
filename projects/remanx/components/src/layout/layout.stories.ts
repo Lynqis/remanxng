@@ -97,6 +97,29 @@ export const ToggleSidebar: Story = {
   })
 };
 
+export const ToggleRightSidebar: Story = {
+  render: () => ({
+    template: `
+      <rx-layout #layout [view]="view">
+        <rx-header [$style]="'background-color:blue'">
+          <button (click)="layout.onToggleSidebar()">Toggle Sidebar</button>
+        </rx-header>
+        <rx-sidebar [visible]="sidebarVisible()" [$style]="'background-color:red'">
+          Sidebar
+        </rx-sidebar>
+        <rx-main [$style]="'background-color:green'">
+          Main Content
+        </rx-main>
+        <rx-footer [$style]="'background-color:yellow'">Footer</rx-footer>
+      </rx-layout>
+    `,
+    props: {
+      view: 'hhh ccs fff',
+      sidebarVisible: signal(true)
+    }
+  })
+};
+
 export const ShrinkSidebar: Story = {
   render: () => ({
     template: `
