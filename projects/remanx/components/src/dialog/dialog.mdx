@@ -16,28 +16,30 @@ The `RxDialog` component is a customizable dialog box for Angular applications. 
 To use the `RxDialog`, import it into your Angular module:
 
 ```typescript
-import { RxDialog } from './path/to/rx-dialog';
+import { RxDialog } from '@lynqis/remanxng/components';
 ```
-
-### Example Stories
-Refer to the following stories for examples of how to implement the `RxDialog`:
-- [Default Dialog](./dialog.stories.ts#default-dialog)
-- [Confirmation Dialog](./dialog.stories.ts#confirmation-dialog)
-- [Custom Template Dialog](./dialog.stories.ts#custom-template-dialog)
 
 ## Props
 | Property         | Type             | Description                               |
 |------------------|------------------|-------------------------------------------|
-| `maskVisible`    | `boolean`        | Controls the visibility of the mask.     |
-| `transitionOptions` | `string`      | Transition effects for opening/closing.  |
-| `confirmDialog`  | `boolean`        | Indicates if the dialog is a confirmation dialog. |
+| `maskVisible`      | `boolean`              | Determines if a background overlay (mask) is visible                        | `true`                                     |
+| `transitionOptions`| `string`               | CSS transition for dialog appearance/disappearance                          | `'150ms cubic-bezier(0, 0, 0.2, 1)'`       |
+| `closable`         | `boolean`              | Shows a close icon/button in the dialog                                     | `true`                                     |
+| `closeOnEscape`    | `boolean`              | Closes the dialog when pressing the Escape key                              | `true`                                     |
+| `closeOnOutside`   | `boolean`              | Closes the dialog when clicking outside of it                               | `true`                                     |
+| `position`         | `Position`             | Position of the dialog (`'center'`, `'top'`, `'bottom'`, etc.)              | `'center'`                                 |
+| `label`            | `string`               | Title or label displayed at the top of the dialog                           | `'Dialog'`                                 |
+| `width`            | `string`               | Width of the dialog container (e.g., `'500px'`, `'auto'`)                   | `'auto'`                                   |
+| `height`           | `string`               | Height of the dialog container                                              | `'auto'`                                   |
+| `confirmDialog`    | `boolean`              | Enables confirmation mode (e.g., for Yes/No dialogs)                        | `false`                                    |
+
 
 ## Events
-- **onClose**: Emitted when the dialog is closed.
-- **onConfirm**: Emitted when the confirm button is clicked.
+| Event          | Type                       | Description                                      |
+|----------------|----------------------------|--------------------------------------------------|
+| `visibleChange`| `EventEmitter<boolean>`     | Emitted when dialog visibility changes           |
+| `onClose`      | `EventEmitter<boolean>`     | Emitted when the dialog is closed                |
+| `onConfirm`    | `EventEmitter<boolean>`     | Emitted when a confirmation action is validated  |
 
 ## Styling
 The dialog can be styled using CSS. Refer to the `dialog.css` file for default styles.
-
-## Conclusion
-The `RxDialog` component is a versatile tool for creating dialogs in your Angular application. Customize it according to your needs and refer to the provided stories for implementation examples.

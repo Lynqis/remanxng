@@ -7,15 +7,15 @@ import * as RxTableStories from './table.stories';
 
 # RxTable
 
-Le composant `RxTable` est conçu pour afficher des données tabulaires dans les applications Angular. Il prend en charge diverses fonctionnalités telles que le tri, la sélection et la pagination.
+The RxTable component is designed to display tabular data in Angular applications. It supports various features such as sorting, selection, and pagination.
 
-## Caractéristiques
+## Features
 
-- **Tri**: Tri des colonnes (simple ou multiple)
-- **Sélection**: Sélection de lignes (simple ou multiple)
-- **Pagination**: Navigation à travers de grands ensembles de données
-- **Affichage de grille**: Option pour afficher les bordures de la grille
-- **Message personnalisable**: Message configurable pour les données vides
+- **Sorting**: Single or multi-column sorting
+- **Selection**: Single or multi-row selection
+- **Pagination**: Navigate through large data sets
+- **Grid Display**: Option to show grid borders
+- **Custom Message**: Configurable message for empty data
 
 ## Installation
 
@@ -23,9 +23,9 @@ Le composant `RxTable` est conçu pour afficher des données tabulaires dans les
 import { RxTable } from '@lynqis/remanxng/components/table';
 ```
 
-## Exemples d'utilisation
+## Usage Examples
 
-### Table de base
+### Basic Table
 
 <Story name="Basic" of={RxTableStories.Basic} />
 
@@ -45,7 +45,7 @@ import { RxTable } from '@lynqis/remanxng/components/table';
 </rx-table>
 ```
 
-### Table avec pagination
+### Table with Pagination
 
 <Story name="Pagination" of={RxTableStories.Pagination} />
 
@@ -65,7 +65,7 @@ import { RxTable } from '@lynqis/remanxng/components/table';
 </rx-table>
 ```
 
-### Table avec tri
+### Table with Sorting
 
 
 ```html
@@ -87,7 +87,7 @@ import { RxTable } from '@lynqis/remanxng/components/table';
 </rx-table>
 ```
 
-### Table avec sélection
+### Table with Selection
 
 
 ```html
@@ -106,52 +106,30 @@ import { RxTable } from '@lynqis/remanxng/components/table';
 </rx-table>
 ```
 
-## Propriétés
+## Properties
 
-### Tableau des propriétés
+### Property Table
 
-| Propriété           | Type             | Description                               | Défaut       |
+| Property           | Type             | Description                               | Default       |
 |:--------------------|:-----------------|:-----------------------------------------|:-------------|
-| `value`             | `any[]`          | Les données à afficher                    | `[]`         |
-| `tableClass`        | `string`         | Classes CSS supplémentaires               | `''`         |
-| `tableStyle`        | `` | Styles CSS supplémentaires          | `{}`         |
-| `showGridlines`     | `boolean`        | Afficher les bordures de la grille        | `true`       |
-| `emptyMessage`      | `string`         | Message à afficher quand il n'y a pas de données | `Aucune donnée disponible` |
-| `selection`         | `any`            | Valeur de sélection actuelle              | `null`       |
-| `selectionMode`     | `'single' | 'multiple' | null` | Mode de sélection | `null`       |
-| `dataKey`           | `string`         | Clé pour la sélection                    | `''`         |
-| `sortField`         | `string`         | Champ de tri actuel                      | `null`       |
-| `sortOrder`         | `number`         | Ordre de tri actuel                      | `1`          |
-| `multiSortMeta`     | `SortMeta[]`     | Métadonnées pour le tri multiple         | `[]`         |
-| `sortMode`          | `'single' | 'multiple'` | Mode de tri | `'single'` |
-| `defaultSortOrder`  | `number`         | Ordre de tri par défaut                  | `1`          |
-| `rows`              | `number`         | Nombre d'éléments par page               | `10`         |
+| `value`             | `any[]`          | Data to display                   | `[]`         |
+| `tableClass`        | `string`         | Additionnal CSS classes               | `''`         |
+| `tableStyle`        | `` | Additionnal inline styles        | `{}`         |
+| `showGridlines`     | `boolean`        | Show grid borders        | `true`       |
+| `emptyMessage`      | `string`         | Message to display when no data is available | `Aucune donnée disponible` |
+| `selection`         | `any`            | Current selection             | `null`       |
+| `selectionMode`     | `'single' \| 'multiple' \| 'null'` | Row selection mode | `null`       |
+| `dataKey`           | `string`         | Key for selection tracking                  | `''`         |
+| `sortField`         | `string`         | Currently sorted field                   | `null`       |
+| `sortOrder`         | `number`         | Current sort order                     | `1`          |
+| `multiSortMeta`     | `SortMeta[]`     | Metadata for multi-column sorting         | `[]`         |
+| `sortMode`          | `'single' \| 'multiple'` | Sorting mode | `'single'` |
+| `defaultSortOrder`  | `number`         | Default sort order                  | `1`          |
+| `rows`              | `number`         | Number of items per page              | `10`         |
 
-### Description des propriétés
+## Events
 
-*   `value`: Les données à afficher
-*   `tableClass`: Classes CSS supplémentaires
-*   `tableStyle`: Styles CSS supplémentaires
-*   `showGridlines`: Afficher les bordures de la grille
-*   `emptyMessage`: Message à afficher quand il n'y a pas de données
-*   `selection`: Valeur de sélection actuelle
-*   `selectionMode`: Mode de sélection
-*   `dataKey`: Clé pour la sélection
-*   `sortField`: Champ de tri actuel
-*   `sortOrder`: Ordre de tri actuel
-*   `multiSortMeta`: Métadonnées pour le tri multiple
-*   `sortMode`: Mode de tri
-*   `defaultSortOrder`: Ordre de tri par défaut
-*   `rows`: Nombre d'éléments par page
-
-## Événements
-
-| Événement           | Type             | Description                               |
+| Event           | Type             | Description                               |
 |:--------------------|:-----------------|-------------------------------------------|
-| `selectionChange`   | `EventEmitter<any>` | Émis quand la sélection change         |
-| `sortChange`        | `EventEmitter<SortMeta>` | Émis quand le tri change            |
-
-### Description des événements
-
-*   `selectionChange`: Émis quand la sélection change
-*   `sortChange`: Émis quand le tri change
+| `selectionChange`   | `EventEmitter<any>` | Triggered when selection changes         |
+| `sortChange`        | `EventEmitter<SortMeta>` | Triggered when sort state changes         |

@@ -16,25 +16,13 @@ The `RxCard` component is designed to display content in a card format in Angula
 To use the `RxCard`, import it into your Angular module:
 
 ```typescript
-import { RxCard } from './path/to/rx-card';
+import { RxCard } from '@lynqis/remanxng/components';
 ```
-
-### Example Stories
-Refer to the following stories for examples of how to implement the `RxCard`:
-- [Default Card](./card.stories.ts#default-card)
-- [With Header and Footer](./card.stories.ts#with-header-and-footer)
 
 ## Props
 | Property         | Type             | Description                               |
 |------------------|------------------|-------------------------------------------|
-| `header`         | `string`         | Defines the header text of the card.     |
-| `footer`         | `string`         | Defines the footer text of the card.     |
-
-## Events
-- **onCardClick**: Emitted when the card is clicked.
+| `noStyle`         | `string`         | Don't use the default style.     |
 
 ## Styling
 The card can be styled using CSS. Refer to the `card.css` file for default styles.
-
-## Conclusion
-The `RxCard` component provides a flexible way to display content in card format in your Angular application. Customize it according to your needs and refer to the provided stories for implementation examples.

@@ -26,7 +26,13 @@ import {
   ViewRef,
 } from '@angular/core';
 import { BaseComponent } from '../base/basecomponent';
-import { Dom, Nullable, TemplateNull, VoidListener, ZIndexUtils } from '@lynqis/remanxng/api';
+import {
+  Dom,
+  Nullable,
+  TemplateNull,
+  VoidListener,
+  ZIndexUtils,
+} from '@lynqis/remanxng/api';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -35,33 +41,33 @@ import { Subscription } from 'rxjs';
   imports: [NgClass, NgStyle],
   template: `
     @if (render) {
+    <div
+      class="rx-popover"
+      [ngClass]="$class"
+      [ngStyle]="$style"
+      (click)="onOverlayClick($event)"
+      [@animation]="{
+        value: overlayVisible ? 'open' : 'close',
+        params: {
+          showTransitionParams: showTransitionOptions,
+          hideTransitionParams: hideTransitionOptions
+        }
+      }"
+      (@animation.start)="onAnimationStart($event)"
+      (@animation.done)="onAnimationEnd($event)"
+      role="dialog"
+      [attr.aria-modal]="overlayVisible"
+      [attr.aria-label]="ariaLabel"
+      [attr.aria-labelledBy]="ariaLabelledBy"
+    >
       <div
-        class="rx-popover"
-        [ngClass]="$class"
-        [ngStyle]="$style"
-        (click)="onOverlayClick($event)"
-        [@animation]="{
-          value: overlayVisible ? 'open' : 'close',
-          params: {
-            showTransitionParams: showTransitionOptions,
-            hideTransitionParams: hideTransitionOptions
-          }
-        }"
-        (@animation.start)="onAnimationStart($event)"
-        (@animation.done)="onAnimationEnd($event)"
-        role="dialog"
-        [attr.aria-modal]="overlayVisible"
-        [attr.aria-label]="ariaLabel"
-        [attr.aria-labelledBy]="ariaLabelledBy"
+        class="rx-popover-content"
+        (click)="onContentClick($event)"
+        (mousedown)="onContentClick($event)"
       >
-        <div
-          class="rx-popover-content"
-          (click)="onContentClick($event)"
-          (mousedown)="onContentClick($event)"
-        >
-          <ng-content></ng-content>
-        </div>
+        <ng-content></ng-content>
       </div>
+    </div>
     }
   `,
   animations: [
@@ -94,11 +100,8 @@ import { Subscription } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./popover.css'],
 })
-export class RxPopover
-  extends BaseComponent
-  implements OnDestroy
-{
-    @Input() ariaLabel: string | undefined;
+export class RxPopover extends BaseComponent implements OnDestroy {
+  @Input() ariaLabel: string | undefined;
   @Input() ariaLabelledBy: string | undefined;
   @Input({ transform: booleanAttribute }) dismissable: boolean = true;
   @Input() $style: { [klass: string]: any } | null | undefined;
@@ -138,7 +141,8 @@ export class RxPopover
 
   documentResizeListener: VoidListener;
 
-  @ContentChild('headless', { descendants: false }) contentTemplate: TemplateNull<any>;
+  @ContentChild('headless', { descendants: false })
+  contentTemplate: TemplateNull<any>;
 
   destroyCallback: Nullable<Function>;
 
@@ -267,10 +271,7 @@ export class RxPopover
       0,
       targetOffset.left - containerOffset.left - borderRadius * 2
     );
-    this.container.style.setProperty(
-      '--popover-arrow-left',
-      `${arrowLeft}px`
-    );
+    this.container.style.setProperty('--popover-arrow-left', `${arrowLeft}px`);
 
     const isFlipped = containerOffset.top < targetOffset.top;
     if (isFlipped) {
@@ -361,7 +362,7 @@ export class RxPopover
 
   ngOnDestroy() {
     if (this.container && this.autoZIndex) {
-        ZIndexUtils.clear(this.container);
+      ZIndexUtils.clear(this.container);
     }
 
     if (!(this.cd as ViewRef).destroyed) {

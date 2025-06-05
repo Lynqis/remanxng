@@ -16,25 +16,14 @@ The `RxMenuBar` component is designed to create a navigation menu in Angular app
 To use the `RxMenuBar`, import it into your Angular module:
 
 ```typescript
-import { RxMenuBar } from './path/to/rx-menu-bar';
+import { RxMenuBar } from '@lynqis/remanxng/components';
 ```
-
-### Example Stories
-Refer to the following stories for examples of how to implement the `RxMenuBar`:
-- [Default MenuBar](./menubar.stories.ts#default-menubar)
-- [With Dropdowns](./menubar.stories.ts#with-dropdowns)
 
 ## Props
 | Property         | Type             | Description                               |
 |------------------|------------------|-------------------------------------------|
-| `items`          | `Array`          | Defines the menu items to display.       |
-| `styleClass`     | `string`         | Additional styles to apply to the menu.  |
-
-## Events
-- **onItemSelect**: Emitted when a menu item is selected.
+| `model`          | `Array`          | Defines the menu items to display.       |
+| `direction`          | `'column' \| 'row'`          | Defines the direction of the menu.       |
 
 ## Styling
 The menu can be styled using CSS. Refer to the `menubar.css` file for default styles.
-
-## Conclusion
-The `RxMenuBar` component provides a flexible way to create navigation menus in your Angular application. Customize it according to your needs and refer to the provided stories for implementation examples.

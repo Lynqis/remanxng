@@ -16,25 +16,19 @@ The `RxToast` component is designed to display brief messages or notifications i
 To use the `RxToast`, import it into your Angular module:
 
 ```typescript
-import { RxToast } from './path/to/rx-toast';
+import { RxToast } from '@lynqis/remanxng/components';
 ```
 
-### Example Stories
-Refer to the following stories for examples of how to implement the `RxToast`:
-- [Default Toast](./toast.stories.ts#default-toast)
-- [Success Toast](./toast.stories.ts#success-toast)
-
 ## Props
-| Property         | Type             | Description                               |
-|------------------|------------------|-------------------------------------------|
-| `duration`       | `number`         | Defines how long the toast is visible.   |
-| `position`       | `string`         | Defines the position of the toast on the screen. |
+| Property     | Type                         | Description                                                             | Default     |
+|--------------|------------------------------|-------------------------------------------------------------------------|-------------|
+| `position`   | `Position`                   | Position of the toast (`'top'`, `'bottom'`, etc.)                       | `'top'`     |
+| `severity`   | `Severity`                   | Visual severity style (`'primary'`, `'success'`, `'warn'`, etc.)        | `'primary'` |
+| `lifetime`   | `number`                     | Duration (in seconds) each toast message remains visible                | `120`       |
+| `messages`   | `ToastMessage[] \| null \| undefined` | List of toast messages to display                                | `undefined` |
 
 ## Events
 - **onClose**: Emitted when the toast is closed.
 
 ## Styling
 The toast can be styled using CSS. Refer to the `toast.css` file for default styles.
-
-## Conclusion
-The `RxToast` component provides a simple way to display notifications in your Angular application. Customize it according to your needs and refer to the provided stories for implementation examples.

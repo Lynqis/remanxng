@@ -16,25 +16,26 @@ The `RxButton` component is designed to create customizable buttons in Angular a
 To use the `RxButton`, import it into your Angular module:
 
 ```typescript
-import { RxButton } from './path/to/rx-button';
+import { RxButton } from '@lynqis/remanxng/components';
 ```
 
-### Example Stories
-Refer to the following stories for examples of how to implement the `RxButton`:
-- [Default Button](./button.stories.ts#default-button)
-- [Loading Button](./button.stories.ts#loading-button)
-
 ## Props
-| Property         | Type             | Description                               |
-|------------------|------------------|-------------------------------------------|
-| `size`           | `string`         | Defines the size of the button.          |
-| `loading`        | `boolean`        | Indicates if the button is in a loading state. |
+| Property     | Type                | Description                                                                 | Default       |
+|--------------|---------------------|-----------------------------------------------------------------------------|---------------|
+| `autofocus`  | `boolean`           | Automatically focuses the button on load                                    | `false`       |
+| `disabled`   | `boolean`           | Disables the button                                                         | `false`       |
+| `label`      | `string`            | Text label displayed inside the button                                      | `undefined`   |
+| `loading`    | `boolean`           | Shows a loading state (e.g., spinner)                                       | `false`       |
+| `name`       | `string`            | Button name attribute                                                       | `undefined`   |
+| `severity`   | `Severity`          | Defines the visual importance or style of the button (e.g., primary, info)  | `undefined`   |
+| `type`       | `string`            | HTML button type: `"button"`, `"submit"`, `"reset"`                         | `'button'`    |
+| `value`      | `string`            | Value attribute of the button                                               | `undefined`   |
+| `hidden`     | `boolean`           | Hides the button visually (uses `hidden` attribute)                         | `false`       |
+| `noStyle`    | `boolean`           | Disables default styling                                                    | `false`       |
+
 
 ## Events
 - **onClick**: Emitted when the button is clicked.
 
 ## Styling
 The button can be styled using CSS. Refer to the `button.css` file for default styles.
-
-## Conclusion
-The `RxButton` component provides a versatile solution for creating buttons in your Angular application. Customize it according to your needs and refer to the provided stories for implementation examples.
