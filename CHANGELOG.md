@@ -1,3 +1,16 @@
+## v0.4.0 - 2025-06-22
+
+### ✨ Features
+- rework popover
+- add sidebar's animations
+- improve menubar with callbacks
+
+### 🐛 Fixes
+- MenuItem's type
+
+### 📝 Documentation
+- improve all storybook's docs
+
 ## v0.3.0 - 2025-05-27
 
 ### ✨ Features
