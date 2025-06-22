@@ -130,7 +130,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-button (click)=\"op.toggle($event, button)\" [label]=\"'Open a modal'\"></rx-button>\n      <rx-popover #op [$height]=\"'200px'\" [$width]=\"'50%'\">\n        <h1>Popover</h1>\n        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n        when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n      </rx-popover>\n    `\n  })\n}"
+                "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"\">\n        <div style=\"top: 0;\">\n          <div>\n            <rx-button (click)=\"op.toggle($event, button)\" [label]=\"'Open a modal'\" style=\"position: absolute; left: 0; top: 0;\"></rx-button>\n            <rx-popover #op>\n              <h1>Popover</h1>\n              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n              when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n            </rx-popover>\n          </div>\n\n          <div >\n            <rx-button (click)=\"op2.toggle($event, button)\" [label]=\"'Open a modal'\" style=\"position: absolute; right: 0; top: 0;\"></rx-button>\n            <rx-popover #op2 [$style]=\"'width: 300px'\">\n              <h1>Popover</h1>\n              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n              when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n            </rx-popover>\n          </div>\n        <div>\n        <div style=\"top: 50vh; display: flex; justify-content: center;\">\n          <div>\n            <rx-button (click)=\"op5.toggle($event, button)\" [label]=\"'Open a modal'\" style=\"\"></rx-button>\n            <rx-popover #op5 [$style]=\"'width: 300px'\">\n              <h1>Popover</h1>\n              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n              when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n            </rx-popover>\n          </div>\n\n          <div >\n            <rx-button (click)=\"op6.toggle($event, button)\" [label]=\"'Open a modal'\" style=\"\"></rx-button>\n            <rx-popover #op6 [$style]=\"'width: 300px'\">\n              <h1>Popover</h1>\n              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n              when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n            </rx-popover>\n          </div>\n        <div>\n        <div style=\"\">\n          <div >\n            <rx-button (click)=\"op3.toggle($event, button)\" [label]=\"'Open a modal'\" style=\"position: absolute; left: 0; bottom: 0;\"></rx-button>\n            <rx-popover #op3>\n              <h1>Popover</h1>\n              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n              when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n            </rx-popover>\n          </div>\n\n          <div >\n            <rx-button (click)=\"op4.toggle($event, button)\" [label]=\"'Open a modal'\" style=\"position: absolute; right: 0; bottom: 0;\"></rx-button>\n            <rx-popover #op4>\n              <h1>Popover</h1>\n              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n              when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n            </rx-popover>\n          </div>\n        <div>\n      </div>\n    `,\n  }),\n}"
             },
             {
                 "name": "Default",
@@ -238,21 +238,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/remanx/components/src/image/image.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<RxImage>",
-                "defaultValue": "{\n  title: 'Overlay/Image',\n  component: RxImage,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: []\n    }),\n    applicationConfig({\n      providers: [importProvidersFrom(BrowserAnimationsModule)],\n    }),\n  ],\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/remanx/components/src/icon/icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<RxIcon>",
                 "defaultValue": "{\n  title: 'Misc/RxIcon',\n  component: RxIcon,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: []\n    }),\n    applicationConfig({\n      providers: [],\n    }),\n  ],\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/components/src/image/image.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<RxImage>",
+                "defaultValue": "{\n  title: 'Overlay/Image',\n  component: RxImage,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: []\n    }),\n    applicationConfig({\n      providers: [importProvidersFrom(BrowserAnimationsModule)],\n    }),\n  ],\n}"
             },
             {
                 "name": "meta",
@@ -282,7 +282,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<RxPopover>",
-                "defaultValue": "{\n  title: 'Overlay/RxPopover',\n  component: RxPopover,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton,\n        BrowserAnimationsModule\n      ],\n    }),\n  ]\n}"
+                "defaultValue": "{\n  title: 'Overlay/RxPopover',\n  component: RxPopover,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [RxButton],\n    }),\n  ],\n}"
             },
             {
                 "name": "meta",
@@ -371,6 +371,16 @@
                 "defaultValue": "{\n  render: () => ({\n    template: `\n    <div style=\"display: flex; gap: 10px;\">\n      <rx-icon [iconJson]=\"'home'\" />\n      <rx-icon [iconJson]=\"'eye'\" [stroke]=\"'red'\" />\n      <rx-icon [iconJson]=\"'info'\" [thickness]=\"'3'\" />\n      <rx-icon [iconJson]=\"'menu'\" [stroke]=\"'green'\" />\n      <rx-icon [iconJson]=\"'save'\" [fill]=\"'red'\" />\n      <rx-icon [iconJson]=\"'rx-leanqis'\" [fill]=\"'red'\" [stroke]=\"'red'\" [$height]=\"'3rem'\" [$width]=\"'3rem'\" />\n    </div>\n    `\n  })\n}"
             },
             {
+                "name": "ToggleRightSidebar",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/remanx/components/src/layout/layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout #layout [view]=\"view\">\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"layout.onToggleSidebar()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"sidebarVisible()\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh ccs fff',\n      sidebarVisible: signal(true)\n    }\n  })\n}"
+            },
+            {
                 "name": "ToggleSidebar",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -441,8 +451,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RxImage>",
-                "file": "projects/remanx/components/src/image/image.stories.ts",
+                "rawtype": "StoryObj<RxIcon>",
+                "file": "projects/remanx/components/src/icon/icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -452,8 +462,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<RxIcon>",
-                "file": "projects/remanx/components/src/icon/icon.stories.ts",
+                "rawtype": "StoryObj<RxImage>",
+                "file": "projects/remanx/components/src/image/image.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -823,6 +833,16 @@
                     "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout [view]=\"view\" #layout>\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"layout.onToggleSidebar()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"sidebarVisible()\" [shrink]=\"shrink\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      sidebarVisible: signal(true),\n      view: 'shh scc sff',\n      shrink: true\n    }\n  })\n}"
                 },
                 {
+                    "name": "ToggleRightSidebar",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/remanx/components/src/layout/layout.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-layout #layout [view]=\"view\">\n        <rx-header [$style]=\"'background-color:blue'\">\n          <button (click)=\"layout.onToggleSidebar()\">Toggle Sidebar</button>\n        </rx-header>\n        <rx-sidebar [visible]=\"sidebarVisible()\" [$style]=\"'background-color:red'\">\n          Sidebar\n        </rx-sidebar>\n        <rx-main [$style]=\"'background-color:green'\">\n          Main Content\n        </rx-main>\n        <rx-footer [$style]=\"'background-color:yellow'\">Footer</rx-footer>\n      </rx-layout>\n    `,\n    props: {\n      view: 'hhh ccs fff',\n      sidebarVisible: signal(true)\n    }\n  })\n}"
+                },
+                {
                     "name": "ToggleSidebar",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
@@ -842,7 +862,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <rx-button (click)=\"op.toggle($event, button)\" [label]=\"'Open a modal'\"></rx-button>\n      <rx-popover #op [$height]=\"'200px'\" [$width]=\"'50%'\">\n        <h1>Popover</h1>\n        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n        when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n      </rx-popover>\n    `\n  })\n}"
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"\">\n        <div style=\"top: 0;\">\n          <div>\n            <rx-button (click)=\"op.toggle($event, button)\" [label]=\"'Open a modal'\" style=\"position: absolute; left: 0; top: 0;\"></rx-button>\n            <rx-popover #op>\n              <h1>Popover</h1>\n              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n              when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n            </rx-popover>\n          </div>\n\n          <div >\n            <rx-button (click)=\"op2.toggle($event, button)\" [label]=\"'Open a modal'\" style=\"position: absolute; right: 0; top: 0;\"></rx-button>\n            <rx-popover #op2 [$style]=\"'width: 300px'\">\n              <h1>Popover</h1>\n              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n              when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n            </rx-popover>\n          </div>\n        <div>\n        <div style=\"top: 50vh; display: flex; justify-content: center;\">\n          <div>\n            <rx-button (click)=\"op5.toggle($event, button)\" [label]=\"'Open a modal'\" style=\"\"></rx-button>\n            <rx-popover #op5 [$style]=\"'width: 300px'\">\n              <h1>Popover</h1>\n              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n              when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n            </rx-popover>\n          </div>\n\n          <div >\n            <rx-button (click)=\"op6.toggle($event, button)\" [label]=\"'Open a modal'\" style=\"\"></rx-button>\n            <rx-popover #op6 [$style]=\"'width: 300px'\">\n              <h1>Popover</h1>\n              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n              when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n            </rx-popover>\n          </div>\n        <div>\n        <div style=\"\">\n          <div >\n            <rx-button (click)=\"op3.toggle($event, button)\" [label]=\"'Open a modal'\" style=\"position: absolute; left: 0; bottom: 0;\"></rx-button>\n            <rx-popover #op3>\n              <h1>Popover</h1>\n              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n              when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n            </rx-popover>\n          </div>\n\n          <div >\n            <rx-button (click)=\"op4.toggle($event, button)\" [label]=\"'Open a modal'\" style=\"position: absolute; right: 0; bottom: 0;\"></rx-button>\n            <rx-popover #op4>\n              <h1>Popover</h1>\n              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n              when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>\n            </rx-popover>\n          </div>\n        <div>\n      </div>\n    `,\n  }),\n}"
                 },
                 {
                     "name": "meta",
@@ -852,7 +872,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<RxPopover>",
-                    "defaultValue": "{\n  title: 'Overlay/RxPopover',\n  component: RxPopover,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [\n        RxButton,\n        BrowserAnimationsModule\n      ],\n    }),\n  ]\n}"
+                    "defaultValue": "{\n  title: 'Overlay/RxPopover',\n  component: RxPopover,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [RxButton],\n    }),\n  ],\n}"
                 }
             ],
             "projects/remanx/components/src/menubar/menubar.stories.ts": [
@@ -977,19 +997,6 @@
                     "kind": 183
                 }
             ],
-            "projects/remanx/components/src/image/image.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<RxImage>",
-                    "file": "projects/remanx/components/src/image/image.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/remanx/components/src/icon/icon.stories.ts": [
                 {
                     "name": "Story",
@@ -997,6 +1004,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<RxIcon>",
                     "file": "projects/remanx/components/src/icon/icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/remanx/components/src/image/image.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<RxImage>",
+                    "file": "projects/remanx/components/src/image/image.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -1351,6 +1371,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "ShrinkSidebar",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/remanx/components/src/layout/layout.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ToggleRightSidebar",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

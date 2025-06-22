@@ -22,12 +22,16 @@ import { RxPopover } from '@lynqis/remanxng/components';
 ## Props
 | Property         | Type             | Description                               |
 |------------------|------------------|-------------------------------------------|
-| `content`        | `string`         | Defines the content of the popover.      |
-| `position`       | `string`         | Defines the position of the popover.     |
+| `transitionOptions`| `string`               | CSS transition for dialog appearance/disappearance                          |
+| `closeOnOutside`   | `boolean`              | Closes the dialog when clicking outside of it                               |
+| `$style`            | `string`               | Inner CSS                  |
+| `noStyle`            | `boolean`               | Remove the default css               |
+
 
 ## Events
-- **onPopoverOpen**: Emitted when the popover is opened.
-- **onPopoverClose**: Emitted when the popover is closed.
+| Event          | Type                       | Description                                      |
+|----------------|----------------------------|--------------------------------------------------|
+| `visibleChange`| `EventEmitter<boolean>`     | Emitted when dialog visibility changes           |
 
 ## Styling
 The popover can be styled using CSS. Refer to the `popover.css` file for default styles.

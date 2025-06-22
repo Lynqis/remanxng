@@ -143,8 +143,6 @@ export class RxDialog extends BaseComponent {
 
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
-
   @Output() onConfirm: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @ContentChild('headless', { descendants: false }) headlessTemplate: TemplateNull<any>;
@@ -204,7 +202,6 @@ export class RxDialog extends BaseComponent {
 
   sendCloseEmitter() {
     this.visibleChange.emit(false);
-    this.onClose.emit(true);
   }
 
   bindGlobalListeners() {
