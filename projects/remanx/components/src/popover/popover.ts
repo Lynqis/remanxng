@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   Output,
+  TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { BaseComponent } from '../base/basecomponent';
@@ -116,6 +118,7 @@ export class RxPopover extends BaseComponent {
   hide() {
     this.overlayVisible = false;
     this.render = false;
+    this.removeContainer();
     this.visibleChange.emit(false);
   }
 
@@ -172,10 +175,15 @@ export class RxPopover extends BaseComponent {
   private align() {
     if (!this.container || !this.target) return;
 
-    const position = Dom.absolutePosition(this.container, this.target);
+    Dom.absolutePosition(this.container, this.target);
   }
 
   private appendContainer() {
     this.renderer.appendChild(this.document.body, this.container);
+  }
+
+  private removeContainer() {
+    this.renderer.removeChild(this.document.body, this.container);
+    this.target = null;
   }
 }
