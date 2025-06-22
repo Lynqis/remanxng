@@ -51,8 +51,6 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
   positionSidebar: string = '';
   noSidebarClasse: string = 'layout-hhh-ccc-fff';
 
-  sidebarVisible: Signal<boolean> = this._layout.sidebarVisible;
-
   constructor() {
     effect(() => {
       this.initializeLayout();
@@ -141,13 +139,13 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
 
     this.classes += ` layout-${header}-${body}-${footer}`;
 
-    if (!this._layout.sidebarVisible() && position !== 'none') {
+    if (!this._layout.getSidebarVisible() && position !== 'none') {
       this.classes += ' layout-no-sidebar';
       this.classes += `-${this.positionSidebar}`;
     } else if (
-      this._layout.sidebarVisible() &&
-      this._layout.sidebarShrink() &&
-      this._layout.isShrink()
+      this._layout.getSidebarVisible() &&
+      this._layout.getSidebarShrink() &&
+      this._layout.getIsShrink()
     ) {
       this.classes += ` layout-sidebar-${this.positionSidebar}-shrink`;
     } else {
@@ -155,7 +153,7 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
     }
 
     // Add animations
-    if (this._layout.sidebarShrink()) {
+    if (this._layout.getSidebarShrink()) {
       this.classes += ' layout-sidebar-anim-shrink';
     } else {
       this.classes += ' layout-sidebar-anim-opacity';

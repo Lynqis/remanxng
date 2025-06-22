@@ -18,11 +18,11 @@ import { LayoutService } from '../layout/layout.service';
       [style]="$style"
       [ngClass]="{
         'rx-sidebar': true,
-        'rx-sidebar-active': _layout.sidebarVisible(),
+        'rx-sidebar-active': _layout.getSidebarVisible(),
         'rx-sidebar-overlay': overlay,
       }"
     >
-      @if (_layout.sidebarVisible()) {
+      @if (_layout.getSidebarVisible()) {
         <div
         >
           @if (headlessTemplate) {

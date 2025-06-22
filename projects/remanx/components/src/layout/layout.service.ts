@@ -5,27 +5,41 @@ import { Injectable, signal, WritableSignal } from "@angular/core";
 })
 export class LayoutService {
 
-  sidebarVisible: WritableSignal<boolean> = signal(false);
-  sidebarShrink: WritableSignal<boolean> = signal(false);
-  isShrink: WritableSignal<boolean> = signal(false);
+  readonly state = {
+    sidebarVisible: signal(false),
+    sidebarShrink: signal(false),
+    isShrink: signal(false),
+  }
 
   toggleSidebar() {
-    if (!this.sidebarShrink()) {
-      this.setSidebarVisible(!this.sidebarVisible());
+    if (!this.state.sidebarShrink()) {
+      this.setSidebarVisible(!this.state.sidebarVisible());
     } else {
-      this.setIsShrink(!this.isShrink());
+      this.setIsShrink(!this.state.isShrink());
     }
   }
 
+  getSidebarVisible() {
+    return this.state.sidebarVisible();
+  }
+
   setSidebarVisible(value: boolean) {
-    this.sidebarVisible.set(value);
+    this.state.sidebarVisible.set(value);
+  }
+
+  getSidebarShrink() {
+    return this.state.sidebarShrink();
   }
 
   setSidebarShrink(value: boolean) {
-    this.sidebarShrink.set(value);
+    this.state.sidebarShrink.set(value);
+  }
+
+  getIsShrink() {
+    return this.state.isShrink();
   }
 
   setIsShrink(value: boolean) {
-    this.isShrink.set(value);
+    this.state.isShrink.set(value);
   }
 }
