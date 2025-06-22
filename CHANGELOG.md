@@ -1,3 +1,11 @@
+## v0.4.1 - 2025-06-22
+
+### 🐛 Fixes
+- remove popover container
+
+### ♻️ Refactors
+- use state
+
 ## v0.4.0 - 2025-06-22
 
 ### ✨ Features

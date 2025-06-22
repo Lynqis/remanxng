@@ -13,7 +13,7 @@
     "access": "public"
   },
   "license": "GPL-3.0-only",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
