@@ -7,8 +7,9 @@ import {
   inject,
   Input,
 } from '@angular/core';
-import { TemplateNull } from '@lynqis/remanxng/api';
+import { LayoutStore, TemplateNull } from '@lynqis/remanxng/api';
 import { LayoutService } from '../layout/layout.service';
+import { BaseComponent } from '../base/basecomponent';
 
 @Component({
     template: `
@@ -18,11 +19,11 @@ import { LayoutService } from '../layout/layout.service';
       [style]="$style"
       [ngClass]="{
         'rx-sidebar': true,
-        'rx-sidebar-active': _layout.getSidebarVisible(),
+        'rx-sidebar-active': _layout.sidebarVisible(),
         'rx-sidebar-overlay': overlay,
       }"
     >
-      @if (_layout.getSidebarVisible()) {
+      @if (_layout.sidebarVisible()) {
         <div
         >
           @if (headlessTemplate) {
@@ -44,7 +45,7 @@ import { LayoutService } from '../layout/layout.service';
     imports: [NgClass, NgTemplateOutlet],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RxSidebar {
+export class RxSidebar extends BaseComponent {
   @Input() overlay: boolean = false;
   @Input()
   set visible(value: boolean) {
@@ -74,7 +75,5 @@ export class RxSidebar {
 
   _shrink: boolean = false;
 
-  _layout: LayoutService = inject(LayoutService);
-
-  private cd: ChangeDetectorRef = inject(ChangeDetectorRef);
+  _layout = inject(LayoutStore);
 }

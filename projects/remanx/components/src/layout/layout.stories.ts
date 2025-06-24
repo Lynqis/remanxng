@@ -6,6 +6,8 @@ import { RxMainContent } from '../main-content';
 import { RxFooter } from '../footer';
 import { CommonModule } from '@angular/common';
 import { signal } from '@angular/core';
+import { LayoutStore } from '@lynqis/remanxng/api';
+import { HttpClient } from '@angular/common/http';
 
 const meta: Meta<RxLayout> = {
   title: 'Layout/RxLayout',
@@ -45,7 +47,10 @@ L'attribut \`container\` définit si le layout est en mode containerisé.
         RxFooter,
         CommonModule
       ],
-      providers: []
+      providers: [ ],
+      declarations: [
+
+      ]
     }),
   ]
 }

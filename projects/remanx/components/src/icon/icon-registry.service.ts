@@ -1,9 +1,8 @@
-import { Injectable, SecurityContext, WritableSignal, inject, signal } from '@angular/core';
+import { Injectable, WritableSignal, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GlobalConfigService, SvgOptions } from '@lynqis/remanxng/api';
-import * as DefaultJson from '@lynqis/remanx-icons/icons.json';
+import DefaultJson from '@lynqis/remanx-icons/icons.json';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { NumberControl } from '@storybook/blocks';
 
 @Injectable({ providedIn: 'root' })
 export class IconRegistryService {

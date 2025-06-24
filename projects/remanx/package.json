@@ -24,6 +24,7 @@
     "@lynqis/remanx-icons": "0.3.6"
   },
   "dependencies": {
+    "@ngrx/signals": "19.2.1",
     "tslib": "^2.3.0"
   },
   "exports": {

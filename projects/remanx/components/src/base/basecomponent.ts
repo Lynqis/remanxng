@@ -1,7 +1,7 @@
 import { DOCUMENT } from "@angular/common";
-import { ChangeDetectorRef, Directive, ElementRef, inject, PLATFORM_ID, Renderer2 } from "@angular/core";
+import { ChangeDetectorRef, ElementRef, inject, Injectable, PLATFORM_ID, Renderer2 } from "@angular/core";
 
-@Directive({})
+@Injectable({providedIn: 'root'})
 export class BaseComponent {
   public document: Document = inject(DOCUMENT);
 

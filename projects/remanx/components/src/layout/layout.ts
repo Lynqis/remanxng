@@ -15,6 +15,8 @@ import {
 import { BehaviorSubject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { LayoutService } from './layout.service';
+import { LayoutStore } from '@lynqis/remanxng/api';
+import { BaseComponent } from '../base/basecomponent';
 
 @Component({
   selector: 'rx-layout',
@@ -33,10 +35,8 @@ import { LayoutService } from './layout.service';
   styleUrls: ['./layout.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RxLayout implements OnInit, OnChanges, OnDestroy {
-  private platformId: any = inject(PLATFORM_ID);
-  private _layout: LayoutService = inject(LayoutService);
-  private cd: ChangeDetectorRef = inject(ChangeDetectorRef);
+export class RxLayout extends BaseComponent implements OnInit, OnChanges, OnDestroy {
+  private _layout = inject(LayoutStore);
 
   @Input() container: boolean = false;
   @Input() view: string = 'hhh scc fff';
@@ -52,6 +52,7 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
   noSidebarClasse: string = 'layout-hhh-ccc-fff';
 
   constructor() {
+    super();
     effect(() => {
       this.initializeLayout();
     });
@@ -139,13 +140,13 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
 
     this.classes += ` layout-${header}-${body}-${footer}`;
 
-    if (!this._layout.getSidebarVisible() && position !== 'none') {
+    if (!this._layout.sidebarVisible() && position !== 'none') {
       this.classes += ' layout-no-sidebar';
       this.classes += `-${this.positionSidebar}`;
     } else if (
-      this._layout.getSidebarVisible() &&
-      this._layout.getSidebarShrink() &&
-      this._layout.getIsShrink()
+      this._layout.sidebarVisible() &&
+      this._layout.sidebarShrink() &&
+      this._layout.isShrink()
     ) {
       this.classes += ` layout-sidebar-${this.positionSidebar}-shrink`;
     } else {
@@ -153,7 +154,7 @@ export class RxLayout implements OnInit, OnChanges, OnDestroy {
     }
 
     // Add animations
-    if (this._layout.getSidebarShrink()) {
+    if (this._layout.sidebarShrink()) {
       this.classes += ' layout-sidebar-anim-shrink';
     } else {
       this.classes += ' layout-sidebar-anim-opacity';

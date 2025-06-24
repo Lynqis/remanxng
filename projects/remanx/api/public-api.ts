@@ -3,3 +3,4 @@ export * from './src/helpers';
 export * from './src/interfaces';
 export * from './src/utils';
 export * from './src/services';
+export * from './src/stores';
