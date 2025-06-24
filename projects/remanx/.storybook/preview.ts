@@ -33,7 +33,7 @@ const preview: Preview = {
         provideAppInitializer(() => {
           const _iconRegistry = inject(IconRegistryService);
           _iconRegistry.initialize();
-        })
+        }),
       ]
     })
   ],

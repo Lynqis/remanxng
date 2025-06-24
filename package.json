@@ -26,22 +26,19 @@
     "rxjs": "~7.8.2",
     "sass": "^1.89.2",
     "tslib": "^2.8.1",
-    "zone.js": "~0.15.1"
+    "zone.js": "~0.15.1",
+    "@ngrx/signals": "^19.2.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.15",
     "@angular/build": "^19.2.15",
     "@angular/cli": "^19.2.15",
     "@angular/compiler-cli": "^19.2.14",
-    "@chromatic-com/storybook": "^3.2.7",
+    "@chromatic-com/storybook": "^4.0.1",
     "@compodoc/compodoc": "^1.1.26",
     "@lynqis/remanx-icons": "0.1.1",
-    "@storybook/addon-docs": "^8.6.14",
-    "@storybook/addon-essentials": "^8.6.14",
-    "@storybook/addon-interactions": "^8.6.14",
-    "@storybook/angular": "^8.6.14",
-    "@storybook/blocks": "^8.6.14",
-    "@storybook/test": "^8.6.14",
+    "@storybook/addon-docs": "^9.0.12",
+    "@storybook/angular": "^9.0.12",
     "@types/express": "^4.17.23",
     "@types/node": "^18.19.112",
     "@types/react": "^19.1.8",
@@ -49,7 +46,7 @@
     "ng-packagr": "^19.2.2",
     "react": "^19.1.0",
     "remark-gfm": "^4.0.1",
-    "storybook": "^8.6.14",
+    "storybook": "^9.0.12",
     "typescript": "~5.6.3"
   },
   "version": "0.4.1"

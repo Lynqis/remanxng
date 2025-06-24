@@ -15,26 +15,16 @@ const config: StorybookConfig = {
     "../components/*.@(mdx|stories.@(ts))",
     "../components/**/*.@(mdx|stories.@(js|jsx|mjs|ts|tsx))"
   ],
-  addons: [
-    getAbsolutePath("@storybook/addon-interactions"),
-    getAbsolutePath("@chromatic-com/storybook"),
-    {
-      name: '@storybook/addon-essentials',
-      options: {
-        docs: true
-      },
-    },
-    {
-      name: "@storybook/addon-docs",
-      options: {
-        mdxPluginOptions: {
-          mdxCompileOptions: {
-            remarkPlugins: [remarkGfm],
-          },
+  addons: [getAbsolutePath("@chromatic-com/storybook"), {
+    name: "@storybook/addon-docs",
+    options: {
+      mdxPluginOptions: {
+        mdxCompileOptions: {
+          remarkPlugins: [remarkGfm],
         },
-      }
+      },
     }
-  ],
+  }],
   framework: {
     name: getAbsolutePath("@storybook/angular"),
     options: {
