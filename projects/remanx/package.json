@@ -19,8 +19,8 @@
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0",
+    "@angular/common": "^19.2.14",
+    "@angular/core": "^19.2.14",
     "@lynqis/remanx-icons": "0.3.6"
   },
   "dependencies": {

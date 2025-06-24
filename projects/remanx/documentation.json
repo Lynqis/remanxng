@@ -348,7 +348,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Preview",
-                "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    options: {\n      storySort: {\n        order: ['Introduction', '*'],\n      },\n    },\n    docs: {\n      disable: false\n    }\n  },\n  decorators: [\n    applicationConfig({\n      providers: [\n        provideHttpClient(),\n        provideAnimations(),\n        provideAppInitializer(() => {\n          const _iconRegistry = inject(IconRegistryService);\n          _iconRegistry.initialize();\n        }),\n      ]\n    }),\n    moduleMetadata({\n      imports: [\n        HttpClientModule\n      ]\n    })\n  ],\n\n  tags: [\"autodocs\"]\n}"
+                "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    options: {\n      storySort: {\n        order: ['Introduction', '*'],\n      },\n    },\n    docs: {\n      disable: false\n    }\n  },\n  decorators: [\n    applicationConfig({\n      providers: [\n        provideHttpClient(),\n        provideAnimations(),\n        provideAppInitializer(() => {\n          const _iconRegistry = inject(IconRegistryService);\n          _iconRegistry.initialize();\n        }),\n        importProvidersFrom(HttpClient)\n      ]\n    })\n  ],\n\n  tags: [\"autodocs\"]\n}"
             },
             {
                 "name": "ShrinkSidebar",
@@ -938,7 +938,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Preview",
-                    "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    options: {\n      storySort: {\n        order: ['Introduction', '*'],\n      },\n    },\n    docs: {\n      disable: false\n    }\n  },\n  decorators: [\n    applicationConfig({\n      providers: [\n        provideHttpClient(),\n        provideAnimations(),\n        provideAppInitializer(() => {\n          const _iconRegistry = inject(IconRegistryService);\n          _iconRegistry.initialize();\n        }),\n      ]\n    }),\n    moduleMetadata({\n      imports: [\n        HttpClientModule\n      ]\n    })\n  ],\n\n  tags: [\"autodocs\"]\n}"
+                    "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    options: {\n      storySort: {\n        order: ['Introduction', '*'],\n      },\n    },\n    docs: {\n      disable: false\n    }\n  },\n  decorators: [\n    applicationConfig({\n      providers: [\n        provideHttpClient(),\n        provideAnimations(),\n        provideAppInitializer(() => {\n          const _iconRegistry = inject(IconRegistryService);\n          _iconRegistry.initialize();\n        }),\n        importProvidersFrom(HttpClient)\n      ]\n    })\n  ],\n\n  tags: [\"autodocs\"]\n}"
                 }
             ]
         },
