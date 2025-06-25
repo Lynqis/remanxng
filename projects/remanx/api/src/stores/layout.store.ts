@@ -1,4 +1,4 @@
-// layout.store.ts
+import { makeEnvironmentProviders } from '@angular/core';
 import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
 
 export interface LayoutState {
@@ -28,7 +28,7 @@ export const LayoutStore = signalStore(
     },
 
     toggleSidebar: () => {
-      if (!store.sidebarVisible()) {
+      if (!store.sidebarShrink()) {
         patchState(store, { sidebarVisible: !store.sidebarVisible() })
       } else {
         patchState(store, { isShrink: !store.isShrink() })
@@ -37,3 +37,7 @@ export const LayoutStore = signalStore(
 
   })),
 );
+
+export function provideLayoutStore() {
+  return makeEnvironmentProviders([LayoutStore]);
+}

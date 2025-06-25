@@ -1,20 +1,16 @@
 import {
   Component,
   Input,
-  PLATFORM_ID,
   inject,
   OnInit,
   ChangeDetectionStrategy,
   OnChanges,
   SimpleChanges,
-  ChangeDetectorRef,
   OnDestroy,
-  Signal,
   effect,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
-import { LayoutService } from './layout.service';
 import { LayoutStore } from '@lynqis/remanxng/api';
 import { BaseComponent } from '../base/basecomponent';
 
@@ -138,6 +134,8 @@ export class RxLayout extends BaseComponent implements OnInit, OnChanges, OnDest
       return;
     }
 
+    console.log('visible: ', this._layout.sidebarVisible())
+
     this.classes += ` layout-${header}-${body}-${footer}`;
 
     if (!this._layout.sidebarVisible() && position !== 'none') {
@@ -163,5 +161,6 @@ export class RxLayout extends BaseComponent implements OnInit, OnChanges, OnDest
 
   onToggleSidebar() {
     this._layout.toggleSidebar();
+    this.cd.markForCheck();
   }
 }
