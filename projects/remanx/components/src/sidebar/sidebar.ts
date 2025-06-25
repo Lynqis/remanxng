@@ -1,18 +1,16 @@
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChild,
   inject,
   Input,
 } from '@angular/core';
 import { LayoutStore, TemplateNull } from '@lynqis/remanxng/api';
-import { LayoutService } from '../layout/layout.service';
 import { BaseComponent } from '../base/basecomponent';
 
 @Component({
-    template: `
+  template: `
     <div
       #container
       [class]="$class"
@@ -24,26 +22,24 @@ import { BaseComponent } from '../base/basecomponent';
       }"
     >
       @if (_layout.sidebarVisible()) {
-        <div
-        >
-          @if (headlessTemplate) {
-            <ng-container>
-              <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
-            </ng-container>
-          } @else {
-            <div #content class="rx-sidebar-content">
-              <ng-content></ng-content>
-            </div>
-          }
-
+      <div>
+        @if (headlessTemplate) {
+        <ng-container>
+          <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
+        </ng-container>
+        } @else {
+        <div #content class="rx-sidebar-content">
+          <ng-content></ng-content>
         </div>
+        }
+      </div>
       }
     </div>
   `,
-    selector: 'rx-sidebar',
-    styleUrl: './sidebar.css',
-    imports: [NgClass, NgTemplateOutlet],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'rx-sidebar',
+  styleUrl: './sidebar.css',
+  imports: [NgClass, NgTemplateOutlet],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RxSidebar extends BaseComponent {
   @Input() overlay: boolean = false;
@@ -69,7 +65,8 @@ export class RxSidebar extends BaseComponent {
   @Input() $class: string = '';
   @Input() $style: string = '';
 
-  @ContentChild('headless', { descendants: false }) headlessTemplate: TemplateNull<any>;
+  @ContentChild('headless', { descendants: false })
+  headlessTemplate: TemplateNull<any>;
 
   _visible: boolean = false;
 
