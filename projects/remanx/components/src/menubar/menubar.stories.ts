@@ -21,10 +21,10 @@ type Story = StoryObj<RxMenuBar>;
 export const MenuBar: Story = {
   render: () => ({
     props: {
-      model: items
+      data: items
     },
     template: `
-      <rx-menubar [model]="model"></rx-menubar>
+      <rx-menubar [data]="data"></rx-menubar>
     `,
   }),
 };
@@ -32,11 +32,11 @@ export const MenuBar: Story = {
 export const Menu: Story = {
   render: () => ({
     props: {
-      model: items,
+      data: items,
       direction: 'column'
     },
     template: `
-      <rx-menubar [model]="model" [direction]="direction"></rx-menubar>
+      <rx-menubar [data]="data" [direction]="direction"></rx-menubar>
     `,
   }),
 }

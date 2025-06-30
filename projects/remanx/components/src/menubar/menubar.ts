@@ -193,7 +193,7 @@ export class RxMenuBarSub extends BaseComponent {
   selector: 'rx-menubar',
   standalone: true,
   template: `
-    <rx-menubar-sub [items]="model" [direction]="direction"></rx-menubar-sub>
+    <rx-menubar-sub [items]="data" [direction]="direction"></rx-menubar-sub>
   `,
   imports: [RxMenuBarSub],
   styleUrls: ['./menubar.css'],
@@ -206,14 +206,14 @@ export class RxMenuBarSub extends BaseComponent {
   },
 })
 export class RxMenuBar {
-  @Input() set model(value: MenuItem[] | undefined) {
-    this._model = value;
+  @Input() set data(value: MenuItem[] | undefined) {
+    this._data = value;
   }
-  get model(): MenuItem[] | undefined {
-    return this._model;
+  get data(): MenuItem[] | undefined {
+    return this._data;
   }
 
   @Input() direction: 'column' | 'row' = 'row';
 
-  _model: MenuItem[] | undefined;
+  _data: MenuItem[] | undefined;
 }

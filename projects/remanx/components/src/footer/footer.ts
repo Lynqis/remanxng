@@ -10,9 +10,7 @@ import { TemplateNull } from '@lynqis/remanxng/api';
 @Component({
   template: `
     @if (headlessTemplate) {
-    <ng-container>
       <ng-container *ngTemplateOutlet="headlessTemplate"></ng-container>
-    </ng-container>
     } @else {
     <footer class="rx-footer" [style]="$style">
       <ng-content></ng-content>

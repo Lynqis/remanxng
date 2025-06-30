@@ -1,11 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   Output,
-  TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { BaseComponent } from '../base/basecomponent';
