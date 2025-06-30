@@ -210,8 +210,8 @@
         position: relative;
         background: none;
         border: none;
-        padding: 0.5rem 1rem;
         font-size: 1rem;
+        width: 100%;
         transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, outline-color 0.2s;
         outline-color: transparent;
     }

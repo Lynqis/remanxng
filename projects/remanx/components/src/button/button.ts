@@ -51,6 +51,8 @@ export class RxButton {
 
   @Input() noStyle: boolean = false;
 
+  @Input() classes: string | undefined;
+
   @Output() onClick: EventEmitter<MouseEvent> = new EventEmitter();
 
   public _loading: boolean = false;
@@ -61,7 +63,8 @@ export class RxButton {
       return {
         'rx-button': !this.hidden,
         'rx-button-hide': this.hidden,
-        [`rx-button-${this.severity}`]: this.severity && !this.hidden
+        [`rx-button-${this.severity}`]: this.severity && !this.hidden,
+        [`${this.classes}`]: true
       };
     }
 

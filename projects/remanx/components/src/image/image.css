@@ -1,54 +1,122 @@
 @layer remanx {
-
-    .rx-image-mask {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        background-color: rgba(0,0,0,0.5);
-        align-items: center;
-        justify-content: center;
-    }
-
     .rx-image {
         position: relative;
         display: inline-flex;
+        border-radius: 0.5rem;
+        overflow: hidden;
 
         &:hover > .rx-image-button-preview {
             opacity: 1;
+        }
+
+        .rx-image-thumbnail {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border-radius: inherit;
         }
     }
 
     .rx-image-button-preview {
         position: absolute;
-        width: 100%;
-        height: 100%;
+        inset: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer;
         opacity: 0;
         transition: opacity 0.3s;
-        border: 0 none;
-        padding: 0;
-        background-color: rgba(0,0,0,0.5);
+        background-color: rgba(0, 0, 0, 0.4);
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+    }
+
+    .rx-image-mask {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.95);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease-in-out;
+
+        .rx-image-mask-content {
+            position: relative;
+            max-width: 95vw;
+            max-height: 95vh;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
     }
 
     .rx-image-toolbar {
         position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 2;
+        border-radius: 999px;
         display: flex;
-        inset-block-start: 1rem;
-        inset-inline-end: 1rem;
-        inset-inline-start: auto;
-        inset-block-end: auto;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: .5rem;
+        gap: .5rem;
+    }
+
+    ::ng-deep .rx-toolbar-button {
+        border: 0 none;
+        height: 3rem;
+        width: 3rem;
+        font-size: 0.5rem;
+        display: inline-flex;
+        margin: 0;
+        padding: 0;
+        border-radius: 999px;
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+        background-color: red;
+    }
+
+    ::ng-deep .rx-toolbar-button:hover {
+        border: none;
+        cursor: pointer;
+        background-color: #a5a5a5ee;
+    }
+
+    ::ng-deep .rx-toolbar-icon {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        stroke: #fff;
     }
 
     .rx-image-original {
-        max-width: 100dvw;
-        max-height: 100dvh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
+        }
     }
 
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
 
+        to {
+            opacity: 1;
+        }
+    }
 }

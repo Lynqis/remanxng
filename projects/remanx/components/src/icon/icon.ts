@@ -8,7 +8,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { ObjectUtils, TemplateNull } from '@lynqis/remanxng/api';
+import { IconOptions, ObjectUtils, TemplateNull } from '@lynqis/remanxng/api';
 import { IconRegistryService } from './icon-registry.service';
 import { BaseComponent } from '../base/basecomponent';
 import { SafeHtml } from '@angular/platform-browser';
@@ -83,6 +83,11 @@ export class RxIcon extends BaseComponent implements OnInit {
    * @param {string | undefined}
    */
   @Input() svgClasses: string | undefined;
+  /**
+   * Use a type instead of multiple attributs
+   * @param {IconOptions}
+   */
+  @Input() icon: IconOptions = {};
 
   @ContentChild('headless', { descendants: false }) headlessTemplate: TemplateNull<any>;
 
@@ -105,12 +110,12 @@ export class RxIcon extends BaseComponent implements OnInit {
   private loadIcon() {
     if (this.iconJson) {
       this.iconSvg = this._iconRegistry.getIcon(this.iconJson, {
-        stroke: this.stroke,
-        thickness: this.thickness,
-        fill: this.fill,
-        height: this.$height,
-        width: this.$width,
-        svgClasses: this.svgClasses
+        stroke: this.icon.stroke ?? this.stroke,
+        thickness: this.icon.thickness ?? this.thickness,
+        fill: this.icon.height ?? this.fill,
+        height: this.icon.height ?? this.$height,
+        width: this.icon.width ?? this.$width,
+        svgClasses: this.icon.svgClasses ?? this.svgClasses
       });
     }
     this.cd.detectChanges();

@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
         'rx-relative': level === 0,
       }"
     >
-      <ng-template ngFor let-processedItem [ngForOf]="items" let-index="index">
+      @for (processedItem of items; let index = $index; track processedItem.id) {
         <ul class="rx-menubar-list">
           @if (getItemProp(processedItem, 'separator')) {
           <li>
@@ -75,7 +75,7 @@ import { Router } from '@angular/router';
           </li>
           }
         </ul>
-      </ng-template>
+      }
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

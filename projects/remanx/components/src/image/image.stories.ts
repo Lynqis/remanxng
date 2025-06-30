@@ -4,7 +4,7 @@ import { importProvidersFrom } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 const meta: Meta<RxImage> = {
-  title: 'Overlay/Image',
+  title: 'Overlay/RxImage',
   component: RxImage,
   tags: ['autodocs'],
   decorators: [
@@ -23,6 +23,10 @@ type Story = StoryObj<RxImage>;
 
 export const WithPreview: Story = {
   render: () => ({
-    template: `<rx-image [src]="'https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg'" [preview]="true" />`
+    template: `
+    <div style="display: flex; justify-content: center">
+    <rx-image [src]="'https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg'" [preview]="true" />
+    </div>
+    `
   })
 }

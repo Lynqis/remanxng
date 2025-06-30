@@ -3,6 +3,33 @@ import { Meta, Story } from '@storybook/addon-docs/blocks';
 
 <Meta of={RxImageStories} />
 
-# RxImage
+# Documentation for RxImage
+
+## Overview
+Use to display image in a equal format all the application.
+
+## Features
+- **Preview**: Display in fullsize
+
+## Usage
+To use the `RxImage`, import it into your Angular module:
+
+```typescript
+import { RxImage } from '@lynqis/remanxng/components';
+```
+
+```html
+<rx-image [src]="'https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg'" [preview]="true" />
+```
 
 <Story of={RxImageStories.WithPreview} />
+
+## Props
+| Property         | Type             | Description                               |
+|------------------|------------------|-------------------------------------------|
+| `src`           | `string`         | Defines the image source.            |
+| `$height`          | `string`         | Defines the icon's height.           |
+| `$width`          | `string`         | Defines the icon's width.           |
+| `image`          | `string`         | Use a type instead of multiple attributs             |
+| `alt`          | `string`         | Define image's alt          |
+| `preview`          | `boolean`         | Use preview           |
