@@ -228,6 +228,8 @@ export class RxDialog extends BaseComponent {
         if (event.key == 'Escape') {
           this.close(event);
         }
+
+        this.cd.markForCheck();
       }
     );
   }
