@@ -121,8 +121,8 @@ importers:
         specifier: ^19.2.14
         version: 19.2.14(rxjs@7.8.2)(zone.js@0.15.1)
       '@lynqis/remanx-icons':
-        specifier: 0.3.6
-        version: 0.3.6
+        specifier: 0.4.0
+        version: 0.4.0
       '@ngrx/signals':
         specifier: 19.2.1
         version: 19.2.1(@angular/core@19.2.14(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
@@ -1464,8 +1464,8 @@ packages:
   '@lynqis/remanx-icons@0.1.1':
     resolution: {integrity: sha512-GEqC8D9vEZXxdpyllXEav9C7B9gpiWVUjHb4XoVw1BqiOo57PwNSOs9PKGcj7naDYFtNcPFyGq22ISWxX/b0Xg==, tarball: https://npm.pkg.github.com/download/@lynqis/remanx-icons/0.1.1/05db52cef7c5f98282f27f32dc4753e747f73620}
 
-  '@lynqis/remanx-icons@0.3.6':
-    resolution: {integrity: sha512-RhAOI3x91rZUKnP3BQFCybZklS6meVT217chkWgcUltVtnNnU79ALheprN775Pa5wJy8rJH/AYhXx701g+MUPA==, tarball: https://npm.pkg.github.com/download/@lynqis/remanx-icons/0.3.6/0cac3f6b0dc32a6e2c069b75ce40b63f13acfd5f}
+  '@lynqis/remanx-icons@0.4.0':
+    resolution: {integrity: sha512-+fZSZqI1Wd2Wx8KkrI6R/NuLvr1B7BM3TSdjqNFmZFLChieOuuP8K70cCN84LR4JmHgP+bOZgGwDFB18m/tL3g==, tarball: https://npm.pkg.github.com/download/@lynqis/remanx-icons/0.4.0/5a0823cd5e6838a0bd5bf2e3ae7c6d0bfd4c1f42}
 
   '@mdx-js/react@3.1.0':
     resolution: {integrity: sha512-QjHtSaoameoalGnKDT3FoIl4+9RwyTmo9ZJGBdLOks/YOiWHoRDI3PUwEzOE7kEmGcV3AFcp9K6dYu9rEuKLAQ==}
@@ -7631,7 +7631,7 @@ snapshots:
 
   '@lynqis/remanx-icons@0.1.1': {}
 
-  '@lynqis/remanx-icons@0.3.6': {}
+  '@lynqis/remanx-icons@0.4.0': {}
 
   '@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0)':
     dependencies:

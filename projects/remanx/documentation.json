@@ -182,7 +182,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: () => ({\n    props: {\n      model: items,\n      direction: 'column'\n    },\n    template: `\n      <rx-menubar [model]=\"model\" [direction]=\"direction\"></rx-menubar>\n    `,\n  }),\n}"
+                "defaultValue": "{\n  render: () => ({\n    props: {\n      data: items,\n      direction: 'column'\n    },\n    template: `\n      <rx-menubar [data]=\"data\" [direction]=\"direction\"></rx-menubar>\n    `,\n  }),\n}"
             },
             {
                 "name": "MenuBar",
@@ -192,7 +192,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: () => ({\n    props: {\n      model: items\n    },\n    template: `\n      <rx-menubar [model]=\"model\"></rx-menubar>\n    `,\n  }),\n}"
+                "defaultValue": "{\n  render: () => ({\n    props: {\n      data: items\n    },\n    template: `\n      <rx-menubar [data]=\"data\"></rx-menubar>\n    `,\n  }),\n}"
             },
             {
                 "name": "messages",
@@ -884,7 +884,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: () => ({\n    props: {\n      model: items,\n      direction: 'column'\n    },\n    template: `\n      <rx-menubar [model]=\"model\" [direction]=\"direction\"></rx-menubar>\n    `,\n  }),\n}"
+                    "defaultValue": "{\n  render: () => ({\n    props: {\n      data: items,\n      direction: 'column'\n    },\n    template: `\n      <rx-menubar [data]=\"data\" [direction]=\"direction\"></rx-menubar>\n    `,\n  }),\n}"
                 },
                 {
                     "name": "MenuBar",
@@ -894,7 +894,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: () => ({\n    props: {\n      model: items\n    },\n    template: `\n      <rx-menubar [model]=\"model\"></rx-menubar>\n    `,\n  }),\n}"
+                    "defaultValue": "{\n  render: () => ({\n    props: {\n      data: items\n    },\n    template: `\n      <rx-menubar [data]=\"data\"></rx-menubar>\n    `,\n  }),\n}"
                 },
                 {
                     "name": "meta",
